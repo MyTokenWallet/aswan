@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+## update phyton packages
+pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
+
 cur_dir=`pwd`
 
 ## Start-up management background (debug, not for production)
