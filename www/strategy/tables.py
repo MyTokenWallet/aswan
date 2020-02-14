@@ -11,14 +11,14 @@ from core.redis_client import get_redis_client
 
 
 class BoolStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"策略名称"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"策略描述"), orderable=False)
-    strategy_var = columns.Column(verbose_name=_(u"内置变量"), orderable=False)
-    strategy_op = columns.Column(verbose_name=_(u"操作码"), orderable=False)
-    strategy_func = columns.Column(verbose_name=_(u"内置函数"), orderable=False)
-    strategy_threshold = columns.Column(verbose_name=_(u"阈值"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
+    strategy_var = columns.Column(verbose_name=_(u"Built-in variables"), orderable=False)
+    strategy_op = columns.Column(verbose_name=_(u"Action code"), orderable=False)
+    strategy_func = columns.Column(verbose_name=_(u"Built-in functions"), orderable=False)
+    strategy_threshold = columns.Column(verbose_name=_(u"Thresholds"), orderable=False)
     action = columns.TemplateColumn("""
-    <a class="strategy-destroy" data-uri="{% url 'strategy:bool_strategy_destroy' %}" data-id="{{ record.uuid }}">删除</a>
+    <a class="strategy-destroy" data-uri="{% url 'strategy:bool_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
     """, orderable=False, verbose_name=_(u"操作"))
 
     class Meta:
@@ -44,15 +44,15 @@ class BoolStrategyTable(tables.Table):
 
 
 class FreqStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"策略名称"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"策略描述"), orderable=False)
-    strategy_source = columns.Column(verbose_name=_(u"数据源"), orderable=False)
-    strategy_body = columns.Column(verbose_name=_(u"主体名称"), orderable=False)
-    strategy_time = columns.Column(verbose_name=_(u"时段(单位:秒)"), orderable=False)
-    strategy_limit = columns.Column(verbose_name=_(u"最大值"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
+    strategy_source = columns.Column(verbose_name=_(u"Data sources"), orderable=False)
+    strategy_body = columns.Column(verbose_name=_(u"Body name"), orderable=False)
+    strategy_time = columns.Column(verbose_name=_(u"Period (in seconds))"), orderable=False)
+    strategy_limit = columns.Column(verbose_name=_(u"Maximum"), orderable=False)
 
     action = columns.TemplateColumn("""
-    <a class="strategy-destroy" data-uri="{% url 'strategy:freq_strategy_destroy' %}" data-id="{{ record.uuid }}">删除</a>
+    <a class="strategy-destroy" data-uri="{% url 'strategy:freq_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
     """, orderable=False, verbose_name=_(u"操作"))
 
     class Meta:
@@ -72,14 +72,14 @@ class FreqStrategyTable(tables.Table):
 
 
 class MenuStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"策略名称"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"策略描述"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
     dimension = columns.Column(verbose_name=_(u"维度"), orderable=False)
-    menu_op = columns.Column(verbose_name=_(u"操作码"), orderable=False)
-    event = columns.Column(verbose_name=_(u"项目"), orderable=False)
-    menu_type = columns.Column(verbose_name=_(u"名单类型"), orderable=False)
+    menu_op = columns.Column(verbose_name=_(u"Action code"), orderable=False)
+    event = columns.Column(verbose_name=_(u"Project"), orderable=False)
+    menu_type = columns.Column(verbose_name=_(u"List type"), orderable=False)
     action = columns.TemplateColumn("""
-    <a class="strategy-destroy" data-uri="{% url 'strategy:menu_strategy_destroy' %}" data-id="{{ record.uuid }}">删除</a>
+    <a class="strategy-destroy" data-uri="{% url 'strategy:menu_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
     """, orderable=False, verbose_name=_(u"操作"))
 
     class Meta:
@@ -101,15 +101,15 @@ class MenuStrategyTable(tables.Table):
 
 
 class UserStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"策略名称"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"策略描述"), orderable=False)
-    strategy_source = columns.Column(verbose_name=_(u"数据源"), orderable=False)
-    strategy_body = columns.Column(verbose_name=_(u"主体名称"), orderable=False)
-    strategy_day = columns.Column(verbose_name=_(u"自然日(单位:个)"), orderable=False)
-    strategy_limit = columns.Column(verbose_name=_(u"最大值"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
+    strategy_source = columns.Column(verbose_name=_(u"Data sources"), orderable=False)
+    strategy_body = columns.Column(verbose_name=_(u"Body name"), orderable=False)
+    strategy_day = columns.Column(verbose_name=_(u"自然日(单位:Individual)"), orderable=False)
+    strategy_limit = columns.Column(verbose_name=_(u"Maximum"), orderable=False)
 
     action = columns.TemplateColumn("""
-        <a class="strategy-destroy" data-uri="{% url 'strategy:user_strategy_destroy' %}" data-id="{{ record.uuid }}">删除</a>
+        <a class="strategy-destroy" data-uri="{% url 'strategy:user_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
         """, orderable=False, verbose_name=_(u"操作"))
 
     class Meta:

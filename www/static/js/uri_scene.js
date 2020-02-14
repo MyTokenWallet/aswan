@@ -28,7 +28,7 @@ $(function () {
                 if (err.statusText !== 'abort') {
                     _this.removeClass("posting");
                     swal({
-                        title: "哎呀，出错了",
+                        title: "Oops, something went wrong",
                         type: "error",
                         confirmButtonColor:"#1ab394"
                     });

@@ -38,7 +38,7 @@ class BaseStrategyDestoryView(JSONResponseMixin, View):
         if is_using:
             return self.render_json_response(dict(
                 state=False,
-                error=u"该策略原子正被规则{}引用".format(rule_id)
+                error=u"该Policy正被规则{}引用".format(rule_id)
             ))
         client = get_redis_client()
         name = self.key_tpl.format(uuid=uuid)
@@ -471,7 +471,7 @@ class UserStrategyTestView(JSONResponseMixin, TemplateView):
 
 
 def _check_strategy(strategy_id):
-    """校验策略原子是否被生效中的规则引用"""
+    """校验Policy是否被生效中的规则引用"""
     client = get_redis_client()
     for r in client.scan_iter(match="rule:*"):
         rule = client.hgetall(r)

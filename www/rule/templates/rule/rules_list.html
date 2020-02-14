@@ -15,7 +15,7 @@
 
 
 {% block header %}
-    <a href="javascript:;" class="active">规则配置</a>
+    <a href="javascript:;" class="active">Rule configuration</a>
 {% endblock %}
 
 
@@ -26,7 +26,7 @@
     </a>
     <a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'rule:create' %}">
         <i class="fa fa-plus"></i>
-        新增
+        Add
     </a>
 {% endblock %}
 
@@ -62,7 +62,7 @@
                  </ul>
              </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
               </div>
             </div>
         </div>
@@ -80,13 +80,13 @@
             uri = _this.data('uri'),
             id = _this.data('id');
         swal({
-            title: "您确定要删除吗",
+            title: "Are you sure you want to delete it",
             type: "warning",
             allowOutsideClick: true,
             showCancelButton: true,
             confirmButtonColor: "#ff6700",
-            confirmButtonText: "删除",
-            cancelButtonText: "取消",
+            confirmButtonText: "delete",
+            cancelButtonText: "cancel",
             closeOnConfirm: true
         }, function () {
             $.ajax({
@@ -105,7 +105,7 @@
                 error: function (err) {
                     if (err.statusText !== 'abort') {
                         swal({
-                            title: "删除失败",
+                            title: "failed to delete",
                             type: "error",
                             confirmButtonColor:"#ff6700"
                         });
@@ -124,20 +124,20 @@
             id = _this.data('id');
         if(status === 'on'){
             swal({
-                title: "规则" + title + "已启用",
+                title: "规则" + title + "已Enable",
                 type: "error",
                 confirmButtonColor:"#ff6700"
             });
             return;
         }
         swal({
-            title: "您确定启用规则" + title + "吗?",
+            title: "您确定Enable规则" + title + "吗?",
             type: "warning",
             allowOutsideClick: true,
             showCancelButton: true,
             confirmButtonColor: "#ff6700",
-            confirmButtonText: "启用",
-            cancelButtonText: "取消",
+            confirmButtonText: "Enable",
+            cancelButtonText: "cancel",
             closeOnConfirm: true
         }, function () {
             $.ajax({
@@ -153,7 +153,7 @@
                 error: function (err) {
                     if (err.statusText !== 'abort') {
                         swal({
-                            title: "启用失败",
+                            title: "Enable失败",
                             type: "error",
                             confirmButtonColor:"#ff6700"
                         });
@@ -173,20 +173,20 @@
             id = _this.data('id');
         if(status === 'off'){
             swal({
-                title: "规则" + title + "已停用",
+                title: "规则" + title + "已Disable",
                 type: "error",
                 confirmButtonColor:"#ff6700"
             });
             return;
         }
         swal({
-            title: "您确定停用规则" + title + "吗?",
+            title: "您确定Disable规则" + title + "吗?",
             type: "warning",
             allowOutsideClick: true,
             showCancelButton: true,
             confirmButtonColor: "#ff6700",
-            confirmButtonText: "停用",
-            cancelButtonText: "取消",
+            confirmButtonText: "Disable",
+            cancelButtonText: "cancel",
             closeOnConfirm: true
         }, function () {
             $.ajax({
@@ -202,7 +202,7 @@
                 error: function (err) {
                     if (err.statusText !== 'abort') {
                         swal({
-                            title: "停用失败",
+                            title: "Disable失败",
                             type: "error",
                             confirmButtonColor:"#ff6700"
                         });

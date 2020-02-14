@@ -29,7 +29,7 @@
                         <form method="post" class="form-horizontal" id="menu_create_form" action="{{ request.get_full_path }}">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">规则名称</label>
+                                <label class="col-sm-2 control-label">Rule name</label>
                                 <div class="col-sm-9">
                                     {{ form.rule }}
                                     <span id="id-strategy-error" class="help-block" style="color:darkred"></span>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">请求体</label>
+                                <label class="col-sm-2 control-label">Request body</label>
                                 <div class="col-sm-9">
                                     {{ form.req_body }}
                                     <span id="id-req_body-error" class="help-block" style="color:darkred"></span>
@@ -101,7 +101,7 @@
                 if (err.statusText !== 'abort') {
                     _this.removeClass("posting");
                     swal({
-                        title: "哎呀，出错了",
+                        title: "Oops, something went wrong",
                         type: "error",
                         confirmButtonColor:"#1ab394"
                     });

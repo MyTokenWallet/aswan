@@ -18,7 +18,7 @@ class TestHitListDetailCase(BaseTestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
-        # 带用户
+        # 带User
         data = {
             'user_id': 11
         }

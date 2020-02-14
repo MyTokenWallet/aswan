@@ -3,13 +3,13 @@
 {% load staticfiles %}
 
 {% block header %}
-    <a href="javascript:;" class="active">组管理</a>
+    <a href="javascript:;" class="active">Group Management</a>
 {% endblock %}
 
 {% block action %}
     <a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'permissions:group_create' %}">
         <i class="fa fa-plus"></i>
-        添加新分组
+        Add new points
     </a>
 {% endblock %}
 
@@ -29,13 +29,13 @@
         var $this = $(this);
         var entity_id = $this.data("entity_id");
         swal({
-            title: "您确定要删除吗",
+            title: "Are you sure you want to delete it",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
             confirmButtonColor: "#ff6700",
-            confirmButtonText: "删除",
-            cancelButtonText: "取消",
+            confirmButtonText: "delete",
+            cancelButtonText: "cancel",
             closeOnConfirm: false,
             closeOnCancel: true
         }, function(isConfirm) {
@@ -48,7 +48,7 @@
                     success: function(data) {
                         if (data.state) {
                             swal({
-                                title: "删除成功!",
+                                title: "delete succeeded!",
                                 type: "success",
                                 timer: 800,
                                 showCancelButton: false,
@@ -57,7 +57,7 @@
                             $this.parent().parent().css("display", "none");
                         } else {
                             swal({
-                                title: "删除失败!",
+                                title: "failed to delete!",
                                 type: "danger",
                             });
                         }

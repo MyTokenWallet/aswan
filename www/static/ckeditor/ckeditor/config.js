@@ -27,7 +27,7 @@ CKEDITOR.on( 'instanceReady', function( ev )
       {
         $ : function( element )
         {
-          if ( element.name == 'img' )
+          if ( element.name === 'img' )
           {
             var style = element.attributes.style;
 

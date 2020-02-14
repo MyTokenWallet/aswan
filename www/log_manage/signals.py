@@ -8,7 +8,7 @@ from log_manage.models import AuditLogModel
 
 __all__ = ['user_visit']
 
-# 用户访问
+# User访问
 user_visit = Signal(providing_args=['request', 'response'])
 
 

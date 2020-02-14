@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block header %}
-    <a href="javascript:;" class="active">调试布尔型策略</a>
+    <a href="javascript:;" class="active">Debug Boolean strategy</a>
 {% endblock %}
 
 {% block action %}
@@ -29,7 +29,7 @@
                         <form method="post" class="form-horizontal" id="menu_create_form" action="{{ request.get_full_path }}">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">布尔型策略</label>
+                                <label class="col-sm-2 control-label">Boolean strategy</label>
                                 <div class="col-sm-9">
                                     {{ form.strategy }}
                                     <span id="id-strategy-error" class="help-block" style="color:darkred"></span>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">请求体</label>
+                                <label class="col-sm-2 control-label">Request body</label>
                                 <div class="col-sm-9">
                                     {{ form.req_body }}
                                     <span id="id-req_body-error" class="help-block" style="color:darkred"></span>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                     <button class="btn btn-primary" type="submit">保存</button>
+                                     <button class="btn btn-primary" type="submit">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -68,7 +68,7 @@
 
 <script>
     $(function () {
-    // 创建漏洞表单提交
+    // Create a vulnerability form submission
     $("body").on("submit", '#menu_create_form', function (e) {
         $("#id-req_body-error").html("");
         $("#id-strategy-error").html("");
@@ -102,7 +102,7 @@
                 if (err.statusText !== 'abort') {
                     _this.removeClass("posting");
                     swal({
-                        title: "哎呀，出错了",
+                        title: "Oops, something went wrong",
                         type: "error",
                         confirmButtonColor:"#1ab394"
                     });

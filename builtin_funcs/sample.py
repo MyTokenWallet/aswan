@@ -3,14 +3,14 @@
 from builtin_funcs import BuiltInFuncs
 
 
-@BuiltInFuncs.register(desc=u'异常用户',
+@BuiltInFuncs.register(desc=u'异常User',
                        args_type_tuple=(('user_id', str),),
                        supported_ops=('is', 'is_not'))
 def is_abnormal(req_body):
     user_id = req_body['user_id']
     user_key = user_id[-1]
 
-    # 特殊用户，直接放过
+    # 特殊User，直接放过
     if user_key == '0':
         return None
 
@@ -31,11 +31,11 @@ def user_login_count(req_body):
     user_id = req_body['user_id']
     user_key = user_id[-1]
 
-    # 未获取到值 / 特殊用户直接放过
+    # 未获取到值 / 特殊User直接放过
     if user_key == '0':
         return None
 
-    # 通过各种方法(http,硬编码,rpc等等方式)得到用户在此维度上的值
+    # 通过各种方法(http,硬编码,rpc等等方式)得到User在此维度上的值
     if user_id[-1] in {'1', '2', '3', '4'}:
         return 40
     else:

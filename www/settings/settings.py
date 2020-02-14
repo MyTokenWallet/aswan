@@ -114,10 +114,10 @@ STATICFILES_DIRS = (
     root('static'),
 )
 
-# 策略的签名key
+# Policy signature key
 STRATEGY_SIGN_KEY = 'strategy_sign'
 
-# 保存最新的规则ID，用于生成
+# Save the latest rule ID for generation
 LAST_RULE_ID_KEY = 'last_rule_id'
 
 import sys  # noqa

@@ -4,14 +4,14 @@
 {% load staticfiles %}
 
 {% block header %}
-    <a href="javascript:;" class="active">名单项目管理</a>
+    <a href="javascript:;" class="active">List item management</a>
 {% endblock %}
 
 
 {% block action %}
     <a class="roll-nav roll-right extra-right-btns pull-right" data-toggle="modal" data-target="#setEvent">
         <i class="fa fa-plus"></i>
-        新增
+        Add
     </a>
 {% endblock %}
 
@@ -28,15 +28,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    新增名单项目
+                    Add名单项目
                 </div>
                 <div class="modal-body">
                     <input class="form-control" id="id_event_name" type="text" name="event_name" placeholder="项目名称">
                     <span id="id-event_name-error" class="help-block" style="color:darkred"></span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <button type="button" id="eventSave" class="btn btn-primary" data-uri="{% url 'menus:event_create' %}">保存</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" id="eventSave" class="btn btn-primary" data-uri="{% url 'menus:event_create' %}">Save</button>
                 </div>
             </div>
         </div>
@@ -51,19 +51,19 @@
 {% include "menu/batch_delete.html" %}
 <script>
     $(function () {
-    // 删除
+    // delete
     $('.event-destroy').click(function () {
         var _this = $(this),
             uri = _this.data('uri'),
             id = _this.data('id');
         swal({
-            title: "您确定要删除吗",
+            title: "Are you sure you want to delete it",
             type: "warning",
             allowOutsideClick: true,
             showCancelButton: true,
             confirmButtonColor: "#ff6700",
-            confirmButtonText: "删除",
-            cancelButtonText: "取消",
+            confirmButtonText: "delete",
+            cancelButtonText: "cancel",
             closeOnConfirm: false
         }, function () {
             $.ajax({
@@ -89,7 +89,7 @@
                 error: function (err) {
                     if (err.statusText !== 'abort') {
                         swal({
-                            title: "删除失败",
+                            title: "failed to delete",
                             type: "error",
                             confirmButtonColor:"#ff6700"
                         });
@@ -98,7 +98,7 @@
             })
         });
     });
-    // 新增
+    // Add
     $('#eventSave').click(function () {
         var _this = $(this);
         var uri = _this.data('uri'),
@@ -124,7 +124,7 @@
             error: function (err) {
                 if (err.statusText !== 'abort') {
                     swal({
-                        title: "哎呀，出错了",
+                        title: "Oops, something went wrong",
                         type: "error",
                         confirmButtonColor:"#1ab394"
                     });
@@ -132,7 +132,7 @@
             }
         })
     });
-    // 错误提示复位
+    // Error prompt reset
     $("#id_event_name").focus(function () {
         $("#id-event_name-error").html("");
     });

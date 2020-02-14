@@ -38,23 +38,23 @@ def register_strategy(cls):
 
 
 class Strategy(object):
-    """策略原子基类"""
+    """Policy基类"""
 
     def __init__(self, d):
-        #  策略原子uuid
+        #  Policyuuid
         self.uuid = d['uuid']
-        #  策略原子名称
+        #  Policy名称
         self.name = d['strategy_name']
         # 调用计数
         self.query_count = 0
 
     def get_thresholds(self):
-        """每种策略原子都必定有阈值列表,规则中的策略原子默认绑定此阈值
+        """每种Policy都必定有阈值列表,规则中的Policy默认绑定此阈值
         此处返回的阈值列表其实是个字符串列表，并未进行类型转换"""
         raise NotImplementedError("must be writen by subclass")
 
     def build_strategy_name_from_thresholds(self, thresholds):
-        """每种策略原子都必需能从阈值列表重新构造策略原子名"""
+        """每种Policy都必需能从阈值列表重新构造Policy名"""
         raise NotImplementedError("must be writen by subclass")
 
     def get_callable(self):
@@ -134,7 +134,7 @@ class FreqStrategy(Strategy):
     def build_strategy_name_from_thresholds(self, thresholds):
         strategy_time, threshold = thresholds
         tmp_str = re.sub(r'[\d]+s', strategy_time + 's', self.name)
-        return re.sub(r'[\d]+次', threshold, tmp_str)
+        return re.sub(r'[\d]+Times', threshold, tmp_str)
 
     def get_callable(self):
         return self.query_with_history
@@ -238,7 +238,7 @@ class MenuStrategy(Strategy):
 
 @register_strategy
 class UserStrategy(Strategy):
-    """ 限用户数型 """
+    """ 限User数型 """
     prefix = 'user_strategy:*'
     conn = get_report_redis_client()
     source_cls = UserSource
@@ -268,7 +268,7 @@ class UserStrategy(Strategy):
             else:
                 tmp_str = re.sub(r'[\d]+个自然日', strategy_day + '个自然日',
                                  self.name)
-        return re.sub(r'[\d]+个用户', threshold + '个用户', tmp_str)
+        return re.sub(r'[\d]+Individual_User', threshold + 'Individual_User', tmp_str)
 
     def get_callable(self):
         return self.query_with_history

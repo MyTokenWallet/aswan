@@ -24,11 +24,11 @@ def add_element_to_menu(event_code, menu_type, dimension, element,
     """
         为名单中增加元素
     :param str|unicode event_code: 名单项目code
-    :param str|unicode menu_type: 名单类型  black white gray
+    :param str|unicode menu_type: List type  black white gray
     :param str|unicode dimension: 名单维度 user_id / ip / ...
     :param str|unicode element: 放入名单的元素
     :param datetime end_time: 失效时间
-    :param str|unicode menu_desc: 备注
+    :param str|unicode menu_desc: Note
     :return:
     """
     end_time = (end_time or datetime.now() + timedelta(hours=1))

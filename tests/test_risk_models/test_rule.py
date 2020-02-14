@@ -49,7 +49,7 @@ class TestRule(unittest.TestCase):
         self.assertEquals(control, 'log')
         self.assertEquals(weight, 90)
 
-        # 命中名单型策略
+        # 命中List strategy
         add_element_to_menu(event_code=self.event_code, menu_type='black', dimension='user_id', element='111')
         control, weight = calculate_rule(id_=self.rule_id, req_body=req_body)
         self.assertEquals(control, 'deny')

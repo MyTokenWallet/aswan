@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^$',
         RedirectView.as_view(url=reverse_lazy("strategy:menu_strategy_list"),
                              permanent=True), name="strategy_index"),
-    # 名单型策略
+    # List strategy
     url(r'^menu_strategy/list/$', MenuStrategyListView.as_view(),
         name="menu_strategy_list"),
     url(r'^menu_strategy/create/$', MenuStrategyCreateView.as_view(),
@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^menu_strategy/data/$', MenuStrategyDataView.as_view(),
         name="menu_strategy_data"),
 
-    # 布尔型策略
+    # Boolean strategy
     url(r'^bool_strategy/list/$', BoolStrategyListView.as_view(),
         name="bool_strategy_list"),
     url(r'^bool_strategy/create/$', BoolStrategyCreateView.as_view(),
@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^bool_strategy/data/$', BoolStrategyDataView.as_view(),
         name="bool_strategy_data"),
 
-    # 时段频控策略
+    # Time period control strategy
     url(r'^freq_strategy/list/$', FreqStrategyListView.as_view(),
         name="freq_strategy_list"),
     url(r'^freq_strategy/create/$', FreqStrategyCreateView.as_view(),
@@ -55,7 +55,7 @@ urlpatterns = [
     url(r'^freq_strategy/data/$', FreqStrategyDataView.as_view(),
         name="freq_strategy_data"),
 
-    # 限用户数型策略
+    # User-limited number-based policy
     url(r'^user_strategy/list/$', UserStrategyListView.as_view(),
         name="user_strategy_list"),
     url(r'^user_strategy/create/$', UserStrategyCreateView.as_view(),

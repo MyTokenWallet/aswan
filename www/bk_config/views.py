@@ -13,10 +13,10 @@ from bk_config.tables import ConfigSourceTable
 
 
 FIELD_EN_ZH_MAP = {
-    'user_id': '账号ID',
-    'uid': '设备ID',
-    'ip': '当前IP',
-    'phone': '手机号',
+    'user_id': 'AccountID',
+    'uid': 'DeviceID',
+    'ip': 'CurrentIP',
+    'phone': 'Cell phone number',
 }
 
 
@@ -104,7 +104,7 @@ class ConfigDestroyView(JSONResponseMixin, View):
         if name_key in used_keys:
             return self.render_json_response(dict(
                 state=False,
-                error=u"[{}]已被使用，不能删除".format(name_key)
+                error=u"[{}]已被使用，不能delete".format(name_key)
             ))
         client.hdel("CONFIG_SOURCE_MAP", name_key)
         return self.render_json_response(dict(

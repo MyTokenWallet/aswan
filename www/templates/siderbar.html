@@ -70,128 +70,128 @@
                 <ul class="nav extra-nav-level-2">
                     {% if menu_event_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_event_list }}">名单项目管理</a>
+                        <a href="{{ menu_event_list }}">List item management</a>
                     </li>
                     {% endif %}
                     {% if menu_userid_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_userid_list }}">用户ID管理</a>
+                        <a href="{{ menu_userid_list }}">User ID management</a>
                     </li>
                     {% endif %}
                     {% if menu_ip_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_ip_list }}">IP地址管理</a>
+                        <a href="{{ menu_ip_list }}">IP Address management</a>
                     </li>
                     {% endif %}
                     {% if menu_uid_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_uid_list }}">设备号管理</a>
+                        <a href="{{ menu_uid_list }}">Device number management</a>
                     </li>
                     {% endif %}
                     {% if menu_pay_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_pay_list }}">支付账号管理</a>
+                        <a href="{{ menu_pay_list }}">Payment account management</a>
                     </li>
                     {% endif %}
                     {% if menu_phone_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_phone_list }}">手机号管理</a>
+                        <a href="{{ menu_phone_list }}">Phone number management</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">策略原子管理</span>
+                    <span class="nav-label">Strategic Atomic Management</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
 
                     {% if menu_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_strategy_url }}">名单型策略配置</a>
+                        <a href="{{ menu_strategy_url }}">List policy configuration</a>
                     </li>
                     {% endif %}
                     {% if bool_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ bool_strategy_url }}">布尔型策略配置</a>
+                        <a href="{{ bool_strategy_url }}">Boolean policy configuration</a>
                     </li>
                     {% endif %}
                     {% if freq_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ freq_strategy_url }}">时段频控型策略配置</a>
+                        <a href="{{ freq_strategy_url }}">Period frequency control strategy configuration</a>
                     </li>
                     {% endif %}
                     {% if user_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ user_strategy_url }}">限用户数型策略配置</a>
+                        <a href="{{ user_strategy_url }}">User-limited policy configuration</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">规则管理</span>
+                    <span class="nav-label">Rule management</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if rule_list_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ rule_list_url }}">规则配置</a>
+                        <a href="{{ rule_list_url }}">Rule configuration</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">日志管理</span>
+                    <span class="nav-label">Log management</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if hit_list_detail in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ hit_list_detail }}">拦截日志详情</a>
+                        <a href="{{ hit_list_detail }}">Block log details</a>
                     </li>
                     {% endif %}
                     {% if audit_logs in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ audit_logs }}">访问日志详情</a>
+                        <a href="{{ audit_logs }}">Access log details</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">权限管理</span>
+                    <span class="nav-label">authority management</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if permissions_users in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ permissions_users }}">用户</a>
+                        <a href="{{ permissions_users }}">User</a>
                     </li>
                     {% endif %}
                     {% if permissions_groups in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ permissions_groups }}">组</a>
+                        <a href="{{ permissions_groups }}">Group</a>
                     </li>
                     {% endif %}
                     {% if permissions_uri_groups in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ permissions_uri_groups }}">权限</a>
+                        <a href="{{ permissions_uri_groups }}">Authority</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">后台配置</span>
+                    <span class="nav-label">Background Configuration</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if source_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ source_list }}">数据源配置</a>
+                        <a href="{{ source_list }}">Data Source Configuration</a>
                     </li>
                     {% endif %}
                 </ul>

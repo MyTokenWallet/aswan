@@ -4,14 +4,14 @@
 {% load staticfiles %}
 
 {% block header %}
-<a href="javascript:;" class="active">用户ID管理</a>
+<a href="javascript:;" class="active">User ID management</a>
 {% endblock %}
 
 
 {% block action %}
 <a class="roll-nav roll-right extra-right-btns pull-right" data-toggle="modal" data-target="#setValue">
     <i class="fa fa-plus"></i>
-    新增
+    Add
 </a>
 {% endblock %}
 
@@ -31,10 +31,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>新增用户ID名单</h2>
+                <h2>AddUserID名单</h2>
             </div>
             <div class="modal-body">
-                <textarea class="form-control" id="id_value" name="value" placeholder="用户ID[批量添加时请以回车键隔开]"
+                <textarea class="form-control" id="id_value" name="value" placeholder="UserID[批量添加时请以回车键隔开]"
                           rows="5"></textarea>
                 <span id="id-value-error" class="help-block" style="color:darkred"></span>
                 <div class="hr-line-dashed"></div>
@@ -44,15 +44,15 @@
                 {{ create_form.event_code }}
                 <span id="id-event_code-error" class="help-block" style="color:darkred"></span>
                 <div class="hr-line-dashed"></div>
-                <input class="form-control datetime" id="id_end_time" name="end_time" placeholder="结束时间">
+                <input class="form-control datetime" id="id_end_time" name="end_time" placeholder="End Time">
                 <span id="id-end_time-error" class="help-block" style="color:darkred"></span>
                 <div class="hr-line-dashed"></div>
                 {{ create_form.menu_desc }}
                 <span id="id-menu_desc-error" class="help-block" style="color:darkred"></span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                <button type="button" id="valueSave" class="btn btn-primary" data-uri="{% url 'menus:create' %}">保存
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" id="valueSave" class="btn btn-primary" data-uri="{% url 'menus:create' %}">Save
                 </button>
             </div>
         </div>
@@ -77,7 +77,7 @@
 
 <script>
     $(function () {
-        // 新增
+        // Add
         $('#valueSave').click(function () {
             var _this = $(this);
             var uri = _this.data('uri'),
@@ -112,7 +112,7 @@
                 error: function (err) {
                     if (err.statusText !== 'abort') {
                         swal({
-                            title: "哎呀，出错了",
+                            title: "Oops, something went wrong",
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });
@@ -120,7 +120,7 @@
                 }
             })
         });
-        // 错误提示复位
+        // Error prompt reset
         $("#id_value").focus(function () {
             $("#id-value-error").html("");
         });

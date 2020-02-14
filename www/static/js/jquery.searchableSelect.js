@@ -232,7 +232,7 @@ SOFTWARE.
             this.dropdown.addClass('searchable-select-hide');
             this.searchableElement.trigger('focus');
             this.status = 'hide';
-            this.dropdown.css('z-index', 1); //关闭下拉列表时恢复z-index层级
+            this.dropdown.css('z-index', 1); //Close下拉列表时恢复z-index层级
         },
 
         hasCurrentSelectedItem: function () {

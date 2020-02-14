@@ -11,7 +11,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">新增时段频控型策略</a>
+<a href="javascript:;" class="active">Add time-time frequency control strategy</a>
 {% endblock %}
 
 {% block action %}
@@ -32,7 +32,7 @@
                           action="{{ request.get_full_path }}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">数据源</label>
+                            <label class="col-sm-2 control-label">Data sources</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="id_strategy_source" name="strategy_source">
                                 </select>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" id="label-strategy_body">主体名称</label>
+                            <label class="col-sm-2 control-label" id="label-strategy_body">Body name</label>
                             <div class="col-sm-10">
                                 <input type="hidden" name="strategy_body" id="id_strategy_body">
                                 <span id="cb-strategy_body"></span>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">时段(单位:秒)</label>
+                            <label class="col-sm-2 control-label">Period (in seconds))</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_time }}
                                 <span class="help-block">{{ form.strategy_time.help_text }}</span>
@@ -61,7 +61,7 @@
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">最大值</label>
+                            <label class="col-sm-2 control-label">Maximum</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_limit }}
                                 <span id="id-strategy_limit-error" class="help-block" style="color:darkred"></span>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">策略名称</label>
+                            <label class="col-sm-2 control-label">Policy Name</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_name }}
                                 <span id="id-strategy_name-error" class="help-block" style="color:darkred"></span>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">策略描述</label>
+                            <label class="col-sm-2 control-label">Policy Description</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_desc }}
                                 <span id="id-strategy_desc-error" class="help-block" style="color:darkred"></span>
@@ -86,7 +86,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="submit">保存</button>
+                                <button class="btn btn-primary" type="submit">Save</button>
                             </div>
                         </div>
                     </form>
@@ -104,18 +104,18 @@
 
 <script>
     var fun_setVal = function () {
-        var source = $("#id_strategy_source").find("option:selected").text()
+        var source = $("#id_strategy_source").find("option:selected").text();
         var body = $("#id_strategy_body").val();
         var elements = body.split(',');
         body = elements.join(',');
         var time = $("#id_strategy_time").val();
         var limit = $("#id_strategy_limit").val();
-        var pattern = /^[1-9]\d*$/; //匹配非负整数
+        var pattern = /^[1-9]\d*$/; //Match pattern
         if (pattern.test(limit)) {
             $("#id-strategy_limit-error").html("");
-            $("#id_strategy_name").val("相同" + body + "，在最近" + time + "s内，限" + limit + "次(" + source + ")");
+            $("#id_strategy_name").val("equal" + body + "，In the recent" + time + "s_Inside，Limit" + limit + "Times(" + source + ")");
         } else {
-            $("#id-strategy_limit-error").html("请输入大于等于1的正整数。");
+            $("#id-strategy_limit-error").html("Please enter a positive integer greater than or equal to 1.");
         }
     };
     fun_setVal();
@@ -156,7 +156,7 @@
                     if (err.statusText !== 'abort') {
                         _this.removeClass("posting");
                         swal({
-                            title: "哎呀，出错了",
+                            title: "Oops, something went wrong",
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });
@@ -222,12 +222,12 @@
             arrs.push($(this).val());
         });
         var strategy_body = arrs.join(',');
-        $("input[name=strategy_body]").val(strategy_body)
+        $("input[name=strategy_body]").val(strategy_body);
         fun_setVal()
 });
 
 
-    // 错误提示复位
+    // Error prompt reset
     $("#id_strategy_limit").focus(function () {
         $("#id-strategy_limit-error").html("");
     });

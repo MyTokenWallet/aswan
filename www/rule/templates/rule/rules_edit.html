@@ -32,7 +32,7 @@
                           action="{{ request.get_full_path }}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">规则名称</label>
+                            <label class="col-sm-2 control-label">Rule name</label>
                             <div class="col-sm-10">
                                 <input class="form-control" id="id_title" name="title" type="text" value="{{ rule.title }}"/>
                                 <span id="id-title-error" class="help-block" style="color:darkred"></span>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">规则描述</label>
+                            <label class="col-sm-2 control-label">Rule description</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" cols="40" id="id_describe" name="describe" rows="5">{{ rule.describe }}</textarea>
                                 <span id="id-describe-error" class="help-block" style="color:darkred"></span>
@@ -48,15 +48,15 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">状态</label>
+                            <label class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-10">
                                  <select class="form-control" id="id_status" name="status">
                                  {% if rule.status == "on" %}
-                                 <option value="on">启用</option>
-                                 <option value="off">停用</option>
+                                 <option value="on">Enable</option>
+                                 <option value="off">Disable</option>
                                  {% else %}
-                                 <option value="off">停用</option>
-                                 <option value="on">启用</option>
+                                 <option value="off">Disable</option>
+                                 <option value="on">Enable</option>
                                  {% endif %}
                                  </select>
                                  <span id="id-status-error" class="help-block" style="color:darkred"></span>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">结束时间</label>
+                            <label class="col-sm-2 control-label">End Time</label>
                             <div class="col-sm-10">
                                 <input class="form-control datetime" id="id_end_time" name="end_time" type="datetime" value="{{ rule.end_time }}"/>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1>策略原子选择</h1>
+                                        <h1>Policy选择</h1>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
@@ -106,10 +106,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                                         <button type="button" id="save-strategy" class="btn btn-primary"
                                                 onclick="save_strategys()">
-                                            保存
+                                            Save
                                         </button>
                                     </div>
                                 </div>
@@ -120,11 +120,11 @@
                             <table id="rule-list" class="table table-bordered">
                                 <tr>
                                     <th></th>
-                                    <th>策略原子组名称</th>
+                                    <th>PolicyGroup Name称</th>
                                     <th>权重</th>
                                     <th></th>
-                                    <th>策略原子组列表</th>
-                                    <th>管控原子</th>
+                                    <th>PolicyGroup列表</th>
+                                    <th>Projectmanagement</th>
                                     <th>客服话术</th>
                                 </tr>
                                 <tr id="list-0" hidden>
@@ -133,13 +133,13 @@
                                                 onclick="delete_rule(this)"></button>
                                     </td>
                                     <td width="15%">
-                                        <textarea class="form-control group-name" placeholder="策略原子组名" data-autoresize rows="1"></textarea>
+                                        <textarea class="form-control group-name" placeholder="PolicyGroup Name" data-autoresize rows="1"></textarea>
                                     </td>
                                     <td width="10%">
                                         <input type="number" class="form-control weight" placeholder="权重"/>
                                     </td>
                                     <td width="10%">
-                                        <a href="#choose-strategy" data-toggle="modal" data-list-id="list-0">策略原子选择</a>
+                                        <a href="#choose-strategy" data-toggle="modal" data-list-id="list-0">Policy选择</a>
                                     </td>
                                     <td width="35%">
                                         <label type="text" class="strategy" style="text-align:left"></label>
@@ -166,7 +166,7 @@
                                         <td style="width: 15%"><textarea class="form-control group-name" data-autoresize="">{{ rule.group_name }}</textarea></td>
                                         <td style="width: 10%"><input type="number" class="form-control weight" value="{{ rule.weight }}" /></td>
                                         <td width="10%">
-                                            <a href="#choose-strategy" data-toggle="modal" data-list-id="list-{{ forloop.counter }}">重选策略原子</a>
+                                            <a href="#choose-strategy" data-toggle="modal" data-list-id="list-{{ forloop.counter }}">重选Policy</a>
                                         </td>
                                         <td style="width: 35%">
                                             <label type="text" class="strategy" style="text-align:left" value='{{ rule.strategy_list_str }}'> {{ rule.strategy_name }}</label>
@@ -189,7 +189,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-info" onclick="create_rule()" type="button">新增策略原子</button>
+                                <button class="btn btn-info" onclick="create_rule()" type="button">AddPolicy</button>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -265,7 +265,7 @@
             });
             if (names.length !== strategys.length || strategys.length !== controls.length || controls.length !== customs.length) {
                 swal({
-                    title: "策略原子不能留空",
+                    title: "Policy can't be blank!",
                     type: "error",
                     confirmButtonColor: "#1ab394"
                 });
@@ -273,7 +273,7 @@
             }
             if (strategys.length <= 0) {
                 swal({
-                    title: "必须添加规则",
+                    title: "Rules must be added",
                     type: "error",
                     confirmButtonColor: "#1ab394"
                 });
@@ -287,7 +287,7 @@
             for (i = 0; i < strategys.length; i++) {
                 if (names[i] === '') {
                     swal({
-                        title: "策略原子组名不能为空",
+                        title: "PolicyGroup Name can't be empty",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -295,7 +295,7 @@
                 }
                 if (weights[i] === '') {
                     swal({
-                        title: "权重不能为空",
+                        title: "Weight cannot be empty!",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -303,7 +303,7 @@
                 }
                 if (strategys[i] === '') {
                     swal({
-                        title: "策略原子不能留空",
+                        title: "Policy can't be blank!",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -311,7 +311,7 @@
                 }
                 if (controls[i] === '') {
                     swal({
-                        title: "管控原子不能留空",
+                        title: "Project Management can't be left empty...",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -339,7 +339,7 @@
                 "names": name_arr.join(":::"),
                 "weights": weight_arr.join(","),
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
-            }
+            };
 
             _this.addClass("posting");
             $.ajax({
@@ -364,7 +364,7 @@
                     if (err.statusText !== 'abort') {
                         _this.removeClass("posting");
                         swal({
-                            title: "哎呀，出错了",
+                            title: "Oops, something went wrong",
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });
@@ -428,7 +428,7 @@
 <script>
     var fun_setVal = function () {
         var body = $("#id_search_input").val();
-        $("#id_strategy_name").val("相同" + body + "，在最近" + time + "s内，不超过" + limit + "次(" + source + ")");
+        $("#id_strategy_name").val("equal" + body + "，In the recent" + time + "s_Inside，No more than" + limit + "Times(" + source + ")");
     };
     $('#id_search_input').on('propertychange input', fun_setVal);
 </script>

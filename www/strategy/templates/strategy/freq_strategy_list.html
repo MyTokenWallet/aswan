@@ -13,7 +13,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">时段频控型策略配置</a>
+<a href="javascript:;" class="active">Period frequency control strategy configuration</a>
 {% endblock %}
 
 
@@ -24,7 +24,7 @@
 </a>
 <a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'strategy:freq_strategy_create' %}">
     <i class="fa fa-plus"></i>
-    新增
+    Add
 </a>
 {% endblock %}
 
@@ -52,13 +52,13 @@
                 uri = _this.data('uri'),
                 id = _this.data('id');
             swal({
-                title: "您确定要删除吗",
+                title: "Are you sure you want to delete it",
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
                 confirmButtonColor: "#ff6700",
-                confirmButtonText: "删除",
-                cancelButtonText: "取消",
+                confirmButtonText: "delete",
+                cancelButtonText: "cancel",
                 closeOnConfirm: false
             }, function () {
                 $.ajax({
@@ -84,7 +84,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "删除失败",
+                                title: "failed to delete",
                                 type: "error",
                                 confirmButtonColor: "#ff6700"
                             });

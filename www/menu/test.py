@@ -38,7 +38,7 @@ class TestMenuMinix(object):
         self.assertEquals(resp.status_code, 200)
         self.assertEquals(json.loads(resp.content)['error'], u"id不合法")
 
-        # 成功删除
+        # 成功delete
         menu_element_id = add_element_to_menu(self.event_code, 'black',
                                               self.dimension, 'test_value')
         resp = self.client.post(reverse(self.delete_uri), data={'ids': menu_element_id})
@@ -46,7 +46,7 @@ class TestMenuMinix(object):
         t = json.loads(resp.content)
         self.assertEquals(t['state'], True)
 
-        # 删除不存在的记录
+        # delete不存在的记录
         resp = self.client.post(reverse(self.delete_uri),
                                 data={'ids': menu_element_id})
         self.assertEquals(resp.status_code, 200)

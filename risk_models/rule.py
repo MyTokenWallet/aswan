@@ -81,7 +81,7 @@ class Rules(object):
             gevent.spawn(self.refresh)
 
     def _should_load(self, d):
-        #  支持两种load方式：仅load开启状态且未过期的规则，load所有规则
+        #  支持两种load方式: 仅load开启Status且未过期的规则，load所有规则
         if self.load_all:
             return True
         status = d.get('status')
@@ -151,7 +151,7 @@ class Rules(object):
 
     def get_all_group_uuid_and_name(self):
         """
-        返回所有的策略原子组uuid和名称
+        返回所有的PolicyGroupuuid和名称
         *因html中typeahead需要， 此处 group_uuid 前拼接了rule_id
         """
         data = []
@@ -231,12 +231,12 @@ def calculate_rule(id_, req_body, rules=None, ac=None):
             if not ret:
                 break
 
-        # 目前策略为过全部策略原子组以积累数据，若无此需求，可自行进行短路
+        # 目前策略为过全部PolicyGroup以积累数据，若无此需求，可自行进行短路
         if all(results):
             if not result_seted:
                 rv_control, rv_weight, result_seted = control, weight, True
 
-            # 当前命中的策略组在此规则中是第几个命中的
+            # 当前命中的策略Group在此规则中是第几个命中的
             hit_number += 1
 
             msg = json.dumps(dict(rule_id=id_,

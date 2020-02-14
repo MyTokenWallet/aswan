@@ -13,10 +13,10 @@ class UserPermissionTable(tables.Table):
     fullname = columns.Column(verbose_name=_('姓名'), orderable=False)
     pk = columns.Column(verbose_name=_('email'), orderable=False)
     is_superuser = columns.BooleanColumn(null=False,
-                                         verbose_name=_('超级管理员'),
+                                         verbose_name=_('超级administrator'),
                                          orderable=False)
     entity_id = columns.Column(verbose_name=_('初次登录时间'))
-    remark = columns.Column(verbose_name=_('备注'), orderable=False)
+    remark = columns.Column(verbose_name=_('Note'), orderable=False)
 
     @classmethod
     def render_fullname(cls, record):
@@ -37,7 +37,7 @@ class UserPermissionTable(tables.Table):
 
 
 class GroupPermissionTable(tables.Table):
-    desc = columns.Column(verbose_name=_('分组名'))
+    desc = columns.Column(verbose_name=_('分Group Name'))
     pk = columns.Column(verbose_name=_('唯一标识'))
     entity_id = columns.Column(verbose_name=_('创建时间'))
     action = columns.TemplateColumn(str('x'), orderable=False,
@@ -49,10 +49,10 @@ class GroupPermissionTable(tables.Table):
         html = (
             '''
             <a href="{1}?entity_id={0}"
-               style="margin-right: 10px">变更权限
+               style="margin-right: 10px">变更Authority
             </a>
             <a data-entity_id={0}
-               class="perms-group-delete">删除
+               class="perms-group-delete">delete
             </a>
             '''
         ).format(record.get('entity_id', ''), url)
@@ -75,7 +75,7 @@ class GroupPermissionTable(tables.Table):
 
 
 class UriGroupPermissionTable(tables.Table):
-    desc = columns.Column(verbose_name=_('uri组名称'))
+    desc = columns.Column(verbose_name=_('uriGroup Name称'))
     pk = columns.Column(verbose_name=_('唯一标识'))
     uris = columns.Column(verbose_name=_('uri列表'))
     entity_id = columns.Column(verbose_name=_('创建时间'))
@@ -88,10 +88,10 @@ class UriGroupPermissionTable(tables.Table):
         html = (
             '''
             <a href="{1}?entity_id={0}"
-               style="margin-right: 10px">变更权限
+               style="margin-right: 10px">变更Authority
             </a>
             <a data-entity_id={0}
-               class="perms-uri-group-delete">删除
+               class="perms-uri-group-delete">delete
             </a>
             '''
         ).format(record.get('entity_id', ''), url)

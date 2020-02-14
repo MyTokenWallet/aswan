@@ -27,15 +27,15 @@ MENU_STATUS_CHOICES = (
     (u'无效', u'无效')
 )
 
-# 新增时没有全部名单
+# Add时没有全部名单
 MENU_TYPE_CHOICES_ADD_CHOICES = MENU_TYPE_CHOICES[1:]
 
 MENU_TYPE_NAME_MAP = dict(MENU_TYPE_CHOICES_ADD_CHOICES)
 
 DIMENSION_NAME_MAP = {
-    "user_id": u"用户ID",
-    "ip": u'IP地址',
-    "phone": u"手机号",
+    "user_id": u"UserID",
+    "ip": u'IPAddress',
+    "phone": u"Cell phone number",
     "uid": u"设备号",
     "pay": u"支付账号"
 }
@@ -66,16 +66,16 @@ class MenuEventCreateForm(BaseForm):
 
 class MenuCreateForm(BaseForm):
     value = forms.CharField(widget=forms.Textarea(
-        attrs={"placeholder": "用户ID[批量添加时请以回车键隔开]", "rows": "5"}))
+        attrs={"placeholder": "UserID[批量添加时请以回车键隔开]", "rows": "5"}))
     dimension = forms.CharField(required=False, widget=forms.HiddenInput,
                                 label=_(u'名单维度'))
-    menu_type = forms.ChoiceField(label=_(u"名单类型"),
+    menu_type = forms.ChoiceField(label=_(u"List type"),
                                   choices=MENU_TYPE_CHOICES_ADD_CHOICES)
-    event_code = forms.ChoiceField(label=_(u"项目"))
+    event_code = forms.ChoiceField(label=_(u"Project"))
     end_time = forms.DateTimeField(widget=forms.TextInput(
-        attrs={"placeholder": "结束时间", "class": "form-control datetime"}))
+        attrs={"placeholder": "End Time", "class": "form-control datetime"}))
     menu_desc = forms.CharField(required=False, widget=forms.Textarea(
-        attrs={"placeholder": "备注[填写增加该批数据的原因]", "rows": "5"}))
+        attrs={"placeholder": "Note[填写增加该批数据的原因]", "rows": "5"}))
 
     def __init__(self, *args, **kwargs):
         super(MenuCreateForm, self).__init__(*args, **kwargs)
@@ -132,7 +132,7 @@ class MenuCreateForm(BaseForm):
         return cd
 
     def save(self, *args, **kwargs):
-        """新增时，若存在维度值+项目+名单类型相同情况，则update为新增值"""
+        """Add时，若存在维度值+Project+名单类型相同情况，则update为Add值"""
         cd = self.cleaned_data
         value_list = cd['value']
         chinese_name = self.request.user.username
@@ -183,9 +183,9 @@ class MenuCreateForm(BaseForm):
 
 
 class MenuFilterForm(BaseFilterForm):
-    filter_event_code = forms.ChoiceField(label=_(u"项目类型"), required=False)
-    filter_menu_type = forms.ChoiceField(label=_(u"名单类型"), choices=MENU_TYPE_CHOICES, required=False)
-    filter_value = forms.CharField(label=_(u"值"), required=False)
+    filter_event_code = forms.ChoiceField(label=_(u"Project type"), required=False)
+    filter_menu_type = forms.ChoiceField(label=_(u"List type"), choices=MENU_TYPE_CHOICES, required=False)
+    filter_value = forms.CharField(label=_(u"Value"), required=False)
     filter_menu_status = forms.ChoiceField(choices=MENU_STATUS_CHOICES, required=False)
 
     def __init__(self, *args, **kwargs):
@@ -193,7 +193,7 @@ class MenuFilterForm(BaseFilterForm):
         super(MenuFilterForm, self).__init__(*args, **kwargs)
         self.fields['filter_event_code'].choices = self._build_event_choices()
 
-        placeholder = DIMENSION_NAME_MAP.get(self.dimension, u'未知')
+        placeholder = DIMENSION_NAME_MAP.get(self.dimension, u'Unknown')
         self.fields['filter_value'].widget.attrs["placeholder"] = _(
             placeholder)
 
@@ -204,5 +204,5 @@ class MenuFilterForm(BaseFilterForm):
                    db['menu_event'].find({}, projection={'_id': False,
                                                          'event_code': True,
                                                          'event_name': True})]
-        choices.insert(0, ('', u"全部项目"))
+        choices.insert(0, ('', u"All Pojects"))
         return choices

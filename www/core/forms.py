@@ -59,7 +59,7 @@ class BaseForm(FormBaseMixin, forms.Form):
     i18n_fields = []
 
     form_class = 'form-horizontal'
-    form_inputs = [Submit('submit', _(u'保存')),
+    form_inputs = [Submit('submit', _(u'Save')),
                    Reset('reset', _(u'重置'))]
 
     def __init__(self, *args, **kwargs):
@@ -114,7 +114,7 @@ class BaseFilterForm(FormBaseMixin, forms.Form):
 
 class BaseTimeFilterForm(forms.Form):
     time_start = forms.CharField(label=_(u"开始时间"), required=False)
-    time_end = forms.CharField(label=_(u"结束时间"), required=False)
+    time_end = forms.CharField(label=_(u"End Time"), required=False)
 
     left_sub_days = 3
 

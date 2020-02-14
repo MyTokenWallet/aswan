@@ -36,15 +36,15 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <address>
-                            <strong>规则名称:</strong> {{ rule.title }}<br>
-                            <strong>规则描述:</strong> {{ rule.describe }}<br>
-                            <strong>规则状态:</strong> {% if rule.status == "on" %} 开启 {% else %} 关闭 {% endif %}<br>
+                            <strong>Rule name:</strong> {{ rule.title }}<br>
+                            <strong>Rule description:</strong> {{ rule.describe }}<br>
+                            <strong>Rule status:</strong> {% if rule.status == "on" %} 开启 {% else %} Close {% endif %}<br>
                         </address>
                     </div>
 
                     <div class="col-sm-6">
                         <address>
-                            <strong>规则ID:</strong> <label class="text-danger">{{ rule.id }}</label><br>
+                            <strong>Rule ID:</strong> <label class="text-danger">{{ rule.id }}</label><br>
                             <strong>规则结束时间:</strong> <label class="text-danger">{{ rule.end_time }}</label><br>
                         </address>
                     </div>
@@ -54,10 +54,10 @@
                     <table class="table invoice-table" style="word-break:break-all; word-wrap:break-all;">
                         <thead>
                             <tr>
-                                <th>策略原子组名称</th>
+                                <th>PolicyGroup Name称</th>
                                 <th>权重</th>
-                                <th>策略原子组列表</th>
-                                <th>管控原子</th>
+                                <th>PolicyGroup列表</th>
+                                <th>Projectmanagement</th>
                                 <th>客服话术</th>
                                 <th>操作</th>
                             </tr>
@@ -96,8 +96,8 @@
                     <table class="table invoice-table">
                         <thead>
                             <tr>
-                                <th style="width: 60%">策略原子</th>
-                                <th style="width: 40%">阈值</th>
+                                <th style="width: 60%">Policy</th>
+                                <th style="width: 40%">Thresholds</th>
                             </tr>
                         </thead>
                         <tbody id="thresholdModalBody">
@@ -105,10 +105,10 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                     <button type="button" id="thresholdSave" class="btn btn-primary"
                             data-uri="{% url 'rule:threshold_edit' %}"
-                            data-id="{{ rule.uuid }}">保存</button>
+                            data-id="{{ rule.uuid }}">Save</button>
                 </div>
             </div>
         </div>
@@ -121,15 +121,15 @@
 
     <script>
     $("#setThreshold").on("show.bs.modal", function(e) {
-        var strategyList = $(e.relatedTarget).data('strategy_list');  // 修改策略原子组的数据
-        var strategyIndex = $(e.relatedTarget).data('strategy_index');  // 修改策略原子组的下标
+        var strategyList = $(e.relatedTarget).data('strategy_list');  // 修改PolicyGroup的数据
+        var strategyIndex = $(e.relatedTarget).data('strategy_index');  // 修改PolicyGroup的下标
         $("#thresholdModalBody").html("");
         $("#thresholdSave").attr('data-strategy_index', strategyIndex - 1);
         for (var i in strategyList) {
             // 构造 阈值input框
             var inputList = "";
             for (var t in strategyList[i][1]){
-                if(t != 0){
+                if(t !== 0){
                     inputList += '&nbsp;&nbsp;'
                 }
                 var inputItem = "<input style='width: 50px;' name='threshold_" + t +"' value='" +strategyList[i][1][t] +"'><span class='err-msg'></span>";
@@ -156,7 +156,7 @@
             $(this).parents('tr').find("input").each(function () {
                 var inputValue = $(this).val();
                 // 验证input参数
-                if (strategyDesc.match("^手机号")) {
+                if (strategyDesc.match("^Cell phone number")) {
                     var phoneRe = /^\d{1,4}(,\d{1,4})*$/;
                     if(phoneRe.test(inputValue)) {
                         $(this).next('span').html("");
@@ -209,7 +209,7 @@
             error: function (err) {
                 if (err.statusText !== 'abort') {
                     swal({
-                        title: "哎呀，出错了",
+                        title: "Oops, something went wrong",
                         type: "error",
                         confirmButtonColor:"#1ab394"
                     });

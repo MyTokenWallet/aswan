@@ -56,7 +56,7 @@ def _get_stategy_largest_period(strategy_type):
 
 def get_source_largest_period():
     """
-    return: 返回各数据源的最大时长,单位：s
+    return: 返回各数据源的最大时长,单位: s
     """
     strategy_period = _get_stategy_largest_period("freq_strategy")
     daily_strategy_period = _get_stategy_largest_period("daily_strategy")

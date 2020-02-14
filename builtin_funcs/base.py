@@ -63,9 +63,9 @@ class BuiltInFuncs(object):
     @classmethod
     def check_args(cls, name, req_body):
         """
-            校验请求参数是否合法(满足内置函数所需)
+            校验Request parameter是否合法(满足内置函数所需)
         :param str|unicode name: 内置函数code
-        :param dict req_body: 请求参数
+        :param dict req_body: Request parameter
         :return:
         """
         args_type_tuple = cls.name_args_type[name]
@@ -90,7 +90,7 @@ class BuiltInFuncs(object):
             对结果进行转化，最后结果为 True/False 标识是否命中
         :param bool|None rv: 内置函数返回值
         :param str|unicode op_name: 操作符
-        :param object threshold: 阈值
+        :param object threshold: Thresholds
         :return:
         """
         #  若想忽略op码永远通过则设置rv为None

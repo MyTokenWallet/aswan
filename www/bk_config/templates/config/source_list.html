@@ -4,14 +4,14 @@
 {% load staticfiles %}
 
 {% block header %}
-    <a href="javascript:;" class="active">数据源列表</a>
+    <a href="javascript:;" class="active">Data source list</a>
 {% endblock %}
 
 
 {% block action %}
     <a class="roll-nav roll-right extra-right-btns pull-right" data-toggle="modal" data-target="#setValue">
         <i class="fa fa-plus"></i>
-        新增
+        Add
     </a>
 {% endblock %}
 
@@ -31,7 +31,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
              <div class="modal-header">
-                 <h2>新增数据源</h2>
+                 <h2>Add数据源</h2>
              </div>
              <div class="modal-body">
                  {{ create_form.name_key }}
@@ -44,8 +44,8 @@
                  <span id="id-content-error" class="help-block" style="color:darkred"></span>
              </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                  <button type="button" id="valueSave" class="btn btn-primary" data-uri="{% url 'config:source_create' %}">保存</button>
+                  <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                  <button type="button" id="valueSave" class="btn btn-primary" data-uri="{% url 'config:source_create' %}">Save</button>
               </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
 {% include "menu/batch_delete.html" %}
 <script>
     $(function () {
-    // 新增
+    // Add
     $('#valueSave').click(function () {
         var _this = $(this);
         var uri = _this.data('uri'),
@@ -90,7 +90,7 @@
             error: function (err) {
                 if (err.statusText !== 'abort') {
                     swal({
-                        title: "哎呀，出错了",
+                        title: "Oops, something went wrong",
                         type: "error",
                         confirmButtonColor:"#1ab394"
                     });
@@ -98,19 +98,19 @@
             }
         })
     });
-    //删除
+    //delete
     $('.source-destroy').click(function () {
         var _this = $(this),
             uri = _this.data('uri'),
             key = _this.data('name_key');
         swal({
-            title: "您确定要删除吗",
+            title: "Are you sure you want to delete it",
             type: "warning",
             allowOutsideClick: true,
             showCancelButton: true,
             confirmButtonColor: "#ff6700",
-            confirmButtonText: "删除",
-            cancelButtonText: "取消",
+            confirmButtonText: "delete",
+            cancelButtonText: "cancel",
             closeOnConfirm: false
         }, function () {
             $.ajax({
@@ -136,7 +136,7 @@
                 error: function (err) {
                     if (err.statusText !== 'abort') {
                         swal({
-                            title: "删除失败",
+                            title: "failed to delete",
                             type: "error",
                             confirmButtonColor:"#ff6700"
                         });
@@ -145,7 +145,7 @@
             })
         });
     });
-    // 错误提示复位
+    // Error prompt reset
     $("#id_name_key").focus(function () {
         $("#id-name_key-error").html("");
     });

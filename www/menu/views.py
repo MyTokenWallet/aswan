@@ -59,7 +59,7 @@ class EventCreateView(JSONResponseMixin, View):
 
 class EventDestroyView(JSONResponseMixin, View):
     def _check_event(self, event_code):
-        """check名单项目是否被名单策略原子引用"""
+        """check名单项目是否被名单Policy引用"""
         client = get_redis_client()
         for r in client.scan_iter(match="strategy_menu:*"):
             event_id = client.hget(r, 'event')
@@ -81,7 +81,7 @@ class EventDestroyView(JSONResponseMixin, View):
         if db.menus.find_one({"event": event_code}):
             return self.render_json_response(dict(
                 state=False,
-                error=u"已生成名单，无法删除"
+                error=u"已生成名单，无法delete"
             ))
 
         # 2 确保没有被名单策略使用
@@ -89,7 +89,7 @@ class EventDestroyView(JSONResponseMixin, View):
         if is_using:
             return self.render_json_response(dict(
                 state=False,
-                error=u"已生成名单策略原子，无法删除"
+                error=u"已生成名单Policy，无法delete"
             ))
 
         db.menu_event.delete_one({'event_code': event_code})
@@ -221,7 +221,7 @@ class MenuDestroyView(JSONResponseMixin, View):
             db.menus.update_many({'_id': {"$in": obj_ids}},
                                  {"$set": update_payload})
 
-            #  同时删除redis中数据
+            #  同时deleteredis中数据
             redis_client = get_redis_client()
             pipeline = redis_client.pipeline(transaction=False)
             for key, values in redis_values_should_remove.items():

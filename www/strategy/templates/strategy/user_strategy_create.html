@@ -8,7 +8,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">新增限用户数型策略</a>
+<a href="javascript:;" class="active">AddUser-limited number-based policy</a>
 {% endblock %}
 
 {% block action %}
@@ -30,7 +30,7 @@
                         {% csrf_token %}
                         <!--<div class="hr-line-dashed"></div>-->
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">数据源</label>
+                            <label class="col-sm-2 control-label">Data sources</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="id_strategy_source" name="strategy_source">
                                 </select>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" id="label-strategy_body">主体名称</label>
+                            <label class="col-sm-2 control-label" id="label-strategy_body">Body name</label>
                             <div class="col-sm-10">
                                 <input type="hidden" name="strategy_body" id="id_strategy_body">
                                 <span id="cb-strategy_body"></span>
@@ -59,7 +59,7 @@
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">用户限制</label>
+                            <label class="col-sm-2 control-label">User限制</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_limit }}
                                 <span id="id-strategy_limit-error" class="help-block" style="color:darkred"></span>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">策略名称</label>
+                            <label class="col-sm-2 control-label">Policy Name</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_name }}
                                 <span id="id-strategy_name-error" class="help-block" style="color:darkred"></span>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">策略描述</label>
+                            <label class="col-sm-2 control-label">Policy Description</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_desc }}
                                 <span id="id-strategy_desc-error" class="help-block" style="color:darkred"></span>
@@ -84,7 +84,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="submit">保存</button>
+                                <button class="btn btn-primary" type="submit">Save</button>
                             </div>
                         </div>
                     </form>
@@ -105,19 +105,19 @@
         var body = $("#id_strategy_body").val();
         var day = $("#id_strategy_day").val();
         var limit = $("#id_strategy_limit").val();
-        var pattern =   /^[1-9]\d*$/; //匹配非负整数
+        var pattern =   /^[1-9]\d*$/; //Match pattern
         var elements = body.split(',');
         body = elements.join(',');
         if (pattern.test(day) && pattern.test(limit) ) {
             $("#id-strategy_name-error").html("");
-            if (parseInt(day) == 1) {
-                $("#id_strategy_name").val("相同" + body + "，当天限" + limit + "个用户(" + source + ")");
+            if (parseInt(day) === 1) {
+                $("#id_strategy_name").val("equal" + body + "，Day limit" + limit + "Individual_User(" + source + ")");
             }
             else {
-                $("#id_strategy_name").val("相同" + body + "，在" + day + "个自然日内，限" + limit + "个用户(" + source + ")");
+                $("#id_strategy_name").val("equal" + body + "，at" + day + "Natural days，Limit" + limit + "Individual_User(" + source + ")");
             }
         } else {
-            $("#id-strategy_name-error").html("'自然天数'或'用户数'需为大于等于1的整数。");
+            $("#id-strategy_name-error").html("The 'default number of days' or 'User numbers' needs to be an integer greater than or greater than 1.");
         }
 
     };
@@ -130,7 +130,7 @@
 
 <script>
     $(function () {
-        // 创建漏洞表单提交
+        // Create a vulnerability form submission
         $("body").on("submit", '#menu_create_form', function (e) {
             e.preventDefault();
             var form = $(this);
@@ -159,7 +159,7 @@
                     if (err.statusText !== 'abort') {
                         _this.removeClass("posting");
                         swal({
-                            title: "哎呀，出错了",
+                            title: "Oops, something went wrong",
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });
@@ -170,7 +170,7 @@
     });
 
 
-    // 渲染 数据源数据
+    // Rendering Data Source Data
     $.ajax({
         url: "/config/source/ajax/",
         data: {},
@@ -206,7 +206,7 @@
         $(document).ready(setWidth)
     }
     function refresh_checkbox(name) {
-        name = name.toLowerCase()
+        name = name.toLowerCase();
         var source_data = $("#label-strategy_body").data(name);
         $("#cb-strategy_body").html("");
         $.each(source_data, function (k, v) {
@@ -218,24 +218,24 @@
     }
 
     function get_data_example() {
-        // 数据源选择联动
+        // Data source selection linkage
         var source_name = $(".searchable-select-item.selected").data('value');
         refresh_checkbox(source_name);
     }
 
-    // 定义strategy_body
+    // Define strategy_body
     $(document).on("click", 'input:checkbox', function() {
         var arrs=[];
         $('input:checked[name=strategy_body_check]').each(function(){
             arrs.push($(this).val());
         });
         var strategy_body = arrs.join(',');
-        $("input[name=strategy_body]").val(strategy_body)
+        $("input[name=strategy_body]").val(strategy_body);
         fun_setVal()
 });
 
 
-    // 错误提示复位
+    // Error prompt reset
     $("#id_strategy_limit").focus(function () {
         $("#id-strategy_limit-error").html("");
     });

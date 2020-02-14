@@ -10,7 +10,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">新增布尔型策略</a>
+<a href="javascript:;" class="active">Add-Bull Strategy</a>
 {% endblock %}
 
 {% block action %}
@@ -33,7 +33,7 @@
 
                         <!--<div class="hr-line-dashed"></div>-->
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">内置变量</label>
+                            <label class="col-sm-2 control-label">Built-in variables</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_var }}
                                 <span id="id-strategy_var-error" class="help-block" style="color:darkred"></span>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">操作码</label>
+                            <label class="col-sm-2 control-label">Action code</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_op }}
                                 <span id="id-strategy_op-error" class="help-block" style="color:darkred"></span>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">内置函数</label>
+                            <label class="col-sm-2 control-label">Built-in functions</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_func }}
                                 <span id="id-strategy_func-error" class="help-block" style="color:darkred"></span>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">阈值</label>
+                            <label class="col-sm-2 control-label">Thresholds</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_threshold }}
                                 <span id="id-strategy_threshold-error" class="help-block" style="color:darkred"></span>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">策略名称</label>
+                            <label class="col-sm-2 control-label">Policy Name</label>
                             <div class="col-sm-10">
                                 <input class="form-control" id="id_strategy_name" name="strategy_name" type="text">
                                 <!--{{ form.strategy_name }}-->
@@ -74,7 +74,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">策略描述</label>
+                            <label class="col-sm-2 control-label">Policy Description</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_desc }}
                                 <span id="id-strategy_desc-error" class="help-block" style="color:darkred"></span>
@@ -83,7 +83,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="submit">保存</button>
+                                <button class="btn btn-primary" type="submit">Save</button>
                             </div>
                         </div>
                     </form>
@@ -106,7 +106,7 @@
         var c = $(".searchable-select-item.selected")[0].innerHTML;
         var func_name = $("#id_strategy_func").find("option:selected").val();
         if(['is_proxy_ip', 'is_adsl_ip', 'is_cloud_ip', 'is_evil_ip', 'is_idc_ip'].indexOf(func_name) !== -1){
-            $('#id-strategy_func-error').html("单独的ip信息并不能说明用户为恶意用户，请配合其他策略原子使用");
+            $('#id-strategy_func-error').html("单独的ip信息并不能说明User为恶意User，请配合其他Policy使用");
         } else {
             $('#id-strategy_func-error').html("");
         }
@@ -163,7 +163,7 @@
                     if (err.statusText !== 'abort') {
                         _this.removeClass("posting");
                         swal({
-                            title: "哎呀，出错了",
+                            title: "Oops, something went wrong",
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });
@@ -174,7 +174,7 @@
     });
 
 
-    // 错误提示复位
+    // Error prompt reset
     $("#id_strategy_op").focus(function () {
         $("#id-strategy_op-error").html("");
     });

@@ -12,7 +12,7 @@ def build_redis_key(event_code, dimension, menu_type):
     """
     :param event_code: 名单code
     :param dimension:  名单维度
-    :param menu_type:  名单类型 黑/白/灰
+    :param menu_type:  List type 黑/白/灰
     :return:
     """
     fields = ['menu', event_code, dimension, menu_type]

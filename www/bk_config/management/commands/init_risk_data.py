@@ -1,7 +1,7 @@
 # coding=utf8
 
 """
-    本脚本用于在用户不熟悉时预注数据
+    本脚本用于在User不熟悉时预注数据
 """
 
 import logging
@@ -22,7 +22,7 @@ logging.basicConfig()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        # 创建普通用户
+        # Create a normal User
         create_user(email='momo_init@immomo.com', username='momo_init',
                     password='momo_init', is_superuser=False)
 
@@ -41,32 +41,32 @@ class Command(BaseCommand):
                             element=hashlib.md5('pay_account'.encode()).hexdigest())
 
         # 创建策略
-        # 名单型策略
-        menu_strategy_name_1 = '用户在初始项目的用户黑名单中'
+        # List strategy
+        menu_strategy_name_1 = 'User on the User blacklist for the initial project'
         menu_uuid_1 = create_menu_strategy(event_code, dimension='user_id',
                                            menu_type='black', menu_op='is',
                                            strategy_name=menu_strategy_name_1,
-                                           strategy_desc='初始黑名单策略')
-        menu_strategy_name_2 = 'uid在初始项目的设备白名单中'
+                                           strategy_desc='Initial blacklist policy')
+        menu_strategy_name_2 = 'uid on the initial project's equipment whitelist'
         menu_uuid_2 = create_menu_strategy(event_code, dimension='uid',
                                            menu_type='white', menu_op='is',
                                            strategy_name=menu_strategy_name_2,
-                                           strategy_desc='初始白名单策略')
-        menu_strategy_name_3 = 'IP在初始项目的IP灰名单中'
+                                           strategy_desc='Initial whitelisting strategy')
+        menu_strategy_name_3 = 'IP on the IP Gray List for The Initial Project'
         menu_uuid_3 = create_menu_strategy(event_code, dimension='ip',
                                            menu_type='gray', menu_op='is',
                                            strategy_name=menu_strategy_name_3,
-                                           strategy_desc='初始灰名单策略')
+                                           strategy_desc='Initial Gray List Strategy')
 
         # Bool型策略
-        bool_strategy_name_1 = '用户是异常用户'
+        bool_strategy_name_1 = 'User is an exception ToUser'
         bool_uuid_1 = create_bool_strategy(strategy_var='user_id',
                                            strategy_op='is',
                                            strategy_func='is_abnormal',
                                            strategy_threshold='',
                                            strategy_name=bool_strategy_name_1,
                                            strategy_desc=bool_strategy_name_1)
-        bool_strategy_name_2 = '用户登录次数大于50次'
+        bool_strategy_name_2 = 'User logins greater than 50'
         bool_uuid_2 = create_bool_strategy(strategy_var='user_id',
                                            strategy_op='gt',
                                            strategy_func='user_login_count',
@@ -76,44 +76,44 @@ class Command(BaseCommand):
         # 数据源相关策略
         # 创建数据源
         source_key = 'init_source_key'
-        create_data_source(source_key=source_key, source_name='初始样例数据源',
+        create_data_source(source_key=source_key, source_name='Initial sample data source',
                            fields=['user_id', 'uid', 'ip', 'phone'])
 
-        # 时段频控型策略
-        freq_strategy_name = '相同uid，24小时内限10次(初始样例数据源)'
+        # Time-time frequency control strategy
+        freq_strategy_name = 'Same uid, 10 times in 24 hours(Initial sample data source)'
         freq_uuid = create_freq_strategy(strategy_source=source_key,
                                          strategy_body='uid',
                                          strategy_time=24 * 3600,
                                          strategy_limit=10,
                                          strategy_name=freq_strategy_name,
-                                         strategy_desc='初始时段频控型策略')
-        # 限用户数型策略
-        user_strategy_name = '同一设备当天内限10个用户(初始样例数据源)'
+                                         strategy_desc='Initial time period frequency control strategy')
+        # User-limited number-based policy
+        user_strategy_name = '同一设备当天内限10个User(Initial sample data source)'
         user_uuid = create_user_strategy(strategy_source=source_key,
                                          strategy_body='uid',
                                          strategy_day=1, strategy_limit=10,
                                          strategy_name=user_strategy_name,
-                                         strategy_desc='初始时段频控型策略')
+                                         strategy_desc='Initial time period frequency control strategy')
 
         # 规则相关
         strategy_confs = [
             [';'.join((menu_strategy_name_1, menu_strategy_name_2,
                        menu_strategy_name_3)),
              ';'.join((menu_uuid_1, menu_uuid_2, menu_uuid_3)), 'deny',
-             '此用户命中了名单型策略',
+             'This User hit List strategy',
              '100'],
             [';'.join((bool_strategy_name_1, bool_strategy_name_2)),
              ';'.join((bool_uuid_1, bool_uuid_2)), 'log',
-             '此用户命中了布尔型策略',
+             'This User hit Boolean strategy',
              '90'],
             [freq_strategy_name,
              freq_uuid, 'number',
-             '此用户命中了时段频控型策略',
+             'This User hit Time-time frequency control strategy',
              '80'],
             [user_strategy_name,
              user_uuid, 'verify',
-             '此用户命中了限用户数型策略',
+             'This User hit User-limited number-based policy',
              '80'],
         ]
         create_rule(strategy_confs=strategy_confs, title='初始规则',
-                    describe='初始样例规则', status='on', creator_name='超级管理员')
+                    describe='初始样例规则', status='on', creator_name='超级administrator')

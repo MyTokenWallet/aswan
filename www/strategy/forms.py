@@ -29,25 +29,25 @@ FUNC_CHOICES = tuple(
     [(k, str(v)) for k, v in BuiltInFuncs.name_callable.items()]
 )
 VAR_CHOICES = (
-    ('user_id', u'账号ID'),
-    ('phone', u'手机号'),
-    ('uid', u'当前设备ID'),
-    ('ip', u'当前IP'),
-    ('reg_ip', u'注册IP'),
-    ('reg_uid', u'注册设备ID'),
+    ('user_id', u'AccountID'),
+    ('phone', u'Cell phone number'),
+    ('uid', u'CurrentDeviceID'),
+    ('ip', u'CurrentIP'),
+    ('reg_ip', u'SignUpfromIP'),
+    ('reg_uid', u'RegisterDeviceID'),
 )
 
 DIM_CHOICES_MENU = (
-    ('user_id', u'账号ID'),
-    ('phone', u'手机号'),
-    ('ip', u'当前IP'),
-    ('reg_ip', u'注册IP'),
-    ('uid', u'当前设备ID'),
-    ('reg_uid', u'注册设备ID'),
+    ('user_id', u'AccountID'),
+    ('phone', u'Cell phone number'),
+    ('ip', u'CurrentIP'),
+    ('reg_ip', u'SignUpfromIP'),
+    ('uid', u'CurrentDeviceID'),
+    ('reg_uid', u'RegisterDeviceID'),
 )
 OP_CHOICES_MENU = (
-    ('is', u'在'),
-    ('is_not', u'不在'),
+    ('is', u'is'),
+    ('is_not', u'is_not'),
 )
 TYPE_CHOICES_MENU = (
     (u'black', u'黑名单'),
@@ -70,12 +70,12 @@ USER_STRATEGY_UNIQ_SET_KEYS = (
 
 
 class BoolStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"策略名称"))
-    strategy_desc = forms.CharField(required=False, label=_(u"策略描述"))
-    strategy_var = forms.ChoiceField(label=_(u"内置变量"), choices=VAR_CHOICES)
-    strategy_op = forms.ChoiceField(label=_(u"操作码"), choices=OP_CHOICES)
-    strategy_func = forms.ChoiceField(label=_(u"内置函数"), choices=FUNC_CHOICES)
-    strategy_threshold = forms.CharField(label=_(u"阈值"), required=False)
+    strategy_name = forms.CharField(label=_(u"Policy Name"))
+    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
+    strategy_var = forms.ChoiceField(label=_(u"Built-in variables"), choices=VAR_CHOICES)
+    strategy_op = forms.ChoiceField(label=_(u"Action code"), choices=OP_CHOICES)
+    strategy_func = forms.ChoiceField(label=_(u"Built-in functions"), choices=FUNC_CHOICES)
+    strategy_threshold = forms.CharField(label=_(u"Thresholds"), required=False)
 
     def __init__(self, *args, **kwargs):
         self.values_sign = None
@@ -126,29 +126,29 @@ class BoolStrategyForm(BaseForm):
         required_args = BuiltInFuncs.get_required_args(func_name)
 
         if self.is_exists(cd):
-            self.errors['strategy_name'] = [u"该条记录已存在,请勿重复添加"]
+            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
 
         if var_name not in required_args:
-            self.errors['strategy_var'] = [u'函数{}支持的内置变量为{}'.format(
+            self.errors['strategy_var'] = [u'The built-in variables supported by the function are'.format(
                 func_name,
                 self._get_display_names(required_args)
             )]
 
         if op_name not in supported_ops:
-            self.errors['strategy_op'] = [u'函数{}不支持此操作码'.format(func_name)]
+            self.errors['strategy_op'] = [u'This action code is not supported by the function'.format(func_name)]
         if op_name in ('is', 'is_not') and threshold:
-            self.errors['strategy_op'] = [u'[{}]该操作码不接受阈值'.format(op_name)]
+            self.errors['strategy_op'] = [u'[{}]The action code does not accept the threshold'.format(op_name)]
 
         if op_name in {'lt', 'le', 'eq', 'ne', 'ge', 'gt'}:
             if not threshold:
                 self.errors['strategy_threshold'] = [
-                    u'操作码{}必须包含阈值'.format(op_name)]
+                    u'Action code{}Thresholds must be included'.format(op_name)]
         return cd
 
 
 class BoolStrategyTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"请求体"))
-    strategy = forms.ChoiceField(label=_(u"策略"), widget=forms.Select())
+    req_body = forms.CharField(widget=forms.Textarea, label=_(u"Request body"))
+    strategy = forms.ChoiceField(label=_(u"Strategy"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(BoolStrategyTestForm, self).__init__(*args, **kwargs)
@@ -170,12 +170,12 @@ class BoolStrategyTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"请求体不是合法json格式")
+            raise forms.ValidationError(u"Request body Not legal json format")
         return req_body
 
 
 class FreqStrategyTestForm(BoolStrategyTestForm):
-    history_data = forms.CharField(widget=forms.Textarea, label=_(u"历史数据"),
+    history_data = forms.CharField(widget=forms.Textarea, label=_(u"Historical data"),
                                    required=False)
 
     def clean_history_data(self):
@@ -184,7 +184,7 @@ class FreqStrategyTestForm(BoolStrategyTestForm):
             try:
                 history_data = json.loads(history_data)
             except ValueError:
-                raise forms.ValidationError(u"历史数据不是合法json格式")
+                raise forms.ValidationError(u"Historical data Not legal json format")
         return history_data
 
     @classmethod
@@ -200,14 +200,14 @@ class FreqStrategyTestForm(BoolStrategyTestForm):
 
 
 class FreqStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"策略名称"))
-    strategy_desc = forms.CharField(required=False, label=_(u"策略描述"))
-    strategy_source = forms.CharField(label=_(u"数据源"))
-    strategy_body = forms.CharField(label=_(u"主体名称"), required=True,
-                                    help_text=u"例:同一账号同一IP地址抢红包限1次，勾选: 用户ID,当前IP")
-    strategy_time = forms.CharField(label=_(u"时段(单位:秒)"),
+    strategy_name = forms.CharField(label=_(u"Policy Name"))
+    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
+    strategy_source = forms.CharField(label=_(u"Data sources"))
+    strategy_body = forms.CharField(label=_(u"Body name"), required=True,
+                                    help_text=u"例:同一账号同一IP地址抢红包限1次，勾选: UserID,CurrentIP")
+    strategy_time = forms.CharField(label=_(u"Period (in seconds))"),
                                     help_text=u"支持86400和24*60*60两种输入格式。")
-    strategy_limit = forms.IntegerField(min_value=1, label=_(u"最大值"),
+    strategy_limit = forms.IntegerField(min_value=1, label=_(u"Maximum"),
                                         initial=1)
 
     def __init__(self, *args, **kwargs):
@@ -249,7 +249,7 @@ class FreqStrategyForm(BaseForm):
             return
         values_sign = ":".join(fields)
         if client.sismember(settings.STRATEGY_SIGN_KEY, values_sign):
-            self.errors['strategy_name'] = [u"该条记录已存在,请勿重复添加"]
+            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
         self.values_sign = values_sign
 
     def save(self):
@@ -267,14 +267,14 @@ class FreqStrategyForm(BaseForm):
 
 
 class UserStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"策略名称"))
-    strategy_desc = forms.CharField(required=False, label=_(u"策略描述"))
-    strategy_source = forms.CharField(label=_(u"数据源"))
-    strategy_body = forms.CharField(label=_(u"主体名称"),
-                                    help_text=u"例:同一设备当天仅限5个用户送礼加祝福值，勾选: 当前设备")
-    strategy_day = forms.IntegerField(min_value=1, label=_(u"自然天数(单位：个)"),
+    strategy_name = forms.CharField(label=_(u"Policy Name"))
+    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
+    strategy_source = forms.CharField(label=_(u"Data sources"))
+    strategy_body = forms.CharField(label=_(u"Body name"),
+                                    help_text=u"例:同一设备当天仅限5个User送礼加祝福值，勾选: 当前设备")
+    strategy_day = forms.IntegerField(min_value=1, label=_(u"Default days (in units): Individual)"),
                                       initial=1)
-    strategy_limit = forms.IntegerField(min_value=1, label=_(u"限制用户数"),
+    strategy_limit = forms.IntegerField(min_value=1, label=_(u"限制User数"),
                                         initial=1)
 
     def __init__(self, *args, **kwargs):
@@ -308,7 +308,7 @@ class UserStrategyForm(BaseForm):
         values_sign = ":".join(fields)
         client = get_redis_client()
         if client.sismember(settings.STRATEGY_SIGN_KEY, values_sign):
-            self.errors['strategy_name'] = [u"该条记录已存在,请勿重复添加"]
+            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
         self.values_sign = values_sign
 
     def save(self, *args, **kwargs):
@@ -326,7 +326,7 @@ class UserStrategyForm(BaseForm):
 
 
 class UserStrategyTestForm(BoolStrategyTestForm):
-    history_data = forms.CharField(widget=forms.Textarea, label=_(u"历史数据"),
+    history_data = forms.CharField(widget=forms.Textarea, label=_(u"Historical data"),
                                    required=False)
 
     def clean_history_data(self):
@@ -335,7 +335,7 @@ class UserStrategyTestForm(BoolStrategyTestForm):
             try:
                 history_data = json.loads(history_data)
             except ValueError:
-                raise forms.ValidationError(u"历史数据不是合法json格式")
+                raise forms.ValidationError(u"Historical data Not legal json format")
         return history_data
 
     @classmethod
@@ -351,12 +351,12 @@ class UserStrategyTestForm(BoolStrategyTestForm):
 
 class MenuStrategyForm(BaseForm):
     dimension = forms.ChoiceField(label=_(u"维度"), choices=DIM_CHOICES_MENU)
-    menu_op = forms.ChoiceField(label=_(u"操作码"), choices=OP_CHOICES_MENU)
-    event = forms.ChoiceField(label=_(u"项目"))
-    menu_type = forms.ChoiceField(label=_(u"名单类型"),
+    menu_op = forms.ChoiceField(label=_(u"Action code"), choices=OP_CHOICES_MENU)
+    event = forms.ChoiceField(label=_(u"Project"))
+    menu_type = forms.ChoiceField(label=_(u"List type"),
                                   choices=TYPE_CHOICES_MENU)  # 是内置函数
-    strategy_name = forms.CharField(label=_(u"策略名称"))
-    strategy_desc = forms.CharField(required=False, label=_(u"策略描述"))
+    strategy_name = forms.CharField(label=_(u"Policy Name"))
+    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
 
     def __init__(self, *args, **kwargs):
         super(MenuStrategyForm, self).__init__(*args, **kwargs)
@@ -373,7 +373,7 @@ class MenuStrategyForm(BaseForm):
     def clean(self):
         cd = self.cleaned_data
         if self.is_exists(cd):
-            self.errors['strategy_name'] = [u"该条记录已存在,请勿重复添加"]
+            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
 
     def save(self, *args, **kwargs):
         client = get_redis_client()
@@ -405,8 +405,8 @@ class MenuStrategyForm(BaseForm):
 
 
 class MenuStrategyTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"请求体"))
-    strategy = forms.ChoiceField(label=_(u"策略"), widget=forms.Select())
+    req_body = forms.CharField(widget=forms.Textarea, label=_(u"Request body"))
+    strategy = forms.ChoiceField(label=_(u"Strategy"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(MenuStrategyTestForm, self).__init__(*args, **kwargs)
@@ -428,9 +428,9 @@ class MenuStrategyTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"请求体不是合法json格式")
+            raise forms.ValidationError(u"Request body Not legal json format")
         return req_body
 
 
 class StrategyFilterForm(BaseFilterForm):
-    filter_name = forms.CharField(label=_(u"策略名称"), required=False)
+    filter_name = forms.CharField(label=_(u"Policy Name"), required=False)

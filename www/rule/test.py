@@ -70,13 +70,13 @@ class TestRuleManage(BaseTestCase):
                                                        menu_type='black',
                                                        menu_op='is')
 
-        # 相同uid，当天限1个用户
+        # 相同uid，当天限1个User
         data_source_key = create_data_source()
         self.user_strategy_uuid = create_user_strategy(
             strategy_source=data_source_key, strategy_body='uid',
             strategy_day=1, strategy_limit=1)
 
-        # 用户是异常用户
+        # User is an exception ToUser
         self.bool_strategy_uuid = create_bool_strategy(strategy_var='user_id',
                                                        strategy_op='is',
                                                        strategy_func='is_abnormal',
@@ -126,7 +126,7 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], True)
 
-        # 状态不合法
+        # Status不合法
         status = valid_post_data.pop('status')
         valid_post_data['status'] = 'wrong_status'
         response = self.client.post(change_url, data=valid_post_data)
@@ -287,7 +287,7 @@ class TestRuleManage(BaseTestCase):
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], True)
 
-        # 数组下标越界
+        # 数Group下标越界
         data['strategy_index'] = 10000
         response = self.client.post(edit_threshold_url,
                                     data={'data': json.dumps(data)})

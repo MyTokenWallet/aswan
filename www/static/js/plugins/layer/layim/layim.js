@@ -7,12 +7,12 @@ var config = {
     right: -232,
     api: {
         friend: 'js/plugins/layer/layim/data/friend.json', //好友列表接口
-        group: 'js/plugins/layer/layim/data/group.json', //群组列表接口
+        group: 'js/plugins/layer/layim/data/group.json', //群Group列表接口
         chatlog: 'js/plugins/layer/layim/data/chatlog.json', //聊天记录接口
-        groups: 'js/plugins/layer/layim/data/groups.json', //群组成员接口
+        groups: 'js/plugins/layer/layim/data/groups.json', //群Group成员接口
         sendurl: '' //发送消息接口
     },
-    user: { //当前用户信息
+    user: { //当前User信息
         name: '游客',
         face: 'img/a1.jpg'
     },
@@ -21,7 +21,7 @@ var config = {
     autoReplay: [
         '您好，我现在有事不在，一会再和您联系。',
         '你没发错吧？',
-        '洗澡中，请勿打扰，偷窥请购票，个体四十，团体八折，订票电话：一般人我不告诉他！',
+        '洗澡中，请勿打扰，偷窥请购票，个体四十，团体八折，订票电话: 一般人我不告诉他！',
         '你好，我是主人的美女秘书，有什么事就跟我说吧，等他回来我会转告他的。',
         '我正在拉磨，没法招呼您，因为我们家毛驴去动物保护协会把我告了，说我剥夺它休产假的权利。',
         '<（@￣︶￣@）>',
@@ -150,7 +150,7 @@ xxim.popchat = function(param){
             node.layimMin.text(xxim.nowchat.name).show();
         });
 
-        //关闭窗口
+        //Close窗口
         xxim.chatbox.find('.layim_close').on('click', function(){
             var indexs = layero.attr('times');
             layer.close(indexs);
@@ -159,7 +159,7 @@ xxim.popchat = function(param){
             config.chatings = 0;
         });
 
-        //关闭某个聊天
+        //Close某个聊天
         log.chatlist.on('mouseenter', 'li', function(){
             $(this).find('em').show();
         }).on('mouseleave', 'li', function(){
@@ -282,7 +282,7 @@ xxim.popchat = function(param){
         xxim.tabchat(param);
     }
 
-    //群组
+    //群Group
     log.chatgroup = xxim.chatbox.find('#layim_groups');
     if(param.type === 'group'){
         log.chatgroup.find('ul').removeClass('layim_groupthis');
@@ -324,11 +324,11 @@ xxim.tabchat = function(param){
 //弹出聊天窗
 xxim.popchatbox = function(othis){
     var node = xxim.node, dataId = othis.attr('data-id'), param = {
-        id: dataId, //用户ID
+        id: dataId, //UserID
         type: othis.attr('type'),
-        name: othis.find('.xxim_onename').text(),  //用户名
-        face: othis.find('.xxim_oneface').attr('src'),  //用户头像
-        href: 'profile.html?user=' + dataId //用户主页
+        name: othis.find('.xxim_onename').text(),  //Username
+        face: othis.find('.xxim_oneface').attr('src'),  //User头像
+        href: 'profile.html?user=' + dataId //User主页
     }, key = param.type + dataId;
     if(!config.chating[key]){
         xxim.popchat(param);
@@ -583,7 +583,7 @@ xxim.view = (function(){
     var xximNode = xxim.layimNode = $('<div id="xximmm" class="xxim_main">'
             +'<div class="xxim_top" id="xxim_top">'
             +'  <div class="xxim_search"><i class="fa fa-search"></i><input id="xxim_searchkey" /><span id="xxim_closesearch">×</span></div>'
-            +'  <div class="xxim_tabs" id="xxim_tabs"><span class="xxim_tabfriend" title="好友"><i class="fa fa-user"></i></span><span class="xxim_tabgroup" title="群组"><i class="fa fa-users"></i></span><span class="xxim_latechat"  title="最近聊天"><i class="fa fa-clock-o"></i></span></div>'
+            +'  <div class="xxim_tabs" id="xxim_tabs"><span class="xxim_tabfriend" title="好友"><i class="fa fa-user"></i></span><span class="xxim_tabgroup" title="群Group"><i class="fa fa-users"></i></span><span class="xxim_latechat"  title="最近聊天"><i class="fa fa-clock-o"></i></span></div>'
             +'  <ul class="xxim_list" style="display:block"></ul>'
             +'  <ul class="xxim_list"></ul>'
             +'  <ul class="xxim_list"></ul>'

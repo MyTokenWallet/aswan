@@ -208,7 +208,7 @@ class Sources(object):
         try:
             pipeline.zadd(zkey, score, member)
             pipeline.expire(zkey, preserve_time)
-            # 这个是为了减少redis存储压力，每次删除部分老旧数据，可以修改此处逻辑
+            # 这个是为了减少redis存储压力，每次delete部分老旧数据，可以修改此处逻辑
             pipeline.zremrangebyrank(zkey, 0, -128)
             pipeline.execute()
         except redis.RedisError:

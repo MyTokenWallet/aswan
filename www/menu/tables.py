@@ -9,7 +9,7 @@ from menu.forms import MENU_TYPE_NAME_MAP
 class EventTable(tables.Table):
     event_name = columns.Column(verbose_name=_(u"项目名称"))
     action = columns.TemplateColumn("""
-    <a class="event-destroy" data-uri="{% url 'menus:event_destroy' %}" data-id="{{ record.event_code }}">删除</a>
+    <a class="event-destroy" data-uri="{% url 'menus:event_destroy' %}" data-id="{{ record.event_code }}">delete</a>
     """, orderable=False, verbose_name=_(u"操作"))
 
     class Meta:
@@ -21,14 +21,14 @@ class BaseMenuTable(tables.Table):
         {% load reverse_tags %}
         <input class="menu-item" data-id="{{ record|mongo_id }}" type="checkbox" />
         """, orderable=False, verbose_name="")
-    value = columns.Column(verbose_name=_(u"值"))
-    event_code = columns.Column(verbose_name=_(u"项目"))
-    menu_type = columns.Column(verbose_name=_(u"名单类型"))
-    menu_status = columns.Column(verbose_name=_(u"状态"))
-    menu_desc = TruncateColumn(verbose_name=_(u"备注"))
-    end_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"结束时间"))
-    create_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"更新时间"))
-    creator = columns.Column(verbose_name=_(u"操作人"))
+    value = columns.Column(verbose_name=_(u"Value"))
+    event_code = columns.Column(verbose_name=_(u"Project"))
+    menu_type = columns.Column(verbose_name=_(u"List type"))
+    menu_status = columns.Column(verbose_name=_(u"Status"))
+    menu_desc = TruncateColumn(verbose_name=_(u"Note"))
+    end_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"End Time"))
+    create_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"Update time"))
+    creator = columns.Column(verbose_name=_(u"Operator"))
 
     def __init__(self, *args, **kwargs):
         super(BaseMenuTable, self).__init__(*args, **kwargs)
@@ -46,14 +46,14 @@ class BaseMenuTable(tables.Table):
 
 
 class UseridTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"用户ID"))
+    value = columns.Column(verbose_name=_(u"UserID"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class IPTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"IP地址"))
+    value = columns.Column(verbose_name=_(u"IPAddress"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -74,7 +74,7 @@ class PayTable(BaseMenuTable):
 
 
 class PhoneTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"手机号"))
+    value = columns.Column(verbose_name=_(u"Cell phone number"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}

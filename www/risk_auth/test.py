@@ -11,13 +11,13 @@ class TestRiskAuthView(BaseTestCase):
     logout_uri = 'risk_auth:risk_logout'
 
     def setUp(self):
-        """ 此处无需登录 """
+        """ No login is required here """
         self.username = 'test_user'
         self.email = 'test@momo.com'
         self.password = 'test_password'
 
     def _test_login(self):
-        # 请求方式不对
+        # The request is not done in the wrong way.
         url = reverse(self.login_uri)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -26,26 +26,26 @@ class TestRiskAuthView(BaseTestCase):
         response = self.client.post(url)
         self.assertEquals(response.status_code, 200)
 
-        # 不存在的用户
+        # Non-existent User
         response = self.client.post(url, data={'username': self.username,
                                                'password': self.password})
         self.assertEquals(response.status_code, 200)
 
-        # 普通用户
+        # Ordinary User
         User.objects.create_user(self.username, password=self.password)
         response = self.client.post(url, data={'username': self.username,
                                                'password': self.password})
         self.assertEquals(response.status_code, 302)
 
-        # 登录后再次请求
+        # Request again after logging in
         response = self.client.post(url, data={'username': self.username,
                                                'password': self.password})
         self.assertEquals(response.status_code, 302)
 
-        # 清理用户
+        # Clean User
         User.objects.filter(username=self.username).delete()
 
-        # 超级用户
+        # Super User
         User.objects.create_superuser(self.username, password=self.password,
                                       email=self.email)
         response = self.client.post(url, data={'username': self.username,

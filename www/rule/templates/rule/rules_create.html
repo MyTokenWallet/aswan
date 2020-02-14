@@ -8,7 +8,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">新增规则</a>
+<a href="javascript:;" class="active">Add规则</a>
 {% endblock %}
 
 {% block action %}
@@ -30,7 +30,7 @@
                           action="{{ request.get_full_path }}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">规则名称</label>
+                            <label class="col-sm-2 control-label">Rule name</label>
                             <div class="col-sm-10">
                                 {{ form.title }}
                                 <span id="id-title-error" class="help-block" style="color:darkred"></span>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">规则描述</label>
+                            <label class="col-sm-2 control-label">Rule description</label>
                             <div class="col-sm-10">
                                 {{ form.describe }}
                                 <span id="id-describe-error" class="help-block" style="color:darkred"></span>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">状态</label>
+                            <label class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-10">
                                 {{ form.status }}
                                 <span id="id-status-error" class="help-block" style="color:darkred"></span>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">结束时间</label>
+                            <label class="col-sm-2 control-label">End Time</label>
                             <div class="col-sm-10">
                                 <input class="form-control datetime" id="id_end_time" name="end_time" type="datetime">
                                 <span id="id-end_time-error" class="help-block" style="color:darkred"></span>
@@ -67,7 +67,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1>策略原子选择</h1>
+                                        <h1>Policy选择</h1>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
@@ -97,10 +97,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                                         <button type="button" id="save-strategy" class="btn btn-primary"
                                                 onclick="save_strategys()">
-                                            保存
+                                            Save
                                         </button>
                                     </div>
                                 </div>
@@ -115,13 +115,13 @@
                                                 onclick="delete_rule(this)"></button>
                                     </td>
                                     <td width="15%">
-                                        <textarea class="form-control group-name" placeholder="策略原子组名" data-autoresize rows="1"></textarea>
+                                        <textarea class="form-control group-name" placeholder="PolicyGroup Name" data-autoresize rows="1"></textarea>
                                     </td>
                                     <td width="10%">
                                         <input type="number" class="form-control weight" placeholder="权重"/>
                                     </td>
                                     <td width="10%">
-                                        <a class="strategy-choose" href="#choose-strategy" data-toggle="modal" data-list-id="list-0">策略原子选择</a>
+                                        <a class="strategy-choose" href="#choose-strategy" data-toggle="modal" data-list-id="list-0">Policy选择</a>
                                     </td>
                                     <td width="35%">
                                         <label class="strategy" style="text-align:left"></label>
@@ -142,7 +142,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-info" onclick="create_rule()" type="button">新增策略原子</button>
+                                <button class="btn btn-info" onclick="create_rule()" type="button">AddPolicy</button>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -201,7 +201,7 @@
             });
             if (names.length !== strategys.length || strategys.length !== controls.length || controls.length !== customs.length) {
                 swal({
-                    title: "策略原子不能留空",
+                    title: "Policy can't be blank!",
                     type: "error",
                     confirmButtonColor: "#1ab394"
                 });
@@ -209,7 +209,7 @@
             }
             if (strategys.length <= 0) {
                 swal({
-                    title: "必须添加规则",
+                    title: "Rules must be added",
                     type: "error",
                     confirmButtonColor: "#1ab394"
                 });
@@ -223,7 +223,7 @@
             for (i = 0; i < strategys.length; i++) {
                 if (names[i] === '') {
                     swal({
-                        title: "策略原子组名不能为空",
+                        title: "PolicyGroup Name can't be empty",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -231,7 +231,7 @@
                 }
                 if (weights[i] === '') {
                     swal({
-                        title: "权重不能为空",
+                        title: "Weight cannot be empty!",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -239,7 +239,7 @@
                 }
                 if (strategys[i] === '') {
                     swal({
-                        title: "策略原子不能留空",
+                        title: "Policy can't be blank!",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -247,7 +247,7 @@
                 }
                 if (controls[i] === '') {
                     swal({
-                        title: "管控原子不能留空",
+                        title: "Project Management can't be left empty...",
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -297,7 +297,7 @@
                     if (err.statusText !== 'abort') {
                         _this.removeClass("posting");
                         swal({
-                            title: "哎呀，出错了",
+                            title: "Oops, something went wrong",
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });
@@ -307,7 +307,7 @@
         });
     });
 
-    // 错误提示复位
+    // Error prompt reset
     $(document).on('click', ".strategy-choose" , function() {
         $("#id-strategys-error").html("");
     });
@@ -371,7 +371,7 @@
 <script>
     var fun_setVal = function () {
         var body = $("#id_search_input").val();
-        $("#id_strategy_name").val("相同" + body + "，在最近" + time + "s内，不超过" + limit + "次(" + source + ")");
+        $("#id_strategy_name").val("equal" + body + "，In the recent" + time + "s_Inside，No more than" + limit + "Times(" + source + ")");
     };
     $('#id_search_input').on('propertychange input', fun_setVal);
 </script>

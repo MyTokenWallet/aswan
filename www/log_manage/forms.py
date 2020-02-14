@@ -13,22 +13,22 @@ from risk_models.rule import Rules
 logger = logging.getLogger(__name__)
 
 CONTROL_CHOICES = (
-    (u'所有', u"所有管控原子"),
-    ('pass', u"直接通过"),
-    ('deny', u"拒绝"),
-    ('log', u"记录日志"),
-    ('message', u"短信验证"),
-    ('picture', u"图片验证"),
-    ('number', u"数字验证"),
-    ('verify', u"审核")
+    (u'all', u"Select Project"),
+    ('pass', u"pass"),
+    ('deny', u"deny"),
+    ('log', u"log"),
+    ('message', u"SMS verification"),
+    ('picture', u"Picture verification"),
+    ('number', u"Digital verification"),
+    ('verify', u"Review")
 )
 
 
 class HitLogFilterForm(BaseFilterForm):
     start_day = forms.CharField(required=False)
     end_day = forms.CharField(required=False)
-    rule_id = forms.ChoiceField(label=_(u"规则名称"), required=False)
-    strategy_group = forms.ChoiceField(label=_(u"策略原子组名"), required=False)
+    rule_id = forms.ChoiceField(label=_(u"Rule name"), required=False)
+    strategy_group = forms.ChoiceField(label=_(u"PolicyGroup Name"), required=False)
 
     def __init__(self, *args, **kwargs):
         super(HitLogFilterForm, self).__init__(*args, **kwargs)
@@ -44,7 +44,7 @@ class HitLogFilterForm(BaseFilterForm):
 
     def _get_all_strategy_groups(self):
         strategy_names = Rules(load_all=True).get_all_group_uuid_and_name()
-        strategy_names.insert(0, ('', u'所有策略原子组'))
+        strategy_names.insert(0, ('', u'所有PolicyGroup'))
         return strategy_names
 
     def _get_all_rule_id_and_names(self):
@@ -86,9 +86,9 @@ class HitLogFilterForm(BaseFilterForm):
 
 class HitLogDetailFilterForm(HitLogFilterForm):
     #  required 置为false，以保证初始打开页面不提示错误
-    control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_(u"管控原子"),
+    control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_(u"Projectmanagement"),
                                 required=False)
-    user_id = forms.CharField(label=_(u"用户ID"), required=False)
+    user_id = forms.CharField(label=_(u"UserID"), required=False)
 
     def __init__(self, *args, **kwargs):
         super(HitLogDetailFilterForm, self).__init__(*args, **kwargs)
@@ -96,7 +96,7 @@ class HitLogDetailFilterForm(HitLogFilterForm):
 
 class AuditLogForm(forms.ModelForm, BaseFilterForm):
     time__gt = forms.DateTimeField(label=_(u"开始时间"), required=False)
-    time__lt = forms.DateTimeField(label=_(u"结束时间"), required=False)
+    time__lt = forms.DateTimeField(label=_(u"End Time"), required=False)
 
     class Meta:
         model = AuditLogModel

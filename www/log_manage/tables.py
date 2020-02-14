@@ -11,13 +11,13 @@ from rule.forms import CONTROL_MAP
 
 
 class HitLogDetailTable(tables.Table):
-    time = columns.Column(verbose_name=_(u'触碰时间'))
-    rule_id = columns.Column(verbose_name=_(u'规则名称'), orderable=False)
-    group_name = columns.Column(verbose_name=_(u'策略原子组名称'), orderable=False)
-    user_id = columns.Column(verbose_name=_(u'用户ID'), orderable=False)
-    control = columns.Column(verbose_name=_(u'管控原子'), orderable=False)
-    req_body = columns.Column(verbose_name=_(u'请求体'), orderable=False)
-    hit_number = columns.Column(verbose_name=_(u'是否首次命中'), orderable=False)
+    time = columns.Column(verbose_name=_(u'Touch time'))
+    rule_id = columns.Column(verbose_name=_(u'Rule name'), orderable=False)
+    group_name = columns.Column(verbose_name=_(u'PolicyGroup Name Call'), orderable=False)
+    user_id = columns.Column(verbose_name=_(u'UserID'), orderable=False)
+    control = columns.Column(verbose_name=_(u'Projectmanagement'), orderable=False)
+    req_body = columns.Column(verbose_name=_(u'Request body'), orderable=False)
+    hit_number = columns.Column(verbose_name=_(u'Whether to hit for the first time'), orderable=False)
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -42,15 +42,15 @@ class HitLogDetailTable(tables.Table):
 
 
 class AuditLogTable(tables.Table):
-    username = columns.Column(verbose_name=_(u"用户名"), orderable=False)
-    email = columns.Column(verbose_name=_(u"邮箱"), orderable=False)
-    role = columns.Column(verbose_name=_(u"角色"), empty_values=(),
+    username = columns.Column(verbose_name=_(u"Username"), orderable=False)
+    email = columns.Column(verbose_name=_(u"Mailbox"), orderable=False)
+    role = columns.Column(verbose_name=_(u"Role"), empty_values=(),
                           orderable=False)
-    path = columns.Column(verbose_name=_(u"请求地址"), orderable=False)
-    operation = columns.Column(verbose_name=_(u"操作类型"), empty_values=(),
+    path = columns.Column(verbose_name=_(u"Request address"), orderable=False)
+    operation = columns.Column(verbose_name=_(u"Type of action"), empty_values=(),
                                orderable=False)
-    method = columns.Column(verbose_name=_(u"请求方式"), orderable=False)
-    status = columns.Column(verbose_name=_(u"响应码"), orderable=False)
+    method = columns.Column(verbose_name=_(u"How to request"), orderable=False)
+    status = columns.Column(verbose_name=_(u"Response code"), orderable=False)
     req_body = columns.TemplateColumn("""
     <div style="max-width: 600px;">
         {% if record.req_body|length > 128 %}
@@ -61,13 +61,13 @@ class AuditLogTable(tables.Table):
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
-                            <h2>请求参数</h2>
+                            <h2>Request parameter</h2>
                         </div>
                         <div class="modal-body">
                         {{ record.req_body }}
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -76,8 +76,8 @@ class AuditLogTable(tables.Table):
             {{ record.req_body }}
         {% endif %}
     </div>
-    """, orderable=False, verbose_name=_(u"请求参数"))
-    time = columns.DateTimeColumn(verbose_name=_(u"请求时间"),
+    """, orderable=False, verbose_name=_(u"Request parameter"))
+    time = columns.DateTimeColumn(verbose_name=_(u"Request time"),
                                   format="Y-m-d H:i:s")
 
     class Meta:
@@ -110,14 +110,14 @@ class AuditLogTable(tables.Table):
             rw = None
             r = None
             for desc in descs:
-                if desc.endswith(u'-读写'):
+                if desc.endswith(u'-Write'):
                     rw = desc
-                if desc.endswith(u'-读'):
+                if desc.endswith(u'-Read'):
                     r = desc
             if rw and r:
                 uri_desc_map[uri] = r
             elif rw and not r:
-                uri_desc_map[uri] = rw.rstrip(u'-读写') + u'-写'
+                uri_desc_map[uri] = rw.rstrip(u'-Write') + u'-Write'
             else:
                 uri_desc_map[uri] = descs[0]
 
@@ -126,10 +126,10 @@ class AuditLogTable(tables.Table):
     def render_role(self, value, record):
         user = self.pk_user_map.get(record.email)
         if not user:
-            return u'未知'
+            return u'Unknown'
 
         if user.get('is_superuser'):
-            return u'超级管理员'
+            return u'超级administrator'
 
         groups = user.get('groups', [])
         descs = [self.group_name_desc_map.get(name, '') for name in groups]
