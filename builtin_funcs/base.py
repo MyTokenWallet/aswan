@@ -36,6 +36,7 @@ class BuiltInFuncs(object):
                  threshold_trans_func=None, func_code=None):
         """
             对内置函数进行注册
+        :param func_code:
         :param str|unicode desc: 函数描述(名称)
         :param tuple args_type_tuple: 函数所需参数
         :param tuple|list supported_ops: 内置函数结果所支持的操作符
