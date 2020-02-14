@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load django_tables2 %}
 
-{% trans '共查询出' %}{{ record_count }}{% trans '条数据' %}
+{% trans 'A total query out' %}{{ record_count }}{% trans 'Bar data' %}
 
 {% if is_paginated %}
 {% if enable_page_size_config %}
@@ -16,13 +16,13 @@
     }
 </style>
 <div class="count-container">
-    {% trans '每页显示' %}
+    {% trans 'Show per page' %}
     <select name="count" id="change-count">
         {% for value in page_values %}
         <option value="{{ value }}" {% if value== page_size %} selected {% endif %}>{{ value }}</option>
         {% endfor %}
     </select>
-    {% trans '条数据' %}
+    {% trans 'Bar data' %}
 </div>
 <script type="text/javascript">
     function getUrlVars() {
@@ -58,7 +58,7 @@
 <div class="pagination">
     <div class="goto" id="goto">
         <input type="text" value="" class="num"/>
-        <a href="" data-href="{% querystring table.prefixed_page_field='' %}">{% trans '跳页 ' %}</a>
+        <a href="" data-href="{% querystring table.prefixed_page_field='' %}">{% trans 'Jump page ' %}</a>
     </div>
 
     <div class="page-show">

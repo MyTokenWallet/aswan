@@ -180,7 +180,7 @@
                                                value='{{ rule.strategy_list_str }}'> {{ rule.strategy_name }}</label>
                                     </td>
                                     <td style="width: 10%">
-                                        <select class="form-control" id="id_control" name="control">
+                                        <select class="form-control" id="id_control2" name="control">
                                             {% for k, v in controls %}
                                             <option value="{{ k }}" {% if rule.control== k %} selected="selected" {%
                                                     endif %}>{{ v }}

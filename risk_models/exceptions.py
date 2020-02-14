@@ -1,20 +1,20 @@
 # coding=utf-8
 
 class QueryException(Exception):
-    """ 查询接口出现错误 """
+    """ There is an error with the query interface """
     pass
 
 
 class BuiltInFuncNotExistError(QueryException):
-    """ 内置函数不存在 """
+    """ Built-in function does not exist """
     pass
 
 
 class RuleNotExistsException(QueryException):
-    """ 规则不存在/有错误 """
+    """ Rule does not exist/has error """
     pass
 
 
 class ReportException(Exception):
-    """ 上报接口出现错误 """
+    """ Escalation interface error """
     pass
