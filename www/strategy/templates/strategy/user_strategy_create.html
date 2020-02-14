@@ -105,15 +105,14 @@
         var body = $("#id_strategy_body").val();
         var day = $("#id_strategy_day").val();
         var limit = $("#id_strategy_limit").val();
-        var pattern =   /^[1-9]\d*$/; //Match pattern
+        var pattern = /^[1-9]\d*$/; //Match pattern
         var elements = body.split(',');
         body = elements.join(',');
-        if (pattern.test(day) && pattern.test(limit) ) {
+        if (pattern.test(day) && pattern.test(limit)) {
             $("#id-strategy_name-error").html("");
             if (parseInt(day) === 1) {
                 $("#id_strategy_name").val("equal" + body + "，Day limit" + limit + "Individual_User(" + source + ")");
-            }
-            else {
+            } else {
                 $("#id_strategy_name").val("equal" + body + "，at" + day + "Natural days，Limit" + limit + "Individual_User(" + source + ")");
             }
         } else {
@@ -177,7 +176,9 @@
         dataType: "json", type: "GET",
         success: function (resp) {
             $.each(resp.data, function (i, e) {
-                names = e.content.map(function(d){return d['name'];});
+                names = e.content.map(function (d) {
+                    return d['name'];
+                });
                 if (names.indexOf('user_id') !== -1) {
                     $('#id_strategy_source').append($('<option>', {
                         value: e['name_key'],
@@ -193,8 +194,10 @@
             change_combox_style();
         }
     });
+
     function change_combox_style() {
         $('select#id_strategy_source.form-control').searchableSelect();
+
         function setWidth() {
             var input_element = document.getElementById("id_strategy_desc");
             var objs = document.getElementsByClassName("searchable-select");
@@ -202,16 +205,18 @@
                 objs[i].style.cssText = "min-width:" + input_element.offsetWidth + "px;";
             }
         }
+
         window.onresize = setWidth;
         $(document).ready(setWidth)
     }
+
     function refresh_checkbox(name) {
         name = name.toLowerCase();
         var source_data = $("#label-strategy_body").data(name);
         $("#cb-strategy_body").html("");
         $.each(source_data, function (k, v) {
             if (v['name'] !== 'user_id') {
-                var innerHtml = '<span style="margin-right: 10px"><input type="checkbox" class="sb_check" style="margin-right: 3px" name="strategy_body_check" value='+ v['name'] +'>' + v['desc'] + '</span>';
+                var innerHtml = '<span style="margin-right: 10px"><input type="checkbox" class="sb_check" style="margin-right: 3px" name="strategy_body_check" value=' + v['name'] + '>' + v['desc'] + '</span>';
                 $("#cb-strategy_body").append(innerHtml)
             }
         });
@@ -224,15 +229,15 @@
     }
 
     // Define strategy_body
-    $(document).on("click", 'input:checkbox', function() {
-        var arrs=[];
-        $('input:checked[name=strategy_body_check]').each(function(){
+    $(document).on("click", 'input:checkbox', function () {
+        var arrs = [];
+        $('input:checked[name=strategy_body_check]').each(function () {
             arrs.push($(this).val());
         });
         var strategy_body = arrs.join(',');
         $("input[name=strategy_body]").val(strategy_body);
         fun_setVal()
-});
+    });
 
 
     // Error prompt reset

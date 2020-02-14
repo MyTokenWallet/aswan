@@ -142,8 +142,7 @@ SOFTWARE.
             this.setPriviousAndNextVisibility();
             try {
                 get_data_example();
-            }
-            catch (err) {
+            } catch (err) {
             }
 
         },
@@ -258,8 +257,7 @@ SOFTWARE.
             }
             try {
                 get_data_example();
-            }
-            catch (err) {
+            } catch (err) {
             }
 
         },

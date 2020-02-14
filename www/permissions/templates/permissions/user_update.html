@@ -3,21 +3,23 @@
 
 
 {% block header %}
-    <a href="javascript:;" class="active">更新UserAuthority</a>
+<a href="javascript:;" class="active">更新UserAuthority</a>
 {% endblock %}
 
 {% block css %}
-    {{ block.super }}
+{{ block.super }}
 <style>
     #id_groups, #id_permissions {
         padding-left: 20px;
         margin-top: -5px;
     }
+
     #id_groups input, #id_permissions input {
         margin-left: -20px;
         margin-bottom: -26px;
         padding-right: 10px;
     }
+
     #id_is_superuser {
         margin-top: 0px;
     }
@@ -25,84 +27,84 @@
 {% endblock %}
 
 {% block action %}
-    <a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'permissions:users' %}">
-        <i class="fa fa-reply"></i>
-        返回
-    </a>
+<a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'permissions:users' %}">
+    <i class="fa fa-reply"></i>
+    返回
+</a>
 {% endblock %}
 
 {% block main %}
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox extra-float-margins">
-                    <div class="extra-box-content">
-                        <form method="post" class="form-horizontal" id="UriForm" action="{{ request.get_full_path }}">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-10">
-                                    <span id="id-__all__-error" class="help-block" style="color:darkred"></span>
-                                </div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox extra-float-margins">
+                <div class="extra-box-content">
+                    <form method="post" class="form-horizontal" id="UriForm" action="{{ request.get_full_path }}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <span id="id-__all__-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group" style="display: none">
-                                <label class="col-sm-2 control-label">entity_id</label>
-                                <div class="col-sm-10">
-                                    {{ form.entity_id }}
-                                    <span id="id-entity_id-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <label class="col-sm-2 control-label">entity_id</label>
+                            <div class="col-sm-10">
+                                {{ form.entity_id }}
+                                <span id="id-entity_id-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">姓名</label>
-                                <div class="col-sm-10">
-                                    {{ form.fullname }}
-                                    <span id="id-fullname-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                {{ form.fullname }}
+                                <span id="id-fullname-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">email</label>
-                                <div class="col-sm-10">
-                                    {{ form.pk }}
-                                    <span id="id-email-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">email</label>
+                            <div class="col-sm-10">
+                                {{ form.pk }}
+                                <span id="id-email-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Note</label>
-                                <div class="col-sm-10">
-                                    {{ form.remark }}
-                                    <span id="id-remark-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Note</label>
+                            <div class="col-sm-10">
+                                {{ form.remark }}
+                                <span id="id-remark-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">超级administrator</label>
-                                <div class="col-sm-10">
-                                    {{ form.is_superuser }}
-                                    <span id="id-is_superuser-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">超级administrator</label>
+                            <div class="col-sm-10">
+                                {{ form.is_superuser }}
+                                <span id="id-is_superuser-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Group</label>
-                                <div class="col-sm-10">
-                                    {{ form.groups }}
-                                    <span id="id-groups-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Group</label>
+                            <div class="col-sm-10">
+                                {{ form.groups }}
+                                <span id="id-groups-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Authority</label>
-                                <div class="col-sm-10">
-                                    {{ form.permissions }}
-                                    <span id="id-permissions-error" class="help-block" style="color:darkred"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Authority</label>
+                            <div class="col-sm-10">
+                                {{ form.permissions }}
+                                <span id="id-permissions-error" class="help-block" style="color:darkred"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-primary" type="submit">Save</button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit">Save</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

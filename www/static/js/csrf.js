@@ -1,4 +1,4 @@
- $(document).ajaxSend(function(event, xhr, settings) {
+$(document).ajaxSend(function (event, xhr, settings) {
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -14,9 +14,11 @@
         }
         return cookieValue;
     }
+
     function getMeta(name) {
         return $("meta[name='" + name + "']").attr("content");
     }
+
     function sameOrigin(url) {
         // url could be relative or scheme relative or absolute
         var host = document.location.host; // host + port
@@ -29,12 +31,15 @@
             // or any other URL that isn't scheme relative or absolute i.e relative.
             !(/^(\/\/|http:|https:).*/.test(url));
     }
+
     function safeMethod(method) {
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
+
     function getCSRFToken() {
         return getCookie('csrftoken') || getMeta('csrftoken');
     }
+
     if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
         xhr.setRequestHeader("X-CSRFToken", getCSRFToken());
     }

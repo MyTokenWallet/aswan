@@ -115,13 +115,15 @@
                                                 onclick="delete_rule(this)"></button>
                                     </td>
                                     <td width="15%">
-                                        <textarea class="form-control group-name" placeholder="PolicyGroup Name" data-autoresize rows="1"></textarea>
+                                        <textarea class="form-control group-name" placeholder="PolicyGroup Name"
+                                                  data-autoresize rows="1"></textarea>
                                     </td>
                                     <td width="10%">
                                         <input type="number" class="form-control weight" placeholder="权重"/>
                                     </td>
                                     <td width="10%">
-                                        <a class="strategy-choose" href="#choose-strategy" data-toggle="modal" data-list-id="list-0">Policy选择</a>
+                                        <a class="strategy-choose" href="#choose-strategy" data-toggle="modal"
+                                           data-list-id="list-0">Policy选择</a>
                                     </td>
                                     <td width="35%">
                                         <label class="strategy" style="text-align:left"></label>
@@ -308,7 +310,7 @@
     });
 
     // Error prompt reset
-    $(document).on('click', ".strategy-choose" , function() {
+    $(document).on('click', ".strategy-choose", function () {
         $("#id-strategys-error").html("");
     });
     $("#id_title").focus(function () {
@@ -325,12 +327,14 @@
             '<tr id="list-' + new_id + '">' + clone.html() + "</tr>"
         );
 
-        $.each($('textarea[data-autoresize]'), function() {
+        $.each($('textarea[data-autoresize]'), function () {
             var offset = this.offsetHeight - this.clientHeight;
-            var resizeTextarea = function(el) {
+            var resizeTextarea = function (el) {
                 jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
             };
-            jQuery(this).on('keyup input', function() { resizeTextarea(this); });
+            jQuery(this).on('keyup input', function () {
+                resizeTextarea(this);
+            });
         });
     }
 
@@ -432,12 +436,14 @@
     });
 </script>
 <script>
-        $.each($('textarea[data-autoresize]'), function() {
-            var offset = $('.form-control.group-name:visible')[0].offsetHeight - $('.form-control.group-name:visible')[0].clientHeight;
-            var resizeTextarea = function(el) {
-                jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
-            };
-            jQuery(this).on('keyup input', function() { resizeTextarea(this); });
+    $.each($('textarea[data-autoresize]'), function () {
+        var offset = $('.form-control.group-name:visible')[0].offsetHeight - $('.form-control.group-name:visible')[0].clientHeight;
+        var resizeTextarea = function (el) {
+            jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+        };
+        jQuery(this).on('keyup input', function () {
+            resizeTextarea(this);
         });
+    });
 </script>
 {% endblock %}

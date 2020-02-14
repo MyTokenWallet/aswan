@@ -7,7 +7,6 @@ from rule.views import (RulesListView, RulesCreateView, RulesDestroyView, RulesC
                         RulesDetailView, RulesTestView, RulesDataView, RulesThresholdEdit,
                         RulesEdit)
 
-
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url=reverse_lazy("rule:list"), permanent=True), name="rule_index"),
     url(r'^list/$', RulesListView.as_view(), name="list"),

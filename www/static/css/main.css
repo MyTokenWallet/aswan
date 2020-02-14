@@ -170,8 +170,8 @@ a:hover {
     margin-top: 150px;
     margin-left: auto;
     margin-right: auto;
-    width:440px;
-    max-width:440px;
+    width: 440px;
+    max-width: 440px;
     background: white;
     padding: 30px 50px 42px 50px;
 }
@@ -180,7 +180,7 @@ a:hover {
     margin-top: 150px;
     margin-left: auto;
     margin-right: auto;
-    max-width:840px;
+    max-width: 840px;
     background: white;
     padding: 30px 50px 42px 50px;
 }

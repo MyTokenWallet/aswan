@@ -4,58 +4,62 @@
 {% load staticfiles %}
 
 {% block header %}
-    <a href="javascript:;" class="active">Device number management</a>
+<a href="javascript:;" class="active">Device number management</a>
 {% endblock %}
 
 
 {% block action %}
-    <a class="roll-nav roll-right extra-right-btns pull-right" data-toggle="modal" data-target="#setValue">
-        <i class="fa fa-plus"></i>
-        Add
-    </a>
+<a class="roll-nav roll-right extra-right-btns pull-right" data-toggle="modal" data-target="#setValue">
+    <i class="fa fa-plus"></i>
+    Add
+</a>
 {% endblock %}
 
 
 {% block main %}
-    <div class="wrapper wrapper-content">
-        <div class="extra-search-form">
-            {% crispy filter_form %}
-        </div>
-        <div class="extra-box-content">
-            {% render_table table "table.html" %}
-        </div>
+<div class="wrapper wrapper-content">
+    <div class="extra-search-form">
+        {% crispy filter_form %}
     </div>
+    <div class="extra-box-content">
+        {% render_table table "table.html" %}
+    </div>
+</div>
 
 
-    <div class="modal inmodal fade" id="setValue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-             <div class="modal-header">
-                 <h2>Add设备号名单</h2>
-             </div>
-             <div class="modal-body">
-                 <textarea class="form-control" id="id_value" name="value" placeholder="Device uid [separate with the enter key when adding in batches]" rows="5"></textarea>
-                 <span id="id-value-error" class="help-block" style="color:darkred"></span>
-                 <div class="hr-line-dashed"></div>
-                 {{ create_form.menu_type }}
-                 <span id="id-menu_type-error" class="help-block" style="color:darkred"></span>
-                 <div class="hr-line-dashed"></div>
-                 {{ create_form.event_code }}
-                 <span id="id-event_code-error" class="help-block" style="color:darkred"></span>
-                 <div class="hr-line-dashed"></div>
-                 <input class="form-control datetime" id="id_end_time" name="end_time" placeholder="End Time" type="datetime">
-                 <span id="id-end_time-error" class="help-block" style="color:darkred"></span>
-                 <div class="hr-line-dashed"></div>
-                 {{ create_form.menu_desc }}
-                 <span id="id-menu_desc-error" class="help-block" style="color:darkred"></span>
-             </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                  <button type="button" id="valueSave" class="btn btn-primary" data-uri="{% url 'menus:create' %}">Save</button>
-              </div>
+<div class="modal inmodal fade" id="setValue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add设备号名单</h2>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="id_value" name="value"
+                          placeholder="Device uid [separate with the enter key when adding in batches]"
+                          rows="5"></textarea>
+                <span id="id-value-error" class="help-block" style="color:darkred"></span>
+                <div class="hr-line-dashed"></div>
+                {{ create_form.menu_type }}
+                <span id="id-menu_type-error" class="help-block" style="color:darkred"></span>
+                <div class="hr-line-dashed"></div>
+                {{ create_form.event_code }}
+                <span id="id-event_code-error" class="help-block" style="color:darkred"></span>
+                <div class="hr-line-dashed"></div>
+                <input class="form-control datetime" id="id_end_time" name="end_time" placeholder="End Time"
+                       type="datetime">
+                <span id="id-end_time-error" class="help-block" style="color:darkred"></span>
+                <div class="hr-line-dashed"></div>
+                {{ create_form.menu_desc }}
+                <span id="id-menu_desc-error" class="help-block" style="color:darkred"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" id="valueSave" class="btn btn-primary" data-uri="{% url 'menus:create' %}">Save
+                </button>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
 
@@ -72,68 +76,68 @@
 </script>
 <script>
     $(function () {
-    // Add
-    $('#valueSave').click(function () {
-        var _this = $(this);
-        var uri = _this.data('uri'),
-            value = $("#id_value").val(),
-            menu_type = $("#id_menu_type").val(),
-            event_code = $("#id_event_code").val(),
-            end_time = $("#id_end_time").val(),
-            menu_desc = $("#id_menu_desc").val();
-        $.ajax({
-            url: uri,
-            data: {
-                'value': value,
-                'menu_type': menu_type,
-                'event_code': event_code,
-                'end_time': end_time,
-                'menu_desc': menu_desc,
-                'dimension': "uid",
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            dataType: "json",
-            type: "POST",
-            success: function (resp) {
-                if (resp.state) {
-                    window.location.reload();
-                } else {
-                    var error = resp.error;
-                    for (var name in error) {
-                        $("#id-" + name +"-error").html(error[name][0]);
+        // Add
+        $('#valueSave').click(function () {
+            var _this = $(this);
+            var uri = _this.data('uri'),
+                value = $("#id_value").val(),
+                menu_type = $("#id_menu_type").val(),
+                event_code = $("#id_event_code").val(),
+                end_time = $("#id_end_time").val(),
+                menu_desc = $("#id_menu_desc").val();
+            $.ajax({
+                url: uri,
+                data: {
+                    'value': value,
+                    'menu_type': menu_type,
+                    'event_code': event_code,
+                    'end_time': end_time,
+                    'menu_desc': menu_desc,
+                    'dimension': "uid",
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: "json",
+                type: "POST",
+                success: function (resp) {
+                    if (resp.state) {
+                        window.location.reload();
+                    } else {
+                        var error = resp.error;
+                        for (var name in error) {
+                            $("#id-" + name + "-error").html(error[name][0]);
+                        }
+                    }
+                },
+                error: function (err) {
+                    if (err.statusText !== 'abort') {
+                        swal({
+                            title: "Oops, something went wrong",
+                            type: "error",
+                            confirmButtonColor: "#1ab394"
+                        });
                     }
                 }
-            },
-            error: function (err) {
-                if (err.statusText !== 'abort') {
-                    swal({
-                        title: "Oops, something went wrong",
-                        type: "error",
-                        confirmButtonColor:"#1ab394"
-                    });
-                }
-            }
-        })
+            })
+        });
+        // Error prompt reset
+        $("#id_value").focus(function () {
+            $("#id-value-error").html("");
+        });
+        $("#id_menu_type").focus(function () {
+            $("#id-menu_type-error").html("");
+        });
+        $("#id_event_code").focus(function () {
+            $("#id-event_code-error").html("");
+        });
+        $("#id_start_time").focus(function () {
+            $("#id-start_time-error").html("");
+        });
+        $("#id_end_time").focus(function () {
+            $("#id-end_time-error").html("");
+        });
+        $("#id_menu_desc").focus(function () {
+            $("#id-menu_desc-error").html("");
+        });
     });
-    // Error prompt reset
-    $("#id_value").focus(function () {
-        $("#id-value-error").html("");
-    });
-    $("#id_menu_type").focus(function () {
-        $("#id-menu_type-error").html("");
-    });
-    $("#id_event_code").focus(function () {
-        $("#id-event_code-error").html("");
-    });
-    $("#id_start_time").focus(function () {
-        $("#id-start_time-error").html("");
-    });
-    $("#id_end_time").focus(function () {
-        $("#id-end_time-error").html("");
-    });
-    $("#id_menu_desc").focus(function () {
-        $("#id-menu_desc-error").html("");
-    });
-});
 </script>
 {% endblock %}

@@ -20,7 +20,7 @@ $(function () {
                     _this.removeClass("posting");
                     var error = resp.error;
                     for (var name in error) {
-                        $("#id-" + name +"-error").html(error[name][0]);
+                        $("#id-" + name + "-error").html(error[name][0]);
                     }
                 }
             },
@@ -30,7 +30,7 @@ $(function () {
                     swal({
                         title: "Oops, something went wrong",
                         type: "error",
-                        confirmButtonColor:"#1ab394"
+                        confirmButtonColor: "#1ab394"
                     });
                 }
             }

@@ -9,7 +9,6 @@ from permissions.views import (
     UriGroupPermListView, UriGroupPermUpdateView, UriGroupPermCreateView,
 )
 
-
 urlpatterns = [
     # user permission
     url(r'^$', login_required(UserPermListView.as_view()), name="index"),

@@ -2,7 +2,6 @@ import pymysql
 
 from config import LOG_MYSQL_CONFIG
 
-
 __all__ = ['get_log_mysql_client']
 
 

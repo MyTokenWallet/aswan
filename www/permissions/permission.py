@@ -11,7 +11,6 @@ from pymongo.errors import PyMongoError
 
 from core.pymongo_client import get_mongo_client
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -33,6 +32,7 @@ def mongodb_error_log(func):
             raise DBError(msg)
         except InvalidId as err:
             logger.error('Invalid BSON ObjectId: {}'.format(err))
+
     return wrapper
 
 
@@ -98,7 +98,7 @@ class PermManager(object):
     def multi_get(self, items):
         db = get_mongo_client()
         docs = db[self.collection].find({self.primary_key: {'$in': items}}) \
-                                  .sort('_id', pymongo.DESCENDING)
+            .sort('_id', pymongo.DESCENDING)
         return [self.klass(**doc) for doc in docs]
 
 

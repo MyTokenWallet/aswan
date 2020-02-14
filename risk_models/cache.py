@@ -8,7 +8,6 @@ import gevent
 
 from clients.redis_client import get_config_redis_client
 
-
 logger = logging.getLogger(__name__)
 
 

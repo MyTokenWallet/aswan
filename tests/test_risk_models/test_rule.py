@@ -5,7 +5,7 @@ import unittest
 import pymysql
 
 # use MySQLdb driver
-pymysql.install_as_MySQLdb() # noqa
+pymysql.install_as_MySQLdb()  # noqa
 
 import django
 
@@ -41,7 +41,6 @@ class TestRule(unittest.TestCase):
         self.rule_id, self.rule_uuid = create_rule(strategy_confs)
 
     def test_rule(self):
-
         req_body = {'user_id': '111'}
 
         # 命中bool型策略

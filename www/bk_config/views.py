@@ -11,7 +11,6 @@ from core.redis_client import get_redis_client
 from bk_config.forms import SourceMapForm, SourceFilterForm
 from bk_config.tables import ConfigSourceTable
 
-
 FIELD_EN_ZH_MAP = {
     'user_id': 'AccountID',
     'uid': 'DeviceID',

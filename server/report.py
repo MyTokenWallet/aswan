@@ -3,7 +3,6 @@
 from .base import Response
 from risk_models.source import Sources
 
-
 sources = Sources(auto_fresh=True)
 sources.load_sources()
 

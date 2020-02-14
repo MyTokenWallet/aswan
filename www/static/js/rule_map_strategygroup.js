@@ -17,8 +17,7 @@ function rule_map_strategy(url, rule_id) {
                     if (i > resp.rules_num) {
                         if (!(_rule_id in strategy_groups_json)) {
                             $(this).attr("style", "display: none;")
-                        }
-                        else {
+                        } else {
                             $(this).removeAttr("style", "")
                         }
                     }

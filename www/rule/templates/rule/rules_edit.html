@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load staticfiles %}
 
@@ -34,7 +33,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Rule name</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="id_title" name="title" type="text" value="{{ rule.title }}"/>
+                                <input class="form-control" id="id_title" name="title" type="text"
+                                       value="{{ rule.title }}"/>
                                 <span id="id-title-error" class="help-block" style="color:darkred"></span>
                             </div>
                         </div>
@@ -50,23 +50,24 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-10">
-                                 <select class="form-control" id="id_status" name="status">
-                                 {% if rule.status == "on" %}
-                                 <option value="on">Enable</option>
-                                 <option value="off">Disable</option>
-                                 {% else %}
-                                 <option value="off">Disable</option>
-                                 <option value="on">Enable</option>
-                                 {% endif %}
-                                 </select>
-                                 <span id="id-status-error" class="help-block" style="color:darkred"></span>
+                                <select class="form-control" id="id_status" name="status">
+                                    {% if rule.status == "on" %}
+                                    <option value="on">Enable</option>
+                                    <option value="off">Disable</option>
+                                    {% else %}
+                                    <option value="off">Disable</option>
+                                    <option value="on">Enable</option>
+                                    {% endif %}
+                                </select>
+                                <span id="id-status-error" class="help-block" style="color:darkred"></span>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">End Time</label>
                             <div class="col-sm-10">
-                                <input class="form-control datetime" id="id_end_time" name="end_time" type="datetime" value="{{ rule.end_time }}"/>
+                                <input class="form-control datetime" id="id_end_time" name="end_time" type="datetime"
+                                       value="{{ rule.end_time }}"/>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -133,55 +134,65 @@
                                                 onclick="delete_rule(this)"></button>
                                     </td>
                                     <td width="15%">
-                                        <textarea class="form-control group-name" placeholder="PolicyGroup Name" data-autoresize rows="1"></textarea>
+                                        <textarea class="form-control group-name" placeholder="PolicyGroup Name"
+                                                  data-autoresize rows="1"></textarea>
                                     </td>
                                     <td width="10%">
                                         <input type="number" class="form-control weight" placeholder="权重"/>
                                     </td>
                                     <td width="10%">
-                                        <a href="#choose-strategy" data-toggle="modal" data-list-id="list-0">Policy选择</a>
+                                        <a href="#choose-strategy" data-toggle="modal"
+                                           data-list-id="list-0">Policy选择</a>
                                     </td>
                                     <td width="35%">
                                         <label type="text" class="strategy" style="text-align:left"></label>
                                     </td>
                                     <td width="10%">
-                                         <select class="form-control" id="id_control" name="control">
-                                             {% for k, v in controls %}
-                                                 <option value="{{ k }}">{{ v }}</option>
-                                             {% endfor %}
-                                         </select>
+                                        <select class="form-control" id="id_control" name="control">
+                                            {% for k, v in controls %}
+                                            <option value="{{ k }}">{{ v }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </td>
                                     <td width="20%">
                                         <div class="custom">
-                                            <textarea class="form-control" cols="auto" data-autoresize="" id="id_custom" name="custom" placeholder="客服话术" rows="1"></textarea>
+                                            <textarea class="form-control" cols="auto" data-autoresize="" id="id_custom"
+                                                      name="custom" placeholder="客服话术" rows="1"></textarea>
                                         </div>
                                     </td>
                                 </tr>
                                 {% for rule in rule.rule_list %}
                                 <tr id="list-{{ forloop.counter }}">
-                                        <td width="5%">
-                                            <button class="btn fa fa-minus" type="button"
-                                                    onclick="delete_rule(this)"></button>
-                                        </td>
-                                        <td style="width: 15%"><textarea class="form-control group-name" data-autoresize="">{{ rule.group_name }}</textarea></td>
-                                        <td style="width: 10%"><input type="number" class="form-control weight" value="{{ rule.weight }}" /></td>
-                                        <td width="10%">
-                                            <a href="#choose-strategy" data-toggle="modal" data-list-id="list-{{ forloop.counter }}">重选Policy</a>
-                                        </td>
-                                        <td style="width: 35%">
-                                            <label type="text" class="strategy" style="text-align:left" value='{{ rule.strategy_list_str }}'> {{ rule.strategy_name }}</label>
-                                        </td>
-                                        <td style="width: 10%">
-                                            <select class="form-control" id="id_control" name="control">
-                                                {% for k, v in controls %}
-                                                    <option value="{{ k }}" {% if rule.control == k %} selected="selected" {% endif %}>{{ v }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </td>
-                                        <td style="width: 20%">
-                                            <div class="custom"><textarea class="form-control custom" data-autoresize="" rows="1">{{ rule.custom }}</textarea></div>
-                                        </td>
-                                    </tr>
+                                    <td width="5%">
+                                        <button class="btn fa fa-minus" type="button"
+                                                onclick="delete_rule(this)"></button>
+                                    </td>
+                                    <td style="width: 15%"><textarea class="form-control group-name" data-autoresize="">{{ rule.group_name }}</textarea>
+                                    </td>
+                                    <td style="width: 10%"><input type="number" class="form-control weight"
+                                                                  value="{{ rule.weight }}"/></td>
+                                    <td width="10%">
+                                        <a href="#choose-strategy" data-toggle="modal"
+                                           data-list-id="list-{{ forloop.counter }}">重选Policy</a>
+                                    </td>
+                                    <td style="width: 35%">
+                                        <label type="text" class="strategy" style="text-align:left"
+                                               value='{{ rule.strategy_list_str }}'> {{ rule.strategy_name }}</label>
+                                    </td>
+                                    <td style="width: 10%">
+                                        <select class="form-control" id="id_control" name="control">
+                                            {% for k, v in controls %}
+                                            <option value="{{ k }}" {% if rule.control== k %} selected="selected" {%
+                                                    endif %}>{{ v }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td style="width: 20%">
+                                        <div class="custom"><textarea class="form-control custom" data-autoresize=""
+                                                                      rows="1">{{ rule.custom }}</textarea></div>
+                                    </td>
+                                </tr>
                                 {% endfor %}
                             </table>
                         </div>
@@ -216,21 +227,22 @@
 </script>
 
 
-
 <script>
-     for (i = 0; i < $('textarea').length; i++) {
-         var el = $('textarea')[i];
-         if(el.scrollHeight > el.offsetHeight){
-             $(el).css('height', el.scrollHeight+2);
-         }
-     }
+    for (i = 0; i < $('textarea').length; i++) {
+        var el = $('textarea')[i];
+        if (el.scrollHeight > el.offsetHeight) {
+            $(el).css('height', el.scrollHeight + 2);
+        }
+    }
 
-    $.each($('textarea[data-autoresize]'), function() {
+    $.each($('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;
-        var resizeTextarea = function(el) {
+        var resizeTextarea = function (el) {
             jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
         };
-        jQuery(this).on('keyup input', function() { resizeTextarea(this); });
+        jQuery(this).on('keyup input', function () {
+            resizeTextarea(this);
+        });
     });
 </script>
 
@@ -384,12 +396,14 @@
             '<tr id="list-' + new_id + '">' + clone.html() + "</tr>"
         );
 
-        $.each($('textarea[data-autoresize]'), function() {
+        $.each($('textarea[data-autoresize]'), function () {
             var offset = this.offsetHeight - this.clientHeight;
-            var resizeTextarea = function(el) {
+            var resizeTextarea = function (el) {
                 jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
             };
-            jQuery(this).on('keyup input', function() { resizeTextarea(this); });
+            jQuery(this).on('keyup input', function () {
+                resizeTextarea(this);
+            });
         });
     }
 
@@ -490,11 +504,11 @@
 </script>
 
 <script>
-      $('#id_end_time').datetimepicker({
+    $('#id_end_time').datetimepicker({
         format: 'yyyy-mm-dd hh:ii:ss',
-        language:  'fr',
+        language: 'fr',
         weekStart: 1,
-        todayBtn:  1,
+        todayBtn: 1,
         autoclose: 1,
         todayHighlight: 1,
         weekStart: 1,

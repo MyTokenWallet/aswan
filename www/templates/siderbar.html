@@ -44,18 +44,19 @@
     <div class="">
         <ul class="nav" id="extra-side-menu">
             <li class="nav-header">
-                    <span >
-                        <a href="{{ home_page }}"><center><img alt="image" height="64px" width="175px" src="{% static 'img/icon.png' %}"/></center>
+                    <span>
+                        <a href="{{ home_page }}"><center><img alt="image" height="64px" width="175px"
+                                                               src="{% static 'img/icon.png' %}"/></center>
                         <center><h3>风控系统</h3></center></a>
                     </span>
-                    <br>
-                    <span>
+                <br>
+                <span>
                         <a>
                             <i class="fa fa-circle extra-online-icon"></i>
                             <strong>{{ request.user.last_name }}{{ request.user.first_name }}</strong>
                         </a>
                     </span>
-                    <span>
+                <span>
                     <a href="{% url 'risk_auth:risk_logout' %}" style="margin-left: 10px">
                          退出
                     </a>
@@ -205,10 +206,10 @@
         // 动作菜单 -- 导航菜单 对应关系
         var actionPages = {
             '/permissions/user/update/': "/permissions/users/",
-            '/permissions/group/create/':"/permissions/groups/",
-            '/permissions/group/update/':"/permissions/groups/",
-            '/permissions/uri_group/create/':"/permissions/uri_groups/",
-            '/permissions/uri_group/update/':"/permissions/uri_groups/",
+            '/permissions/group/create/': "/permissions/groups/",
+            '/permissions/group/update/': "/permissions/groups/",
+            '/permissions/uri_group/create/': "/permissions/uri_groups/",
+            '/permissions/uri_group/update/': "/permissions/uri_groups/",
 
             '/rules/menu/create/': "/rules/menu/list/",
 

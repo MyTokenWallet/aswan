@@ -13,7 +13,6 @@ from core.redis_client import get_redis_client
 from core.forms import BaseForm, BaseFilterForm
 from core.pymongo_client import get_mongo_client
 
-
 OP_CHOICES = (
     ('is', u'是(使用、已经)'),
     ('is_not', u'不是(未使用、尚未)'),
@@ -61,7 +60,6 @@ VAR_MAP = dict(VAR_CHOICES)
 DIM_MAP_MENU = dict(DIM_CHOICES_MENU)
 TYPE_MAP_MENU = dict(TYPE_CHOICES_MENU)
 OP_MAP_MENU = dict(OP_CHOICES_MENU)
-
 
 FREQ_STRATEGY_UNIQ_SET_KEYS = (
     'strategy_source', 'strategy_body', 'strategy_time', 'strategy_limit')

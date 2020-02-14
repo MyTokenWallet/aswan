@@ -10,9 +10,7 @@ from .handler import RedisHandler
 from config import HIT_LOG_QUEUE_NAME
 from clients import get_log_redis_client
 
-
 __all__ = ['init_log', 'hit_logger']
-
 
 conn = get_log_redis_client()
 

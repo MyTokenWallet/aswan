@@ -1,7 +1,7 @@
 # coding=utf8
 
 """
-    本脚本用于在User不熟悉时预注数据
+    This script is used to pre-note data when User is unfamiliar
 """
 
 import logging
@@ -47,7 +47,11 @@ class Command(BaseCommand):
                                            menu_type='black', menu_op='is',
                                            strategy_name=menu_strategy_name_1,
                                            strategy_desc='Initial blacklist policy')
-        menu_strategy_name_2 = 'uid on the initial project's equipment whitelist'
+        menu_strategy_name_2 = 'uid on the initial project'
+        s
+        equipment
+        whitelist
+        '
         menu_uuid_2 = create_menu_strategy(event_code, dimension='uid',
                                            menu_type='white', menu_op='is',
                                            strategy_name=menu_strategy_name_2,

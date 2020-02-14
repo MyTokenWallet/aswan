@@ -4,14 +4,15 @@
 {% load staticfiles %}
 
 {% block header %}
-    <a href="javascript:;" class="active">Authority Management</a>
+<a href="javascript:;" class="active">Authority Management</a>
 {% endblock %}
 
 {% block action %}
-    <a class="roll-nav roll-right extra-right-btns pull-right" style="width: 150px" href="{% url 'permissions:uri_group_create' %}">
-        <i class="fa fa-plus"></i>
-        Add new uri SubGroup
-    </a>
+<a class="roll-nav roll-right extra-right-btns pull-right" style="width: 150px"
+   href="{% url 'permissions:uri_group_create' %}">
+    <i class="fa fa-plus"></i>
+    Add new uri SubGroup
+</a>
 {% endblock %}
 
 {% block main %}
@@ -23,9 +24,9 @@
 {% endblock %}
 
 {% block js %}
-    {{ block.super }}
+{{ block.super }}
 <script type="text/javascript">
-    $(".perms-uri-group-delete").on("click", function() {
+    $(".perms-uri-group-delete").on("click", function () {
         var $this = $(this);
         var entity_id = $this.data("entity_id");
         swal({
@@ -38,14 +39,14 @@
             cancelButtonText: "cancel",
             closeOnConfirm: false,
             closeOnCancel: true
-        }, function(isConfirm) {
+        }, function (isConfirm) {
             if (isConfirm) {
                 $.ajax({
                     method: "DELETE",
                     url: "{{ request.get_full_path }}",
                     data: {entity_id: entity_id},
                     dataType: "json",
-                    success: function(data) {
+                    success: function (data) {
                         if (data.state) {
                             swal({
                                 title: "delete succeeded!",
@@ -63,8 +64,8 @@
                         }
                     }
                 });
-             }
-         });
+            }
+        });
     });
 </script>
 {% endblock %}

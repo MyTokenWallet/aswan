@@ -5,7 +5,6 @@
 {{ block.super }}
 
 
-
 {{ form.media }}
 {% endblock %}
 
@@ -180,15 +179,17 @@
                 }));
                 var val = e['name_key'];
                 $("#label-strategy_body").attr("data-" + val, JSON.stringify(e['content']));
-                if(i === 0) {
+                if (i === 0) {
                     refresh_checkbox(val);
                 }
             });
             change_combox_style();
         }
     });
+
     function change_combox_style() {
         $('select#id_strategy_source.form-control').searchableSelect();
+
         function setWidth() {
             var input_element = document.getElementById("id_strategy_desc");
             var objs = document.getElementsByClassName("searchable-select");
@@ -196,15 +197,17 @@
                 objs[i].style.cssText = "min-width:" + input_element.offsetWidth + "px;";
             }
         }
+
         window.onresize = setWidth;
         $(document).ready(setWidth)
     }
+
     function refresh_checkbox(name) {
         name = name.toLowerCase()
         var source_data = $("#label-strategy_body").data(name);
         $("#cb-strategy_body").html("");
         $.each(source_data, function (k, v) {
-            var innerHtml = '<span style="margin-right: 10px"><input type="checkbox" class="sb_check" style="margin-right: 3px" name="strategy_body_check" value='+ v['name'] +'>' + v['desc'] + '</span>';
+            var innerHtml = '<span style="margin-right: 10px"><input type="checkbox" class="sb_check" style="margin-right: 3px" name="strategy_body_check" value=' + v['name'] + '>' + v['desc'] + '</span>';
             $("#cb-strategy_body").append(innerHtml);
         });
     }
@@ -216,15 +219,15 @@
     }
 
     // 定义strategy_body
-    $(document).on("click", 'input:checkbox', function() {
-        var arrs=[];
-        $('input:checked[name=strategy_body_check]').each(function(){
+    $(document).on("click", 'input:checkbox', function () {
+        var arrs = [];
+        $('input:checked[name=strategy_body_check]').each(function () {
             arrs.push($(this).val());
         });
         var strategy_body = arrs.join(',');
         $("input[name=strategy_body]").val(strategy_body);
         fun_setVal()
-});
+    });
 
 
     // Error prompt reset
