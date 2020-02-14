@@ -1,4 +1,5 @@
-# coding=utf-8
+#!/usr/bin/env python3
+# coding=utf8
 
 import logging
 
@@ -10,9 +11,9 @@ logging.basicConfig()
 
 def build_redis_key(event_code, dimension, menu_type):
     """
-    :param event_code: 名单code
-    :param dimension:  名单维度
-    :param menu_type:  List type 黑/白/灰
+    :param event_code: List code
+    :param dimension:  List dimensions
+    :param menu_type:  List type Black/White/Grey
     :return:
     """
     fields = ['menu', event_code, dimension, menu_type]

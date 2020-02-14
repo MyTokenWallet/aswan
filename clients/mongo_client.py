@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding=utf8
+
 from lru import lru_cache_function
 from pymongo import MongoClient
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 import os
@@ -17,7 +18,7 @@ conn = get_log_redis_client()
 if not os.path.exists(LOG_HOME):
     os.mkdir(LOG_HOME)
 
-#  文本日志
+#  Text logs
 logger_file = os.path.join(LOG_HOME, 'risk_control.log')
 
 logging_config = {

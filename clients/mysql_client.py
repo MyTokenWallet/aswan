@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding=utf8
+
 import pymysql
 
 from config import LOG_MYSQL_CONFIG

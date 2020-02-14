@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 #  存储各项配置信息的redis

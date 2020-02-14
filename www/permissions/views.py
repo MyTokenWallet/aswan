@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# coding=utf8
 
 from braces.views import JSONResponseMixin
 from django.core.urlresolvers import reverse

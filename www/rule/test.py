@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf-8
 import copy
 import json
@@ -70,7 +71,7 @@ class TestRuleManage(BaseTestCase):
                                                        menu_type='black',
                                                        menu_op='is')
 
-        # 相同uid，当天限1个User
+        # Same uid, 1 User for the day
         data_source_key = create_data_source()
         self.user_strategy_uuid = create_user_strategy(
             strategy_source=data_source_key, strategy_body='uid',

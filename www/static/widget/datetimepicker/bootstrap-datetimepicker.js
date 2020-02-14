@@ -70,7 +70,7 @@
 
         this._attachEvents();
 
-        this.formatViewType = "datetime";
+        this.formatViewType = "datetime-local";
         if ('formatViewType' in options) {
             this.formatViewType = options.formatViewType;
         } else if ('formatViewType' in this.element.data()) {

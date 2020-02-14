@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 import re
@@ -38,31 +39,31 @@ def register_strategy(cls):
 
 
 class Strategy(object):
-    """Policy基类"""
+    """Policy Base Class"""
 
     def __init__(self, d):
-        #  Policyuuid
+        #  Policy uuid
         self.uuid = d['uuid']
-        #  Policy名称
+        #  Policy Name
         self.name = d['strategy_name']
-        # 调用计数
+        # Call count
         self.query_count = 0
 
     def get_thresholds(self):
-        """每种Policy都必定有阈值列表,规则中的Policy默认绑定此阈值
-        此处返回的阈值列表其实是个字符串列表，并未进行类型转换"""
+        """Each Policy must have a threshold list, and Policy in the rule binds this threshold by default
+        The threshold list returned here is actually a string list and does not have type conversion"""
         raise NotImplementedError("must be writen by subclass")
 
     def build_strategy_name_from_thresholds(self, thresholds):
-        """每种Policy都必需能从阈值列表重新构造Policy名"""
+        """Each Policy must be able to reconstruct the Policy name from the threshold list"""
         raise NotImplementedError("must be writen by subclass")
 
     def get_callable(self):
         raise NotImplementedError("must be writen by subclass")
 
     def get_callable_from_threshold_list(self, threshold_list):
-        """此方法根据给定阈值列表返回一个callable对象，
-        该callable对象接受一个req_body作为输入，输出一个布尔值 和一个自定义字符串"""
+        """This method returns a callable object based on a given threshold list.
+        The callable object accepts a req_body as input, outputs a boolean value and a custom string"""
         raise NotImplementedError("must be writen by subclass")
 
     def __str__(self):
@@ -74,7 +75,7 @@ class Strategy(object):
 
 @register_strategy
 class BoolStrategy(Strategy):
-    """ Bool型 """
+    """ Bool Type """
     prefix = 'bool_strategy:*'
 
     def __init__(self, d):
@@ -114,7 +115,7 @@ class BoolStrategy(Strategy):
 
 @register_strategy
 class FreqStrategy(Strategy):
-    """ 时段频控型 """
+    """ Time-time frequency control """
     prefix = 'freq_strategy:*'
     conn = get_report_redis_client()
     source_cls = FreqSource
@@ -149,7 +150,7 @@ class FreqStrategy(Strategy):
 
     def query_with_history(self, req_body, history_data):
         zkeys = self.source.get_zkeys(req_body)
-        #  获取不到内置变量，默认放过
+        #  Can't get built-in variables, default to let go
         if not zkeys:
             return False
 
@@ -169,13 +170,13 @@ class FreqStrategy(Strategy):
 
     def query(self, req_body, threshold, second_count):
         self.query_count += 1
-        #  若请求不合法，则默认放过
+        #  If the request is illegal, leave it by default
         if not self.source.check_key(req_body):
             logger.error('invalid req_body(%s)', req_body)
             return False
 
         zkeys = self.source.get_zkeys(req_body)
-        #  获取不到内置变量，默认放过
+        #  Can't get built-in variables, default to let go
         if not zkeys:
             return False
 
@@ -191,11 +192,11 @@ class FreqStrategy(Strategy):
                 logger.error('zcount({}, {}, {}) failed'.format(zkey,
                                                                 start, end))
 
-            #  返回最终判断结果,任意命中即返回命中
+            #  Return final judgment result, any hit returns hit
             if count >= threshold:
                 return True
 
-        #  所有都不命中，返回不命中
+        #  All misses, returns hit
         return False
 
     @partial_bind_uuid
@@ -208,7 +209,7 @@ class FreqStrategy(Strategy):
 
 @register_strategy
 class MenuStrategy(Strategy):
-    """ 名单型 """
+    """ List type """
     prefix = 'strategy_menu:*'
 
     def __init__(self, d):
@@ -238,7 +239,7 @@ class MenuStrategy(Strategy):
 
 @register_strategy
 class UserStrategy(Strategy):
-    """ 限User数型 """
+    """ Limited User Number """
     prefix = 'user_strategy:*'
     conn = get_report_redis_client()
     source_cls = UserSource
@@ -258,15 +259,15 @@ class UserStrategy(Strategy):
     def build_strategy_name_from_thresholds(self, thresholds):
         strategy_day, threshold = thresholds
         tmp_str = self.name
-        if "当天" in self.name:
+        if "That day" in self.name:
             if int(strategy_day) > 1:
-                tmp_str = re.sub(r"当天", strategy_day + "个自然日",
+                tmp_str = re.sub(r"That day", strategy_day + "Default Day",
                                  self.name)
         else:
             if strategy_day == "1":
-                tmp_str = re.sub(r'[\d]+个自然日', '当天', self.name)
+                tmp_str = re.sub(r'[\d]+Default Day', 'That day', self.name)
             else:
-                tmp_str = re.sub(r'[\d]+个自然日', strategy_day + '个自然日',
+                tmp_str = re.sub(r'[\d]+Default Day', strategy_day + 'Default Day',
                                  self.name)
         return re.sub(r'[\d]+Individual_User', threshold + 'Individual_User', tmp_str)
 
@@ -283,7 +284,7 @@ class UserStrategy(Strategy):
 
     def query_with_history(self, req_body, history_data):
         zkeys = self.source.get_zkeys(req_body)
-        #  获取不到内置变量，默认放过
+        #  Can't get built-in variables, default to let go
         if not zkeys:
             return False
 
@@ -307,7 +308,7 @@ class UserStrategy(Strategy):
 
     def query(self, req_body, threshold, daily_count):
         self.query_count += 1
-        #  若请求不合法，则默认放过
+        #  If the request is illegal, leave it by default
         if not self.source.check_key(req_body):
             logger.error('invalid req_body(%s)', req_body)
             return False
@@ -322,7 +323,7 @@ class UserStrategy(Strategy):
         start = math.floor(end - seconds)
         for zkey in zkeys:
             count = 0
-            #  计数
+            #  Count
             try:
                 records = self.conn.zrangebyscore(zkey, start, end) or []
                 hit_users = {x.split(':', 1)[0] for x in records}

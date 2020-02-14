@@ -1,6 +1,6 @@
 <script>
     $(function () {
-        // 批量delete-全选
+        // Bulk delete-full selection
         $("#checkall-bottom").change(function () {
             var isCheckAll = $(this).is(":checked");
             if (isCheckAll) {
@@ -10,7 +10,7 @@
             }
         });
 
-        //批量delete-提交
+        //Bulk delete-submit
         $("#batchDelete").click(function () {
             var uri = $(this).data('uri');
             var idList = $("input:checkbox:checked.menu-item").map(function () {

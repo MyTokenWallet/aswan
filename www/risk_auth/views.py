@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 from django.core.urlresolvers import reverse

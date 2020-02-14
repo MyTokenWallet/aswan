@@ -28,7 +28,7 @@
         $('#id_strategy_group').searchableSelect();
         $('#id_rule_id').searchableSelect({
             afterSelectItem: function () {
-                //规则和策略联动显示
+                //Rules and policy linkage display
                 var rule_id = $("#id_rule_id").val();
                 if (rule_id != '') {
                     var update_url = "{% url 'log_manage:rule_strategy_map' %}";

@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# coding=utf8
 
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required

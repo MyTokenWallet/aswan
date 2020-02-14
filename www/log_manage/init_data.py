@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding=utf8
+
 from django.db import connection
 
 from log_manage.models import get_hit_log_model

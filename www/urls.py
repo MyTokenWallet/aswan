@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 from django.conf import settings
 from django.conf.urls import include, url

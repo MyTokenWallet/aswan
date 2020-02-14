@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 import json
@@ -54,11 +55,11 @@ class RawSource(object):
 
 
 class Source(object):
-    """ 自动拆分之后的数据源, 基类 """
+    """ Data source after automatic split, base class """
     already_load_raw_source = False
 
     def __init__(self, name, keys, *args, **kwargs):
-        """ name:业务方打入的数据源名称, keys:所需的key列表 """
+        """ name: Name: The name of the data source entered by the business side, keys: the desired key list """
         super(Source, self).__init__(*args, **kwargs)
         if not self.already_load_raw_source:
             self.already_load_raw_source = True
@@ -208,7 +209,7 @@ class Sources(object):
         try:
             pipeline.zadd(zkey, score, member)
             pipeline.expire(zkey, preserve_time)
-            # 这个是为了减少redis存储压力，每次delete部分老旧数据，可以修改此处逻辑
+            # This is to reduce the pressure of redis storage, each time delete part of the old data, you can modify the logic here
             pipeline.zremrangebyrank(zkey, 0, -128)
             pipeline.execute()
         except redis.RedisError:

@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 # coding=utf8
 
-#  存储各项配置信息的redis
+#  Redis that stores configuration information
 REDIS_CONFIG = {
     "host": "127.0.0.1",
     "port": 6379,
@@ -11,7 +12,7 @@ REDIS_CONFIG = {
     "decode_responses": True
 }
 
-#  作为命中日志队列的redis
+#  Redis as a hit log queue
 LOG_REDIS_CONFIG = {
     "host": "127.0.0.1",
     "port": 6379,
@@ -22,7 +23,7 @@ LOG_REDIS_CONFIG = {
     "decode_responses": True
 }
 
-#  存储上报数据的redis
+#  Redis to store reported data
 REPORT_REDIS_CONFIG = {
     "host": "127.0.0.1",
     "port": 6379,
@@ -33,7 +34,7 @@ REPORT_REDIS_CONFIG = {
     "decode_responses": True
 }
 
-# 存储命中日志的mysql
+# Store hit logs for mysql
 LOG_MYSQL_CONFIG = {
     'host': '127.0.0.1',
     'port': 3306,
@@ -43,7 +44,7 @@ LOG_MYSQL_CONFIG = {
     'db': 'risk_control_test',
 }
 
-# 存储Authority等信息的mongo
+# Mongo that stores information such as Authority
 SOC_MONGO_HOST = [
     "127.0.0.1:27017",
 ]

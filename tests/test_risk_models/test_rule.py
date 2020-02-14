@@ -1,4 +1,6 @@
-# coding=utf-8
+#!/usr/bin/env python3
+# coding=utf8
+
 
 import unittest
 
@@ -43,12 +45,12 @@ class TestRule(unittest.TestCase):
     def test_rule(self):
         req_body = {'user_id': '111'}
 
-        # 命中bool型策略
+        # Hit bool-type strategy
         control, weight = calculate_rule(id_=self.rule_id, req_body=req_body)
         self.assertEquals(control, 'log')
         self.assertEquals(weight, 90)
 
-        # 命中List strategy
+        # Hit List strategy
         add_element_to_menu(event_code=self.event_code, menu_type='black', dimension='user_id', element='111')
         control, weight = calculate_rule(id_=self.rule_id, req_body=req_body)
         self.assertEquals(control, 'deny')

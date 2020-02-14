@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # coding=utf8
+
 from math import ceil
 
 from django.conf import settings

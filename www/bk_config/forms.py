@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 import re
@@ -11,16 +12,16 @@ from core.redis_client import get_redis_client
 class SourceMapForm(BaseForm):
     name_key = forms.CharField(
         min_length=2, max_length=32,
-        widget=forms.TextInput(attrs={"placeholder": "配置key[字母数字下划线]"})
+        widget=forms.TextInput(attrs={"placeholder": "Configure key [alphanumeric underline]"})
     )
     name_show = forms.CharField(
         min_length=2, max_length=32,
-        widget=forms.TextInput(attrs={"placeholder": "配置名称[输入中文描述]"})
+        widget=forms.TextInput(attrs={"placeholder": "Configuration name [Enter a description of]"})
     )
     content = forms.CharField(widget=forms.Textarea(
         attrs={
             "rows": "8", "cols": "27",
-            "placeholder": """配置内容(json格式):
+            "placeholder": """Configure content (json format)):
 {
     "user_id": "string",
     "uid": "string",
@@ -34,11 +35,11 @@ class SourceMapForm(BaseForm):
     def clean_name_key(self):
         name_key = self.cleaned_data['name_key']
         if not re.match(self.name_key_pattern, name_key):
-            raise forms.ValidationError("输入错误，包含某些特殊字符")
+            raise forms.ValidationError("Incorrect input with some special characters")
 
         client = get_redis_client()
         if client.hget(self.map_key, name_key):
-            raise forms.ValidationError("该数据源已存在")
+            raise forms.ValidationError("The data source already exists")
 
         return name_key
 
@@ -47,9 +48,9 @@ class SourceMapForm(BaseForm):
         try:
             content = json.loads(content)
         except ValueError:
-            raise forms.ValidationError("输入错误， json解析失败")
+            raise forms.ValidationError("Wrong input， json resolution failed")
         if not content.keys():
-            raise forms.ValidationError("这个字段是必填项")
+            raise forms.ValidationError("This field is required")
         return content
 
     def save(self):
@@ -64,4 +65,4 @@ class SourceMapForm(BaseForm):
 
 
 class SourceFilterForm(BaseFilterForm):
-    name = forms.CharField(required=False, label=_(u"数据源名称"))
+    name = forms.CharField(required=False, label=_(u"Data source name"))

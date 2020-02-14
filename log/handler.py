@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # coding=utf8
+
 import atexit
 import random
 from logging import Handler, getLogger

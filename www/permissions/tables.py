@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# coding=utf8
 
 import datetime
 
@@ -77,7 +78,7 @@ class GroupPermissionTable(tables.Table):
 class UriGroupPermissionTable(tables.Table):
     desc = columns.Column(verbose_name=_('uriGroup Name称'))
     pk = columns.Column(verbose_name=_('唯一标识'))
-    uris = columns.Column(verbose_name=_('uri列表'))
+    uris = columns.Column(verbose_name=_('Uri list'))
     entity_id = columns.Column(verbose_name=_('创建时间'))
     action = columns.TemplateColumn(str('x'), orderable=False,
                                     verbose_name=_('操作'))

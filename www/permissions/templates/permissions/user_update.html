@@ -21,7 +21,7 @@
     }
 
     #id_is_superuser {
-        margin-top: 0px;
+        margin-top: 0;
     }
 </style>
 {% endblock %}
@@ -29,7 +29,7 @@
 {% block action %}
 <a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'permissions:users' %}">
     <i class="fa fa-reply"></i>
-    返回
+    Return
 </a>
 {% endblock %}
 
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">超级administrator</label>
+                            <label class="col-sm-2 control-label">Super administrator</label>
                             <div class="col-sm-10">
                                 {{ form.is_superuser }}
                                 <span id="id-is_superuser-error" class="help-block" style="color:darkred"></span>

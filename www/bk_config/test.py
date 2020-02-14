@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding=utf8
+
 import json
 
 from django.core.urlresolvers import reverse

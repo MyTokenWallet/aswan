@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 import json
 from core.redis_client import get_redis_client

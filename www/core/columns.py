@@ -1,4 +1,6 @@
-# coding: utf8
+#!/usr/bin/env python3
+# coding=utf8
+
 from django.template.defaultfilters import truncatechars
 from django.utils.safestring import mark_safe
 from django_tables2.columns import Column

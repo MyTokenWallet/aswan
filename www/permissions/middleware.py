@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# coding=utf8
+
 import json
 import logging
 from core.lru import LRUCacheDict

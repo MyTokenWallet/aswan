@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding=utf8
+
 import os
 from glob import glob
 from importlib import import_module

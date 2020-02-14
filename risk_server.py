@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 """A http server which offers two uri: query and report"""
 from gevent import monkey

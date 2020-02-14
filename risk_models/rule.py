@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 import json
@@ -81,7 +82,7 @@ class Rules(object):
             gevent.spawn(self.refresh)
 
     def _should_load(self, d):
-        #  支持两种load方式: 仅load开启Status且未过期的规则，load所有规则
+        #  Support for two load methods: only load open Status and unexpired rules, load all rules
         if self.load_all:
             return True
         status = d.get('status')
@@ -137,22 +138,22 @@ class Rules(object):
         return rule
 
     def get_rule_name(self, id_):
-        """根据id返回规则name"""
+        """Return rule name according to id"""
         rule = self._get_rule_or_raise(id_)
         return rule.name
 
     def get_all_rule_id_and_name(self):
-        """返回所有规则的id和name映射关系"""
+        """Returns id and name mapping relationships for all rules"""
         return [(k, v.name) for k, v in self.id_rule_map.items()]
 
     def get_all_rule_uuid_and_name(self):
-        """返回所有规则的uuid和name映射关系"""
+        """Returns the uuid and name mapping relationship for all rules"""
         return [(v.uuid, v.name) for v in self.id_rule_map.values()]
 
     def get_all_group_uuid_and_name(self):
         """
-        返回所有的PolicyGroupuuid和名称
-        *因html中typeahead需要， 此处 group_uuid 前拼接了rule_id
+        Return all PolicyGroup uids and names
+        As required by typeahead in html, group_uuid stitched up hererule_id
         """
         data = []
         for d in self.id_rule_map.values():
@@ -188,7 +189,7 @@ class AccessCount(object):
         except redis.RedisError as e:
             logger.error('incr access_count failed', exc_info=e)
             return
-        #  全部写入之后再进行扣减
+        #  Deduction after all writes
         for k, v in id_count_map.items():
             self.id_count_map[k] -= v
 
@@ -203,12 +204,12 @@ class AccessCount(object):
 
 def calculate_rule(id_, req_body, rules=None, ac=None):
     if rules is None:
-        #  调试时用
+        #  For debugging
         rules = Rules()
     if ac:
         ac.incr(id_)
     else:
-        #  此时是web页中访问的计数
+        #  This is the count of access to the web page
         ac = AccessCount()
         ac.incr(id_)
         ac.persist()
@@ -231,12 +232,12 @@ def calculate_rule(id_, req_body, rules=None, ac=None):
             if not ret:
                 break
 
-        # 目前策略为过全部PolicyGroup以积累数据，若无此需求，可自行进行短路
+        # The current strategy is to accumulate data through all PolicyGroup, and if this is not required, it can short-circuit itself
         if all(results):
             if not result_seted:
                 rv_control, rv_weight, result_seted = control, weight, True
 
-            # 当前命中的策略Group在此规则中是第几个命中的
+            # The current hit strategy group is the first hit in this rule
             hit_number += 1
 
             msg = json.dumps(dict(rule_id=id_,

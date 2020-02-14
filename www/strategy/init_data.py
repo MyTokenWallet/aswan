@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf-8
 
 from core.utils import get_sample_str

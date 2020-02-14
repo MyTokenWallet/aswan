@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding=utf8
 
 """
@@ -26,9 +27,9 @@ class Command(BaseCommand):
         create_user(email='momo_init@immomo.com', username='momo_init',
                     password='momo_init', is_superuser=False)
 
-        # 创建名单
+        # Create a list
         event_code = 'init_event'
-        create_menu_event(event_code=event_code, event_name='初始项目')
+        create_menu_event(event_code=event_code, event_name='Initial project')
         add_element_to_menu(event_code, menu_type='black', dimension='user_id',
                             element='111111')
         add_element_to_menu(event_code, menu_type='white', dimension='uid',
@@ -40,7 +41,7 @@ class Command(BaseCommand):
         add_element_to_menu(event_code, menu_type='black', dimension='pay',
                             element=hashlib.md5('pay_account'.encode()).hexdigest())
 
-        # 创建策略
+        # Create a policy
         # List strategy
         menu_strategy_name_1 = 'User on the User blacklist for the initial project'
         menu_uuid_1 = create_menu_strategy(event_code, dimension='user_id',
@@ -48,10 +49,7 @@ class Command(BaseCommand):
                                            strategy_name=menu_strategy_name_1,
                                            strategy_desc='Initial blacklist policy')
         menu_strategy_name_2 = 'uid on the initial project'
-        s
-        equipment
-        whitelist
-        '
+
         menu_uuid_2 = create_menu_strategy(event_code, dimension='uid',
                                            menu_type='white', menu_op='is',
                                            strategy_name=menu_strategy_name_2,
@@ -62,7 +60,7 @@ class Command(BaseCommand):
                                            strategy_name=menu_strategy_name_3,
                                            strategy_desc='Initial Gray List Strategy')
 
-        # Bool型策略
+        # Bool Strategy
         bool_strategy_name_1 = 'User is an exception ToUser'
         bool_uuid_1 = create_bool_strategy(strategy_var='user_id',
                                            strategy_op='is',
@@ -77,8 +75,8 @@ class Command(BaseCommand):
                                            strategy_threshold='50',
                                            strategy_name=bool_strategy_name_2,
                                            strategy_desc=bool_strategy_name_2)
-        # 数据源相关策略
-        # 创建数据源
+        # Data source-related policies
+        # Create a data source
         source_key = 'init_source_key'
         create_data_source(source_key=source_key, source_name='Initial sample data source',
                            fields=['user_id', 'uid', 'ip', 'phone'])
@@ -92,14 +90,14 @@ class Command(BaseCommand):
                                          strategy_name=freq_strategy_name,
                                          strategy_desc='Initial time period frequency control strategy')
         # User-limited number-based policy
-        user_strategy_name = '同一设备当天内限10个User(Initial sample data source)'
+        user_strategy_name = '10 User sons for the same device on the same day (Initial sample source)'
         user_uuid = create_user_strategy(strategy_source=source_key,
                                          strategy_body='uid',
                                          strategy_day=1, strategy_limit=10,
                                          strategy_name=user_strategy_name,
                                          strategy_desc='Initial time period frequency control strategy')
 
-        # 规则相关
+        # Rules related
         strategy_confs = [
             [';'.join((menu_strategy_name_1, menu_strategy_name_2,
                        menu_strategy_name_3)),
@@ -119,5 +117,5 @@ class Command(BaseCommand):
              'This User hit User-limited number-based policy',
              '80'],
         ]
-        create_rule(strategy_confs=strategy_confs, title='初始规则',
-                    describe='初始样例规则', status='on', creator_name='超级administrator')
+        create_rule(strategy_confs=strategy_confs, title='Initial rules',
+                    describe='Initial sample rule', status='on', creator_name='Super administrator')

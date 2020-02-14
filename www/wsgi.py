@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 WSGI config for risk_control project.
 

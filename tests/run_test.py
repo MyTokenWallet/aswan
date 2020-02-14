@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # coding=utf8
+
 import os
 import time
 import sys
@@ -14,7 +16,7 @@ os.environ['PYTHONPATH'] = ':'.join((parent_dir, www_dir))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings.settings'
 
 risk_env = os.environ.get('RISK_ENV')
-assert risk_env and risk_env == 'test', '注意，此部分只能在测试环境中执行'
+assert risk_env and risk_env == 'test', 'Note that this section can only be performed in a test environment'
 
 
 def find_test_file_paths():
@@ -23,7 +25,7 @@ def find_test_file_paths():
 
     testfiles = []
     for suite in sub_dirs:
-        # 获取测试目录下的所有测试文件
+        # Get all the test files in the test directory
         testfiles.extend(
             [os.path.abspath(os.path.join(suite, f)) for f in os.listdir(suite)
              if f.endswith('py')]
@@ -33,7 +35,7 @@ def find_test_file_paths():
 
 
 def coverage_html():
-    """ 将coverage结果放置到html中并自动打开浏览器 """
+    """ Place coverage results in html and open the browser automatically """
     output_dir = os.path.join(os.getcwd(), 'coverage_output')
     if os.path.exists(output_dir):
         shutil.rmtree(output_dir)
@@ -53,7 +55,7 @@ def coverage_html():
 
 
 def print_coverage_result():
-    """ 直接回显coverage结果 """
+    """ Echo coverage results directly """
     report_cmd = 'coverage report'
     for test_file_path in find_test_file_paths():
         coverage_cmd = "coverage run -a --source=risk_models,builtin_funcs {path}".format(

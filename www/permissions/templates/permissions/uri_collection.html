@@ -4,7 +4,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">修改uriAuthority控制集合</a>
+<a href="javascript:;" class="active">Modify the Authority uri control collection</a>
 {% endblock %}
 
 {% block css %}
@@ -25,7 +25,7 @@
 {% block action %}
 <a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'uri_scene:list' %}">
     <i class="fa fa-reply"></i>
-    返回
+    Return
 </a>
 {% endblock %}
 
@@ -62,10 +62,10 @@
                         {% endfor %}
                         <li class="list-group-item feat-uri-li">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入新的 uri">
+                                <input type="text" class="form-control" placeholder="Enter a new uri">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary feat-uri-add-btn"
-                                            data-feat-uri-name="{{ doc.pk }}" type="button">添加
+                                            data-feat-uri-name="{{ doc.pk }}" type="button">Add to
                                     </button>
                                 </span>
                             </div>
@@ -79,26 +79,26 @@
             <div class="ibox extra-float-margins">
                 <div class="ibox-title">
                     <h5>
-                        <span class="text-info">添加新分Group</span>
+                        <span class="text-info">Add a new subgroup</span>
                     </h5>
                 </div>
                 <div class="extra-box-content">
                     <form class="feat-uri-collection-add-form">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">名称</label>
+                            <label class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">
                                 {{ add_uri_collection_form.pk }}
                                 <span id="id-name-error" class="help-block" style="color:darkred"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">描述</label>
+                            <label class="col-sm-2 control-label">Describe</label>
                             <div class="col-sm-10">
                                 {{ add_uri_collection_form.desc }}
                                 <span id="id-desc-error" class="help-block" style="color:darkred"></span>
                             </div>
                         </div>
-                        <input type="submit" value="添加新分Group"
+                        <input type="submit" value="Add a new subgroup"
                                class="btn btn-primary btn-block feat-uri-collection-add-btn"/>
                     </form>
                 </div>
