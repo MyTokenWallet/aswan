@@ -182,15 +182,15 @@ The current Authority model contains the following elements that can be configur
 | uriGroup | Multiple interrelated uris can be put into a uri group | /permissions/uri_groups/ | - |
 | AuthorityGroup | Multiple uri groups can be assigned to a permission group| /permissions/groups/ | - |
 | User | Users are independent individuals / employees | /permissions/users/ | 1. This system does not provide the function of adding users on the interface; 2. Users can be assigned to a certain permission group, or the uri group can be directly configured |
-| administrator | Is the owner of the system, has all permissions by default | 手动配置 | - |
+| administrator | Is the owner of the system, has all permissions by default | Manual configuration | - |
 
 The specific diagram is as follows::
 
-   ![uriGroup管理](./www/static/img/wiki/permission_manage.png)
+   ![UriGroup Management](./www/static/img/wiki/permission_manage.png)
 
-   ![AuthorityGroup管理](./www/static/img/wiki/url_group_manage.png)
+   ![Authority Group Management](./www/static/img/wiki/url_group_manage.png)
 
-   ![User管理](./www/static/img/wiki/user_manage.png)
+   ![User Management](./www/static/img/wiki/user_manage.png)
 
 ### Configuration related
 
