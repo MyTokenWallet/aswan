@@ -32,11 +32,11 @@ The main branch of this project only supports Python3, and currently passed the 
 4. Initialize the tables needed for Django to run and create an account, and some data can be pre-generated (optional)
 ```bash
     # Under the www directory
-    python manage.py makemigrations && python manage.py migrate
+    python3 manage.py makemigrations && python3 manage.py migrate
      # Create administrator account See other operations here-add users
-     python manage.py createsuperuser # Enter the user name, password, and email address in order to create an administrator account
+     python3 manage.py createsuperuser # Enter the user name, password, and email address in order to create an administrator account
      # If you want to have an intuitive feel for the system, you can use the following instructions to pre-inject some data
-     python manage.py init_risk_data 
+     python3 manage.py init_risk_data 
 ```
 5. Start service
 ```bash
@@ -154,7 +154,7 @@ curl 127.0.0.1:50000/report/ -X POST -d '{"source_name": "test", "user_id": "100
 ###  Increase user
 
 Considering that most enterprise users log in with domain accounts, it is recommended to use the LDAP authentication module for direct integration. But considering that everyone's scenarios are different, you can also manually add users. The sample code is as follows:
-```python
+```python3
 # coding=utf-8
 from django.contrib.auth.models import User
 
@@ -198,7 +198,7 @@ Currently the configuration of the Django part is stored in the www / settings d
 
 In order to load different configurations in different environments, we use the environment variable RISK_ENV, and the system will automatically load the corresponding configuration file through the value of this environment variable at runtime.
 
-To facilitate project startup, when this value is not set, the system loads the configuration of the develop environment by default. When executing the test (python manage.py test), the value of RISK_ENV must be test.
+To facilitate project startup, when this value is not set, the system loads the configuration of the develop environment by default. When executing the test (python3 manage.py test), the value of RISK_ENV must be test.
 
 ### Aswan System Workflow
 
@@ -233,10 +233,10 @@ The fourth time: before the user hits the mole, call the query interface, hit th
 ### Project code test
 
 ```shell
-$ pip install coverage
+$ pip3 install coverage
 $ export RISK_ENV=test
-$ python www/manage.py test
-$ cd tests && python run_test.py
+$ python3 www/manage.py test
+$ cd tests && python3 run_test.py
 ```
 
 > You are welcome to provide valuable comments on this project in the issue
