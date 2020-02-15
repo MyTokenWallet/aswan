@@ -2,8 +2,11 @@
 # coding=utf8
 
 import redis
+# for development import this:
+# from config.develop as conf
 
-import config as conf
+# for production import this
+import config.product as conf
 
 from lru import lru_cache_function
 

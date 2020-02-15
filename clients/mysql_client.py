@@ -3,10 +3,14 @@
 
 import pymysql
 
-from config import LOG_MYSQL_CONFIG
+# for development import this:
+# from config.develop import LOG_MYSQL_CONFIG
+
+# for production import this
+import config.product as conf
 
 __all__ = ['get_log_mysql_client']
 
 
 def get_log_mysql_client():
-    return pymysql.connect(**LOG_MYSQL_CONFIG)
+    return pymysql.connect(**conf.LOG_MYSQL_CONFIG)

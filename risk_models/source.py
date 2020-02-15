@@ -56,6 +56,7 @@ class RawSource(object):
 
 class Source(object):
     """ Data source after automatic split, base class """
+    prefix = None
     already_load_raw_source = False
 
     def __init__(self, name, keys, *args, **kwargs):

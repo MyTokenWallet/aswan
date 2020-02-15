@@ -9,12 +9,12 @@ import logging
 import hashlib
 
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
 
 from permissions.init_data import create_user
 from menu.init_data import create_menu_event, add_element_to_menu
 from bk_config.init_data import create_data_source
-from strategy.init_data import (create_menu_strategy, create_bool_strategy,
-                                create_freq_strategy, create_user_strategy)
+from strategy.init_data import (create_menu_strategy, create_bool_strategy,create_freq_strategy, create_user_strategy)
 from rule.init_data import create_rule
 
 logger = logging.getLogger(__name__)
