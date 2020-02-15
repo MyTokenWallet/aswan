@@ -7,3 +7,4 @@
 mongo/
 output/
 venv/
+/nohup.out
