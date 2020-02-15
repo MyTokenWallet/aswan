@@ -7,8 +7,8 @@ from datetime import datetime, timedelta, date
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from core.forms import BaseFilterForm
-from log_manage.models import AuditLogModel
+from ..core.forms import BaseFilterForm
+from ..log_manage.models import AuditLogModel
 from risk_models.rule import Rules
 
 logger = logging.getLogger(__name__)
@@ -86,7 +86,7 @@ class HitLogFilterForm(BaseFilterForm):
 
 
 class HitLogDetailFilterForm(HitLogFilterForm):
-    #  required 置为false，以保证初始打开页面不提示错误
+    #  required set to false to ensure that the initial open page does not prompt for an error
     control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_(u"Projectmanagement"),
                                 required=False)
     user_id = forms.CharField(label=_(u"UserID"), required=False)

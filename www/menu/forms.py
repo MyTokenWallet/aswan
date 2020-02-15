@@ -11,26 +11,26 @@ from django import forms
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from core.pymongo_client import get_mongo_client
-from core.forms import BaseFilterForm, BaseForm
-from core.redis_client import get_redis_client
+from ..core.pymongo_client import get_mongo_client
+from ..core.forms import BaseFilterForm, BaseForm
+from ..core.redis_client import get_redis_client
 from risk_models.menu import build_redis_key
 
-# 查询时有全部名单
+# Full list of inquiries
 MENU_TYPE_CHOICES = (
-    (u'', u'全部名单'),
-    (u'black', u'黑名单'),
-    (u'white', u'白名单'),
-    (u'gray', u'灰名单')
+    (u'', u'Full list'),
+    (u'black', u'Blacklist'),
+    (u'white', u'White List'),
+    (u'gray', u'Grey List')
 )
 
 MENU_STATUS_CHOICES = (
-    (u'有效', u'有效'),
-    (u'全部', u'全部'),
-    (u'无效', u'无效')
+    (u'Valid', u'Valid'),
+    (u'All', u'All'),
+    (u'Invalid', u'Invalid')
 )
 
-# Add时没有全部名单
+# There's no full list at Add time.
 MENU_TYPE_CHOICES_ADD_CHOICES = MENU_TYPE_CHOICES[1:]
 
 MENU_TYPE_NAME_MAP = dict(MENU_TYPE_CHOICES_ADD_CHOICES)
@@ -39,8 +39,8 @@ DIMENSION_NAME_MAP = {
     "user_id": u"UserID",
     "ip": u'IPAddress',
     "phone": u"Cell phone number",
-    "uid": u"设备号",
-    "pay": u"支付账号"
+    "uid": u"Device No.",
+    "pay": u"Payment account number"
 }
 
 
@@ -52,7 +52,7 @@ class MenuEventCreateForm(BaseForm):
         event_name = self.cleaned_data['event_name'].strip()
         res = db.menu_event.find_one({'event_name': event_name})
         if res:
-            raise forms.ValidationError(u"该项目名称已存在")
+            raise forms.ValidationError(u"The project name already exists")
         return event_name
 
     def save(self, *args, **kwargs):
@@ -69,16 +69,16 @@ class MenuEventCreateForm(BaseForm):
 
 class MenuCreateForm(BaseForm):
     value = forms.CharField(widget=forms.Textarea(
-        attrs={"placeholder": "UserID[批量添加时请以回车键隔开]", "rows": "5"}))
+        attrs={"placeholder": "UserID[When adding in bulk, separate it by enter key]", "rows": "5"}))
     dimension = forms.CharField(required=False, widget=forms.HiddenInput,
-                                label=_(u'名单维度'))
+                                label=_(u'List dimensions'))
     menu_type = forms.ChoiceField(label=_(u"List type"),
                                   choices=MENU_TYPE_CHOICES_ADD_CHOICES)
     event_code = forms.ChoiceField(label=_(u"Project"))
     end_time = forms.DateTimeField(widget=forms.TextInput(
         attrs={"placeholder": "End Time", "class": "form-control datetime"}))
     menu_desc = forms.CharField(required=False, widget=forms.Textarea(
-        attrs={"placeholder": "Note[填写增加该批数据的原因]", "rows": "5"}))
+        attrs={"placeholder": "Note[Fill in the reason for adding the batch data]", "rows": "5"}))
 
     def __init__(self, *args, **kwargs):
         super(MenuCreateForm, self).__init__(*args, **kwargs)
@@ -99,15 +99,15 @@ class MenuCreateForm(BaseForm):
         try:
             json.dumps(value_list)
         except ValueError:
-            raise forms.ValidationError(u"输入非法")
+            raise forms.ValidationError(u"Enter illegal")
         if not value_list:
-            raise forms.ValidationError(u"该字段是必填项。")
+            raise forms.ValidationError(u"This field is required。")
         return value_list
 
     def clean_end_time(self):
         end_time = self.cleaned_data['end_time']
         if end_time <= timezone.now():
-            raise forms.ValidationError(_(u"结束时间应大于当前时间"))
+            raise forms.ValidationError(_(u"The end time should be greater than the current time"))
         return end_time
 
     def _check_regex(self, values, regex):
@@ -117,7 +117,7 @@ class MenuCreateForm(BaseForm):
                 errors.append(item)
         if errors:
             msg = ', '.join(errors)
-            msg = u'输入非法: {}'.format(msg)
+            msg = u'Enter illegal: {}'.format(msg)
             self.errors['value'] = [msg]
 
     def clean(self):
@@ -135,7 +135,7 @@ class MenuCreateForm(BaseForm):
         return cd
 
     def save(self, *args, **kwargs):
-        """Add时，若存在维度值+Project+名单类型相同情况，则update为Add值"""
+        """When adding, update is add value if there is the same dimension value, project plus list type"""
         cd = self.cleaned_data
         value_list = cd['value']
         chinese_name = self.request.user.username
@@ -148,7 +148,7 @@ class MenuCreateForm(BaseForm):
             payload = dict(
                 end_time=end_time,
                 menu_desc=cd['menu_desc'],
-                menu_status=u"有效",
+                menu_status=u"Valid",
                 create_time=datetime.datetime.now(),
                 creator=chinese_name
             )
