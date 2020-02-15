@@ -59,7 +59,7 @@
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">User限制</label>
+                            <label class="col-sm-2 control-label">User Limits</label>
                             <div class="col-sm-10">
                                 {{ form.strategy_limit }}
                                 <span id="id-strategy_limit-error" class="help-block" style="color:darkred"></span>
@@ -101,7 +101,7 @@
 
 <script>
     var fun_setVal = function () {
-        var source = $("#id_strategy_source").find("option:selected").text()
+        var source = $("#id_strategy_source").find("option:selected").text();
         var body = $("#id_strategy_body").val();
         var day = $("#id_strategy_day").val();
         var limit = $("#id_strategy_limit").val();

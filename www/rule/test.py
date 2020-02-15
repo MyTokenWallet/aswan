@@ -4,14 +4,14 @@ import copy
 import json
 from datetime import datetime, timedelta
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test.client import RequestFactory
 
-from bk_config.init_data import create_data_source
-from core.testcase import BaseTestCase
-from core.utils import get_sample_str
-from menu.init_data import create_menu_event, add_element_to_menu
-from strategy.init_data import (create_menu_strategy, create_user_strategy,
+from ..bk_config.init_data import create_data_source
+from ..core.testcase import BaseTestCase
+from ..core.utils import get_sample_str
+from ..menu.init_data import create_menu_event, add_element_to_menu
+from ..strategy.init_data import (create_menu_strategy, create_user_strategy,
                                 create_bool_strategy, create_freq_strategy)
 
 
@@ -33,11 +33,11 @@ class TestRuleManage(BaseTestCase):
     def _test_list(self):
         list_url = reverse(self.list_url)
 
-        # 无条件访问
+        # Unconditional access
         response = self.client.get(list_url)
         self.assertEquals(response.status_code, 200)
 
-        # 带条件访问
+        # Conditional access
         data = {
             'status': 'on',
             'rule_name': 'xx'
@@ -48,13 +48,13 @@ class TestRuleManage(BaseTestCase):
     def _test_create(self):
         create_url = reverse(self.create_url)
 
-        # 初始页面
+        # Initial page
         response = self.client.get(create_url)
         self.assertEquals(response.status_code, 200)
 
-        # 创建规则
+        # Create a rule
 
-        # 无参数
+        # No arguments
         response = self.client.post(create_url)
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)

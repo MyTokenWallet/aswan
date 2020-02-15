@@ -138,7 +138,7 @@ class Rules(object):
         return rule
 
     def get_rule_name(self, id_):
-        """Return rule name according to id"""
+        """Return RuleName according to id"""
         rule = self._get_rule_or_raise(id_)
         return rule.name
 

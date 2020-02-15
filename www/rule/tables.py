@@ -9,10 +9,10 @@ from django_tables2 import tables, columns
 
 class RulesTable(tables.Table):
     id = columns.Column(verbose_name=_(u"Rule ID"), orderable=False)
-    title = columns.Column(verbose_name=_(u"Rule name"), orderable=False)
+    title = columns.Column(verbose_name=_(u"RuleName"), orderable=False)
     status = columns.Column(verbose_name=_(u"Status"), orderable=False)
-    update_time = columns.Column(verbose_name=_(u"Update time"), orderable=False)
-    user = columns.Column(verbose_name=_(u"更新人"), orderable=False)
+    update_time = columns.Column(verbose_name=_(u"UpdateTime"), orderable=False)
+    user = columns.Column(verbose_name=_(u"Update"), orderable=False)
     action = columns.TemplateColumn("""
     <span class="action-button">
         <a class="rules-on" data-uri="{% url 'rule:change' %}" data-id="{{ record.uuid }}" data-title="{{ record.title }}" data-status="{{ record.status }}">Enable</a>
@@ -21,12 +21,12 @@ class RulesTable(tables.Table):
         <a class="rules-off" data-uri="{% url 'rule:change' %}" data-id="{{ record.uuid }}" data-title="{{ record.title }}" data-status="{{ record.status }}">Disable</a>
     </span>
     <span class="action-button">
-        <a class="rules-detail" data-uri="{% url 'rule:detail' %}" data-id="{{ record.uuid }}" >详情</a>
+        <a class="rules-detail" data-uri="{% url 'rule:detail' %}" data-id="{{ record.uuid }}" >Details</a>
     </span>
     <span class="action-button">
-        <a class="rules-edit" data-uri="{% url 'rule:edit' %}" data-id="{{ record.uuid }}" >编辑</a>
+        <a class="rules-edit" data-uri="{% url 'rule:edit' %}" data-id="{{ record.uuid }}" >Edit</a>
     </span>
-    """, orderable=False, verbose_name=_(u"操作"))
+    """, orderable=False, verbose_name=_(u"Confirm"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}

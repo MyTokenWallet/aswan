@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding=utf8
 
-from core.testcase import BaseTestCase
+from ..core.testcase import BaseTestCase
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class TestPermission(BaseTestCase):

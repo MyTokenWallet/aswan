@@ -9,15 +9,15 @@ import pymongo
 from bson import ObjectId
 from django.views.generic import View
 from braces.views import JSONResponseMixin
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
-from core.generic import ListView
-from core.utils import errors_to_dict
-from core.pymongo_client import get_mongo_client
-from core.redis_client import get_redis_client
+from ..core.generic import ListView
+from ..core.utils import errors_to_dict
+from ..core.pymongo_client import get_mongo_client
+from ..core.redis_client import get_redis_client
 from risk_models.menu import build_redis_key
-from menu.forms import MenuCreateForm, MenuEventCreateForm, MenuFilterForm
-from menu.tables import (
+from ..menu.forms import MenuCreateForm, MenuEventCreateForm, MenuFilterForm
+from ..menu.tables import (
     EventTable, UseridTable, IPTable, UidTable, PayTable, PhoneTable
 )
 
@@ -62,7 +62,7 @@ class EventCreateView(JSONResponseMixin, View):
 
 class EventDestroyView(JSONResponseMixin, View):
     def _check_event(self, event_code):
-        """check名单项目是否被名单Policy引用"""
+        """Whether the check list item is referenced by list Policy"""
         client = get_redis_client()
         for r in client.scan_iter(match="strategy_menu:*"):
             event_id = client.hget(r, 'event')
@@ -80,19 +80,19 @@ class EventDestroyView(JSONResponseMixin, View):
                 error="not found"
             ))
 
-        # 1 确保没有被名单管理使用
+        # 1. Make sure it's not used by list management
         if db.menus.find_one({"event": event_code}):
             return self.render_json_response(dict(
                 state=False,
-                error=u"已生成名单，无法delete"
+                error=u"List generated, delete cannot be"
             ))
 
-        # 2 确保没有被名单策略使用
+        # 2. Make sure it's not used by a list policy
         is_using = self._check_event(event_code)
         if is_using:
             return self.render_json_response(dict(
                 state=False,
-                error=u"已生成名单Policy，无法delete"
+                error=u"List Policy generated, unable to delete"
             ))
 
         db.menu_event.delete_one({'event_code': event_code})
@@ -127,8 +127,8 @@ class BaseMenuListView(ListView):
         if event_code:
             query['event_code'] = event_code
         if not menu_status:
-            menu_status = u'有效'
-        if menu_status != u'全部':
+            menu_status = u'valid'
+        if menu_status != u'all':
             query['menu_status'] = menu_status
         query.update(self.extra_filter_kwargs)
         return query
@@ -197,7 +197,7 @@ class MenuDestroyView(JSONResponseMixin, View):
         redis_values_should_remove = defaultdict(list)
 
         menus_records = list(
-            db['menus'].find({'_id': {"$in": obj_ids}, 'menu_status': u'有效'},
+            db['menus'].find({'_id': {"$in": obj_ids}, 'menu_status': u'valid'},
                              {'event_code': True, '_id': False,
                               'dimension': True,
                               'menu_type': True, 'value': True,

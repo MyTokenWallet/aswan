@@ -26,7 +26,7 @@ def add_element_to_menu(event_code, menu_type, dimension, element,
     """
         为名单中增加元素
     :param str|unicode event_code: 名单项目code
-    :param str|unicode menu_type: List type  black white gray
+    :param str|unicode menu_type: ListType  black white gray
     :param str|unicode dimension: 名单维度 user_id / ip / ...
     :param str|unicode element: 放入名单的元素
     :param datetime end_time: 失效时间
@@ -38,7 +38,7 @@ def add_element_to_menu(event_code, menu_type, dimension, element,
     payload = dict(
         end_time=end_time,
         menu_desc=menu_desc,
-        menu_status=u"有效",
+        menu_status=u"valid",
         create_time=datetime.now(),
         creator='test',
         value=element,

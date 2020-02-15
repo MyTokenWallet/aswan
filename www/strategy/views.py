@@ -4,24 +4,24 @@
 import time
 import json
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 from django.views.generic import TemplateView, View
 from braces.views import JSONResponseMixin
 
-from core.generic import ListView
-from core.utils import errors_to_dict
-from strategy.tables import (
+from ..core.generic import ListView
+from ..core.utils import errors_to_dict
+from ..strategy.tables import (
     BoolStrategyTable, FreqStrategyTable, MenuStrategyTable, UserStrategyTable,
 )
-from strategy.forms import (
+from ..strategy.forms import (
     BoolStrategyForm, BoolStrategyTestForm, FreqStrategyForm,
     FreqStrategyTestForm, MenuStrategyForm, MenuStrategyTestForm,
     UserStrategyForm, UserStrategyTestForm,
     FREQ_STRATEGY_UNIQ_SET_KEYS, USER_STRATEGY_UNIQ_SET_KEYS,
     StrategyFilterForm
 )
-from core.redis_client import get_redis_client
+from ..core.redis_client import get_redis_client
 from builtin_funcs import BuiltInFuncs
 from risk_models.strategy import (BoolStrategy, MenuStrategy, UserStrategy,
                                   FreqStrategy)
@@ -39,7 +39,7 @@ class BaseStrategyDestoryView(JSONResponseMixin, View):
         if is_using:
             return self.render_json_response(dict(
                 state=False,
-                error=u"该Policy正被规则{}引用".format(rule_id)
+                error=u"The Policy is being referenced by the rule".format(rule_id)
             ))
         client = get_redis_client()
         name = self.key_tpl.format(uuid=uuid)
@@ -153,9 +153,9 @@ class BoolStrategyTestView(JSONResponseMixin, TemplateView):
             for req in req_body:
                 resp = func(req)
                 if resp:
-                    results.append(u"命中")
+                    results.append(u"Hit")
                 else:
-                    results.append(u"不命中")
+                    results.append(u"Missed")
             if len(results) == 1:
                 results = results[0]
             data = dict(
@@ -245,7 +245,7 @@ class FreqStrategyTestView(JSONResponseMixin, TemplateView):
                 func = strategy.get_callable_from_threshold_list(
                     [strategy_time, threshold])
                 raw_results = [func(req) for req in req_body]
-            results = [u"命中" if i else u"不命中" for i in raw_results]
+            results = [u"Hit" if i else u"Missed" for i in raw_results]
             if len(results) == 1:
                 results = results[0]
             data = dict(
@@ -340,7 +340,7 @@ class MenuStrategyTestView(JSONResponseMixin, TemplateView):
                 req_body = [req_body]
             for req in req_body:
                 res = func(req)
-                results.append(u"命中" if res else u"不命中")
+                results.append(u"Hit" if res else u"Missed")
             if len(results) == 1:
                 results = results[0]
 
@@ -456,7 +456,7 @@ class UserStrategyTestView(JSONResponseMixin, TemplateView):
                 func = strategy.get_callable_from_threshold_list(
                     [strategy_day, threshold])
                 raw_results = [func(req) for req in req_body]
-            results = [u"命中" if i else u"不命中" for i in raw_results]
+            results = [u"Hit" if i else u"Missed" for i in raw_results]
             if len(results) == 1:
                 results = results[0]
             data = dict(
@@ -472,7 +472,7 @@ class UserStrategyTestView(JSONResponseMixin, TemplateView):
 
 
 def _check_strategy(strategy_id):
-    """校验Policy是否被生效中的规则引用"""
+    """Check whether Policy is referenced by a rule in force"""
     client = get_redis_client()
     for r in client.scan_iter(match="rule:*"):
         rule = client.hgetall(r)

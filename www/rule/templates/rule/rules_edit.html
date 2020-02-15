@@ -9,7 +9,7 @@
 
 {% block header %}
 {% include "datepicker.html" %}
-<a href="javascript:;" class="active">编辑规则</a>
+<a href="javascript:;" class="active">Editing rules</a>
 {% endblock %}
 
 {% block action %}
@@ -93,7 +93,7 @@
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                        已选 (可拖动排序)</h3>
+                                                        Selected (draggable sort)</h3>
                                                     <select multiple="" class="searchable" name="searchable[]"
                                                             id="89multiselect"
                                                             style="position: absolute; left: -9999px;">
@@ -121,12 +121,12 @@
                             <table id="rule-list" class="table table-bordered">
                                 <tr>
                                     <th></th>
-                                    <th>PolicyGroup Name称</th>
-                                    <th>权重</th>
+                                    <th>PolicyGroup NameCall</th>
+                                    <th>Weight</th>
                                     <th></th>
-                                    <th>PolicyGroup列表</th>
+                                    <th>PolicyGroupList</th>
                                     <th>Projectmanagement</th>
-                                    <th>客服话术</th>
+                                    <th>Customer service skills</th>
                                 </tr>
                                 <tr id="list-0" hidden>
                                     <td width="5%">
@@ -138,11 +138,11 @@
                                                   data-autoresize rows="1"></textarea>
                                     </td>
                                     <td width="10%">
-                                        <input type="number" class="form-control weight" placeholder="权重"/>
+                                        <input type="number" class="form-control weight" placeholder="Weight"/>
                                     </td>
                                     <td width="10%">
                                         <a href="#choose-strategy" data-toggle="modal"
-                                           data-list-id="list-0">Policy选择</a>
+                                           data-list-id="list-0">Policy Choice</a>
                                     </td>
                                     <td width="35%">
                                         <label type="text" class="strategy" style="text-align:left"></label>
@@ -157,7 +157,7 @@
                                     <td width="20%">
                                         <div class="custom">
                                             <textarea class="form-control" cols="auto" data-autoresize="" id="id_custom"
-                                                      name="custom" placeholder="客服话术" rows="1"></textarea>
+                                                      name="custom" placeholder="Customer service skills" rows="1"></textarea>
                                         </div>
                                     </td>
                                 </tr>
@@ -173,7 +173,7 @@
                                                                   value="{{ rule.weight }}"/></td>
                                     <td width="10%">
                                         <a href="#choose-strategy" data-toggle="modal"
-                                           data-list-id="list-{{ forloop.counter }}">重选Policy</a>
+                                           data-list-id="list-{{ forloop.counter }}">Re-election of Policy</a>
                                     </td>
                                     <td style="width: 35%">
                                         <label type="text" class="strategy" style="text-align:left"
@@ -206,7 +206,7 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="submit">完成</button>
+                                <button class="btn btn-primary" type="submit">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -255,10 +255,10 @@
             var uuid = uri.split("?")[1].split('=')[1];
             uri = "{% url 'rule:change' %}";
 
-            var title = $('#id_title').val()
-            var describe = $('#id_describe').val()
-            var status = $('#id_status').val()
-            var end_time = $('#id_end_time').val()
+            var title = $('#id_title').val();
+            var describe = $('#id_describe').val();
+            var status = $('#id_status').val();
+            var end_time = $('#id_end_time').val();
 
             var names = $(".group-name:visible").map(function () {
                 return $(this).val();

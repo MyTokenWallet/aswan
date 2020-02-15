@@ -5,13 +5,13 @@
 import json
 from datetime import datetime, timedelta
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
-from core.utils import get_sample_str
-from menu.forms import MENU_TYPE_CHOICES_ADD_CHOICES
-from menu.init_data import create_menu_event, add_element_to_menu
+from ..core.utils import get_sample_str
+from ..menu.forms import MENU_TYPE_CHOICES_ADD_CHOICES
+from ..menu.init_data import create_menu_event, add_element_to_menu
 
-from core.testcase import BaseTestCase
+from ..core.testcase import BaseTestCase
 
 
 class TestMenuMinix(object):
@@ -21,7 +21,7 @@ class TestMenuMinix(object):
     test_cases = []
 
     def _test_list(self):
-        # todo 这里的参数有些问题，降低了覆盖率，后续改一下
+        # todo There are some problems with the parameters here, which reduce the coverage, and change it later.
         data = {'dimension': self.dimension, 'menu_type': 'black',
                 'event': self.event_code}
         response = self.client.get(reverse(self.list_uri), data=data)
@@ -29,19 +29,19 @@ class TestMenuMinix(object):
 
     def _test_destroy(self):
 
-        # 参数不全
+        # Argument incomplete
         resp = self.client.post(reverse(self.delete_uri))
         self.assertEquals(resp.status_code, 200)
-        self.assertEquals(json.loads(resp.content)['error'], u"id不合法")
+        self.assertEquals(json.loads(resp.content)['error'], u"id is illegal")
 
-        # ID格式错误
+        # ID format is wrong
         menu_element_id = get_sample_str(24)
         resp = self.client.post(reverse(self.delete_uri),
                                 data={'ids': menu_element_id})
         self.assertEquals(resp.status_code, 200)
-        self.assertEquals(json.loads(resp.content)['error'], u"id不合法")
+        self.assertEquals(json.loads(resp.content)['error'], u"id is illegal")
 
-        # 成功delete
+        # Success delete
         menu_element_id = add_element_to_menu(self.event_code, 'black',
                                               self.dimension, 'test_value')
         resp = self.client.post(reverse(self.delete_uri), data={'ids': menu_element_id})
@@ -49,12 +49,12 @@ class TestMenuMinix(object):
         t = json.loads(resp.content)
         self.assertEquals(t['state'], True)
 
-        # delete不存在的记录
+        # Delete records that do not exist
         resp = self.client.post(reverse(self.delete_uri),
                                 data={'ids': menu_element_id})
         self.assertEquals(resp.status_code, 200)
         t = json.loads(resp.content)
-        self.assertEquals(t['error'], u"记录均不存在")
+        self.assertEquals(t['error'], u"Records don't exist")
 
     def _test_create(self):
         end_time = (datetime.now() + timedelta(days=1))
@@ -69,19 +69,19 @@ class TestMenuMinix(object):
                     'end_time': end_time.strftime('%Y-%m-%d %H:%M:%S'),
                     'menu_desc': 'test'
                 }
-                # 首次创建
+                # Created for the first time
                 resp = self.client.post(reverse(self.create_uri), data=data)
                 self.assertEquals(resp.status_code, 200)
                 t = json.loads(resp.content)
                 self.assertEquals(t['state'], state)
 
-                # 重复创建只会更新
+                # Repeated creation will only update
                 resp = self.client.post(reverse(self.create_uri), data=data)
                 self.assertEquals(resp.status_code, 200)
                 t = json.loads(resp.content)
                 self.assertEquals(t['state'], state)
 
-                # 错误的结束时间
+                # The end time of the error
                 t_end_time = end_time - timedelta(days=3)
                 data['end_time'] = t_end_time.strftime('%Y-%m-%d %H:%M:%S')
                 resp = self.client.post(reverse(self.create_uri), data=data)

@@ -4,16 +4,16 @@
 
 from django.utils.translation import ugettext_lazy as _
 from django_tables2 import tables, columns
-from core.pymongo_client import get_mongo_client
-from core.columns import TruncateColumn
-from menu.forms import MENU_TYPE_NAME_MAP
+from ..core.pymongo_client import get_mongo_client
+from ..core.columns import TruncateColumn
+from ..menu.forms import MENU_TYPE_NAME_MAP
 
 
 class EventTable(tables.Table):
-    event_name = columns.Column(verbose_name=_(u"项目名称"))
+    event_name = columns.Column(verbose_name=_(u"Project name"))
     action = columns.TemplateColumn("""
     <a class="event-destroy" data-uri="{% url 'menus:event_destroy' %}" data-id="{{ record.event_code }}">delete</a>
-    """, orderable=False, verbose_name=_(u"操作"))
+    """, orderable=False, verbose_name=_(u"action"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -26,11 +26,11 @@ class BaseMenuTable(tables.Table):
         """, orderable=False, verbose_name="")
     value = columns.Column(verbose_name=_(u"Value"))
     event_code = columns.Column(verbose_name=_(u"Project"))
-    menu_type = columns.Column(verbose_name=_(u"List type"))
+    menu_type = columns.Column(verbose_name=_(u"ListType"))
     menu_status = columns.Column(verbose_name=_(u"Status"))
     menu_desc = TruncateColumn(verbose_name=_(u"Note"))
-    end_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"End Time"))
-    create_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"Update time"))
+    end_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"EndTime"))
+    create_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"UpdateTime"))
     creator = columns.Column(verbose_name=_(u"Operator"))
 
     def __init__(self, *args, **kwargs):
@@ -56,28 +56,28 @@ class UseridTable(BaseMenuTable):
 
 
 class IPTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"IPAddress"))
+    value = columns.Column(verbose_name=_(u"IP_Address"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class UidTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"设备号"))
+    value = columns.Column(verbose_name=_(u"Device_ID"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class PayTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"支付账号"))
+    value = columns.Column(verbose_name=_(u"Payment account number"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class PhoneTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"Cell phone number"))
+    value = columns.Column(verbose_name=_(u"CellPhoneNumber"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}

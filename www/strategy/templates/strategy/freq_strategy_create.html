@@ -126,7 +126,7 @@
 
 <script>
     $(function () {
-        // 创建漏洞表单提交
+        // Create a vulnerability form submission
         $("body").on("submit", '#menu_create_form', function (e) {
             e.preventDefault();
             var form = $(this);
@@ -165,7 +165,7 @@
         });
     });
 
-    // 渲染 数据源数据
+    // Rendering Data Source Data
     $.ajax({
         url: "/config/source/ajax/",
         data: {},
@@ -213,12 +213,12 @@
     }
 
     function get_data_example() {
-        // 数据源选择联动
+        // Data source selection linkage
         var source_name = $(".searchable-select-item.selected").data('value');
         refresh_checkbox(source_name);
     }
 
-    // 定义strategy_body
+    // Define strategy_body
     $(document).on("click", 'input:checkbox', function () {
         var arrs = [];
         $('input:checked[name=strategy_body_check]').each(function () {

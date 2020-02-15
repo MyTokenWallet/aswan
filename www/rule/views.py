@@ -7,19 +7,19 @@ import time
 from datetime import datetime
 
 from django.http import Http404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.generic import TemplateView, View
 from braces.views import JSONResponseMixin
 from redis import RedisError
 
-from core.generic import ListView
-from core.utils import errors_to_dict
-from core.redis_client import get_redis_client
+from ..core.generic import ListView
+from ..core.utils import errors_to_dict
+from ..core.redis_client import get_redis_client
 
 from builtin_funcs import BuiltInFuncs
-from rule.forms import RulesForm, RulesTestForm, CONTROL_MAP, \
+from ..rule.forms import RulesForm, RulesTestForm, CONTROL_MAP, \
     RulesFilterForm, CONTROL_CHOICES
-from rule.tables import RulesTable
+from ..rule.tables import RulesTable
 from risk_models.strategy import Strategys
 
 __all__ = ['RulesListView', 'RulesCreateView', 'RulesDestroyView',
@@ -69,7 +69,7 @@ class RulesDestroyView(JSONResponseMixin, View):
             })
         return self.render_json_response({
             'state': False,
-            'error': u"未找到规则"
+            'error': u"No rules found"
         })
 
 
@@ -109,7 +109,7 @@ class RulesChangeView(JSONResponseMixin, View):
         status = origin.get('status')
 
         if status not in ('on', 'off'):
-            raise ValueError(u"Status不合法")
+            raise ValueError(u"Status is not legal.")
 
         ret = {
             "uuid": uuid_,
@@ -119,25 +119,25 @@ class RulesChangeView(JSONResponseMixin, View):
         }
 
         end_time = origin.get('end_time')
-        #  仅修改Status
+        #  Modify Status only
         if not end_time:
             return ret
 
         try:
             datetime.strptime(end_time, '%Y-%m-%d %H:%M:%S')
         except (ValueError, TypeError):
-            raise ValueError(u"结束时间格式不合法")
+            raise ValueError(u"End time format is not legal")
 
         ret['end_time'] = end_time
 
         try:
             title = origin['title']
         except KeyError:
-            raise ValueError(u"Rule name必须填写")
+            raise ValueError(u"RuleName must be filled in")
         try:
             describe = origin['describe']
         except KeyError:
-            raise ValueError(u"Rule description必须填写")
+            raise ValueError(u"Rule description must be filled in")
 
         names = origin.get('names', '').split(':::')
         weights = origin.get('weights', '').split(',')
@@ -148,10 +148,10 @@ class RulesChangeView(JSONResponseMixin, View):
 
         for elem in lst[1:]:
             if len(elem) != len(lst[0]):
-                raise ValueError(u"数据长度不匹配")
+                raise ValueError(u"Data length mismatch")
         for weight in weights:
             if not weight.isdigit():
-                raise ValueError(u"权重不是整数")
+                raise ValueError(u"Weight is not an integer")
         strategys_list = []
         for strategy_str in strategys:
             try:
@@ -175,7 +175,7 @@ class RulesChangeView(JSONResponseMixin, View):
             item.sort()
             strategy_uuids.append("".join(item))
         if len(set(strategy_uuids)) < len(strategy_uuids):
-            raise ValueError(u"Policy有重复")
+            raise ValueError(u"Policy has a repeat.")
         for key in (
                 'title', 'describe', 'names', 'weights', 'strategys',
                 'controls',
@@ -184,11 +184,11 @@ class RulesChangeView(JSONResponseMixin, View):
         return ret
 
     def _build_key_value(self, data):
-        #  此时只改阈值
+        #  Only change the threshold at this point
         items = [['user', data['user']], ['update_time', data['update_time']]]
         if not data.get('end_time'):
             key = 'status'
-            #  兼容前端，前端传过来的Status为当前Status，而非目标Status
+            #  Compatible front end, front end passes through Status for current Status, not target Status
             value = 'on' if data['status'] == 'off' else 'off'
             items.append([key, value])
             return items
@@ -342,7 +342,7 @@ class RulesDataView(JSONResponseMixin, View):
         return ret
 
     def _get_user_strategy_args(self, uuids, client):
-        ret = {"user_id"}  # 限制User型策略，须有userid
+        ret = {"user_id"}  # Limit User-type policies, you must have userid
         strategy_bodys = self._get_one_kind_fields_from_uuids(
             uuids, 'user_strategy', 'strategy_body', client
         )
@@ -388,29 +388,29 @@ class RulesThresholdEdit(JSONResponseMixin, View):
 
         try:
             data = json.loads(request.POST.get('data', '{}'))
-            # 从参数中获取需要修改的规则uuid
+            # Get the rule uuid from the parameters that need to be modified
             rule_uuid = data.get('rule_uuid', None)
-            # 从参数中获取需要修改的策略Group的下标
+            # Get the subscript of the policy group that needs to be modified from the parameters
             strategy_index = data.get('strategy_index', None)
-            # 从参数中获取前端传参过来的策略列表
+            # Get a list of policies from the parameters that the front end passes through
             new_strategy_confs = data.get('strategy_list', None)
             assert strategy_index is not None
             assert isinstance(strategy_index, int) and strategy_index >= 0
             assert all((rule_uuid, new_strategy_confs))
         except (AssertionError, TypeError, ValueError):
-            return self.render_json_response({'state': False, 'msg': '参数校验失败'})
+            return self.render_json_response({'state': False, 'msg': 'Argument check failed'})
 
         client = get_redis_client()
 
         try:
-            # 从redis中获取需要修改的规则所有数据
+            # Get all the data from redis rules that need to be modified
             rule_conf = client.hgetall("rule:{}".format(rule_uuid))
-            # 从规则数据中获取策略Group数据列表
+            # Get a list of policy group data from rule data
             strategy_confs = json.loads(rule_conf.get('strategys'))
-            # 从策略Group列表中找出需要编辑的策略Group
+            # Find the policy group that needs to be edited from the Strategy Group list
             strategy_conf = strategy_confs[strategy_index]
         except (TypeError, ValueError, IndexError, RedisError):
-            return self.render_json_response({'state': False, 'msg': '配置读取失败'})
+            return self.render_json_response({'state': False, 'msg': 'Configuration read failed'})
 
         strategys_obj = Strategys()
         strategy_conf['strategy_list'] = [
@@ -420,16 +420,16 @@ class RulesThresholdEdit(JSONResponseMixin, View):
                 strategys_obj.build_strategy_name_from_thresholds(
                     x['strategy_uuid'], x['threshold_list'])
             ] for x in new_strategy_confs
-        ]  # 构造编辑后的策略Group
+        ]  # Constructing the edited strategy group
 
-        strategy_confs[strategy_index] = strategy_conf  # 回写策略Group
+        strategy_confs[strategy_index] = strategy_conf  # Write Back Strategy Group
         rule_conf["strategys"] = json.dumps(strategy_confs)
         rule_conf['user'] = request.user.username
         rule_conf['update_time'] = str(int(time.time()))
         try:
-            client.hmset("rule:{}".format(rule_uuid), rule_conf)  # 回写规则数据
+            client.hmset("rule:{}".format(rule_uuid), rule_conf)  # Write back rule data
         except RedisError:
-            return self.render_json_response({'state': False, 'msg': '配置回写失败'})
+            return self.render_json_response({'state': False, 'msg': 'Configuration write-back failed'})
 
         return self.render_json_response({'state': True})
 

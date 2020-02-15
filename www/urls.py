@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'log_manage/', include("log_manage.urls", namespace="log_manage")),
 ]
 
-# 用于线上时应移除此部分，动静分离
+# This section should be removed when used on the line, and the dynamic separation should be
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

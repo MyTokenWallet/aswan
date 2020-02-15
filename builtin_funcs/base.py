@@ -67,7 +67,7 @@ class BuiltInFuncs(object):
         """
             校验Request parameter是否合法(满足内置函数所需)
         :param str|unicode name: 内置函数code
-        :param dict req_body: Request parameter
+        :param dict req_body: Request_Parameter
         :return:
         """
         args_type_tuple = cls.name_args_type[name]

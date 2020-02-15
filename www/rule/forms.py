@@ -7,10 +7,10 @@ from django import forms
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from core.forms import BaseFilterForm, BaseForm
+from ..core.forms import BaseFilterForm, BaseForm
 from risk_models.strategy import Strategys
 from risk_models.rule import Rules
-from rule.models import RuleModel
+from ..rule.models import RuleModel
 
 STATUS_CHOICES = (
     ('on', u"Enable"),
@@ -32,7 +32,7 @@ CONTROL_MAP = {
 
 
 class RulesForm(BaseForm):
-    title = forms.CharField(label=_(u"Rule name"))
+    title = forms.CharField(label=_(u"RuleName"))
     describe = forms.CharField(required=False, label=_(u"Rule description"),
                                widget=forms.Textarea)
     status = forms.ChoiceField(label=_(u"Status"), choices=STATUS_CHOICES)
@@ -40,9 +40,9 @@ class RulesForm(BaseForm):
     strategy = forms.ChoiceField(label=_("Policy"), required=False)
     control = forms.ChoiceField(label=_("Projectmanagement"), choices=CONTROL_CHOICES,
                                 required=False)
-    custom = forms.CharField(label=_(u"客服话术"), required=False,
+    custom = forms.CharField(label=_(u"Customer service skills"), required=False,
                              widget=forms.Textarea(
-                                 attrs={'placeholder': u'客服话术',
+                                 attrs={'placeholder': u'Customer service skills',
                                         'data-autoresize': '',
                                         'rows': '1',
                                         'cols': 'auto'}))
@@ -65,7 +65,7 @@ class RulesForm(BaseForm):
     def clean_end_time(self):
         end_time = self.cleaned_data['end_time']
         if end_time <= timezone.now():
-            raise forms.ValidationError(_(u"结束时间应大于当前时间"))
+            raise forms.ValidationError(_(u"The end time should be greater than the current time"))
         return end_time
 
     def clean_weights(self):
@@ -73,7 +73,7 @@ class RulesForm(BaseForm):
         seps = weights.split(',')
         for num in seps:
             if not num.isdigit():
-                raise forms.ValidationError(_(u"权重值不是数字"))
+                raise forms.ValidationError(_(u"Weight value is not a number"))
         return weights
 
     def _check_names(self, names, choices, sep=None):
@@ -92,7 +92,7 @@ class RulesForm(BaseForm):
     def clean(self):
         cd = super(RulesForm, self).clean()
 
-        # 已经有问题的话，就不继续校验了
+        # If there's already a problem, don't continue the verification.
         if self.errors:
             return cd
 
@@ -102,19 +102,19 @@ class RulesForm(BaseForm):
         names = cd['names'].split(':::')
         if not len(strategys_list) == len(controls) == len(customs) == len(
                 names):
-            self.errors['customs'] = [u'PolicyGroup Name、Policy、Projectmanagement、客服话术不匹配']
+            self.errors['customs'] = [u'PolicyGroupName、Policy、Projectmanagement、Customer service does not match']
         if not self._check_names(strategys_list, self._get_all_strategys(),
                                  sep=';'):
-            self.errors['strategys'] = [u'非法Policy名']
+            self.errors['strategys'] = [u'Illegal PolicyName']
         if not self._check_names(controls, CONTROL_CHOICES):
-            self.errors['controls'] = [u'非法Projectmanagement名']
+            self.errors['controls'] = [u'Illegal Projectmanagement Name']
         strategy_uuids = []
         for strategy in strategys_list:
             item = strategy.split(';')
             item.sort()
             strategy_uuids.append("".join(item))
         if len(set(strategy_uuids)) < len(strategy_uuids):
-            self.errors['strategys'] = [u'Policy有重复']
+            self.errors['strategys'] = [u'Policy already exist']
         return cd
 
     def save(self, *args, **kwargs):
@@ -136,8 +136,8 @@ class RulesForm(BaseForm):
 
 
 class RulesTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"Request body"))
-    rule = forms.ChoiceField(label=_(u"Rule name"), widget=forms.Select())
+    req_body = forms.CharField(widget=forms.Textarea, label=_(u"RequestBody"))
+    rule = forms.ChoiceField(label=_(u"RuleName"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(RulesTestForm, self).__init__(*args, **kwargs)
@@ -152,12 +152,12 @@ class RulesTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"Request body Not legal json format")
+            raise forms.ValidationError(u"RequestBody Not legal json format")
         return req_body
 
 
 class RulesFilterForm(BaseFilterForm):
     status = forms.ChoiceField(label=_(u"Status"),
-                               choices=(('', '所有Status'),) + STATUS_CHOICES,
+                               choices=(('', 'All States'),) + STATUS_CHOICES,
                                required=False)
-    rule_name = forms.CharField(label=_(u"Rule name(可模糊查询)"), required=False)
+    rule_name = forms.CharField(label=_(u"RuleName(Fuzzy queries)"), required=False)

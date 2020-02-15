@@ -6,7 +6,7 @@ import re
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from core.forms import BaseFilterForm, BaseForm
+from ..core.forms import BaseFilterForm, BaseForm
 from .permission import (
     UserPermission, GroupPermission, UriGroupPermission
 )
@@ -23,7 +23,7 @@ def get_multiple_choices(perm_class):
 
 
 class UserPermFilterForm(BaseFilterForm):
-    fullname = forms.CharField(required=False, label=_("姓名"))
+    fullname = forms.CharField(required=False, label=_("Name"))
     pk = forms.EmailField(required=False, label=_("email"))
 
 
@@ -56,13 +56,13 @@ class UserPermUpdateForm(BaseForm):
     def clean_pk(self):
         pk = self.cleaned_data['pk']
         if self.INVALID_CHAR.search(pk):
-            raise forms.ValidationError('不合法的输入')
+            raise forms.ValidationError('Illegal input')
         return pk
 
     def clean_fullname(self):
         desc = self.cleaned_data['fullname']
         if self.INVALID_CHAR.search(desc):
-            raise forms.ValidationError('不合法的输入')
+            raise forms.ValidationError('Illegal input')
         return desc
 
     def save(self):
@@ -103,13 +103,13 @@ class GroupPermUpdateForm(BaseForm):
     def clean_pk(self):
         pk = self.cleaned_data['pk']
         if self.INVALID_CHAR.search(pk):
-            raise forms.ValidationError('不合法的输入')
+            raise forms.ValidationError('Illegal input')
         return pk
 
     def clean_desc(self):
         desc = self.cleaned_data['desc']
         if self.INVALID_CHAR.search(desc):
-            raise forms.ValidationError('不合法的输入')
+            raise forms.ValidationError('Illegal input')
         return desc
 
     def save(self):
@@ -153,19 +153,19 @@ class UriGroupPermUpdateForm(BaseForm):
         uris = [uri.strip() for uri in uris.split('\n')]
         for uri in uris:
             if not self.VALID_URL.match(uri) or self.INVALID_CHAR.search(uri):
-                raise forms.ValidationError('uri格式错误或包含非法字符')
+                raise forms.ValidationError('Uri is misformed or contains illegal characters')
         return uris
 
     def clean_pk(self):
         pk = self.cleaned_data['pk']
         if self.INVALID_CHAR.search(pk):
-            raise forms.ValidationError('不合法的输入')
+            raise forms.ValidationError('Illegal input')
         return pk
 
     def clean_desc(self):
         desc = self.cleaned_data['desc']
         if self.INVALID_CHAR.search(desc):
-            raise forms.ValidationError('不合法的输入')
+            raise forms.ValidationError('Illegal input')
         return desc
 
     def save(self):

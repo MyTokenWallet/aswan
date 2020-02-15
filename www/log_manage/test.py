@@ -5,11 +5,11 @@
 import json
 from datetime import datetime, timedelta
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
-from core.testcase import BaseTestCase
-from core.utils import get_sample_str
-from log_manage.init_data import create_hit_table
+from ..core.testcase import BaseTestCase
+from ..core.utils import get_sample_str
+from ..log_manage.init_data import create_hit_table
 
 
 class TestHitListDetailCase(BaseTestCase):
@@ -67,8 +67,8 @@ class TestRuleStrategyMapView(BaseTestCase):
         self.assertEquals(t['state'], False)
         self.assertEquals(t['rules_num'], 0)
 
-        # 全部
-        for rule_id in {u'', u'所有'}:
+        # all
+        for rule_id in {u'', u'All'}:
             data = {'rule_id': rule_id}
             response = self.client.get(url, data)
             self.assertEquals(response.status_code, 200)

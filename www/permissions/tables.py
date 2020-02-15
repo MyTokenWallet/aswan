@@ -4,19 +4,19 @@
 import datetime
 
 from bson import ObjectId
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django_tables2 import tables, columns
 
 
 class UserPermissionTable(tables.Table):
-    fullname = columns.Column(verbose_name=_('姓名'), orderable=False)
+    fullname = columns.Column(verbose_name=_('Name'), orderable=False)
     pk = columns.Column(verbose_name=_('email'), orderable=False)
     is_superuser = columns.BooleanColumn(null=False,
-                                         verbose_name=_('超级administrator'),
+                                         verbose_name=_('SuperAdministrator'),
                                          orderable=False)
-    entity_id = columns.Column(verbose_name=_('初次登录时间'))
+    entity_id = columns.Column(verbose_name=_('First sign-in time'))
     remark = columns.Column(verbose_name=_('Note'), orderable=False)
 
     @classmethod
@@ -38,11 +38,11 @@ class UserPermissionTable(tables.Table):
 
 
 class GroupPermissionTable(tables.Table):
-    desc = columns.Column(verbose_name=_('分Group Name'))
-    pk = columns.Column(verbose_name=_('唯一标识'))
-    entity_id = columns.Column(verbose_name=_('创建时间'))
+    desc = columns.Column(verbose_name=_('Sub_Group_Name'))
+    pk = columns.Column(verbose_name=_('Unique_Identification'))
+    entity_id = columns.Column(verbose_name=_('Creation_Time'))
     action = columns.TemplateColumn(str('x'), orderable=False,
-                                    verbose_name=_('操作'))
+                                    verbose_name=_('Confirm'))
 
     @classmethod
     def render_action(cls, record):
@@ -50,7 +50,7 @@ class GroupPermissionTable(tables.Table):
         html = (
             '''
             <a href="{1}?entity_id={0}"
-               style="margin-right: 10px">变更Authority
+               style="margin-right: 10px">Change Authority
             </a>
             <a data-entity_id={0}
                class="perms-group-delete">delete
@@ -76,12 +76,12 @@ class GroupPermissionTable(tables.Table):
 
 
 class UriGroupPermissionTable(tables.Table):
-    desc = columns.Column(verbose_name=_('uriGroup Name称'))
-    pk = columns.Column(verbose_name=_('唯一标识'))
-    uris = columns.Column(verbose_name=_('Uri list'))
-    entity_id = columns.Column(verbose_name=_('创建时间'))
+    desc = columns.Column(verbose_name=_('uriGroupNameCall'))
+    pk = columns.Column(verbose_name=_('Unique_Identification'))
+    uris = columns.Column(verbose_name=_('Uri_List'))
+    entity_id = columns.Column(verbose_name=_('Creation_Time'))
     action = columns.TemplateColumn(str('x'), orderable=False,
-                                    verbose_name=_('操作'))
+                                    verbose_name=_('Confirm'))
 
     @classmethod
     def render_action(cls, record):
@@ -89,7 +89,7 @@ class UriGroupPermissionTable(tables.Table):
         html = (
             '''
             <a href="{1}?entity_id={0}"
-               style="margin-right: 10px">变更Authority
+               style="margin-right: 10px">Change Authority
             </a>
             <a data-entity_id={0}
                class="perms-uri-group-delete">delete

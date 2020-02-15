@@ -1,5 +1,5 @@
 # coding=utf8
-"""开发环境配置"""
+"""Development environment configuration"""
 
 DATABASES = {
     'default': {

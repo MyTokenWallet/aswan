@@ -10,49 +10,49 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from builtin_funcs import BuiltInFuncs
-from core.redis_client import get_redis_client
-from core.forms import BaseForm, BaseFilterForm
-from core.pymongo_client import get_mongo_client
+from ..core.redis_client import get_redis_client
+from ..core.forms import BaseForm, BaseFilterForm
+from ..core.pymongo_client import get_mongo_client
 
 OP_CHOICES = (
-    ('is', u'是(使用、已经)'),
-    ('is_not', u'不是(未使用、尚未)'),
-    ('lt', u'小于...'),
-    ('le', u'小于等于...'),
-    ('eq', u'等于...'),
-    ('ne', u'不等于...'),
-    ('ge', u'大于等于...'),
-    ('gt', u'大于...'),
+    ('is', u'Yes (use, already)'),
+    ('is_not', u'Not (not used, not yet)'),
+    ('lt', u'Less than...'),
+    ('le', u'Less than or equal to...'),
+    ('eq', u'Equals...'),
+    ('ne', u'Not equal'),
+    ('ge', u'Greater than or equal to...'),
+    ('gt', u'Greater than...'),
 )
 
 FUNC_CHOICES = tuple(
     [(k, str(v)) for k, v in BuiltInFuncs.name_callable.items()]
 )
 VAR_CHOICES = (
-    ('user_id', u'AccountID'),
-    ('phone', u'Cell phone number'),
-    ('uid', u'CurrentDeviceID'),
-    ('ip', u'CurrentIP'),
-    ('reg_ip', u'SignUpfromIP'),
-    ('reg_uid', u'RegisterDeviceID'),
+    ('user_id', u'Account_ID'),
+    ('phone', u'CellPhoneNumber'),
+    ('uid', u'CurrentDevice_ID'),
+    ('ip', u'Current_IP'),
+    ('reg_ip', u'SignUpFrom_IP'),
+    ('reg_uid', u'RegisterDevice_ID'),
 )
 
 DIM_CHOICES_MENU = (
-    ('user_id', u'AccountID'),
-    ('phone', u'Cell phone number'),
-    ('ip', u'CurrentIP'),
-    ('reg_ip', u'SignUpfromIP'),
-    ('uid', u'CurrentDeviceID'),
-    ('reg_uid', u'RegisterDeviceID'),
+    ('user_id', u'Account_ID'),
+    ('phone', u'CellPhoneNumber'),
+    ('ip', u'Current_IP'),
+    ('reg_ip', u'SignUpFrom_IP'),
+    ('uid', u'CurrentDevice_ID'),
+    ('reg_uid', u'RegisterDevice_ID'),
 )
 OP_CHOICES_MENU = (
     ('is', u'is'),
     ('is_not', u'is_not'),
 )
 TYPE_CHOICES_MENU = (
-    (u'black', u'黑名单'),
-    (u'white', u'白名单'),
-    (u'gray', u'灰名单')
+    (u'black', u'Blacklist'),
+    (u'white', u'White List'),
+    (u'gray', u'Grey List')
 )
 
 OP_MAP = dict(OP_CHOICES)
@@ -69,10 +69,10 @@ USER_STRATEGY_UNIQ_SET_KEYS = (
 
 
 class BoolStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"Policy Name"))
-    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
+    strategy_name = forms.CharField(label=_(u"PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
     strategy_var = forms.ChoiceField(label=_(u"Built-in variables"), choices=VAR_CHOICES)
-    strategy_op = forms.ChoiceField(label=_(u"Action code"), choices=OP_CHOICES)
+    strategy_op = forms.ChoiceField(label=_(u"ActionCode"), choices=OP_CHOICES)
     strategy_func = forms.ChoiceField(label=_(u"Built-in functions"), choices=FUNC_CHOICES)
     strategy_threshold = forms.CharField(label=_(u"Thresholds"), required=False)
 
@@ -134,19 +134,19 @@ class BoolStrategyForm(BaseForm):
             )]
 
         if op_name not in supported_ops:
-            self.errors['strategy_op'] = [u'This action code is not supported by the function'.format(func_name)]
+            self.errors['strategy_op'] = [u'This ActionCode is not supported by the function'.format(func_name)]
         if op_name in ('is', 'is_not') and threshold:
-            self.errors['strategy_op'] = [u'[{}]The action code does not accept the threshold'.format(op_name)]
+            self.errors['strategy_op'] = [u'[{}]The ActionCode does not accept the threshold'.format(op_name)]
 
         if op_name in {'lt', 'le', 'eq', 'ne', 'ge', 'gt'}:
             if not threshold:
                 self.errors['strategy_threshold'] = [
-                    u'Action code{}Thresholds must be included'.format(op_name)]
+                    u'ActionCode{}Thresholds must be included'.format(op_name)]
         return cd
 
 
 class BoolStrategyTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"Request body"))
+    req_body = forms.CharField(widget=forms.Textarea, label=_(u"RequestBody"))
     strategy = forms.ChoiceField(label=_(u"Strategy"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
@@ -169,7 +169,7 @@ class BoolStrategyTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"Request body Not legal json format")
+            raise forms.ValidationError(u"RequestBody Not legal json format")
         return req_body
 
 
@@ -194,18 +194,18 @@ class FreqStrategyTestForm(BoolStrategyTestForm):
             d = client.hgetall(name)
             if 'uuid' in d and 'strategy_name' in d:
                 choices.append((d['uuid'], d['strategy_name']))
-        # choices.insert(0, ("", u"请选择策略名"))
+        # choices.insert(0, ("", u"Please choose a PolicyName"))
         return choices
 
 
 class FreqStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"Policy Name"))
-    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
-    strategy_source = forms.CharField(label=_(u"Data sources"))
-    strategy_body = forms.CharField(label=_(u"Body name"), required=True,
-                                    help_text=u"例:同一账号同一IP地址抢红包限1次，勾选: UserID,CurrentIP")
+    strategy_name = forms.CharField(label=_(u"PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
+    strategy_source = forms.CharField(label=_(u"DataSources"))
+    strategy_body = forms.CharField(label=_(u"BodyName"), required=True,
+                                    help_text=u"Example: The same account with the same IP address to grab the red envelope limit 1 time, check: UserID,Current_IP")
     strategy_time = forms.CharField(label=_(u"Period (in seconds))"),
-                                    help_text=u"支持86400和24*60*60两种输入格式。")
+                                    help_text=u"Supports both 86400 and 24 x 60 x 60 input formats.")
     strategy_limit = forms.IntegerField(min_value=1, label=_(u"Maximum"),
                                         initial=1)
 
@@ -223,13 +223,13 @@ class FreqStrategyForm(BaseForm):
                 strategy_time = reduce(lambda x, y: x * y, map(int, args))
                 assert strategy_time > 0
             except (ValueError, AssertionError):
-                raise forms.ValidationError(u"参数不合法，仅支持正整数和*")
+                raise forms.ValidationError(u"The parameters are illegal and only support positive integers and")
         else:
             try:
                 strategy_time = int(strategy_time)
                 assert strategy_time > 0
             except (ValueError, AssertionError):
-                raise forms.ValidationError(u"参数不合法，仅支持正整数和*")
+                raise forms.ValidationError(u"The parameters are illegal and only support positive integers and")
         return strategy_time
 
     def clean(self):
@@ -240,7 +240,7 @@ class FreqStrategyForm(BaseForm):
         valid_bodys = json.loads(client.hget('CONFIG_SOURCE_MAP', source_key))
         for strategy_body in strategy_body_str.split(','):
             if strategy_body not in valid_bodys:
-                self.errors['strategy_body'] = [u"数据源没有{}。".format(strategy_body)]
+                self.errors['strategy_body'] = [u"The data source is not{}。".format(strategy_body)]
                 return
 
         fields = [str(cd.get(x, "")) for x in FREQ_STRATEGY_UNIQ_SET_KEYS]
@@ -266,14 +266,14 @@ class FreqStrategyForm(BaseForm):
 
 
 class UserStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"Policy Name"))
-    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
-    strategy_source = forms.CharField(label=_(u"Data sources"))
-    strategy_body = forms.CharField(label=_(u"Body name"),
-                                    help_text=u"例:同一设备当天仅限5个User送礼加祝福值，勾选: 当前设备")
+    strategy_name = forms.CharField(label=_(u"PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
+    strategy_source = forms.CharField(label=_(u"DataSources"))
+    strategy_body = forms.CharField(label=_(u"BodyName"),
+                                    help_text=u"Example: Same device on the same day only 5 User gifts plus blessing value, check: current device")
     strategy_day = forms.IntegerField(min_value=1, label=_(u"Default days (in units): Individual)"),
                                       initial=1)
-    strategy_limit = forms.IntegerField(min_value=1, label=_(u"限制User数"),
+    strategy_limit = forms.IntegerField(min_value=1, label=_(u"Limit the number of Users"),
                                         initial=1)
 
     def __init__(self, *args, **kwargs):
@@ -286,7 +286,7 @@ class UserStrategyForm(BaseForm):
             strategy_day = int(strategy_day)
             assert strategy_day >= 0
         except(ValueError, AssertionError):
-            raise forms.ValidationError(u"参数不合法，请输入大于等于0的整数")
+            raise forms.ValidationError(u"The argument is not legal, please enter an integer greater than or equal to 0")
         return strategy_day
 
     def clean(self):
@@ -298,7 +298,7 @@ class UserStrategyForm(BaseForm):
         for strategy_body in strategy_body_str.split(','):
             if strategy_body not in valid_bodys:
                 self.errors['strategy_body'] = [
-                    u"数据源没有{}。".format(strategy_body)]
+                    u"The data source is not{}。".format(strategy_body)]
                 return
 
         fields = [str(cd.get(x, "")) for x in USER_STRATEGY_UNIQ_SET_KEYS]
@@ -349,13 +349,13 @@ class UserStrategyTestForm(BoolStrategyTestForm):
 
 
 class MenuStrategyForm(BaseForm):
-    dimension = forms.ChoiceField(label=_(u"维度"), choices=DIM_CHOICES_MENU)
-    menu_op = forms.ChoiceField(label=_(u"Action code"), choices=OP_CHOICES_MENU)
+    dimension = forms.ChoiceField(label=_(u"Dimensions"), choices=DIM_CHOICES_MENU)
+    menu_op = forms.ChoiceField(label=_(u"ActionCode"), choices=OP_CHOICES_MENU)
     event = forms.ChoiceField(label=_(u"Project"))
-    menu_type = forms.ChoiceField(label=_(u"List type"),
-                                  choices=TYPE_CHOICES_MENU)  # 是内置函数
-    strategy_name = forms.CharField(label=_(u"Policy Name"))
-    strategy_desc = forms.CharField(required=False, label=_(u"Policy Description"))
+    menu_type = forms.ChoiceField(label=_(u"ListType"),
+                                  choices=TYPE_CHOICES_MENU)  # It's a built-in function.
+    strategy_name = forms.CharField(label=_(u"PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
 
     def __init__(self, *args, **kwargs):
         super(MenuStrategyForm, self).__init__(*args, **kwargs)
@@ -404,7 +404,7 @@ class MenuStrategyForm(BaseForm):
 
 
 class MenuStrategyTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"Request body"))
+    req_body = forms.CharField(widget=forms.Textarea, label=_(u"RequestBody"))
     strategy = forms.ChoiceField(label=_(u"Strategy"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
@@ -427,9 +427,9 @@ class MenuStrategyTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"Request body Not legal json format")
+            raise forms.ValidationError(u"RequestBody Not legal json format")
         return req_body
 
 
 class StrategyFilterForm(BaseFilterForm):
-    filter_name = forms.CharField(label=_(u"Policy Name"), required=False)
+    filter_name = forms.CharField(label=_(u"PolicyName"), required=False)

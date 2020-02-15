@@ -65,7 +65,7 @@
         {% block pagination.previous %}
         {% if page_obj.has_previous %}
         <a href="{% querystring table.prefixed_page_field=page_obj.previous_page_number %}" class="prev">{{
-            previous_link_decorator|safe }}上一页</a>
+            previous_link_decorator|safe }}Previous</a>
         {% endif %}
         {% endblock pagination.previous %}
 
@@ -85,7 +85,7 @@
 
         {% block pagination.next %}
         {% if page_obj.has_next %}
-        <a href="{% querystring table.prefixed_page_field=page_obj.next_page_number %}" class="next">{% trans '下一页' %}{{
+        <a href="{% querystring table.prefixed_page_field=page_obj.next_page_number %}" class="next">{% trans 'Next' %}{{
             next_link_decorator|safe }}</a>
         {% endif %}
         {% endblock pagination.next %}

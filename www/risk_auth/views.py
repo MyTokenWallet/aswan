@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # coding=utf8
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from risk_auth.forms import AuthenticationForm
-from permissions.permission import UserPermission
+from ..risk_auth.forms import AuthenticationForm
+from ..permissions.permission import UserPermission
 
 
 class Home(TemplateView):
@@ -35,7 +35,7 @@ def risk_login(request):
             return redirect(next_url)
     else:
         form = AuthenticationForm()
-        form.fields["username"].help_text = u"请登录"
+        form.fields["username"].help_text = u"Please log in"
     context = {"form": form}
     return render(request, 'risk_auth/login.html', context=context)
 

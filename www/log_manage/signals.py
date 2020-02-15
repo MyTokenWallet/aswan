@@ -42,7 +42,7 @@ def record_access_log(request, response, **kwargs):
     else:
         ignore_args = default_ignore_args
 
-    # 此处收集全部参数
+    # 此处收集all参数
     req_body = {}
     for req in (request.GET, request.POST):
         req_body.update({k: req[k] for k in req if

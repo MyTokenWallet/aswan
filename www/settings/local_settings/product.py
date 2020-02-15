@@ -1,5 +1,5 @@
 # coding=utf8
-"""线上环境配置"""
+"""Production environment configuration"""
 
 DATABASES = {
     'default': {

@@ -1,5 +1,5 @@
 # coding=utf8
-"""测试环境配置"""
+"""Test the configuration of the environment"""
 
 DATABASES = {
     'default': {

@@ -37,9 +37,9 @@ MENU_TYPE_NAME_MAP = dict(MENU_TYPE_CHOICES_ADD_CHOICES)
 
 DIMENSION_NAME_MAP = {
     "user_id": u"UserID",
-    "ip": u'IPAddress',
-    "phone": u"Cell phone number",
-    "uid": u"Device No.",
+    "ip": u'IP_Address',
+    "phone": u"CellPhoneNumber",
+    "uid": u"Device_ID",
     "pay": u"Payment account number"
 }
 
@@ -72,11 +72,11 @@ class MenuCreateForm(BaseForm):
         attrs={"placeholder": "UserID[When adding in bulk, separate it by enter key]", "rows": "5"}))
     dimension = forms.CharField(required=False, widget=forms.HiddenInput,
                                 label=_(u'List dimensions'))
-    menu_type = forms.ChoiceField(label=_(u"List type"),
+    menu_type = forms.ChoiceField(label=_(u"ListType"),
                                   choices=MENU_TYPE_CHOICES_ADD_CHOICES)
     event_code = forms.ChoiceField(label=_(u"Project"))
     end_time = forms.DateTimeField(widget=forms.TextInput(
-        attrs={"placeholder": "End Time", "class": "form-control datetime"}))
+        attrs={"placeholder": "EndTime", "class": "form-control datetime"}))
     menu_desc = forms.CharField(required=False, widget=forms.Textarea(
         attrs={"placeholder": "Note[Fill in the reason for adding the batch data]", "rows": "5"}))
 
@@ -107,7 +107,7 @@ class MenuCreateForm(BaseForm):
     def clean_end_time(self):
         end_time = self.cleaned_data['end_time']
         if end_time <= timezone.now():
-            raise forms.ValidationError(_(u"The end time should be greater than the current time"))
+            raise forms.ValidationError(_(u"The EndTime should be greater than the current time"))
         return end_time
 
     def _check_regex(self, values, regex):
@@ -135,7 +135,7 @@ class MenuCreateForm(BaseForm):
         return cd
 
     def save(self, *args, **kwargs):
-        """When adding, update is add value if there is the same dimension value, project plus list type"""
+        """When adding, update is add value if there is the same dimension value, project plus ListType"""
         cd = self.cleaned_data
         value_list = cd['value']
         chinese_name = self.request.user.username
@@ -187,7 +187,7 @@ class MenuCreateForm(BaseForm):
 
 class MenuFilterForm(BaseFilterForm):
     filter_event_code = forms.ChoiceField(label=_(u"Project type"), required=False)
-    filter_menu_type = forms.ChoiceField(label=_(u"List type"), choices=MENU_TYPE_CHOICES, required=False)
+    filter_menu_type = forms.ChoiceField(label=_(u"ListType"), choices=MENU_TYPE_CHOICES, required=False)
     filter_value = forms.CharField(label=_(u"Value"), required=False)
     filter_menu_status = forms.ChoiceField(choices=MENU_STATUS_CHOICES, required=False)
 

@@ -13,7 +13,7 @@ def build_redis_key(event_code, dimension, menu_type):
     """
     :param event_code: List code
     :param dimension:  List dimensions
-    :param menu_type:  List type Black/White/Grey
+    :param menu_type:  ListType Black/White/Grey
     :return:
     """
     fields = ['menu', event_code, dimension, menu_type]

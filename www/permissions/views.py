@@ -2,21 +2,21 @@
 # coding=utf8
 
 from braces.views import JSONResponseMixin
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import Http404
 from django.http.request import QueryDict
 from django.views.generic import TemplateView, ListView as OriginListView
 
-from core.generic import ListView
-from core.utils import errors_to_dict
-from permissions.forms import (
+from ..core.generic import ListView
+from ..core.utils import errors_to_dict
+from ..permissions.forms import (
     UserPermFilterForm, UserPermUpdateForm,
     GroupPermUpdateForm, UriGroupPermUpdateForm,
 )
-from permissions.permission import (
+from ..permissions.permission import (
     UserPermission, GroupPermission, UriGroupPermission,
 )
-from permissions.tables import (
+from ..permissions.tables import (
     UserPermissionTable, GroupPermissionTable, UriGroupPermissionTable
 )
 

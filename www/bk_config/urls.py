@@ -2,10 +2,10 @@
 # coding=utf8
 
 from django.conf.urls import url
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
-from bk_config.views import (
+from www.bk_config.views import (
     ConfigSourceListView, ConfigSourceAjaxView, ConfigSourceCreateView,
     ConfigDestroyView
 )

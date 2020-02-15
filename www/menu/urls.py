@@ -3,10 +3,10 @@
 
 
 from django.conf.urls import url
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
-from menu.views import (UseridListView, MenuCreateView, MenuDestroyView, IpListView,
+from ..menu.views import (UseridListView, MenuCreateView, MenuDestroyView, IpListView,
                         UidListView, PayListView, PhoneListView,
                         EventListView, EventCreateView, EventDestroyView)
 

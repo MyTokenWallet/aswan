@@ -4,8 +4,8 @@
 
 from django.conf.urls import url
 from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse_lazy
-from log_manage.views import (HitListDetailView, RuleStrategyMapView,
+from django.urls import reverse_lazy
+from ..log_manage.views import (HitListDetailView, RuleStrategyMapView,
                               AuditLogListView)
 
 urlpatterns = [

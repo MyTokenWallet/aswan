@@ -5,10 +5,10 @@ import os
 
 from django.test import TransactionTestCase
 
-from core.redis_client import get_redis_client
-from core.pymongo_client import get_mongo_client
+from ..core.redis_client import get_redis_client
+from ..core.pymongo_client import get_mongo_client
 
-from permissions.init_data import create_user
+from ..permissions.init_data import create_user
 
 __all__ = ['BaseTestCase']
 
@@ -23,7 +23,7 @@ class BaseTestCase(TransactionTestCase):
     email = 'test@immomo.com'
 
     def setUp(self):
-        """为单元测试方法提供登录功能"""
+        """Provide signed-in functionality for unit test methods"""
         super(BaseTestCase, self).setUp()
         self.client.login(username=self.username, password=self.password)
 
@@ -31,7 +31,7 @@ class BaseTestCase(TransactionTestCase):
     def setUpClass(cls):
         super(BaseTestCase, cls).setUpClass()
         risk_env = os.environ.get('RISK_ENV')
-        assert risk_env and risk_env == 'test', '注意，此部分只能在测试环境中执行'
+        assert risk_env and risk_env == 'test', 'Note that this section can only be performed in a test environment'
         create_user(email=cls.email, username=cls.username,
                     password=cls.password, is_superuser=1)
 
@@ -39,7 +39,7 @@ class BaseTestCase(TransactionTestCase):
     def tearDownClass(cls):
         super(BaseTestCase, cls).tearDownClass()
 
-        # 清理测试库
+        # Clean up the test library
         db = get_mongo_client()
         db.client.drop_database(db.name)
 

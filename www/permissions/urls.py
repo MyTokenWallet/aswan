@@ -4,7 +4,7 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
-from permissions.views import (
+from ..permissions.views import (
     UserPermListView, UserPermUpdateView,
     GroupPermListView, GroupPermUpdateView, GroupPermCreateView,
     UriGroupPermListView, UriGroupPermUpdateView, UriGroupPermCreateView,

@@ -5,22 +5,22 @@ import json
 from django.utils.translation import ugettext_lazy as _
 from django_tables2 import tables, columns
 
-from strategy.forms import (OP_MAP, FUNC_MAP, VAR_MAP, DIM_MAP_MENU,
+from ..strategy.forms import (OP_MAP, FUNC_MAP, VAR_MAP, DIM_MAP_MENU,
                             TYPE_MAP_MENU, OP_MAP_MENU)
-from core.pymongo_client import get_mongo_client
-from core.redis_client import get_redis_client
+from ..core.pymongo_client import get_mongo_client
+from ..core.redis_client import get_redis_client
 
 
 class BoolStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"PolicyName"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"PolicyDescription"), orderable=False)
     strategy_var = columns.Column(verbose_name=_(u"Built-in variables"), orderable=False)
-    strategy_op = columns.Column(verbose_name=_(u"Action code"), orderable=False)
+    strategy_op = columns.Column(verbose_name=_(u"ActionCode"), orderable=False)
     strategy_func = columns.Column(verbose_name=_(u"Built-in functions"), orderable=False)
     strategy_threshold = columns.Column(verbose_name=_(u"Thresholds"), orderable=False)
     action = columns.TemplateColumn("""
     <a class="strategy-destroy" data-uri="{% url 'strategy:bool_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
-    """, orderable=False, verbose_name=_(u"操作"))
+    """, orderable=False, verbose_name=_(u"Confirm"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -45,16 +45,16 @@ class BoolStrategyTable(tables.Table):
 
 
 class FreqStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
-    strategy_source = columns.Column(verbose_name=_(u"Data sources"), orderable=False)
-    strategy_body = columns.Column(verbose_name=_(u"Body name"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"PolicyName"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"PolicyDescription"), orderable=False)
+    strategy_source = columns.Column(verbose_name=_(u"DataSources"), orderable=False)
+    strategy_body = columns.Column(verbose_name=_(u"BodyName"), orderable=False)
     strategy_time = columns.Column(verbose_name=_(u"Period (in seconds))"), orderable=False)
     strategy_limit = columns.Column(verbose_name=_(u"Maximum"), orderable=False)
 
     action = columns.TemplateColumn("""
     <a class="strategy-destroy" data-uri="{% url 'strategy:freq_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
-    """, orderable=False, verbose_name=_(u"操作"))
+    """, orderable=False, verbose_name=_(u"Confirm"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -73,15 +73,15 @@ class FreqStrategyTable(tables.Table):
 
 
 class MenuStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
-    dimension = columns.Column(verbose_name=_(u"维度"), orderable=False)
-    menu_op = columns.Column(verbose_name=_(u"Action code"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"PolicyName"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"PolicyDescription"), orderable=False)
+    dimension = columns.Column(verbose_name=_(u"Dimensions"), orderable=False)
+    menu_op = columns.Column(verbose_name=_(u"ActionCode"), orderable=False)
     event = columns.Column(verbose_name=_(u"Project"), orderable=False)
-    menu_type = columns.Column(verbose_name=_(u"List type"), orderable=False)
+    menu_type = columns.Column(verbose_name=_(u"ListType"), orderable=False)
     action = columns.TemplateColumn("""
     <a class="strategy-destroy" data-uri="{% url 'strategy:menu_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
-    """, orderable=False, verbose_name=_(u"操作"))
+    """, orderable=False, verbose_name=_(u"Confirm"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -102,16 +102,16 @@ class MenuStrategyTable(tables.Table):
 
 
 class UserStrategyTable(tables.Table):
-    strategy_name = columns.Column(verbose_name=_(u"Policy Name"), orderable=False)
-    strategy_desc = columns.Column(verbose_name=_(u"Policy Description"), orderable=False)
-    strategy_source = columns.Column(verbose_name=_(u"Data sources"), orderable=False)
-    strategy_body = columns.Column(verbose_name=_(u"Body name"), orderable=False)
-    strategy_day = columns.Column(verbose_name=_(u"自然日(单位:Individual)"), orderable=False)
+    strategy_name = columns.Column(verbose_name=_(u"PolicyName"), orderable=False)
+    strategy_desc = columns.Column(verbose_name=_(u"PolicyDescription"), orderable=False)
+    strategy_source = columns.Column(verbose_name=_(u"DataSources"), orderable=False)
+    strategy_body = columns.Column(verbose_name=_(u"BodyName"), orderable=False)
+    strategy_day = columns.Column(verbose_name=_(u"Nature Day (In Individual)"), orderable=False)
     strategy_limit = columns.Column(verbose_name=_(u"Maximum"), orderable=False)
 
     action = columns.TemplateColumn("""
         <a class="strategy-destroy" data-uri="{% url 'strategy:user_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>
-        """, orderable=False, verbose_name=_(u"操作"))
+        """, orderable=False, verbose_name=_(u"Confirm"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}

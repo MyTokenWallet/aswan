@@ -7,7 +7,7 @@ from datetime import datetime
 
 from django.conf import settings
 
-from core.redis_client import get_redis_client
+from ..core.redis_client import get_redis_client
 from risk_models.strategy import Strategys
 
 

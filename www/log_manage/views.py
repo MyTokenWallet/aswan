@@ -58,8 +58,8 @@ class HitListDetailView(ListView):
         if strategy_group:
             query_params['group_uuid'] = strategy_group
 
-        control = query.get('control', u'所有')
-        if control and control != u'所有':
+        control = query.get('control', u'All')
+        if control and control != u'All':
             query_params['control'] = control
         return query_params
 
@@ -101,7 +101,7 @@ class RuleStrategyMapView(JSONResponseMixin, View):
             })
 
         rules = Rules(load_all=True).id_rule_map
-        if rule_id in (u"", u"所有"):  # 所有规则
+        if rule_id in (u"", u"所有"):  # All_Rules
             return self.render_json_response({
                 'state': True,
                 'strategy_groups': groups,

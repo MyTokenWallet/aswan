@@ -124,14 +124,14 @@
                 id = _this.data('id');
             if (status === 'on') {
                 swal({
-                    title: "规则" + title + "已Enable",
+                    title: "Rules" + title + "already enabled",
                     type: "error",
                     confirmButtonColor: "#ff6700"
                 });
                 return;
             }
             swal({
-                title: "您确定Enable规则" + title + "吗?",
+                title: "You determine the Enable rule" + title + "Do you?",
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
@@ -153,7 +153,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "Enable失败",
+                                title: "Enable failed",
                                 type: "error",
                                 confirmButtonColor: "#ff6700"
                             });
@@ -173,14 +173,14 @@
                 id = _this.data('id');
             if (status === 'off') {
                 swal({
-                    title: "规则" + title + "已Disable",
+                    title: "Rules" + title + "already disabled",
                     type: "error",
                     confirmButtonColor: "#ff6700"
                 });
                 return;
             }
             swal({
-                title: "您确定Disable规则" + title + "吗?",
+                title: "You determine the Disable rule" + title + "Do you?",
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
@@ -202,7 +202,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "Disable失败",
+                                title: "Disable failed",
                                 type: "error",
                                 confirmButtonColor: "#ff6700"
                             });

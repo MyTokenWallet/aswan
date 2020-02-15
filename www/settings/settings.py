@@ -18,7 +18,7 @@ def root(*paths, **kwargs):
 PROJECT_DIR = root()
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qv%**nr#*m_$$36b_20dl5&rlov^%$=!gm&(y5q-@un=y#uxvl'
@@ -86,20 +86,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'wsgi.application'
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
+# https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'en'
+TIME_ZONE = 'America/Los_Angeles'
 
-TIME_ZONE = 'Asia/Shanghai'
+# LANGUAGE_CODE = 'zh-hans'
+# TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
-
 USE_L10N = True
-
-USE_TZ = False
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -131,7 +131,7 @@ from log.logger import logging_config as LOGGING  # noqa
 
 risk_env = os.environ.get('RISK_ENV', 'develop')
 
-# 若配置文件不存在，直接无法启动
+# If the profile does not exist, it cannot be started directly
 try:
     importlib.import_module('.' + risk_env, 'settings.local_settings')
     exec('from .local_settings.{risk_env} import *'.format(risk_env=risk_env))

@@ -6,17 +6,17 @@ import json
 from braces.views import JSONResponseMixin
 from django.views.generic import View
 
-from core.utils import errors_to_dict
-from core.generic import ListView
-from core.redis_client import get_redis_client
-from bk_config.forms import SourceMapForm, SourceFilterForm
-from bk_config.tables import ConfigSourceTable
+from ..core.utils import errors_to_dict
+from ..core.generic import ListView
+from ..core.redis_client import get_redis_client
+from ..bk_config.forms import SourceMapForm, SourceFilterForm
+from ..bk_config.tables import ConfigSourceTable
 
 FIELD_EN_ZH_MAP = {
-    'user_id': 'AccountID',
-    'uid': 'DeviceID',
-    'ip': 'CurrentIP',
-    'phone': 'Cell phone number',
+    'user_id': 'Account_ID',
+    'uid': 'Device_ID',
+    'ip': 'Current_IP',
+    'phone': 'CellPhoneNumber',
 }
 
 
@@ -66,7 +66,7 @@ class ConfigSourceAjaxView(JSONResponseMixin, View):
                 zh = self.field_en_zh_map.get(en, en)
                 content.append({
                     'name': en,
-                    'desc': zh,
+                    'desc': en,
                     'type': type_
                 })
             item['name_show'] = name_show
@@ -104,7 +104,7 @@ class ConfigDestroyView(JSONResponseMixin, View):
         if name_key in used_keys:
             return self.render_json_response(dict(
                 state=False,
-                error=u"[{}]已被使用，不能delete".format(name_key)
+                error=u"[{}]Has been used, cannot delete".format(name_key)
             ))
         client.hdel("CONFIG_SOURCE_MAP", name_key)
         return self.render_json_response(dict(

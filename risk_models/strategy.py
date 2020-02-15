@@ -44,7 +44,7 @@ class Strategy(object):
     def __init__(self, d):
         #  Policy uuid
         self.uuid = d['uuid']
-        #  Policy Name
+        #  PolicyName
         self.name = d['strategy_name']
         # Call count
         self.query_count = 0
@@ -55,7 +55,7 @@ class Strategy(object):
         raise NotImplementedError("must be writen by subclass")
 
     def build_strategy_name_from_thresholds(self, thresholds):
-        """Each Policy must be able to reconstruct the Policy name from the threshold list"""
+        """Each Policy must be able to reconstruct the PolicyName from the threshold list"""
         raise NotImplementedError("must be writen by subclass")
 
     def get_callable(self):
@@ -209,7 +209,7 @@ class FreqStrategy(Strategy):
 
 @register_strategy
 class MenuStrategy(Strategy):
-    """ List type """
+    """ ListType """
     prefix = 'strategy_menu:*'
 
     def __init__(self, d):

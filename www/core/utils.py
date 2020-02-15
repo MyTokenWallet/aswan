@@ -7,7 +7,7 @@ import string
 
 def errors_to_dict(errors):
     """
-    form.errors不可序列化,转成dict,序列化成json给前端
+    form.errors can not be serialized, converted into dict, serialized into json to the front end
     """
     return {k: [str(t) for t in v] for (k, v) in errors.items()}
 

@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block header %}
-<a href="javascript:;" class="active">规则详情</a>
+<a href="javascript:;" class="active">Rule details</a>
 {% endblock %}
 
 {% block action %}
@@ -40,14 +40,14 @@
                     <address>
                         <strong>Rule name:</strong> {{ rule.title }}<br>
                         <strong>Rule description:</strong> {{ rule.describe }}<br>
-                        <strong>Rule status:</strong> {% if rule.status == "on" %} 开启 {% else %} Close {% endif %}<br>
+                        <strong>Rule status:</strong> {% if rule.status == "on" %} Open {% else %} Close {% endif %}<br>
                     </address>
                 </div>
 
                 <div class="col-sm-6">
                     <address>
                         <strong>Rule ID:</strong> <label class="text-danger">{{ rule.id }}</label><br>
-                        <strong>规则结束时间:</strong> <label class="text-danger">{{ rule.end_time }}</label><br>
+                        <strong>Rule end time:</strong> <label class="text-danger">{{ rule.end_time }}</label><br>
                     </address>
                 </div>
             </div>
@@ -56,12 +56,12 @@
                 <table class="table invoice-table" style="word-break:break-all; word-wrap:break-word;">
                     <thead>
                     <tr>
-                        <th>PolicyGroup Name称</th>
-                        <th>权重</th>
-                        <th>PolicyGroup列表</th>
+                        <th>PolicyGroupNameCall</th>
+                        <th>Weight</th>
+                        <th>PolicyGroupList</th>
                         <th>Projectmanagement</th>
-                        <th>客服话术</th>
-                        <th>操作</th>
+                        <th>Customer service skills</th>
+                        <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,7 +77,7 @@
                         <td style="width: 10%">
                             <a href="#" data-toggle="modal" data-target="#setThreshold"
                                data-strategy_index="{{ forloop.counter }}"
-                               data-strategy_list="{{ rule.strategy_list_str }}">编辑阈值</a>
+                               data-strategy_list="{{ rule.strategy_list_str }}">Edit threshold</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -92,7 +92,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>修改阈值</h2>
+                <h2>Modifying the threshold</h2>
             </div>
             <div class="modal-body">
                 <table class="table invoice-table">
@@ -124,12 +124,12 @@
 
 <script>
     $("#setThreshold").on("show.bs.modal", function (e) {
-        var strategyList = $(e.relatedTarget).data('strategy_list');  // 修改PolicyGroup的数据
-        var strategyIndex = $(e.relatedTarget).data('strategy_index');  // 修改PolicyGroup的下标
+        var strategyList = $(e.relatedTarget).data('strategy_list');  // Modifying Policy Group's data
+        var strategyIndex = $(e.relatedTarget).data('strategy_index');  // Modifying the policy Group's bid
         $("#thresholdModalBody").html("");
         $("#thresholdSave").attr('data-strategy_index', strategyIndex - 1);
         for (var i in strategyList) {
-            // 构造 阈值input框
+            // Construct threshold input box
             var inputList = "";
             for (var t in strategyList[i][1]) {
                 if (t !== 0) {
@@ -138,7 +138,7 @@
                 var inputItem = "<input style='width: 50px;' name='threshold_" + t + "' value='" + strategyList[i][1][t] + "'><span class='err-msg'></span>";
                 inputList += inputItem
             }
-            // 构造tr的html
+            // constructr's html
             var htmlBody = "<tr><td><div class='strategy-item' data-uuid='" + strategyList[i][0] + "'>" + strategyList[i][2] + "</div></td><td>" + inputList + "</td></tr>";
             $("#thresholdModalBody").append(htmlBody);
         }
@@ -158,18 +158,18 @@
             var thresholdList = [];
             $(this).parents('tr').find("input").each(function () {
                 var inputValue = $(this).val();
-                // 验证input参数
+                // Verify input parameters
                 if (strategyDesc.match("^Cell phone number")) {
                     var phoneRe = /^\d{1,4}(,\d{1,4})*$/;
                     if (phoneRe.test(inputValue)) {
                         $(this).next('span').html("");
                     } else {
-                        $(this).next('span').html("参数不合法");
+                        $(this).next('span').html("The argument is not legal");
                         hasError = true
                     }
-                } else if (strategyDesc.match("货币类型$")) {
+                } else if (strategyDesc.match("Currency Type $")) {
                     if (inputValue.indexOf("，") !== -1) {
-                        $(this).next('span').html("参数不合法");
+                        $(this).next('span').html("The argument is not legal");
                         hasError = true;
                     } else {
                         $(this).next('span').html("");
@@ -177,7 +177,7 @@
                 } else if (regexPattern.test(inputValue)) {
                     $(this).next('span').html("");
                 } else {
-                    $(this).next('span').html("参数不合法");
+                    $(this).next('span').html("The argument is not legal");
                     hasError = true
                 }
                 thresholdList.push(inputValue);
@@ -200,7 +200,7 @@
                     window.location.reload();
                 } else {
                     swal({
-                        title: "操作失败",
+                        title: "Operation failed",
                         text: resp.msg,
                         type: "warning",
                         confirmButtonColor: "#1ab394"

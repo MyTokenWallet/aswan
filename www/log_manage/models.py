@@ -14,12 +14,12 @@ class AuditLogModel(models.Model):
     email = models.CharField(verbose_name=_(u"Mailbox"), max_length=128, blank=True)
     path = models.CharField(verbose_name=_(u"Request address"), max_length=128,
                             blank=True)
-    status = models.CharField(verbose_name=_(u"Response code"), max_length=32,
+    status = models.CharField(verbose_name=_(u"Response_Code"), max_length=32,
                               blank=True)
-    method = models.CharField(verbose_name=_(u"Request type"), max_length=32,
+    method = models.CharField(verbose_name=_(u"Request_Type"), max_length=32,
                               blank=True)
-    req_body = models.TextField(verbose_name=_(u"Request parameter"), blank=True)
-    time = models.DateTimeField(verbose_name=_(u'Operating time'), auto_now_add=True)
+    req_body = models.TextField(verbose_name=_(u"Request_Parameter"), blank=True)
+    time = models.DateTimeField(verbose_name=_(u'Operating_Time'), auto_now_add=True)
 
     class Meta:
         db_table = "user_audit_log"
@@ -50,11 +50,11 @@ def get_hit_log_model(db_table):
         rule_id = models.IntegerField(verbose_name=_(u'Rule ID'))
         user_id = models.IntegerField(verbose_name=_(u'Hit User'))
         kwargs = models.CharField(max_length=128, null=False, default='', verbose_name=_(u'Extended parameter'))
-        req_body = models.CharField(max_length=512, null=False, default='', verbose_name=_(u'Request parameter'))
+        req_body = models.CharField(max_length=512, null=False, default='', verbose_name=_(u'Request_Parameter'))
         control = models.CharField(max_length=16, null=False, default='', verbose_name=_(u'Projectmanagement'))
         custom = models.CharField(max_length=50, null=False, default='', verbose_name=_(u'策略Group解释'))
         group_name = models.CharField(max_length=256, null=False, default='',
-                                      verbose_name=_(u'PolicyGroup Name称'))
+                                      verbose_name=_(u'PolicyGroupNameCall'))
         group_uuid = models.CharField(max_length=36, null=False, default='',
                                       verbose_name=_(u'PolicyGroupUUID'))
         hit_number = models.PositiveSmallIntegerField(null=False, default=1, verbose_name=_(u'命中次序'))

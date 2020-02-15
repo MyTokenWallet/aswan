@@ -3,14 +3,14 @@
 
 import json
 import logging
-from core.lru import LRUCacheDict
+from ..core.lru import LRUCacheDict
 
 from django.shortcuts import redirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 
-from log_manage.signals import user_visit
-from permissions.permission import UserPermission, DBError
+from ..log_manage.signals import user_visit
+from ..permissions.permission import UserPermission, DBError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -94,11 +94,11 @@ class UserAuditMiddleware(object):
     def process_response(self, request, response, *args, **kwargs):
         path = request.path
         method = request.method
-        # 忽略部分uri
+        # Ignore part uri
         if path in self.ignore_uris or '/isolation' in path:
             return response
 
-        # 忽略静态资源请求
+        # Ignore static resource requests
         if method == "GET" and "." in path:
             return response
         user_visit.send(sender=self.__class__, request=request,

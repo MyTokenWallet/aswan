@@ -8,7 +8,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">Add规则</a>
+<a href="javascript:;" class="active">Add Rules</a>
 {% endblock %}
 
 {% block action %}
@@ -56,7 +56,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">End Time</label>
                             <div class="col-sm-10">
-                                <input class="form-control datetime" id="id_end_time" name="end_time" type="datetime-local">
+                                <input class="form-control datetime" id="id_end_time" name="end_time"
+                                       type="datetime-local">
                                 <span id="id-end_time-error" class="help-block" style="color:darkred"></span>
                             </div>
                         </div>
@@ -83,7 +84,7 @@
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                        已选 (可拖动排序)</h3>
+                                                        Selected (draggable sort)</h3>
                                                     <select multiple="" class="searchable" name="searchable[]"
                                                             id="89multiselect"
                                                             style="position: absolute; left: -9999px;">
@@ -123,7 +124,7 @@
                                     </td>
                                     <td width="10%">
                                         <a class="strategy-choose" href="#choose-strategy" data-toggle="modal"
-                                           data-list-id="list-0">Policy选择</a>
+                                           data-list-id="list-0">Policy Choice</a>
                                     </td>
                                     <td width="35%">
                                         <label class="strategy" style="text-align:left"></label>
@@ -150,7 +151,7 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="submit">完成</button>
+                                <button class="btn btn-primary" type="submit">Submit</button>
                             </div>
                         </div>
 
@@ -180,10 +181,10 @@
             var _this = $(this);
             var uri = _this.attr('action');
 
-            var title = $('#id_title').val()
-            var describe = $('#id_describe').val()
-            var status = $('#id_status').val()
-            var end_time = $('#id_end_time').val()
+            var title = $('#id_title').val();
+            var describe = $('#id_describe').val();
+            var status = $('#id_status').val();
+            var end_time = $('#id_end_time').val();
 
             var names = $(".group-name:visible").map(function () {
                 return $(this).val();

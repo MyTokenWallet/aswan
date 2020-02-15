@@ -9,12 +9,12 @@ register = template.Library()
 
 
 def mongo_id(value):
-    """返回mongo的_id属性"""
+    """Return mongo's _id properties"""
     return value.get('_id', '')
 
 
 def get_row_id(value):
-    """返回mongo的_id属性"""
+    """Return mongo's _id properties"""
     return value.get('id', '')
 
 

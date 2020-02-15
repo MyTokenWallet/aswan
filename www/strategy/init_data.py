@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from core.utils import get_sample_str
+from ..core.utils import get_sample_str
 
-from strategy.forms import (MenuStrategyForm, BoolStrategyForm,
+from ..strategy.forms import (MenuStrategyForm, BoolStrategyForm,
                             UserStrategyForm, FreqStrategyForm)
 
 
@@ -11,7 +11,7 @@ def _create_new_strategy(form_cls, strategy_conf):
     form_obj = form_cls(data=strategy_conf)
 
     if form_obj.is_valid():
-        # 创建成功
+        # Created successfully
         new_strategy_uuid = form_obj.save()
         return True, new_strategy_uuid
     else:
@@ -21,13 +21,13 @@ def _create_new_strategy(form_cls, strategy_conf):
 def create_menu_strategy(event_code, dimension, menu_type, menu_op,
                          strategy_name=None, strategy_desc=None):
     """
-        新建List strategy
-    :param str|unicode event_code: 项目uuid
-    :param str|unicode dimension: 维度  user_id / ip / uid ...
-    :param str|unicode menu_type: List type  black, white, gray
-    :param str|unicode menu_op: Action code 在/不在(is/is_not)
-    :param str|unicode strategy_name: Policy Name
-    :param str|unicode strategy_desc: Policy Description
+        New List strategy
+    :param str|unicode event_code: Project uuid
+    :param str|unicode dimension: Dimensions  user_id / ip / uid ...
+    :param str|unicode menu_type: ListType  black, white, gray
+    :param str|unicode menu_op: ActionCode In/not in (is/is_not)
+    :param str|unicode strategy_name: PolicyName
+    :param str|unicode strategy_desc: PolicyDescription
     """
 
     strategy_name = strategy_name or get_sample_str()
@@ -55,11 +55,11 @@ def create_bool_strategy(strategy_var, strategy_op, strategy_func,
     """
         新建bool型策略
     :param str|unicode strategy_var: Built-in variables
-    :param str|unicode strategy_op: Action code
+    :param str|unicode strategy_op: ActionCode
     :param str|unicode strategy_func: Built-in functions
-    :param str|unicode strategy_threshold: 策略的阈值
-    :param str|unicode strategy_name: Policy Name
-    :param str|unicode strategy_desc: Policy Description
+    :param str|unicode strategy_threshold: Threshold for policy
+    :param str|unicode strategy_name: PolicyName
+    :param str|unicode strategy_desc: PolicyDescription
     :return:
     """
 
@@ -86,13 +86,13 @@ def create_user_strategy(strategy_source, strategy_body, strategy_day,
                          strategy_limit, strategy_name=None,
                          strategy_desc=None):
     """
-        新建User-limited number-based policy
-    :param str|unicode strategy_source: 上报数据源key
-    :param str|unicode strategy_body: 限制主体 eg:  ip, uid, user_id  etc...
-    :param int strategy_day: 自然天数
-    :param int strategy_limit: 限制User数
-    :param str|unicode strategy_name: Policy Name
-    :param str|unicode strategy_desc: Policy Description
+        New User-limited number-based policy
+    :param str|unicode strategy_source: Escalate data source key
+    :param str|unicode strategy_body: Limit the principal eg:  ip, uid, user_id  etc...
+    :param int strategy_day: Natural days
+    :param int strategy_limit: Limit the number of Users
+    :param str|unicode strategy_name: PolicyName
+    :param str|unicode strategy_desc: PolicyDescription
     :return:
     """
     strategy_name = strategy_name or get_sample_str()
@@ -119,13 +119,13 @@ def create_freq_strategy(strategy_source, strategy_body, strategy_time,
                          strategy_desc=None):
     """
         New time period frequency control strategy
-    :param str|unicode strategy_source: 上报数据源key
-    :param str|unicode strategy_body: 限制主体 eg:  ip, uid, user_id  etc...
-    :param int strategy_time: 时段(单位为秒)
-    :param int strategy_limit: 限制个数
-    :param request: 请求对象，需要从中取得User信息等
-    :param str|unicode strategy_name: Policy Name
-    :param str|unicode strategy_desc: Policy Description
+    :param str|unicode strategy_source: Escalate data source key
+    :param str|unicode strategy_body: Limit the principal eg:  ip, uid, user_id  etc...
+    :param int strategy_time:  Time period (in seconds)
+    :param int strategy_limit: Limit the number of people
+    :param request: Request object, user information needs to be obtained from it, etc.
+    :param str|unicode strategy_name: PolicyName
+    :param str|unicode strategy_desc: PolicyDescription
     :return:
     """
     strategy_name = strategy_name or get_sample_str()

@@ -5,15 +5,15 @@ import random
 
 from django.contrib.auth.models import User
 
-from permissions.permission import UserPermission
+from ..permissions.permission import UserPermission
 
 
 def create_user(email, username, password, is_superuser):
     """
-        创建User, 本意是用于测试，因此只是简单的删掉重建
+        Create User, which is intended for testing, so simply delete rebuild
     :param email:
-    :param username: Username(登录用)
-    :param password: 密码
+    :param username: Username (for login)
+    :param password: Password
     :param is_superuser:
     """
     try:

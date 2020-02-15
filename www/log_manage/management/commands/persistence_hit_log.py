@@ -10,7 +10,7 @@ from django.db import connection
 
 from config import HIT_LOG_QUEUE_NAME
 from clients import get_log_redis_client
-from log_manage.models import get_hit_log_model
+from www.log_manage.models import get_hit_log_model
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ table_cls_map = {}
 
 def get_private_queue_name():
     """
-        # 本进程持有的私有队列key, 若需扩展，需重写生成方式
+        # Private queue key held by this process, if you need to expand, you need to rewrite the build method
     """
     return HIT_LOG_QUEUE_NAME + '_tmp'
 
@@ -36,7 +36,7 @@ def parse_msg(msg):
 
 
 def table_exists(table_name):
-    with connection.cursor() as cursor:  # 判断数据表是否存在
+    with connection.cursor() as cursor:  # Determine if a data table exists
         all_table_names = set(
             connection.introspection.table_names(cursor=cursor))
     return table_name in all_table_names

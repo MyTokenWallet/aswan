@@ -20,7 +20,7 @@ class FormBaseMixin(object):
 
         self.error_text_inline = kwargs.get("error_text_inline", True)
         self.form_action = kwargs.get("form_action", ".")
-        # css class属性值,可以style写法
+        # css class property value, can be styled
         self.form_class = kwargs.get("form_class", "")
         self.form_inputs = kwargs.get("form_inputs", [])
         self.form_method = kwargs.get("form_method", "get")
@@ -62,7 +62,7 @@ class BaseForm(FormBaseMixin, forms.Form):
 
     form_class = 'form-horizontal'
     form_inputs = [Submit('submit', _(u'Save')),
-                   Reset('reset', _(u'重置'))]
+                   Reset('reset', _(u'Reset'))]
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -107,7 +107,7 @@ class BaseFilterForm(FormBaseMixin, forms.Form):
 
     def get_layout(self, helper):
         items = [Field(x, wrapper_class="form-group") for x in self.fields]
-        action = FormActions(Submit('submit', _(u'查询')),
+        action = FormActions(Submit('submit', _(u'Submit')),
                              css_class="form-group")
         items.append(action)
         layout = Layout(*items)
@@ -115,8 +115,8 @@ class BaseFilterForm(FormBaseMixin, forms.Form):
 
 
 class BaseTimeFilterForm(forms.Form):
-    time_start = forms.CharField(label=_(u"开始时间"), required=False)
-    time_end = forms.CharField(label=_(u"End Time"), required=False)
+    time_start = forms.CharField(label=_(u"StartTime"), required=False)
+    time_end = forms.CharField(label=_(u"EndTime"), required=False)
 
     left_sub_days = 3
 

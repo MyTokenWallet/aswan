@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # coding=utf8
+
 import json
 
 from django import template
@@ -8,12 +10,12 @@ register = template.Library()
 
 
 def mongo_id(value):
-    """返回mongo的_id属性"""
+    """Return smongo's _id properties"""
     return value.get('_id', '')
 
 
 def get_row_id(value):
-    """返回mongo的_id属性"""
+    """Return smongo's _id properties"""
     return value.get('id', '')
 
 
