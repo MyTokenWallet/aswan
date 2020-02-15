@@ -12,6 +12,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# FIX open base.py(PYMYSQL) and delete just line 36 and 37
 import pymysql
 
 pymysql.install_as_MySQLdb()

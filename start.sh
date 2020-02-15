@@ -15,6 +15,8 @@
 # REGULAR START
 cur_dir=`pwd`
 
+pip install -r requirements.txt
+
 ## Start-up management background (debug, not for production)
 nohup python3 ${cur_dir}/www/manage.py runserver &
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding=utf8
 
-
 import unittest
 
+# FIX open base.py(PYMYSQL) and delete just line 36 and 37
 import pymysql
 
 # use MySQLdb driver
