@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
+# USE THIS FUNCTIONS JUST TO FIX YOUR PY-SYSTEM
 #pip check
 #target_requirements=requirements-dev.txt
 #pip install -U -r $target_requirements
-pip check
-pip freeze > requirements.txt
+#pip check
+#pip freeze > requirements.txt
 #deactivate rmvirtualenv pynwb-requirements
 
 ## update phyton packages
 #sudo -s -H pip3 install PyInstaller -U
 #sudo -s -H pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install --upgrade
 
+# REGULAR START
 cur_dir=`pwd`
 
 ## Start-up management background (debug, not for production)
