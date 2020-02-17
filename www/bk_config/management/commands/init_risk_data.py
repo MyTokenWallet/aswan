@@ -14,9 +14,9 @@ from django.contrib.auth.models import User
 from www.permissions.init_data import create_user
 from www.menu.init_data import create_menu_event, add_element_to_menu
 from www.bk_config.init_data import create_data_source
-from www.strategy.init_data import (create_menu_strategy, create_bool_strategy,create_freq_strategy, create_user_strategy)
+from www.strategy.init_data import (create_menu_strategy, create_bool_strategy, create_freq_strategy,
+                                    create_user_strategy)
 from www.rule.init_data import create_rule
-
 
 logger = logging.getLogger(__name__)
 logging.basicConfig()

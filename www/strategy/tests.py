@@ -6,11 +6,11 @@ import json
 
 from django.urls import reverse
 
-from ..bk_config.init_data import create_data_source
-from ..core.utils import get_sample_str
-from ..menu.init_data import create_menu_event, add_element_to_menu
+from www.bk_config.init_data import create_data_source
+from www.core.utils import get_sample_str
+from www.menu.init_data import create_menu_event, add_element_to_menu
 
-from ..core.testcase import BaseTestCase
+from www.core.testcase import BaseTestCase
 
 
 class TestStrategyViewMinix(object):
@@ -84,7 +84,7 @@ class TestMenuStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'不命中')
+        self.assertEquals(resp_dict['data'], u'Missed')
 
         add_element_to_menu(event_code=self.event_code, element=sp_ip,
                             menu_type='black', dimension='ip')
@@ -93,7 +93,7 @@ class TestMenuStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'命中')
+        self.assertEquals(resp_dict['data'], u'Hit')
 
 
 class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
@@ -123,7 +123,7 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
 
         base_user_id = '111111'
 
-        # 直接放过的情况
+        # A situation that's been let go directly.
         data = {
             'req_body': json.dumps({'user_id': base_user_id + '0'}),
             'strategy': self.strategy_uuid
@@ -132,9 +132,9 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'不命中')
+        self.assertEquals(resp_dict['data'], u'Missed')
 
-        # 命中的情况
+        # The case of the hit
         data = {
             'req_body': json.dumps({'user_id': base_user_id + '1'}),
             'strategy': self.strategy_uuid
@@ -143,9 +143,9 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'命中')
+        self.assertEquals(resp_dict['data'], u'Hit')
 
-        # 不命中的情况
+        # Caseof of missed
         data = {
             'req_body': json.dumps({'user_id': base_user_id + '5'}),
             'strategy': self.strategy_uuid
@@ -154,7 +154,7 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'不命中')
+        self.assertEquals(resp_dict['data'], u'Missed')
 
 
 class TestFreqStrategyView(BaseTestCase, TestStrategyViewMinix):
@@ -186,7 +186,7 @@ class TestFreqStrategyView(BaseTestCase, TestStrategyViewMinix):
                          'timestamp': int(time.time() - random.randint(1, 100))}
                         for _ in range(4)]
 
-        # 命中
+        # Hit
         data = {
             'req_body': json.dumps(
                 {'uid': '111', 'timestamp': int(time.time())}),
@@ -197,15 +197,15 @@ class TestFreqStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'命中')
+        self.assertEquals(resp_dict['data'], u'Hit')
 
-        # 不命中
+        # Missed
         data['history_data'] = ''
         response = self.client.post(reverse(self.test_uri), data=data)
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'不命中')
+        self.assertEquals(resp_dict['data'], u'Missed')
 
 
 class TestUserStrategyView(BaseTestCase, TestStrategyViewMinix):
@@ -216,7 +216,7 @@ class TestUserStrategyView(BaseTestCase, TestStrategyViewMinix):
     test_uri = 'strategy:user_strategy_test'
 
     def _test_create(self):
-        # 同uid下在...天内限1个
+        # With the uid under... 1 within days
         source_key = create_data_source()
         data = {
             'strategy_source': source_key,
@@ -242,7 +242,7 @@ class TestUserStrategyView(BaseTestCase, TestStrategyViewMinix):
         }
             for _ in range(4)]
 
-        # 命中
+        # Hit
         data = {
             'req_body': json.dumps(
                 {'uid': '111', 'user_id': '222',
@@ -254,13 +254,13 @@ class TestUserStrategyView(BaseTestCase, TestStrategyViewMinix):
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'命中')
+        self.assertEquals(resp_dict['data'], u'Hit')
 
-        # 不命中
+        # Missed
         data['history_data'] = ''
 
         response = self.client.post(reverse(self.test_uri), data=data)
         self.assertEquals(response.status_code, 200)
         resp_dict = json.loads(response.content)
         self.assertIs(resp_dict['state'], True)
-        self.assertEquals(resp_dict['data'], u'不命中')
+        self.assertEquals(resp_dict['data'], u'Missed')

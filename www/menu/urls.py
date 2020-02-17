@@ -6,9 +6,9 @@ from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
-from ..menu.views import (UseridListView, MenuCreateView, MenuDestroyView, IpListView,
-                        UidListView, PayListView, PhoneListView,
-                        EventListView, EventCreateView, EventDestroyView)
+from www.menu.views import (UseridListView, MenuCreateView, MenuDestroyView, IpListView,
+                          UidListView, PayListView, PhoneListView,
+                          EventListView, EventCreateView, EventDestroyView)
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url=reverse_lazy("menus:event_list"), permanent=True), name="menu_index"),

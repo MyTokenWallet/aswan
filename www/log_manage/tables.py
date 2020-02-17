@@ -8,9 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 from django_tables2 import tables, columns
 
 from risk_models.rule import Rules
-from ..permissions.permission import (UserPermission, GroupPermission,
-                                    UriGroupPermission)
-from ..rule.forms import CONTROL_MAP
+from www.permissions.permission import (UserPermission, GroupPermission,
+                                      UriGroupPermission)
+from www.rule.forms import CONTROL_MAP
 
 
 class HitLogDetailTable(tables.Table):
@@ -51,7 +51,7 @@ class AuditLogTable(tables.Table):
                           orderable=False)
     path = columns.Column(verbose_name=_(u"Request address"), orderable=False)
     Confirm = columns.Column(verbose_name=_(u"ActionType"), empty_values=(),
-                               orderable=False)
+                             orderable=False)
     method = columns.Column(verbose_name=_(u"How to request"), orderable=False)
     status = columns.Column(verbose_name=_(u"Response_Code"), orderable=False)
     req_body = columns.TemplateColumn("""

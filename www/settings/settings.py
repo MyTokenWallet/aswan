@@ -2,6 +2,26 @@
 import os
 import environ
 import importlib
+# from config import BASE_DIR
+from django.utils.translation import ugettext_lazy as _
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware,'
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'permissions.middleware.PermissionsMiddleware',
+    'permissions.middleware.UserAuditMiddleware'
+)
+LANGUAGES = (
+    ('en', _('English')),
+    ('zh', _('Chinese')),
+)
 
 p = environ.Path(__file__) - 2
 env = environ.Env()
@@ -14,6 +34,22 @@ def root(*paths, **kwargs):
         os.makedirs(path)
     return path
 
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+LANGUAGE_CODE = 'en'
+TIME_ZONE = 'America/Los_Angeles'
+
+# LANGUAGE_CODE = 'zh-hans'
+# TIME_ZONE = 'Asia/Shanghai'
 
 PROJECT_DIR = root()
 
@@ -49,18 +85,8 @@ INSTALLED_APPS = (
     'log_manage',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'permissions.middleware.PermissionsMiddleware',
-    'permissions.middleware.UserAuditMiddleware'
-)
+# https://docs.djangoproject.com/en/3.0/topics/i18n/translation/#how-django-discovers-language-preference
+
 
 ROOT_URLCONF = 'urls'
 
@@ -85,15 +111,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
-LANGUAGE_CODE = 'en'
-TIME_ZONE = 'America/Los_Angeles'
-
-# LANGUAGE_CODE = 'zh-hans'
-# TIME_ZONE = 'Asia/Shanghai'
-
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -109,9 +126,7 @@ MEDIA_ROOT = root('media')
 
 STATIC_ROOT = root('site-static')
 
-STATICFILES_DIRS = (
-    root('static'),
-)
+STATICFILES_DIRS = (root('static'),)
 
 # Policy signature key
 STRATEGY_SIGN_KEY = 'strategy_sign'

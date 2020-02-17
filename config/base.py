@@ -8,6 +8,9 @@ import os
 # Log output directory
 LOG_HOME = './output'
 
+# www Home
+BASE_DIR = './www'
+
 # Hit log queue name
 HIT_LOG_QUEUE_NAME = 'hit_log_queue'
 

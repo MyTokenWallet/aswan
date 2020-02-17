@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from ..core.utils import get_sample_str
+from www.core.utils import get_sample_str
 
-from ..strategy.forms import (MenuStrategyForm, BoolStrategyForm,
-                            UserStrategyForm, FreqStrategyForm)
+from www.strategy.forms import (MenuStrategyForm, BoolStrategyForm,
+                              UserStrategyForm, FreqStrategyForm)
 
 
 def _create_new_strategy(form_cls, strategy_conf):

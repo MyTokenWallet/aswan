@@ -6,8 +6,8 @@ from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 from django.contrib.auth.decorators import login_required
 
-from ..risk_auth.views import Home
-from ..risk_auth.views import risk_login, risk_logout
+from www.risk_auth.views import Home
+from www.risk_auth.views import risk_login, risk_logout
 
 urlpatterns = [
     url(r'^$', login_required(Home.as_view()), name='home'),

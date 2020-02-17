@@ -7,9 +7,9 @@ from datetime import datetime, timedelta
 
 from django.urls import reverse
 
-from ..core.testcase import BaseTestCase
-from ..core.utils import get_sample_str
-from ..log_manage.init_data import create_hit_table
+from www.core.testcase import BaseTestCase
+from www.core.utils import get_sample_str
+from www.log_manage.init_data import create_hit_table
 
 
 class TestHitListDetailCase(BaseTestCase):

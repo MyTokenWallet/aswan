@@ -10,9 +10,9 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from builtin_funcs import BuiltInFuncs
-from ..core.redis_client import get_redis_client
-from ..core.forms import BaseForm, BaseFilterForm
-from ..core.pymongo_client import get_mongo_client
+from www.core.redis_client import get_redis_client
+from www.core.forms import BaseForm, BaseFilterForm
+from www.core.pymongo_client import get_mongo_client
 
 OP_CHOICES = (
     ('is', u'Yes (use, already)'),
@@ -286,7 +286,8 @@ class UserStrategyForm(BaseForm):
             strategy_day = int(strategy_day)
             assert strategy_day >= 0
         except(ValueError, AssertionError):
-            raise forms.ValidationError(u"The argument is not legal, please enter an integer greater than or equal to 0")
+            raise forms.ValidationError(
+                u"The argument is not legal, please enter an integer greater than or equal to 0")
         return strategy_day
 
     def clean(self):

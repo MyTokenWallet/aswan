@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf8
 
-from ..core.testcase import BaseTestCase
+from www.core.testcase import BaseTestCase
 
 from django.urls import reverse
 

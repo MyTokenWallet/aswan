@@ -5,7 +5,7 @@ from django.conf.urls import url
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
-from ..strategy.views import (
+from www.strategy.views import (
     BoolStrategyListView, BoolStrategyCreateView, BoolStrategyDestroyView,
     BoolStrategyTestView, BoolStrategyDataView,
     FreqStrategyListView, FreqStrategyCreateView, FreqStrategyDestroyView,

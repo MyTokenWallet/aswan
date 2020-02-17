@@ -71,6 +71,7 @@
 
         {% block pagination.cardinality %}
         {% for page in pages %}
+
         {% if page %}
         {% ifequal page page_obj.number %}
         <span class="current page">{{ page }}</span>
@@ -80,14 +81,18 @@
         {% else %}
         ...
         {% endif %}
+
         {% endfor %}
         {% endblock pagination.cardinality %}
 
         {% block pagination.next %}
+
         {% if page_obj.has_next %}
-        <a href="{% querystring table.prefixed_page_field=page_obj.next_page_number %}" class="next">{% trans 'Next' %}{{
-            next_link_decorator|safe }}</a>
+        <a href="{% querystring table.prefixed_page_field=page_obj.next_page_number %}" class="next">
+            {% trans 'Next' %}
+            {{next_link_decorator|safe }}</a>
         {% endif %}
+
         {% endblock pagination.next %}
     </div>
 </div>

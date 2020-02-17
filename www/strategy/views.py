@@ -9,19 +9,19 @@ from django.conf import settings
 from django.views.generic import TemplateView, View
 from braces.views import JSONResponseMixin
 
-from ..core.generic import ListView
-from ..core.utils import errors_to_dict
-from ..strategy.tables import (
+from www.core.generic import ListView
+from www.core.utils import errors_to_dict
+from www.strategy.tables import (
     BoolStrategyTable, FreqStrategyTable, MenuStrategyTable, UserStrategyTable,
 )
-from ..strategy.forms import (
+from www.strategy.forms import (
     BoolStrategyForm, BoolStrategyTestForm, FreqStrategyForm,
     FreqStrategyTestForm, MenuStrategyForm, MenuStrategyTestForm,
     UserStrategyForm, UserStrategyTestForm,
     FREQ_STRATEGY_UNIQ_SET_KEYS, USER_STRATEGY_UNIQ_SET_KEYS,
     StrategyFilterForm
 )
-from ..core.redis_client import get_redis_client
+from www.core.redis_client import get_redis_client
 from builtin_funcs import BuiltInFuncs
 from risk_models.strategy import (BoolStrategy, MenuStrategy, UserStrategy,
                                   FreqStrategy)

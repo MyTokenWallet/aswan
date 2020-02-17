@@ -3,14 +3,14 @@
 
 import json
 import logging
-from ..core.lru import LRUCacheDict
+from www.core.lru import LRUCacheDict
 
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 
-from ..log_manage.signals import user_visit
-from ..permissions.permission import UserPermission, DBError
+from www.log_manage.signals import user_visit
+from www.permissions.permission import UserPermission, DBError
 
 LOGGER = logging.getLogger(__name__)
 

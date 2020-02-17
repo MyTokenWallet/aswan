@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+{% load i18n %}
 {% url 'home' as home_page %}
 
 {% url 'permissions:index' as permissions_index %}
@@ -47,7 +47,7 @@
                     <span>
                         <a href="{{ home_page }}"><center><img alt="image" height="64px" width="175px"
                                                                src="{% static 'img/icon.png' %}"/></center>
-                        <center><h3>风控系统</h3></center></a>
+                        <center><h3>{% trans "Wind control system." %}</h3></center></a>
                     </span>
                 <br>
                 <span>
@@ -58,141 +58,141 @@
                     </span>
                 <span>
                     <a href="{% url 'risk_auth:risk_logout' %}" style="margin-left: 10px">
-                         退出
+                        {% trans "Exit" %}
                     </a>
                     </span>
             </li>
 
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">名单管理</span>
+                    <span class="nav-label">{% trans "List management" %}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if menu_event_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_event_list }}">List item management</a>
+                        <a href="{{ menu_event_list }}">{% trans "List item management" %}</a>
                     </li>
                     {% endif %}
                     {% if menu_userid_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_userid_list }}">User ID management</a>
+                        <a href="{{ menu_userid_list }}">{% trans "User ID management" %}</a>
                     </li>
                     {% endif %}
                     {% if menu_ip_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_ip_list }}">IP Address management</a>
+                        <a href="{{ menu_ip_list }}">{% trans "IP Address management" %}</a>
                     </li>
                     {% endif %}
                     {% if menu_uid_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_uid_list }}">Device number management</a>
+                        <a href="{{ menu_uid_list }}">{% trans "Device number management" %}</a>
                     </li>
                     {% endif %}
                     {% if menu_pay_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_pay_list }}">Payment account management</a>
+                        <a href="{{ menu_pay_list }}">{% trans "Payment account management" %}</a>
                     </li>
                     {% endif %}
                     {% if menu_phone_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_phone_list }}">Phone number management</a>
+                        <a href="{{ menu_phone_list }}">{% trans "Phone number management" %}</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">Strategic Atomic Management</span>
+                    <span class="nav-label">{% trans "Strategic Atomic Management" %}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
 
                     {% if menu_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ menu_strategy_url }}">List policy configuration</a>
+                        <a href="{{ menu_strategy_url }}">{% trans "List policy configuration" %}</a>
                     </li>
                     {% endif %}
                     {% if bool_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ bool_strategy_url }}">Boolean policy configuration</a>
+                        <a href="{{ bool_strategy_url }}">{% trans "Boolean policy configuration" %}</a>
                     </li>
                     {% endif %}
                     {% if freq_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ freq_strategy_url }}">Period frequency control strategy configuration</a>
+                        <a href="{{ freq_strategy_url }}">{% trans "Period frequency control strategy configuration" %}</a>
                     </li>
                     {% endif %}
                     {% if user_strategy_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ user_strategy_url }}">User-limited policy configuration</a>
+                        <a href="{{ user_strategy_url }}">{% trans "User-limited policy configuration" %}</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">Rule management</span>
+                    <span class="nav-label">{% trans "Rule management" %}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if rule_list_url in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ rule_list_url }}">Rule configuration</a>
+                        <a href="{{ rule_list_url }}">{% trans "Rule configuration" %}</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">Log management</span>
+                    <span class="nav-label">{% trans "Log management" %}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if hit_list_detail in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ hit_list_detail }}">Block log details</a>
+                        <a href="{{ hit_list_detail }}">{% trans "Block log details" %}</a>
                     </li>
                     {% endif %}
                     {% if audit_logs in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ audit_logs }}">Access log details</a>
+                        <a href="{{ audit_logs }}">{% trans "Access log details" %}</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">authority management</span>
+                    <span class="nav-label">{% trans "Authority management" %}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if permissions_users in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ permissions_users }}">User</a>
+                        <a href="{{ permissions_users }}">{% trans "User" %}</a>
                     </li>
                     {% endif %}
                     {% if permissions_groups in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ permissions_groups }}">Group</a>
+                        <a href="{{ permissions_groups }}">{% trans "Group" %}</a>
                     </li>
                     {% endif %}
                     {% if permissions_uri_groups in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ permissions_uri_groups }}">Authority</a>
+                        <a href="{{ permissions_uri_groups }}">{% trans "Authority" %}</a>
                     </li>
                     {% endif %}
                 </ul>
             </li>
             <li class="siderbar">
                 <a href="#">
-                    <span class="nav-label">Background Configuration</span>
+                    <span class="nav-label">{% trans "Background Configuration" %}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav extra-nav-level-2">
                     {% if source_list in project_perms %}
                     <li class="siderbar">
-                        <a href="{{ source_list }}">Data Source Configuration</a>
+                        <a href="{{ source_list }}">{% trans "Data Source Configuration" %}</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -203,7 +203,7 @@
 
 <script>
     $(function () {
-        // 动作菜单 -- 导航菜单 对应关系
+        // Action Menus -- Navigation Menu's Correspondence
         var actionPages = {
             '/permissions/user/update/': "/permissions/users/",
             '/permissions/group/create/': "/permissions/groups/",
@@ -230,17 +230,17 @@
             '/rule/edit/': "/rule/list/",
             '/rule/test/': "/rule/list/",
         };
-        // 定义当前导航菜单
+        // Define the current navigation menu
         var currentPath = actionPages[window.location.pathname] ? actionPages[window.location.pathname] : window.location.pathname;
-        // 选择当前导航a标签
+        // Select the current navigation a label
         var selector = 'a[href="' + currentPath + '"]';
         var currentNav = $(selector);
-        // 控制父级菜单高亮
+        // Control Parent Menu Highlight
         currentNav.parents('li.siderbar').addClass('active');
-        // 控制父级菜单展开
+        // Control parent menu expansion
         currentNav.parents('ul.nav').addClass('collapse in');
 
-        // 控制无子菜单的一二级菜单的显隐
+        // Controls the appearance of a one-two-level menu without a submenu
         $("ul:not(:has(li))").parent().addClass('hide');
     });
 

@@ -37,9 +37,10 @@
 <tr>
     <td colspan="{{ table.columns|length }}">
         <input type="checkbox" id="checkall-bottom" class="check-all" name="checkall"/>
-        <label for="checkall-bottom">{% trans "全选" %}</label>
-        <a id="batchDelete" class="btn btn-primary" style="padding: 4px 8px;" data-uri="{{ batch_delete_uri }}">{% trans
-            "delete" %}</a>
+        <label for="checkall-bottom">
+            {% trans "Full selection" %}</label>
+        <a id="batchDelete" class="btn btn-primary" style="padding: 4px 8px;" data-uri="{{ batch_delete_uri }}">
+            {% trans "delete" %}</a>
     </td>
 </tr>
 </tfoot>
@@ -49,10 +50,12 @@
 <tr>
     <td colspan="{{ table.columns|length }}">
         <input type="checkbox" id="checkall-bottom2" class="check-all" name="checkall"/>
-        <label for="checkall-bottom">{% trans "全选" %}</label>
-        <a id="batchEdit" class="btn btn-primary" style="padding: 4px 8px;">{% trans "批量编辑" %}</a>
+        <label for="checkall-bottom">{% trans "Full selection" %}</label>
+        <a id="batchEdit" class="btn btn-primary" style="padding: 4px 8px;">
+            {% trans "Bulk editing" %}</a>
         <a id="batchEditSave" class="btn btn-primary" disabled="disabled" style="padding: 4px 8px;"
-           data-uri="{{ batch_edit_uri }}">{% trans "Save" %}</a>
+           data-uri="{{ batch_edit_uri }}">
+            {% trans "Save" %}</a>
     </td>
 </tr>
 </tfoot>
