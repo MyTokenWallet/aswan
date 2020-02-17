@@ -19,20 +19,20 @@
             }).get();
             if (!idList.length) {
                 swal({
-                    title: "Please select the data to delete",
+                    title: gettext("Please select the data to delete"),
                     type: "warning",
                     confirmButtonColor: "#1ab394"
                 });
                 return false
             }
             swal({
-                title: "Are you sure you want to delete it",
+                title: gettext("Are you sure you want to delete it"),
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
                 confirmButtonColor: "#ff6700",
-                confirmButtonText: "delete",
-                cancelButtonText: "cancel",
+                confirmButtonText: gettext("delete"),
+                cancelButtonText: gettext("cancel"),
                 closeOnConfirm: false
             }, function () {
                 $.ajax({
@@ -57,7 +57,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "Oops, something went wrong",
+                                title: gettext("Oops, something went wrong"),
                                 type: "error",
                                 confirmButtonColor: "#1ab394"
                             });

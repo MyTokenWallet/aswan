@@ -71,10 +71,10 @@ class MenuCreateForm(BaseForm):
     value = forms.CharField(widget=forms.Textarea(
         attrs={"placeholder": "UserID[When adding in bulk, separate it by enter key]", "rows": "5"}))
     dimension = forms.CharField(required=False, widget=forms.HiddenInput,
-                                label=_(u'List dimensions'))
-    menu_type = forms.ChoiceField(label=_(u"ListType"),
+                                label=_('List dimensions'))
+    menu_type = forms.ChoiceField(label=_("ListType"),
                                   choices=MENU_TYPE_CHOICES_ADD_CHOICES)
-    event_code = forms.ChoiceField(label=_(u"Project"))
+    event_code = forms.ChoiceField(label=_("Project"))
     end_time = forms.DateTimeField(widget=forms.TextInput(
         attrs={"placeholder": "EndTime", "class": "form-control datetime"}))
     menu_desc = forms.CharField(required=False, widget=forms.Textarea(
@@ -107,7 +107,7 @@ class MenuCreateForm(BaseForm):
     def clean_end_time(self):
         end_time = self.cleaned_data['end_time']
         if end_time <= timezone.now():
-            raise forms.ValidationError(_(u"The EndTime should be greater than the current time"))
+            raise forms.ValidationError(_("The EndTime should be greater than the current time"))
         return end_time
 
     def _check_regex(self, values, regex):
@@ -186,9 +186,9 @@ class MenuCreateForm(BaseForm):
 
 
 class MenuFilterForm(BaseFilterForm):
-    filter_event_code = forms.ChoiceField(label=_(u"Project type"), required=False)
-    filter_menu_type = forms.ChoiceField(label=_(u"ListType"), choices=MENU_TYPE_CHOICES, required=False)
-    filter_value = forms.CharField(label=_(u"Value"), required=False)
+    filter_event_code = forms.ChoiceField(label=_("Project type"), required=False)
+    filter_menu_type = forms.ChoiceField(label=_("ListType"), choices=MENU_TYPE_CHOICES, required=False)
+    filter_value = forms.CharField(label=_("Value"), required=False)
     filter_menu_status = forms.ChoiceField(choices=MENU_STATUS_CHOICES, required=False)
 
     def __init__(self, *args, **kwargs):

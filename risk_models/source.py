@@ -157,7 +157,7 @@ class UserSource(Source):
     prefix = 'user_strategy:*'
 
     def get_member(self, data):
-        return u'{}:{}'.format(data['user_id'], int(time.time() * 1000))
+        return _('{}:{}').format(data['user_id'], int(time.time() * 1000))
 
     def check_member(self, data):
         return 'user_id' in data and isinstance(data['user_id'], str)

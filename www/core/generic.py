@@ -2,7 +2,7 @@
 # coding: utf-8
 
 from math import ceil
-
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django_tables2 import SingleTableView, RequestConfig
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -20,9 +20,9 @@ class PaginatorClass(Paginator):
         try:
             number = int(number)
         except (TypeError, ValueError):
-            raise PageNotAnInteger('That page number is not an integer')
+            raise PageNotAnInteger(_('That page number is not an integer'))
         if number < 1:
-            raise EmptyPage('That page number is less than 1')
+            raise EmptyPage(_('That page number is less than 1'))
         if number > self.num_pages:
             if number == 1 and self.allow_empty_first_page:
                 pass
@@ -32,15 +32,15 @@ class PaginatorClass(Paginator):
 
 
 class PagedFilterTableView(SingleTableView):
-    empty_text = u"暂无数据"
+    empty_text = _("No data at this time")
     enable_page_size_config = None
     collection_name = None
     paginate_by = 50
     paginator_class = PaginatorClass
 
     def get_queryset(self):
-        """子类重写获取数据源方法"""
-        raise Exception("subclass must overwrite get_queryset method")
+        """Subclass Override Gets Data Source Method"""
+        raise Exception(_("subclass must overwrite get_queryset method"))
 
     def get_table(self, **kwargs):
         paginate_data = {
@@ -53,7 +53,7 @@ class PagedFilterTableView(SingleTableView):
 
     def get_qs_count(self):
         if self.collection_name:
-            raise Exception("please overwrite get_qs_count method")
+            raise Exception(_("please overwrite get_qs_count method"))
         return len(self.object_list)
 
     def _get_page_count(self):
@@ -98,23 +98,23 @@ class PagedFilterTableView(SingleTableView):
         return context
 
     def get_page_values(self):
-        """分页配置"""
+        """Paging configuration"""
         defaults = ['50', '100', '200', '500', '1000']
         return defaults
 
     def get_paginate_by(self, queryset):
-        """获取分页参数"""
+        """Get paginated parameters"""
         if self.enable_page_size_config:
             paginate_by = self.request.GET.get('page_size') or self.paginate_by
             self.paginate_by = int(paginate_by)
         return self.paginate_by
 
     def get_filter_form(self):
-        """重载该方法返回返回搜索表单对象(django.forms.Form或其子类)"""
-        raise Exception("subclass must overwrite get_filter_form method")
+        """Overloading the method returns a search form object (django.forms.form or its subclasses)"""
+        raise Exception(_("subclass must overwrite get_filter_form method"))
 
     def get_empty_text(self):
-        """重载该方法替换空数据时的文字提示"""
+        """Text prompt when overloading this method to replace empty data"""
         return self.empty_text
 
 

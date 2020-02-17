@@ -14,22 +14,22 @@ from risk_models.rule import Rules
 logger = logging.getLogger(__name__)
 
 CONTROL_CHOICES = (
-    (u'all', u"Select Project"),
-    ('pass', u"pass"),
-    ('deny', u"deny"),
-    ('log', u"log"),
-    ('message', u"SMS verification"),
-    ('picture', u"Picture verification"),
-    ('number', u"Digital verification"),
-    ('verify', u"Review")
+    (_('all'), _("Select Project")),
+    ('pass', _("pass")),
+    ('deny', _("deny")),
+    ('log', _("log")),
+    ('message', _("SMS verification")),
+    ('picture', _("Picture verification")),
+    ('number', _("Digital verification")),
+    ('verify', _("Review"))
 )
 
 
 class HitLogFilterForm(BaseFilterForm):
     start_day = forms.CharField(required=False)
     end_day = forms.CharField(required=False)
-    rule_id = forms.ChoiceField(label=_(u"RuleName"), required=False)
-    strategy_group = forms.ChoiceField(label=_(u"PolicyGroupName"), required=False)
+    rule_id = forms.ChoiceField(label=_("RuleName"), required=False)
+    strategy_group = forms.ChoiceField(label=_("PolicyGroupName"), required=False)
 
     def __init__(self, *args, **kwargs):
         super(HitLogFilterForm, self).__init__(*args, **kwargs)
@@ -37,20 +37,20 @@ class HitLogFilterForm(BaseFilterForm):
         seven_day_before = (datetime.today() - timedelta(days=7)).strftime(
             '%Y/%m/%d')
         self.fields['start_day'].widget.attrs[
-            'placeholder'] = u'Start date:{}'.format(seven_day_before)
-        self.fields['end_day'].widget.attrs['placeholder'] = u'Deadline:{}'.format(
+            'placeholder'] = _('Start') + 'date:{}'.format(seven_day_before)
+        self.fields['end_day'].widget.attrs['placeholder'] = _('Deadline:{}').format(
             today)
         self.fields['strategy_group'].choices = self._get_all_strategy_groups()
         self.fields['rule_id'].choices = self._get_all_rule_id_and_names()
 
     def _get_all_strategy_groups(self):
         strategy_names = Rules(load_all=True).get_all_group_uuid_and_name()
-        strategy_names.insert(0, ('', u'All_Policy_Group'))
+        strategy_names.insert(0, ('', _('All_Policy_Group')))
         return strategy_names
 
     def _get_all_rule_id_and_names(self):
         rule_id_and_names = Rules(load_all=True).get_all_rule_id_and_name()
-        rule_id_and_names.insert(0, ('', u'All_Rules'))
+        rule_id_and_names.insert(0, ('', _('All_Rules')))
         return rule_id_and_names
 
     def clean_strategy_group(self):
@@ -87,17 +87,17 @@ class HitLogFilterForm(BaseFilterForm):
 
 class HitLogDetailFilterForm(HitLogFilterForm):
     #  required set to false to ensure that the initial open page does not prompt for an error
-    control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_(u"Projectmanagement"),
+    control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_("Projectmanagement"),
                                 required=False)
-    user_id = forms.CharField(label=_(u"UserID"), required=False)
+    user_id = forms.CharField(label=_("UserID"), required=False)
 
     def __init__(self, *args, **kwargs):
         super(HitLogDetailFilterForm, self).__init__(*args, **kwargs)
 
 
 class AuditLogForm(forms.ModelForm, BaseFilterForm):
-    time__gt = forms.DateTimeField(label=_(u"StartTime"), required=False)
-    time__lt = forms.DateTimeField(label=_(u"EndTime"), required=False)
+    time__gt = forms.DateTimeField(label=_("StartTime"), required=False)
+    time__lt = forms.DateTimeField(label=_("EndTime"), required=False)
 
     class Meta:
         model = AuditLogModel

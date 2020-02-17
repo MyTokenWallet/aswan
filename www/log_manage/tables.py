@@ -14,13 +14,13 @@ from www.rule.forms import CONTROL_MAP
 
 
 class HitLogDetailTable(tables.Table):
-    time = columns.Column(verbose_name=_(u'Touch time'))
-    rule_id = columns.Column(verbose_name=_(u'RuleName'), orderable=False)
-    group_name = columns.Column(verbose_name=_(u'PolicyGroupNameCall'), orderable=False)
-    user_id = columns.Column(verbose_name=_(u'UserID'), orderable=False)
-    control = columns.Column(verbose_name=_(u'Projectmanagement'), orderable=False)
-    req_body = columns.Column(verbose_name=_(u'RequestBody'), orderable=False)
-    hit_number = columns.Column(verbose_name=_(u'Whether to hit for the first time'), orderable=False)
+    time = columns.Column(verbose_name=_('Touch time'))
+    rule_id = columns.Column(verbose_name=_('RuleName'), orderable=False)
+    group_name = columns.Column(verbose_name=_('PolicyGroupNameCall'), orderable=False)
+    user_id = columns.Column(verbose_name=_('UserID'), orderable=False)
+    control = columns.Column(verbose_name=_('Projectmanagement'), orderable=False)
+    req_body = columns.Column(verbose_name=_('RequestBody'), orderable=False)
+    hit_number = columns.Column(verbose_name=_('Whether to hit for the first time'), orderable=False)
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -38,22 +38,22 @@ class HitLogDetailTable(tables.Table):
         return CONTROL_MAP.get(value, value)
 
     def render_hit_number(self, value):
-        return u'-' if value == 0 else u'是' if value == 1 else u'否'
+        return u'-' if value == 0 else _('is') if value == 1 else _('Whether')
 
     def render_passed_users(self, value):
         return u'-' if value == 0 else value
 
 
 class AuditLogTable(tables.Table):
-    username = columns.Column(verbose_name=_(u"Username"), orderable=False)
-    email = columns.Column(verbose_name=_(u"Mailbox"), orderable=False)
-    role = columns.Column(verbose_name=_(u"Role"), empty_values=(),
+    username = columns.Column(verbose_name=_("Username"), orderable=False)
+    email = columns.Column(verbose_name=_("Mailbox"), orderable=False)
+    role = columns.Column(verbose_name=_("Role"), empty_values=(),
                           orderable=False)
-    path = columns.Column(verbose_name=_(u"Request address"), orderable=False)
-    Confirm = columns.Column(verbose_name=_(u"ActionType"), empty_values=(),
+    path = columns.Column(verbose_name=_("Request address"), orderable=False)
+    Confirm = columns.Column(verbose_name=_("ActionType"), empty_values=(),
                              orderable=False)
-    method = columns.Column(verbose_name=_(u"How to request"), orderable=False)
-    status = columns.Column(verbose_name=_(u"Response_Code"), orderable=False)
+    method = columns.Column(verbose_name=_("How to request"), orderable=False)
+    status = columns.Column(verbose_name=_("Response_Code"), orderable=False)
     req_body = columns.TemplateColumn("""
     <div style="max-width: 600px;">
         {% if record.req_body|length > 128 %}
@@ -79,8 +79,8 @@ class AuditLogTable(tables.Table):
             {{ record.req_body }}
         {% endif %}
     </div>
-    """, orderable=False, verbose_name=_(u"Request_Parameter"))
-    time = columns.DateTimeColumn(verbose_name=_(u"Request time"),
+    """, orderable=False, verbose_name=_("Request_Parameter"))
+    time = columns.DateTimeColumn(verbose_name=_("Request time"),
                                   format="Y-m-d H:i:s")
 
     class Meta:
@@ -113,14 +113,14 @@ class AuditLogTable(tables.Table):
             rw = None
             r = None
             for desc in descs:
-                if desc.endswith(u'-Write'):
+                if desc.endswith(_('-Write')):
                     rw = desc
-                if desc.endswith(u'-Read'):
+                if desc.endswith(_('-Read')):
                     r = desc
             if rw and r:
                 uri_desc_map[uri] = r
             elif rw and not r:
-                uri_desc_map[uri] = rw.rstrip(u'-Write') + u'-Write'
+                uri_desc_map[uri] = rw.rstrip(_('-Write')) + _('-Write')
             else:
                 uri_desc_map[uri] = descs[0]
 
@@ -129,10 +129,10 @@ class AuditLogTable(tables.Table):
     def render_role(self, value, record):
         user = self.pk_user_map.get(record.email)
         if not user:
-            return u'Unknown'
+            return _('Unknown')
 
         if user.get('is_superuser'):
-            return u'Super_Administrator'
+            return _('Super_Administrator')
 
         groups = user.get('groups', [])
         descs = [self.group_name_desc_map.get(name, '') for name in groups]

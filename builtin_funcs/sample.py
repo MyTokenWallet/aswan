@@ -5,7 +5,7 @@ from builtin_funcs import BuiltInFuncs
 from django.utils.translation import gettext_lazy as _
 
 
-@BuiltInFuncs.register(desc=u'Abnormal User',
+@BuiltInFuncs.register(desc=_('Abnormal User'),
                        args_type_tuple=(('user_id', str),),
                        supported_ops=('is', 'is_not'))
 def is_abnormal(req_body):
@@ -24,9 +24,9 @@ def is_abnormal(req_body):
         return False
 
 
-@BuiltInFuncs.register(desc=u'Number of historical logins',
+@BuiltInFuncs.register(desc=_('Number of historical logins'),
                        args_type_tuple=(('user_id', str),),
-                       supported_ops=_('gt', 'ge', 'lt', 'le', 'eq', 'neq'),
+                       supported_ops=_(_('gt'), _('ge'), _('lt'), _('le'), _('eq'), _('neq')),
                        threshold_trans_func=int
                        )
 def user_login_count(req_body):

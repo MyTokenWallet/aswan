@@ -10,10 +10,10 @@ from www.menu.forms import MENU_TYPE_NAME_MAP
 
 
 class EventTable(tables.Table):
-    event_name = columns.Column(verbose_name=_(u"Project name"))
+    event_name = columns.Column(verbose_name=_("Project name"))
     action = columns.TemplateColumn("""
     <a class="event-destroy" data-uri="{% url 'menus:event_destroy' %}" data-id="{{ record.event_code }}">delete</a>
-    """, orderable=False, verbose_name=_(u"action"))
+    """, orderable=False, verbose_name=_("action"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
@@ -24,14 +24,14 @@ class BaseMenuTable(tables.Table):
         {% load reverse_tags %}
         <input class="menu-item" data-id="{{ record|mongo_id }}" type="checkbox" />
         """, orderable=False, verbose_name="")
-    value = columns.Column(verbose_name=_(u"Value"))
-    event_code = columns.Column(verbose_name=_(u"Project"))
-    menu_type = columns.Column(verbose_name=_(u"ListType"))
-    menu_status = columns.Column(verbose_name=_(u"Status"))
-    menu_desc = TruncateColumn(verbose_name=_(u"Note"))
-    end_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"EndTime"))
-    create_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_(u"UpdateTime"))
-    creator = columns.Column(verbose_name=_(u"Operator"))
+    value = columns.Column(verbose_name=_("Value"))
+    event_code = columns.Column(verbose_name=_("Project"))
+    menu_type = columns.Column(verbose_name=_("ListType"))
+    menu_status = columns.Column(verbose_name=_("Status"))
+    menu_desc = TruncateColumn(verbose_name=_("Note"))
+    end_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_("EndTime"))
+    create_time = columns.DateTimeColumn(format="Y-m-d H:i:s", verbose_name=_("UpdateTime"))
+    creator = columns.Column(verbose_name=_("Operator"))
 
     def __init__(self, *args, **kwargs):
         super(BaseMenuTable, self).__init__(*args, **kwargs)
@@ -49,35 +49,35 @@ class BaseMenuTable(tables.Table):
 
 
 class UseridTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"UserID"))
+    value = columns.Column(verbose_name=_("UserID"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class IPTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"IP_Address"))
+    value = columns.Column(verbose_name=_("IP_Address"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class UidTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"Device_ID"))
+    value = columns.Column(verbose_name=_("Device_ID"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class PayTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"Payment account number"))
+    value = columns.Column(verbose_name=_("Payment account number"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
 
 class PhoneTable(BaseMenuTable):
-    value = columns.Column(verbose_name=_(u"CellPhoneNumber"))
+    value = columns.Column(verbose_name=_("CellPhoneNumber"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}

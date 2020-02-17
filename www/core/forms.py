@@ -61,8 +61,8 @@ class BaseForm(FormBaseMixin, forms.Form):
     i18n_fields = []
 
     form_class = 'form-horizontal'
-    form_inputs = [Submit('submit', _(u'Save')),
-                   Reset('reset', _(u'Reset'))]
+    form_inputs = [Submit('submit', _('Save')),
+                   Reset('reset', _('Reset'))]
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -107,7 +107,7 @@ class BaseFilterForm(FormBaseMixin, forms.Form):
 
     def get_layout(self, helper):
         items = [Field(x, wrapper_class="form-group") for x in self.fields]
-        action = FormActions(Submit('submit', _(u'Submit')),
+        action = FormActions(Submit('submit', _('Submit')),
                              css_class="form-group")
         items.append(action)
         layout = Layout(*items)
@@ -115,8 +115,8 @@ class BaseFilterForm(FormBaseMixin, forms.Form):
 
 
 class BaseTimeFilterForm(forms.Form):
-    time_start = forms.CharField(label=_(u"StartTime"), required=False)
-    time_end = forms.CharField(label=_(u"EndTime"), required=False)
+    time_start = forms.CharField(label=_("StartTime"), required=False)
+    time_end = forms.CharField(label=_("EndTime"), required=False)
 
     left_sub_days = 3
 
@@ -125,8 +125,7 @@ class BaseTimeFilterForm(forms.Form):
         time_start = None
         if time_start_str:
             try:
-                time_start = datetime.strptime(time_start_str,
-                                               '%Y-%m-%d %H:%M')
+                time_start = datetime.strptime(time_start_str,'%Y-%m-%d %H:%M')
             except (ValueError, TypeError):
                 pass
         if not time_start:
@@ -138,8 +137,7 @@ class BaseTimeFilterForm(forms.Form):
         time_end = None
         if time_end_str:
             try:
-                time_end = datetime.strptime(time_end_str,
-                                             '%Y-%m-%d %H:%M')
+                time_end = datetime.strptime(time_end_str,'%Y-%m-%d %H:%M')
             except (ValueError, TypeError):
                 pass
         if not time_end:

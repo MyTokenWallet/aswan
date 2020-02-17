@@ -32,15 +32,15 @@ CONTROL_MAP = {
 
 
 class RulesForm(BaseForm):
-    title = forms.CharField(label=_(u"RuleName"))
-    describe = forms.CharField(required=False, label=_(u"Rule description"),
+    title = forms.CharField(label=_("RuleName"))
+    describe = forms.CharField(required=False, label=_("Rule description"),
                                widget=forms.Textarea)
-    status = forms.ChoiceField(label=_(u"Status"), choices=STATUS_CHOICES)
+    status = forms.ChoiceField(label=_("Status"), choices=STATUS_CHOICES)
     end_time = forms.DateTimeField()
     strategy = forms.ChoiceField(label=_("Policy"), required=False)
     control = forms.ChoiceField(label=_("Projectmanagement"), choices=CONTROL_CHOICES,
                                 required=False)
-    custom = forms.CharField(label=_(u"Customer service skills"), required=False,
+    custom = forms.CharField(label=_("Customer service skills"), required=False,
                              widget=forms.Textarea(
                                  attrs={'placeholder': u'Customer service skills',
                                         'data-autoresize': '',
@@ -65,7 +65,7 @@ class RulesForm(BaseForm):
     def clean_end_time(self):
         end_time = self.cleaned_data['end_time']
         if end_time <= timezone.now():
-            raise forms.ValidationError(_(u"The end time should be greater than the current time"))
+            raise forms.ValidationError(_("The end time should be greater than the current time"))
         return end_time
 
     def clean_weights(self):
@@ -73,7 +73,7 @@ class RulesForm(BaseForm):
         seps = weights.split(',')
         for num in seps:
             if not num.isdigit():
-                raise forms.ValidationError(_(u"Weight value is not a number"))
+                raise forms.ValidationError(_("Weight value is not a number"))
         return weights
 
     def _check_names(self, names, choices, sep=None):
@@ -136,8 +136,8 @@ class RulesForm(BaseForm):
 
 
 class RulesTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"RequestBody"))
-    rule = forms.ChoiceField(label=_(u"RuleName"), widget=forms.Select())
+    req_body = forms.CharField(widget=forms.Textarea, label=_("RequestBody"))
+    rule = forms.ChoiceField(label=_("RuleName"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(RulesTestForm, self).__init__(*args, **kwargs)
@@ -157,7 +157,7 @@ class RulesTestForm(BaseForm):
 
 
 class RulesFilterForm(BaseFilterForm):
-    status = forms.ChoiceField(label=_(u"Status"),
+    status = forms.ChoiceField(label=_("Status"),
                                choices=(('', 'All States'),) + STATUS_CHOICES,
                                required=False)
-    rule_name = forms.CharField(label=_(u"RuleName(Fuzzy queries)"), required=False)
+    rule_name = forms.CharField(label=_("RuleName(Fuzzy queries)"), required=False)

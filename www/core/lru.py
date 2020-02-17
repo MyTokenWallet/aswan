@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-from collections import OrderedDict
 import time
 import threading
 import weakref
+
+from collections import OrderedDict
+
 
 
 def lru_cache_function(max_size=1024, expiration=15 * 60):

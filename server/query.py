@@ -4,6 +4,7 @@
 from .base import Response
 from risk_models.exceptions import RuleNotExistsException
 from risk_models.rule import calculate_rule, Rules, AccessCount
+from django.utils.translation import gettext_lazy as _
 
 rules = Rules(auto_refresh=True)
 ac = AccessCount(auto_persist=True)
@@ -19,10 +20,10 @@ def query_handler(req_body):
         control, weight = calculate_rule(rule_id, req_body, rules=rules, ac=ac)
         result = {'control': control, 'weight': weight}
     except AssertionError:
-        error = 'must contain rule_id'
+        error = _('must contain rule_id')
         ec = 100
     except RuleNotExistsException:
-        error = 'rule_id does not exist or is offline'
+        error = _('rule_id does not exist or is offline')
         ec = 101
 
     return Response(result=result, error=error, ec=ec)

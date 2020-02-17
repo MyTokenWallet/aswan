@@ -27,7 +27,7 @@ ignore_post_args = {"csrfmiddlewaretoken"}
 
 @receiver(user_visit, sender=None)
 def record_access_log(request, response, **kwargs):
-    # 忽略访客请求
+    # Ignore guest requests
     if not request.user.pk:
         return
 
@@ -42,7 +42,7 @@ def record_access_log(request, response, **kwargs):
     else:
         ignore_args = default_ignore_args
 
-    # 此处收集all参数
+    # Collect all parameters here
     req_body = {}
     for req in (request.GET, request.POST):
         req_body.update({k: req[k] for k in req if

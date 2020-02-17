@@ -8,17 +8,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 21:22+0100\n"
+"POT-Creation-Date: 2020-02-18 00:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: FULL NAME <EMAIL@zwilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: www/bk_config/forms.py:68
+#: www/bk_config/forms.py:15
+msgid "Configure key [alphanumeric underline]"
+msgstr ""
+
+#: www/bk_config/forms.py:19
+msgid "Configuration name [Enter a description of]"
+msgstr ""
+
+#: www/bk_config/forms.py:37
+msgid "Incorrect input with some special characters"
+msgstr ""
+
+#: www/bk_config/forms.py:41
+msgid "The data source already exists"
+msgstr ""
+
+#: www/bk_config/forms.py:50
+msgid "Wrong input，json resolution failed"
+msgstr ""
+
+#: www/bk_config/forms.py:52
+msgid "This field is required"
+msgstr ""
+
+#: www/bk_config/forms.py:67
 msgid "Data source name"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:33
+msgid "Initial project"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:47
+msgid "User on the User blacklist for the initial project"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:51
+msgid "Initial blacklist policy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:52
+msgid "uid on the initial project"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:57
+msgid "Initial whitelisting strategy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:58
+msgid "IP on the IP Gray List for The Initial Project"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:62
+msgid "Initial Gray List Strategy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:65
+msgid "User is an exception ToUser"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:72
+msgid "User logins greater than 50"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:82
+msgid "Initial sample data source"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:86
+msgid "Same uid, 10 times in 24 hours(Initial sample data source)"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:92
+#: www/bk_config/management/commands/init_risk_data.py:99
+msgid "Initial time period frequency control strategy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:94
+msgid ""
+"10 User sons for the same device on the same day (Initial sample source)"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:106
+msgid "This User hit List strategy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:110
+msgid "This User hit Boolean strategy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:114
+msgid "This User hit Time-time frequency control strategy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:118
+msgid "This User hit User-limited number-based policy"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:121
+msgid "Initial rules"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:122
+msgid "Initial sample rule"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:122
+msgid "on"
+msgstr ""
+
+#: www/bk_config/management/commands/init_risk_data.py:122
+#: www/log_manage/tables.py:135
+msgid "Super_Administrator"
 msgstr ""
 
 #: www/bk_config/tables.py:9
@@ -40,6 +151,10 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
+#: www/bk_config/templates/config/source_list.html:8
+msgid "Data source list"
+msgstr ""
+
 #: www/bk_config/templates/config/source_list.html:37
 msgid "Add data source"
 msgstr ""
@@ -51,6 +166,34 @@ msgstr ""
 #: www/bk_config/templates/config/source_list.html:52 www/core/forms.py:64
 #: www/templates/table.html:57
 msgid "Save"
+msgstr ""
+
+#: www/bk_config/views.py:16
+msgid "Account_ID"
+msgstr ""
+
+#: www/bk_config/views.py:17 www/menu/tables.py:66
+msgid "Device_ID"
+msgstr ""
+
+#: www/bk_config/views.py:18
+msgid "Current_IP"
+msgstr ""
+
+#: www/bk_config/views.py:19 www/menu/tables.py:80
+msgid "CellPhoneNumber"
+msgstr ""
+
+#: www/bk_config/views.py:91
+msgid "name_key is required."
+msgstr ""
+
+#: www/bk_config/views.py:107
+msgid "[{}]Has been used, cannot delete"
+msgstr ""
+
+#: www/bk_config/views.py:112
+msgid "ok"
 msgstr ""
 
 #: www/core/forms.py:65
@@ -69,6 +212,70 @@ msgstr ""
 msgid "EndTime"
 msgstr ""
 
+#: www/core/generic.py:23
+msgid "That page number is not an integer"
+msgstr ""
+
+#: www/core/generic.py:25
+msgid "That page number is less than 1"
+msgstr ""
+
+#: www/core/generic.py:35
+msgid "No data at this time"
+msgstr ""
+
+#: www/core/generic.py:43
+msgid "subclass must overwrite get_queryset method"
+msgstr ""
+
+#: www/core/generic.py:56
+msgid "please overwrite get_qs_count method"
+msgstr ""
+
+#: www/core/generic.py:114
+msgid "subclass must overwrite get_filter_form method"
+msgstr ""
+
+#: www/core/testcase.py:35
+msgid "Note that this section can only be performed in a test environment"
+msgstr ""
+
+#: www/log_manage/forms.py:17
+msgid "all"
+msgstr ""
+
+#: www/log_manage/forms.py:17
+msgid "Select Project"
+msgstr ""
+
+#: www/log_manage/forms.py:18
+msgid "pass"
+msgstr ""
+
+#: www/log_manage/forms.py:19
+msgid "deny"
+msgstr ""
+
+#: www/log_manage/forms.py:20
+msgid "log"
+msgstr ""
+
+#: www/log_manage/forms.py:21
+msgid "SMS verification"
+msgstr ""
+
+#: www/log_manage/forms.py:22
+msgid "Picture verification"
+msgstr ""
+
+#: www/log_manage/forms.py:23
+msgid "Digital verification"
+msgstr ""
+
+#: www/log_manage/forms.py:24
+msgid "Review"
+msgstr ""
+
 #: www/log_manage/forms.py:31 www/log_manage/tables.py:18 www/rule/forms.py:35
 #: www/rule/forms.py:140 www/rule/tables.py:12
 msgid "RuleName"
@@ -78,13 +285,41 @@ msgstr ""
 msgid "PolicyGroupName"
 msgstr ""
 
-#: www/log_manage/forms.py:90 www/log_manage/models.py:54
+#: www/log_manage/forms.py:40
+msgid "Start"
+msgstr ""
+
+#: www/log_manage/forms.py:41
+msgid "Deadline:{}"
+msgstr ""
+
+#: www/log_manage/forms.py:48
+msgid "All_Policy_Group"
+msgstr ""
+
+#: www/log_manage/forms.py:53
+msgid "All_Rules"
+msgstr ""
+
+#: www/log_manage/forms.py:90 www/log_manage/models.py:53
 #: www/log_manage/tables.py:21 www/rule/forms.py:41
 msgid "Projectmanagement"
 msgstr ""
 
 #: www/log_manage/forms.py:92 www/log_manage/tables.py:20 www/menu/tables.py:52
 msgid "UserID"
+msgstr ""
+
+#: www/log_manage/management/commands/persistence_hit_log.py:80
+msgid "invalid msg:"
+msgstr ""
+
+#: www/log_manage/management/commands/persistence_hit_log.py:87
+msgid "persistence data error:"
+msgstr ""
+
+#: www/log_manage/management/commands/persistence_hit_log.py:113
+msgid "hit log persistence have error"
 msgstr ""
 
 #: www/log_manage/models.py:12 www/log_manage/tables.py:48
@@ -107,7 +342,7 @@ msgstr ""
 msgid "Request_Type"
 msgstr ""
 
-#: www/log_manage/models.py:21 www/log_manage/models.py:53
+#: www/log_manage/models.py:21 www/log_manage/models.py:52
 #: www/log_manage/tables.py:82
 msgid "Request_Parameter"
 msgstr ""
@@ -120,35 +355,35 @@ msgstr ""
 msgid "Audit log"
 msgstr ""
 
-#: www/log_manage/models.py:49
+#: www/log_manage/models.py:48
 msgid "Hit time"
 msgstr ""
 
-#: www/log_manage/models.py:50 www/rule/tables.py:11
+#: www/log_manage/models.py:49 www/rule/tables.py:11
 msgid "Rule ID"
 msgstr ""
 
-#: www/log_manage/models.py:51
+#: www/log_manage/models.py:50
 msgid "Hit User"
 msgstr ""
 
-#: www/log_manage/models.py:52
+#: www/log_manage/models.py:51
 msgid "Extended parameter"
 msgstr ""
 
-#: www/log_manage/models.py:55
+#: www/log_manage/models.py:54
 msgid "Strategy Group Explained"
 msgstr ""
 
-#: www/log_manage/models.py:57 www/log_manage/tables.py:19
+#: www/log_manage/models.py:56 www/log_manage/tables.py:19
 msgid "PolicyGroupNameCall"
 msgstr ""
 
-#: www/log_manage/models.py:59
+#: www/log_manage/models.py:58
 msgid "PolicyGroupUUID"
 msgstr ""
 
-#: www/log_manage/models.py:60
+#: www/log_manage/models.py:59
 msgid "Hit order"
 msgstr ""
 
@@ -165,6 +400,14 @@ msgstr ""
 msgid "Whether to hit for the first time"
 msgstr ""
 
+#: www/log_manage/tables.py:41
+msgid "is"
+msgstr ""
+
+#: www/log_manage/tables.py:41
+msgid "Whether"
+msgstr ""
+
 #: www/log_manage/tables.py:50
 msgid "Role"
 msgstr ""
@@ -179,6 +422,31 @@ msgstr ""
 
 #: www/log_manage/tables.py:83
 msgid "Request time"
+msgstr ""
+
+#: www/log_manage/tables.py:116 www/log_manage/tables.py:123
+msgid "-Write"
+msgstr ""
+
+#: www/log_manage/tables.py:118
+msgid "-Read"
+msgstr ""
+
+#: www/log_manage/tables.py:132
+msgid "Unknown"
+msgstr ""
+
+#: www/log_manage/templates/log_manage/access_audit.html:22
+msgid "Background audit log"
+msgstr ""
+
+#: www/log_manage/templates/log_manage/hit_list_detail.html:8
+msgid "Block log details list"
+msgstr ""
+
+#: www/log_manage/views.py:62 www/log_manage/views.py:63
+#: www/log_manage/views.py:105
+msgid "All"
 msgstr ""
 
 #: www/menu/forms.py:74
@@ -236,16 +504,8 @@ msgstr ""
 msgid "IP_Address"
 msgstr ""
 
-#: www/menu/tables.py:66
-msgid "Device_ID"
-msgstr ""
-
 #: www/menu/tables.py:73
 msgid "Payment account number"
-msgstr ""
-
-#: www/menu/tables.py:80
-msgid "CellPhoneNumber"
 msgstr ""
 
 #: www/permissions/forms.py:26 www/permissions/tables.py:14
@@ -324,10 +584,14 @@ msgstr ""
 
 #: www/settings/settings.py:22
 msgid "English"
-msgstr ""
+msgstr "英国"
 
 #: www/settings/settings.py:23
 msgid "Chinese"
+msgstr "中文"
+
+#: www/settings/settings.py:157
+msgid "The project should set correct RISK_ENV environment var."
 msgstr ""
 
 #: www/strategy/forms.py:72 www/strategy/forms.py:202 www/strategy/forms.py:269
@@ -414,6 +678,14 @@ msgstr ""
 
 #: www/templates/403.html:6
 msgid "Sorry, you don't have access to this page."
+msgstr ""
+
+#: www/templates/base.html:21
+msgid "Wind control management"
+msgstr ""
+
+#: www/templates/base.html:49
+msgid "Wind Control Management Center"
 msgstr ""
 
 #: www/templates/pagination.html:4

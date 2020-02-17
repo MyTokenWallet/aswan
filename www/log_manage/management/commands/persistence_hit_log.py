@@ -3,6 +3,7 @@
 import time
 import json
 import logging
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 
 from django.core.management.base import BaseCommand
@@ -76,14 +77,14 @@ def process_hit_log_msg(msg):
     try:
         data = parse_msg(msg)
     except Exception:
-        logger.error('invalid msg: {msg}'.format(msg=msg))
+        logger.error(_('invalid msg:') + '{msg}'.format(msg=msg))
         return
     try:
         persistence_data(data)
     except (KeyboardInterrupt, SystemExit):
         raise
     except Exception:
-        logger.error('persistence data error: {msg}'.format(msg=msg))
+        logger.error(_('persistence data error:') + '{msg}'.format(msg=msg))
 
 
 def main(conn, private_queue_name):
@@ -109,5 +110,5 @@ class Command(BaseCommand):
             try:
                 main(redis_client, private_queue_name)
             except Exception:
-                logger.exception('hit log persistence have error')
+                logger.exception(_('hit log persistence have error'))
                 time.sleep(0.1)

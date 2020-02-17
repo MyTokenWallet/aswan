@@ -12,16 +12,15 @@ from www.core.redis_client import get_redis_client
 class SourceMapForm(BaseForm):
     name_key = forms.CharField(
         min_length=2, max_length=32,
-        widget=forms.TextInput(attrs={"placeholder": "Configure key [alphanumeric underline]"})
+        widget=forms.TextInput(attrs={"placeholder": _("Configure key [alphanumeric underline]")})
     )
     name_show = forms.CharField(
         min_length=2, max_length=32,
-        widget=forms.TextInput(attrs={"placeholder": "Configuration name [Enter a description of]"})
+        widget=forms.TextInput(attrs={"placeholder": _("Configuration name [Enter a description of]")})
     )
     content = forms.CharField(widget=forms.Textarea(
         attrs={
-            "rows": "8", "cols": "27",
-            "placeholder": """Configure content (json format)):
+            "rows": "8", "cols": "27", "placeholder": """Configure content (json format)):
 {
     "user_id": "string",
     "uid": "string",
@@ -35,11 +34,11 @@ class SourceMapForm(BaseForm):
     def clean_name_key(self):
         name_key = self.cleaned_data['name_key']
         if not re.match(self.name_key_pattern, name_key):
-            raise forms.ValidationError("Incorrect input with some special characters")
+            raise forms.ValidationError(_("Incorrect input with some special characters"))
 
         client = get_redis_client()
         if client.hget(self.map_key, name_key):
-            raise forms.ValidationError("The data source already exists")
+            raise forms.ValidationError(_("The data source already exists"))
 
         return name_key
 
@@ -48,9 +47,9 @@ class SourceMapForm(BaseForm):
         try:
             content = json.loads(content)
         except ValueError:
-            raise forms.ValidationError("Wrong input， json resolution failed")
+            raise forms.ValidationError(_("Wrong input，json resolution failed"))
         if not content.keys():
-            raise forms.ValidationError("This field is required")
+            raise forms.ValidationError(_("This field is required"))
         return content
 
     def save(self):
@@ -65,4 +64,4 @@ class SourceMapForm(BaseForm):
 
 
 class SourceFilterForm(BaseFilterForm):
-    name = forms.CharField(required=False, label=_(u"Data source name"))
+    name = forms.CharField(required=False, label=_(_("Data source name")))

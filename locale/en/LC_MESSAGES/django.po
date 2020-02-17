@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 21:22+0100\n"
+"POT-Creation-Date: 2020-02-18 00:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: builtin_funcs/base.py:21
+#: builtin_funcs/base.py:21 builtin_funcs/sample.py:29
 msgid "lt"
 msgstr ""
 
-#: builtin_funcs/base.py:22
+#: builtin_funcs/base.py:22 builtin_funcs/sample.py:29
 msgid "le"
 msgstr ""
 
-#: builtin_funcs/base.py:23
+#: builtin_funcs/base.py:23 builtin_funcs/sample.py:29
 msgid "eq"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "ne"
 msgstr ""
 
-#: builtin_funcs/base.py:25
+#: builtin_funcs/base.py:25 builtin_funcs/sample.py:29
 msgid "ge"
 msgstr ""
 
@@ -62,6 +62,18 @@ msgstr ""
 
 #: builtin_funcs/base.py:128
 msgid "{} does not exist"
+msgstr ""
+
+#: builtin_funcs/sample.py:8
+msgid "Abnormal User"
+msgstr ""
+
+#: builtin_funcs/sample.py:27
+msgid "Number of historical logins"
+msgstr ""
+
+#: builtin_funcs/sample.py:29
+msgid "neq"
 msgstr ""
 
 #: config/base.py:42
@@ -168,6 +180,10 @@ msgstr ""
 msgid "load raw sources error"
 msgstr ""
 
+#: risk_models/source.py:160
+msgid "{}:{}"
+msgstr ""
+
 #: risk_models/source.py:191
 msgid "start refresh sources"
 msgstr ""
@@ -223,4 +239,28 @@ msgstr ""
 
 #: risk_models/strategy.py:376
 msgid "uuid({}) is not a valid strategy uuid"
+msgstr ""
+
+#: server/query.py:23
+msgid "must contain rule_id"
+msgstr ""
+
+#: server/query.py:26
+msgid "rule_id does not exist or is offline"
+msgstr ""
+
+#: server/report.py:15 server/report.py:25
+msgid "invalid source"
+msgstr ""
+
+#: server/report.py:18
+msgid "invalid input"
+msgstr ""
+
+#: server/report.py:21
+msgid "success"
+msgstr ""
+
+#: server/report.py:23
+msgid "database error"
 msgstr ""

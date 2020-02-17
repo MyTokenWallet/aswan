@@ -3,7 +3,7 @@ import os
 import environ
 import importlib
 # from config import BASE_DIR
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, gettext_noop
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -19,8 +19,8 @@ MIDDLEWARE_CLASSES = (
     'permissions.middleware.UserAuditMiddleware'
 )
 LANGUAGES = (
-    ('en', _('English')),
-    ('zh', _('Chinese')),
+    ('en', gettext_noop('English')),
+    ('zh', gettext_noop('Chinese')),
 )
 
 p = environ.Path(__file__) - 2
@@ -154,4 +154,4 @@ try:
     exec('from .local_settings.{risk_env} import *'.format(risk_env=risk_env))
 except Exception:
     raise AssertionError(
-        'The project should set correct RISK_ENV environment var.')
+        _('The project should set correct RISK_ENV environment var.'))

@@ -69,12 +69,12 @@ USER_STRATEGY_UNIQ_SET_KEYS = (
 
 
 class BoolStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"PolicyName"))
-    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
-    strategy_var = forms.ChoiceField(label=_(u"Built-in variables"), choices=VAR_CHOICES)
-    strategy_op = forms.ChoiceField(label=_(u"ActionCode"), choices=OP_CHOICES)
-    strategy_func = forms.ChoiceField(label=_(u"Built-in functions"), choices=FUNC_CHOICES)
-    strategy_threshold = forms.CharField(label=_(u"Thresholds"), required=False)
+    strategy_name = forms.CharField(label=_("PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
+    strategy_var = forms.ChoiceField(label=_("Built-in variables"), choices=VAR_CHOICES)
+    strategy_op = forms.ChoiceField(label=_("ActionCode"), choices=OP_CHOICES)
+    strategy_func = forms.ChoiceField(label=_("Built-in functions"), choices=FUNC_CHOICES)
+    strategy_threshold = forms.CharField(label=_("Thresholds"), required=False)
 
     def __init__(self, *args, **kwargs):
         self.values_sign = None
@@ -146,8 +146,8 @@ class BoolStrategyForm(BaseForm):
 
 
 class BoolStrategyTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"RequestBody"))
-    strategy = forms.ChoiceField(label=_(u"Strategy"), widget=forms.Select())
+    req_body = forms.CharField(widget=forms.Textarea, label=_("RequestBody"))
+    strategy = forms.ChoiceField(label=_("Strategy"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(BoolStrategyTestForm, self).__init__(*args, **kwargs)
@@ -174,7 +174,7 @@ class BoolStrategyTestForm(BaseForm):
 
 
 class FreqStrategyTestForm(BoolStrategyTestForm):
-    history_data = forms.CharField(widget=forms.Textarea, label=_(u"Historical data"),
+    history_data = forms.CharField(widget=forms.Textarea, label=_("Historical data"),
                                    required=False)
 
     def clean_history_data(self):
@@ -199,14 +199,14 @@ class FreqStrategyTestForm(BoolStrategyTestForm):
 
 
 class FreqStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"PolicyName"))
-    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
-    strategy_source = forms.CharField(label=_(u"DataSources"))
-    strategy_body = forms.CharField(label=_(u"BodyName"), required=True,
+    strategy_name = forms.CharField(label=_("PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
+    strategy_source = forms.CharField(label=_("DataSources"))
+    strategy_body = forms.CharField(label=_("BodyName"), required=True,
                                     help_text=u"Example: The same account with the same IP address to grab the red envelope limit 1 time, check: UserID,Current_IP")
-    strategy_time = forms.CharField(label=_(u"Period (in seconds))"),
+    strategy_time = forms.CharField(label=_("Period (in seconds))"),
                                     help_text=u"Supports both 86400 and 24 x 60 x 60 input formats.")
-    strategy_limit = forms.IntegerField(min_value=1, label=_(u"Maximum"),
+    strategy_limit = forms.IntegerField(min_value=1, label=_("Maximum"),
                                         initial=1)
 
     def __init__(self, *args, **kwargs):
@@ -266,14 +266,14 @@ class FreqStrategyForm(BaseForm):
 
 
 class UserStrategyForm(BaseForm):
-    strategy_name = forms.CharField(label=_(u"PolicyName"))
-    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
-    strategy_source = forms.CharField(label=_(u"DataSources"))
-    strategy_body = forms.CharField(label=_(u"BodyName"),
+    strategy_name = forms.CharField(label=_("PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
+    strategy_source = forms.CharField(label=_("DataSources"))
+    strategy_body = forms.CharField(label=_("BodyName"),
                                     help_text=u"Example: Same device on the same day only 5 User gifts plus blessing value, check: current device")
-    strategy_day = forms.IntegerField(min_value=1, label=_(u"Default days (in units): Individual)"),
+    strategy_day = forms.IntegerField(min_value=1, label=_("Default days (in units): Individual)"),
                                       initial=1)
-    strategy_limit = forms.IntegerField(min_value=1, label=_(u"Limit the number of Users"),
+    strategy_limit = forms.IntegerField(min_value=1, label=_("Limit the number of Users"),
                                         initial=1)
 
     def __init__(self, *args, **kwargs):
@@ -326,7 +326,7 @@ class UserStrategyForm(BaseForm):
 
 
 class UserStrategyTestForm(BoolStrategyTestForm):
-    history_data = forms.CharField(widget=forms.Textarea, label=_(u"Historical data"),
+    history_data = forms.CharField(widget=forms.Textarea, label=_("Historical data"),
                                    required=False)
 
     def clean_history_data(self):
@@ -350,13 +350,13 @@ class UserStrategyTestForm(BoolStrategyTestForm):
 
 
 class MenuStrategyForm(BaseForm):
-    dimension = forms.ChoiceField(label=_(u"Dimensions"), choices=DIM_CHOICES_MENU)
-    menu_op = forms.ChoiceField(label=_(u"ActionCode"), choices=OP_CHOICES_MENU)
-    event = forms.ChoiceField(label=_(u"Project"))
-    menu_type = forms.ChoiceField(label=_(u"ListType"),
+    dimension = forms.ChoiceField(label=_("Dimensions"), choices=DIM_CHOICES_MENU)
+    menu_op = forms.ChoiceField(label=_("ActionCode"), choices=OP_CHOICES_MENU)
+    event = forms.ChoiceField(label=_("Project"))
+    menu_type = forms.ChoiceField(label=_("ListType"),
                                   choices=TYPE_CHOICES_MENU)  # It's a built-in function.
-    strategy_name = forms.CharField(label=_(u"PolicyName"))
-    strategy_desc = forms.CharField(required=False, label=_(u"PolicyDescription"))
+    strategy_name = forms.CharField(label=_("PolicyName"))
+    strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
 
     def __init__(self, *args, **kwargs):
         super(MenuStrategyForm, self).__init__(*args, **kwargs)
@@ -405,8 +405,8 @@ class MenuStrategyForm(BaseForm):
 
 
 class MenuStrategyTestForm(BaseForm):
-    req_body = forms.CharField(widget=forms.Textarea, label=_(u"RequestBody"))
-    strategy = forms.ChoiceField(label=_(u"Strategy"), widget=forms.Select())
+    req_body = forms.CharField(widget=forms.Textarea, label=_("RequestBody"))
+    strategy = forms.ChoiceField(label=_("Strategy"), widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(MenuStrategyTestForm, self).__init__(*args, **kwargs)
@@ -433,4 +433,4 @@ class MenuStrategyTestForm(BaseForm):
 
 
 class StrategyFilterForm(BaseFilterForm):
-    filter_name = forms.CharField(label=_(u"PolicyName"), required=False)
+    filter_name = forms.CharField(label=_("PolicyName"), required=False)

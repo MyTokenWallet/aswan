@@ -4,6 +4,7 @@
 import os
 
 from django.test import TransactionTestCase
+from django.utils.translation import gettext_lazy as _
 
 from www.core.redis_client import get_redis_client
 from www.core.pymongo_client import get_mongo_client
@@ -31,7 +32,7 @@ class BaseTestCase(TransactionTestCase):
     def setUpClass(cls):
         super(BaseTestCase, cls).setUpClass()
         risk_env = os.environ.get('RISK_ENV')
-        assert risk_env and risk_env == 'test', 'Note that this section can only be performed in a test environment'
+        assert risk_env and risk_env == 'test', _('Note that this section can only be performed in a test environment')
         create_user(email=cls.email, username=cls.username,
                     password=cls.password, is_superuser=1)
 

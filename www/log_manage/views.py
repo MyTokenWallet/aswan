@@ -3,6 +3,7 @@
 
 
 import logging
+from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 
 from braces.views import JSONResponseMixin
@@ -29,7 +30,7 @@ class HitListDetailView(ListView):
         start = query['start_day']
         end = query['end_day']
 
-        with connection.cursor() as cursor:  # 判断数据表是否存在
+        with connection.cursor() as cursor:  # Determine if a data table exists
             all_table_names = set(
                 connection.introspection.table_names(cursor=cursor))
         table_names = []
@@ -58,8 +59,8 @@ class HitListDetailView(ListView):
         if strategy_group:
             query_params['group_uuid'] = strategy_group
 
-        control = query.get('control', u'All')
-        if control and control != u'All':
+        control = query.get('control', _('All'))
+        if control and control != _('All'):
             query_params['control'] = control
         return query_params
 
@@ -101,7 +102,7 @@ class RuleStrategyMapView(JSONResponseMixin, View):
             })
 
         rules = Rules(load_all=True).id_rule_map
-        if rule_id in (u"", u"All"):  # All_Rules
+        if rule_id in (u"", _("All")):  # All_Rules
             return self.render_json_response({
                 'state': True,
                 'strategy_groups': groups,

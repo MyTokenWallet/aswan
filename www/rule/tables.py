@@ -8,11 +8,11 @@ from django_tables2 import tables, columns
 
 
 class RulesTable(tables.Table):
-    id = columns.Column(verbose_name=_(u"Rule ID"), orderable=False)
-    title = columns.Column(verbose_name=_(u"RuleName"), orderable=False)
-    status = columns.Column(verbose_name=_(u"Status"), orderable=False)
-    update_time = columns.Column(verbose_name=_(u"UpdateTime"), orderable=False)
-    user = columns.Column(verbose_name=_(u"Update"), orderable=False)
+    id = columns.Column(verbose_name=_("Rule ID"), orderable=False)
+    title = columns.Column(verbose_name=_("RuleName"), orderable=False)
+    status = columns.Column(verbose_name=_("Status"), orderable=False)
+    update_time = columns.Column(verbose_name=_("UpdateTime"), orderable=False)
+    user = columns.Column(verbose_name=_("Update"), orderable=False)
     action = columns.TemplateColumn("""
     <span class="action-button">
         <a class="rules-on" data-uri="{% url 'rule:change' %}" data-id="{{ record.uuid }}" data-title="{{ record.title }}" data-status="{{ record.status }}">Enable</a>
@@ -26,7 +26,7 @@ class RulesTable(tables.Table):
     <span class="action-button">
         <a class="rules-edit" data-uri="{% url 'rule:edit' %}" data-id="{{ record.uuid }}" >Edit</a>
     </span>
-    """, orderable=False, verbose_name=_(u"Confirm"))
+    """, orderable=False, verbose_name=_("Confirm"))
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}

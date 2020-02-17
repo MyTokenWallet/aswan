@@ -5,7 +5,7 @@
 {% load staticfiles %}
 
 {% block header %}
-<a href="javascript:;" class="active">Block log details list</a>
+<a href="javascript:;" class="active">{% trans "Block log details list" %}</a>
 {% endblock %}
 
 
@@ -23,7 +23,6 @@
 
 {% block js %}
 {{ block.super }}
-<script src="{% static 'js/rule_map_strategygroup.js' %}"></script>
 <script>
     $(function () {
         $('#id_strategy_group').searchableSelect();

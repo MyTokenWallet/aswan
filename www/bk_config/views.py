@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import json
-
+from django.utils.translation import gettext_lazy as _
 from braces.views import JSONResponseMixin
 from django.views.generic import View
 
@@ -13,10 +13,10 @@ from www.bk_config.forms import SourceMapForm, SourceFilterForm
 from www.bk_config.tables import ConfigSourceTable
 
 FIELD_EN_ZH_MAP = {
-    'user_id': 'Account_ID',
-    'uid': 'Device_ID',
-    'ip': 'Current_IP',
-    'phone': 'CellPhoneNumber',
+    'user_id': _('Account_ID'),
+    'uid': _('Device_ID'),
+    'ip': _('Current_IP'),
+    'phone': _('CellPhoneNumber'),
 }
 
 
@@ -88,7 +88,7 @@ class ConfigDestroyView(JSONResponseMixin, View):
         if not name_key:
             return self.render_json_response(dict(
                 state=False,
-                error=u"name_key is required."
+                error=_("name_key is required.")
             ))
         client = get_redis_client()
         used_keys = set()
@@ -104,12 +104,12 @@ class ConfigDestroyView(JSONResponseMixin, View):
         if name_key in used_keys:
             return self.render_json_response(dict(
                 state=False,
-                error=u"[{}]Has been used, cannot delete".format(name_key)
+                error=_("[{}]Has been used, cannot delete").format(name_key)
             ))
         client.hdel("CONFIG_SOURCE_MAP", name_key)
         return self.render_json_response(dict(
             state=True,
-            msg="ok"
+            msg=_("ok")
         ))
 
 
