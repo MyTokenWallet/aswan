@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
+from django.conf.urls.i18n import i18n_patterns
+from django.urls import include, path
+
 from django.conf import settings
 from django.conf.urls import include, url
+from django.urls import reverse
+from django.utils.translation import activate
 from django.conf.urls.static import static
 
 urlpatterns = [

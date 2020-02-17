@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
 
 from .base import Response
 from risk_models.exceptions import RuleNotExistsException

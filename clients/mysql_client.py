@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
 # FIX open base.py(PYMYSQL) and delete just line 36 and 37
 import pymysql
 pymysql.install_as_MySQLdb()

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
 
 class QueryException(Exception):
     """ There is an error with the query interface """

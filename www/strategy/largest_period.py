@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
 import json
 from www.core.redis_client import get_redis_client
 

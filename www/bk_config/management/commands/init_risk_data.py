@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
 
 """
     This script is used to pre-note data when User is unfamiliar

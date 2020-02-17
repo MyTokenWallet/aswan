@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding: utf-8
 
 from clients.redis_client import (get_config_redis_client, get_log_redis_client, get_report_redis_client)
 from clients.mysql_client import get_log_mysql_client
