@@ -18,6 +18,8 @@
 
 
 {% block main %}
+{% get_current_language as LANGUAGE_CODE %}
+<!-- Current language: {{ LANGUAGE_CODE }} -->
 <div class="wrapper wrapper-content">
     <div class="extra-search-form">
         {% crispy filter_form %}
@@ -32,7 +34,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Add data source</h2>
+                <h2>{% trans "Add data source" %}</h2>
             </div>
             <div class="modal-body">
                 {{ create_form.name_key }}
@@ -45,9 +47,9 @@
                 <span id="id-content-error" class="help-block" style="color:darkred"></span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">{% trans "Close" %}</button>
                 <button type="button" id="valueSave" class="btn btn-primary"
-                        data-uri="{% url 'config:source_create' %}">Save
+                        data-uri="{% url 'config:source_create' %}">{% trans "Save" %}
                 </button>
             </div>
         </div>

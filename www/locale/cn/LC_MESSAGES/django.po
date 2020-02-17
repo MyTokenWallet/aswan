@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT Zwilla alias Michael Padilla
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <michael.padilla@zwilla.de>, 2020.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 16:36+0100\n"
+"POT-Creation-Date: 2020-02-17 20:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,16 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: www/core/forms.py:64 www/templates/table.html:57
+#: www/bk_config/templates/config/source_list.html:37
+msgid "Add data source"
+msgstr ""
+
+#: www/bk_config/templates/config/source_list.html:50
+msgid "Close"
+msgstr ""
+
+#: www/bk_config/templates/config/source_list.html:52 www/core/forms.py:64
+#: www/templates/table.html:57
 msgid "Save"
 msgstr ""
 

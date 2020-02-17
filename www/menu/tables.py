@@ -2,7 +2,7 @@
 # coding: utf-8
 
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django_tables2 import tables, columns
 from www.core.pymongo_client import get_mongo_client
 from www.core.columns import TruncateColumn

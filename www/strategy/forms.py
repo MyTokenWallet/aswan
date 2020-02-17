@@ -7,7 +7,7 @@ import json
 from functools import reduce
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from builtin_funcs import BuiltInFuncs
 from www.core.redis_client import get_redis_client

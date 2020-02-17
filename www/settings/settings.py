@@ -3,7 +3,7 @@ import os
 import environ
 import importlib
 # from config import BASE_DIR
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -114,6 +114,8 @@ WSGI_APPLICATION = 'wsgi.application'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+#https://docs.djangoproject.com/en/3.0/topics/i18n/formatting/
+USE_THOUSAND_SEPARATOR = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

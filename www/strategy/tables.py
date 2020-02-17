@@ -2,7 +2,7 @@
 # coding: utf-8
 import json
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django_tables2 import tables, columns
 
 from www.strategy.forms import (OP_MAP, FUNC_MAP, VAR_MAP, DIM_MAP_MENU,

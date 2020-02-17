@@ -4,6 +4,7 @@
 import logging
 from functools import wraps
 import operator
+from django.utils.translation import gettext_lazy as _
 
 from risk_models.exceptions import BuiltInFuncNotExistError
 
@@ -17,14 +18,14 @@ class BuiltInFuncs(object):
     name_supported_ops = {}
 
     op_map = {
-        'lt': operator.lt,
-        'le': operator.le,
-        'eq': operator.eq,
-        'ne': operator.ne,
-        'ge': operator.ge,
-        'gt': operator.gt,
-        'is': operator.is_,
-        'is_not': operator.is_not
+        _('lt'): operator.lt,
+        _('le'): operator.le,
+        _('eq'): operator.eq,
+        _('ne'): operator.ne,
+        _('ge'): operator.ge,
+        _('gt'): operator.gt,
+        _('is'): operator.is_,
+        _('is_not'): operator.is_not
     }
 
     def __init__(self, desc, threshold_trans_func, run_func):
@@ -95,11 +96,11 @@ class BuiltInFuncs(object):
         :param object threshold: Thresholds
         :return:
         """
-        #  若想忽略op码永远通过则设置rv为None
+        #  If you want to ignore op code forever pass then set rv as None
         if rv is None:
             return False
 
-        if op_name in {'is', 'is_not'}:
+        if op_name in {_('is'), _('is_not')}:
             threshold = True
         elif self.threshold_trans_func:
             threshold = self.threshold_trans_func(threshold)
@@ -109,7 +110,7 @@ class BuiltInFuncs(object):
 
     def __call__(self, req_body, op_name, threshold, **kwargs):
         if not self.check_args(self.run_func.__name__, req_body):
-            logger.error('run %s with invalid req_body(%s)', self, req_body)
+            logger.error(_('run %s') + _('with invalid req_body(%s)'), self, req_body)
             return False
 
         rv = self.run_func(req_body, **kwargs)
@@ -124,6 +125,6 @@ class BuiltInFuncs(object):
         obj = cls.name_callable.get(builtin_func_name)
         if obj is None:
             raise BuiltInFuncNotExistError(
-                '{} does not exist'.format(builtin_func_name)
+                _('{} does not exist').format(builtin_func_name)
             )
         return obj(req_body, op_name, threshold, **kwargs)

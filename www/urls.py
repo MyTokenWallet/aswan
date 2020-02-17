@@ -5,8 +5,6 @@ from django.urls import include, path
 
 from django.conf import settings
 from django.conf.urls import include, url
-from django.urls import reverse
-from django.utils.translation import activate
 from django.conf.urls.static import static
 
 urlpatterns = [
