@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load staticfiles %}
 
 {% block css %}
@@ -10,7 +11,7 @@
 
 
 {% block header %}
-<a href="javascript:;" class="active">Add-Bull Strategy</a>
+<a href="javascript:;" class="active">{% trans "Add-Bull Strategy" %)</a>
 {% endblock %}
 
 {% block action %}
@@ -113,7 +114,7 @@
         if (b === c) {
             c = "";
         }
-        relation_ops = ["Greater than...", "Greater than or equal to...", "Less than...", "Less than or equal to...", "Equals...", "Not equal to..."]
+        relation_ops = ["Greater than...", "Greater than or equal to...", "Less than...", "Less than or equal to...", "Equals...", "Not equal to..."];
         if (relation_ops.indexOf(b) === -1) {
             $("#id_strategy_name").val(a + b + c);
         } else {

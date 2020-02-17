@@ -166,7 +166,7 @@ class MenuCreateView(JSONResponseMixin, View):
             if error_datas:
                 data = dict(
                     state=False,
-                    error={"value": [u"以下数据添加失败:{0}".format(error_datas)]}
+                    error={"value": [u"The following data add failed:{0}".format(error_datas)]}
                 )
             else:
                 data = dict(
@@ -191,7 +191,7 @@ class MenuDestroyView(JSONResponseMixin, View):
         except Exception:
             return self.render_json_response(dict(
                 state=False,
-                error=u"id不合法"
+                error=u"ID is illegal"
             ))
 
         redis_values_should_remove = defaultdict(list)
@@ -206,7 +206,7 @@ class MenuDestroyView(JSONResponseMixin, View):
         if not menus_records:
             return self.render_json_response(dict(
                 state=False,
-                error=u"记录均不存在"
+                error=u"Records don't exist"
             ))
 
         for d in menus_records:
@@ -216,7 +216,7 @@ class MenuDestroyView(JSONResponseMixin, View):
                 redis_values_should_remove[redis_key].append(d['value'])
 
         update_payload = {
-            'menu_status': u'无效',
+            'menu_status': u'Invalid',
             'creator': request.user.username,
             'create_time': datetime.now(),
         }
@@ -224,7 +224,7 @@ class MenuDestroyView(JSONResponseMixin, View):
             db.menus.update_many({'_id': {"$in": obj_ids}},
                                  {"$set": update_payload})
 
-            #  同时deleteredis中数据
+            #  Simultaneous delete redis data
             redis_client = get_redis_client()
             pipeline = redis_client.pipeline(transaction=False)
             for key, values in redis_values_should_remove.items():
@@ -233,7 +233,7 @@ class MenuDestroyView(JSONResponseMixin, View):
         except Exception:
             return self.render_json_response(dict(
                 state=False,
-                error=u"操作失败，请稍后重试"
+                error=u"Operation failed, please try again later"
             ))
         return self.render_json_response(dict(
             state=True,

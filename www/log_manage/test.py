@@ -17,18 +17,18 @@ class TestHitListDetailCase(BaseTestCase):
     def test_hit_detail_view(self):
         url = reverse('log_manage:hit_list_detail')
 
-        # 普通
+        # common
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
-        # 带User
+        # With User
         data = {
             'user_id': 11
         }
         response = self.client.get(url, data)
         self.assertEquals(response.status_code, 200)
 
-        # 表不存在 & 带时间
+        # Table does not exist with time
         right = datetime.now()
         left = right - timedelta(days=1)
         data = {
@@ -39,12 +39,12 @@ class TestHitListDetailCase(BaseTestCase):
         response = self.client.get(url, data=data)
         self.assertEquals(response.status_code, 200)
 
-        # 表存在 & 带时间
+        # Table Exists and With Time
         create_hit_table(left)
         response = self.client.get(url, data=data)
         self.assertEquals(response.status_code, 200)
 
-        # 带错误的时间
+        # With the wrong time
         data = {
             'user_id': 11,
             'start_day': get_sample_str(8),
@@ -59,7 +59,7 @@ class TestRuleStrategyMapView(BaseTestCase):
     def test_view(self):
         url = reverse('log_manage:rule_strategy_map')
 
-        # 参数不全
+        # Argument incomplete
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         t = json.loads(response.content)
@@ -77,7 +77,7 @@ class TestRuleStrategyMapView(BaseTestCase):
             self.assertEquals(t['state'], True)
             self.assertEquals(t['strategy_groups'], {})
 
-        # 规则不存在
+        # Rule does not exist
         response = self.client.get(url, {'rule_id': 'no_exixts_rule_id'})
         self.assertEquals(response.status_code, 200)
         t = json.loads(response.content)
@@ -85,7 +85,7 @@ class TestRuleStrategyMapView(BaseTestCase):
         self.assertEquals(t['state'], False)
         self.assertEquals(t['rules_num'], 0)
 
-        # 存在规则
+        # There are rules
         # todo
 
 
@@ -94,11 +94,11 @@ class TestAuditLogView(BaseTestCase):
     def test_view(self):
         url = reverse('log_manage:audit_logs')
 
-        # 无参访问
+        # No access
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
-        # 正常时间
+        # Normal time
         right = datetime.now()
         left = right - timedelta(hours=1)
         data = {
@@ -108,7 +108,7 @@ class TestAuditLogView(BaseTestCase):
         response = self.client.get(url, data=data)
         self.assertEquals(response.status_code, 200)
 
-        # 少参访问
+        # Less access
         data.pop('time__lt')
         response = self.client.get(url, data=data)
         self.assertEquals(response.status_code, 200)

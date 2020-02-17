@@ -1,6 +1,6 @@
-//规则和策略联动显示
+//Rules and policy linkage display
 function rule_map_strategy(url, rule_id) {
-    var rule_id = rule_id || $(".searchable-select-item.selected").data('value');
+    rule_id = rule_id || $(".searchable-select-item.selected").data('value');
     $.ajax({
         url: url,
         data: {"rule_id": rule_id},
@@ -13,7 +13,7 @@ function rule_map_strategy(url, rule_id) {
 
                 $('.searchable-select-item').each(function (i) {
                     var group_rule_id = $(this).attr("data-value");
-                    var _rule_id = group_rule_id.split("_")[0]
+                    var _rule_id = group_rule_id.split("_")[0];
                     if (i > resp.rules_num) {
                         if (!(_rule_id in strategy_groups_json)) {
                             $(this).attr("style", "display: none;")
@@ -21,7 +21,7 @@ function rule_map_strategy(url, rule_id) {
                             $(this).removeAttr("style", "")
                         }
                     }
-                    if (group_rule_id == "" || rule_id == "所有规则" || group_rule_id == "所有" || rule_id == "所有" || rule_id == "") {
+                    if (group_rule_id === "" || rule_id === "All rules" || group_rule_id === "All" || rule_id === "All" || rule_id === "") {
                         $(this).removeAttr("style", "")
                     }
 

@@ -6,28 +6,28 @@
         aniTime: 200,
         right: -232,
         api: {
-            friend: 'js/plugins/layer/layim/data/friend.json', //好友列表接口
-            group: 'js/plugins/layer/layim/data/group.json', //群Group列表接口
-            chatlog: 'js/plugins/layer/layim/data/chatlog.json', //聊天记录接口
-            groups: 'js/plugins/layer/layim/data/groups.json', //群Group成员接口
-            sendurl: '' //发送消息接口
+            friend: 'js/plugins/layer/layim/data/friend.json', //Friend List Interface
+            group: 'js/plugins/layer/layim/data/group.json', //Group Group List Interface
+            chatlog: 'js/plugins/layer/layim/data/chatlog.json', //Chat history interface
+            groups: 'js/plugins/layer/layim/data/groups.json', //Group Group Member Interface
+            sendurl: '' //Send a message interface
         },
-        user: { //当前User信息
-            name: '游客',
+        user: { //Current User Information
+            name: 'visitors',
             face: 'img/a1.jpg'
         },
 
-        //自动回复内置文案，也可动态读取数据库配置
+        //Auto-reply to built-in copy, or dynamic read database configuration
         autoReplay: [
-            '您好，我现在有事不在，一会再和您联系。',
-            '你没发错吧？',
-            '洗澡中，请勿打扰，偷窥请购票，个体四十，团体八折，订票电话: 一般人我不告诉他！',
-            '你好，我是主人的美女秘书，有什么事就跟我说吧，等他回来我会转告他的。',
-            '我正在拉磨，没法招呼您，因为我们家毛驴去动物保护协会把我告了，说我剥夺它休产假的权利。',
+            'Hello, I\'m not in anything right now, I\'ll get back in touch with you later.',
+            'You\'re not wrong, are you?',
+            'Bath, do not disturb, voyeur please buy tickets, individual forty, group 20%, booking phone: ordinary people I do not tell him!',
+            'Hello, I am the master\'s beautiful secretary, anything to tell me, when he comes back I will tell him.',
+            'I\'m pulling and I can\'t greet you because our donkey went to the Animal Protection Society and told me that I was depriving him of his maternity leave.',
             '<（@￣︶￣@）>',
-            '你要和我说话？你真的要和我说话？你确定自己想说吗？你一定非说不可吗？那你说吧，这是自动回复。',
-            '主人正在开机自检，键盘鼠标看好机会出去凉快去了，我是他的电冰箱，我打字比较慢，你慢慢说，别急……',
-            '(*^__^*) 嘻嘻，是贤心吗？'
+            'You want to talk to me? Are you really going to talk to me? Are you sure you want to say that? You must not say no? Well, say it, it\'s an automatic reply.',
+            'The master is post, keyboard mouse optimistic opportunity to go out cool, I am his refrigerator, I type more slowly, you slowly say, don\'t hurry ...',
+            '(*^__^*) Hey, is it a good heart?'
         ],
 
 
@@ -52,7 +52,7 @@
         }
     }, dom = [$(window), $(document), $('html'), $('body')], xxim = {};
 
-//主界面tab
+//Main interface tab
     xxim.tabs = function (index) {
         var node = xxim.node;
         node.tabs.eq(index).addClass('xxim_tabnow').siblings().removeClass('xxim_tabnow');
@@ -62,7 +62,7 @@
         }
     };
 
-//节点
+//Node
     xxim.renode = function () {
         var node = xxim.node = {
             tabs: $('#xxim_tabs>span'),
@@ -80,7 +80,7 @@
         };
     };
 
-//主界面缩放
+//Main interface zoom
     xxim.expend = function () {
         var node = xxim.node;
         if (xxim.layimNode.attr('state') !== '1') {
@@ -109,11 +109,11 @@
         }
     };
 
-//初始化窗口格局
+//Initialization window pattern
     xxim.layinit = function () {
         var node = xxim.node;
 
-        //主界面
+        //Main interface
         try {
             /*
             if(!localStorage.layimState){
@@ -132,7 +132,7 @@
         }
     };
 
-//聊天窗口
+//Chat window
     xxim.popchat = function (param) {
         var node = xxim.node, log = {};
 
@@ -142,17 +142,17 @@
             xxim.chatbox = layero.find('#layim_chatbox');
             log.chatlist = xxim.chatbox.find('.layim_chatmore>ul');
 
-            log.chatlist.html('<li data-id="' + param.id + '" type="' + param.type + '"  id="layim_user' + param.type + param.id + '"><span>' + param.name + '</span><em>×</em></li>')
+            log.chatlist.html('<li data-id="' + param.id + '" type="' + param.type + '"  id="layim_user' + param.type + param.id + '"><span>' + param.name + '</span><em>×</em></li>');
             xxim.tabchat(param, xxim.chatbox);
 
-            //最小化聊天窗
+            //Minimize chat windows
             xxim.chatbox.find('.layer_setmin').on('click', function () {
                 var indexs = layero.attr('times');
                 layero.hide();
                 node.layimMin.text(xxim.nowchat.name).show();
             });
 
-            //Close窗口
+            //Close window
             xxim.chatbox.find('.layim_close').on('click', function () {
                 var indexs = layero.attr('times');
                 layer.close(indexs);
@@ -161,7 +161,7 @@
                 config.chatings = 0;
             });
 
-            //Close某个聊天
+            //Close a chat
             log.chatlist.on('mouseenter', 'li', function () {
                 $(this).find('em').show();
             }).on('mouseleave', 'li', function () {
@@ -197,13 +197,13 @@
                 }
             });
 
-            //聊天选项卡
+            //Chat tab
             log.chatlist.on('click', 'li', function () {
                 var othis = $(this), dataType = othis.attr('type'), dataId = othis.attr('data-id');
                 xxim.tabchat(config.chating[dataType + dataId]);
             });
 
-            //发送热键切换
+            //Send hotkey switch
             log.sendType = $('#layim_sendtype'), log.sendTypes = log.sendType.find('span');
             $('#layim_enter').on('click', function (e) {
                 config.stopMP(e);
@@ -236,17 +236,17 @@
             + '        <ul class="layim_chatview layim_chatthis"  id="layim_area' + param.type + param.id + '"></ul>'
             + '    </div>'
             + '    <div class="layim_tool">'
-            + '        <i class="layim_addface fa fa-meh-o" title="发送表情"></i>'
-            + '        <a href="javascript:;"><i class="layim_addimage fa fa-picture-o" title="上传图片"></i></a>'
-            + '        <a href="javascript:;"><i class="layim_addfile fa fa-paperclip" title="上传附件"></i></a>'
+            + '        <i class="layim_addface fa fa-meh-o" title="{% trans "Send an emoticon" %}"></i>'
+            + '        <a href="javascript:;"><i class="layim_addimage fa fa-picture-o" title="{% trans "Upload an image" %}"></i></a>'
+            + '        <a href="javascript:;"><i class="layim_addfile fa fa-paperclip" title="{% trans "Upload attachments" %}"></i></a>'
             + '        <a href="" target="_blank" class="layim_seechatlog"><i class="fa fa-comment-o"></i>聊天记录</a>'
             + '    </div>'
             + '    <textarea class="layim_write" id="layim_write"></textarea>'
             + '    <div class="layim_send">'
-            + '        <div class="layim_sendbtn" id="layim_sendbtn">发送<span class="layim_enter" id="layim_enter"><em class="layim_zero"></em></span></div>'
+            + '        <div class="layim_sendbtn" id="layim_sendbtn">{% trans "Send" %}<span class="layim_enter" id="layim_enter"><em class="layim_zero"></em></span></div>'
             + '        <div class="layim_sendtype" id="layim_sendtype">'
-            + '            <span><i>√</i>按Enter键发送</span>'
-            + '            <span><i></i>按Ctrl+Enter键发送</span>'
+            + '            <span><i>√</i>{% trans "Press Enter to send" %}</span>'
+            + '            <span><i></i>{% trans "Press Ctrl-Enter to send" %}</span>'
             + '        </div>'
             + '    </div>'
             + '</div>'
@@ -360,7 +360,7 @@
                         str += '<li data-id="' + datas.data[ii].id + '" type="one"><img src="' + datas.data[ii].face + '" class="xxim_oneface"><span class="xxim_onename">' + datas.data[ii].name + '</span></li>';
                     }
                 } else {
-                    str = '<li class="layim_errors">没有群员</li>';
+                    str = '<li class="layim_errors">{% trans "No group members." %}</li>';
                 }
 
             } else {
@@ -370,7 +370,7 @@
             groupss.html(str);
         }, function () {
             groupss.removeClass('loading');
-            groupss.html('<li class="layim_errors">请求异常</li>');
+            groupss.html('<li class="layim_errors">{% trans "Request exception" %}</li>');
         });
     };
 
@@ -390,7 +390,7 @@
             };
 
             if (data.content.replace(/\s/g, '') === '') {
-                layer.tips('说点啥呗！', '#layim_write', 2);
+                layer.tips('{% trans "Tell me something!" %}', '#layim_write', 2);
                 node.imwrite.focus();
             } else {
                 //此处皆为模拟
@@ -458,7 +458,7 @@
     xxim.event = function () {
         var node = xxim.node;
 
-        //主界面tab
+        //Main interface tab
         node.tabs.eq(0).addClass('xxim_tabnow');
         node.tabs.on('click', function () {
             var othis = $(this), index = othis.index();
@@ -486,10 +486,10 @@
             var index = $(this).index();
             config.stopMP(e);
             if (index === 0) {
-                node.onlinetex.html('在线');
+                node.onlinetex.html('{% trans "Online" %}');
                 node.online.removeClass('xxim_offline');
             } else if (index === 1) {
-                node.onlinetex.html('隐身');
+                node.onlinetex.html('{% trans "Stealth" %}');
                 node.online.addClass('xxim_offline');
             }
             node.setonline.hide();
@@ -505,7 +505,7 @@
                 node.searchMian.show();
                 node.closeSearch.show();
                 //此处的搜索ajax参考xxim.getDates
-                node.list.eq(3).html('<li class="xxim_errormsg">没有符合条件的结果</li>');
+                node.list.eq(3).html('<li class="xxim_errormsg">{% trans "No eligible results" %}</li>');
             } else {
                 node.searchMian.hide();
                 node.closeSearch.hide();
@@ -568,14 +568,14 @@
                     }
                     myf.html(str);
                 } else {
-                    myf.html('<li class="xxim_errormsg">没有任何数据</li>');
+                    myf.html('<li class="xxim_errormsg">{% trans "No data" %}</li>');
                 }
                 myf.removeClass('loading');
             } else {
                 myf.html('<li class="xxim_errormsg">' + datas.msg + '</li>');
             }
         }, function () {
-            myf.html('<li class="xxim_errormsg">请求失败</li>');
+            myf.html('<li class="xxim_errormsg">{% trans "Request failed" %}</li>');
             myf.removeClass('loading');
         });
     };
@@ -585,7 +585,7 @@
         var xximNode = xxim.layimNode = $('<div id="xximmm" class="xxim_main">'
             + '<div class="xxim_top" id="xxim_top">'
             + '  <div class="xxim_search"><i class="fa fa-search"></i><input id="xxim_searchkey" /><span id="xxim_closesearch">×</span></div>'
-            + '  <div class="xxim_tabs" id="xxim_tabs"><span class="xxim_tabfriend" title="好友"><i class="fa fa-user"></i></span><span class="xxim_tabgroup" title="群Group"><i class="fa fa-users"></i></span><span class="xxim_latechat"  title="最近聊天"><i class="fa fa-clock-o"></i></span></div>'
+            + '  <div class="xxim_tabs" id="xxim_tabs"><span class="xxim_tabfriend" title="好友"><i class="fa fa-user"></i></span><span class="xxim_tabgroup" title="群Group"><i class="fa fa-users"></i></span><span class="xxim_latechat"  title="{% trans "Recent chat" %}"><i class="fa fa-clock-o"></i></span></div>'
             + '  <ul class="xxim_list" style="display:block"></ul>'
             + '  <ul class="xxim_list"></ul>'
             + '  <ul class="xxim_list"></ul>'
@@ -593,14 +593,14 @@
             + '</div>'
             + '<ul class="xxim_bottom" id="xxim_bottom">'
             + '<li class="xxim_online" id="xxim_online">'
-            + '<i class="xxim_nowstate fa fa-check-circle"></i><span id="xxim_onlinetex">在线</span>'
+            + '<i class="xxim_nowstate fa fa-check-circle"></i><span id="xxim_onlinetex">{% trans "Online" %}</span>'
             + '<div class="xxim_setonline">'
             + '<span><i class="fa fa-check-circle"></i>在线</span>'
-            + '<span class="xxim_setoffline"><i class="fa fa-check-circle"></i>隐身</span>'
+            + '<span class="xxim_setoffline"><i class="fa fa-check-circle"></i>{% trans "Stealth" %}</span>'
             + '</div>'
             + '</li>'
-            + '<li class="xxim_mymsg" id="xxim_mymsg" title="我的私信"><i class="fa fa-comment"></i><a href="' + config.msgurl + '" target="_blank"></a></li>'
-            + '<li class="xxim_seter" id="xxim_seter" title="设置">'
+            + '<li class="xxim_mymsg" id="xxim_mymsg" title="{% trans "My private letter." %}"><i class="fa fa-comment"></i><a href="' + config.msgurl + '" target="_blank"></a></li>'
+            + '<li class="xxim_seter" id="xxim_seter" title="{% trans "Setup" %}">'
             + '<i class="fa fa-gear"></i>'
             + '<div>'
 

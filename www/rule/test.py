@@ -127,48 +127,48 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], True)
 
-        # Status不合法
+        # Status is not legal.
         status = valid_post_data.pop('status')
         valid_post_data['status'] = 'wrong_status'
         response = self.client.post(change_url, data=valid_post_data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 仅修改阈值
+        # Modify thresholds only
         valid_post_data['status'] = status
         end_time_str = valid_post_data.pop('end_time')
         response = self.client.post(change_url, data=valid_post_data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], True)
 
-        # 时间格式不合法
+        # Time format is not legal
         valid_post_data['end_time'] = 'xxxxx'
         response = self.client.post(change_url, data=valid_post_data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 无规则名
+        # No regular name
         valid_post_data['end_time'] = end_time_str
         title = valid_post_data.pop('title')
         response = self.client.post(change_url, data=valid_post_data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 无描述
+        # No description
         valid_post_data['title'] = title
         describe = valid_post_data.pop('describe')
         response = self.client.post(change_url, data=valid_post_data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 表格数据留空/长度不匹配
+        # Table data left blank/length mismatch
         valid_post_data['describe'] = describe
         names = valid_post_data.pop('names')
         response = self.client.post(change_url, data=valid_post_data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 策略数据错误
+        # Policy data error
         valid_post_data['names'] = names
         strategys_str = valid_post_data.pop('strategys')
         valid_post_data['strategys'] = strategys_str[:-2]
@@ -176,7 +176,7 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 权重非数字
+        # Weight non-digital
         valid_post_data['strategys'] = strategys_str
         weights = valid_post_data.pop('weights')
         valid_post_data['weights'] = weights + 'x'
@@ -191,7 +191,7 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
-        self.assertEquals(resp_json['error'], u'未找到规则')
+        self.assertEquals(resp_json['error'], u'No rules found')
 
         data['id'] = self.rule_uuid
         response = self.client.post(destroy_url, data=data)
@@ -203,12 +203,12 @@ class TestRuleManage(BaseTestCase):
     def _test_detail(self):
         detail_url = reverse(self.detail_url)
 
-        # 请求不存在的规则详情页
+        # Request a rule detail page that does not exist
         no_exists_id = 'no_exists_rule_uuid'
         response = self.client.get(detail_url, data={'id': no_exists_id})
         self.assertEquals(response.status_code, 404)
 
-        # 正常的页面
+        # Normal page
         response = self.client.get(detail_url, data={'id': self.rule_uuid})
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['rule']['uuid'], self.rule_uuid)
@@ -216,16 +216,16 @@ class TestRuleManage(BaseTestCase):
     def _test_test(self):
         test_url = reverse(self.test_url)
 
-        # 测试页面
+        # Test page
         response = self.client.get(test_url)
         self.assertEquals(response.status_code, 200)
 
-        # 缺少参数
+        # Missing parameters
         response = self.client.post(test_url)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(json.loads(response.content)['state'], False)
 
-        # 正常请求
+        # Normal request
         req_body = {
             'user_id': '111111',
             'uid': '111111'
@@ -245,20 +245,20 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], True)
-        self.assertEquals(resp_json['data'], u'数字验证')
+        self.assertEquals(resp_json['data'], u'Digital Verification')
 
     def _test_edit(self):
         edit_url = reverse(self.edit_url)
 
-        # 空参数
+        # Empty parameters
         response = self.client.get(edit_url)
         self.assertEquals(response.status_code, 404)
 
-        # 不存在的key
+        # No key that doesn't exist
         response = self.client.get(edit_url, {'id': 'no_exists_id'})
         self.assertEquals(response.status_code, 404)
 
-        # 正常请求
+        # Normal request
         response = self.client.get(edit_url, data={'id': self.rule_uuid})
         self.assertEquals(response.status_code, 200)
         context = response.context
@@ -267,13 +267,13 @@ class TestRuleManage(BaseTestCase):
     def _test_threshold_edit(self):
         edit_threshold_url = reverse(self.edit_threshold_url)
 
-        # 空参数
+        # Empty parameters
         response = self.client.post(edit_threshold_url)
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
 
-        # 正常访问
+        # Normal access
         data = {
             "rule_uuid": self.rule_uuid,
             "strategy_index": 1,
@@ -288,7 +288,7 @@ class TestRuleManage(BaseTestCase):
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], True)
 
-        # 数Group下标越界
+        # Number Group subscript crosses
         data['strategy_index'] = 10000
         response = self.client.post(edit_threshold_url,
                                     data={'data': json.dumps(data)})
@@ -296,7 +296,7 @@ class TestRuleManage(BaseTestCase):
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
 
-        # 不存在的uuid
+        # Non-existent uuid
         data['strategy_index'] = 1
         data['rule_uuid'] = 'no_exists_uuid'
         response = self.client.post(edit_threshold_url,
@@ -308,19 +308,19 @@ class TestRuleManage(BaseTestCase):
     def _test_data(self):
         data_url = reverse(self.data_url)
 
-        # 无参调用
+        # No-participation calls
         response = self.client.post(data_url)
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
 
-        # 不存在的uuid调用
+        # Non-existent uuid calls
         response = self.client.post(data_url, data={'uuid': 'no_exists_uuid'})
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
 
-        # 正常请求
+        # Normal request
         response = self.client.post(data_url, data={'uuid': self.rule_uuid})
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)

@@ -1,5 +1,5 @@
 $(function () {
-    // 创建漏洞表单提交
+    // Create a vulnerability form submission
     $("body").on("submit", '#UriForm', function (e) {
         e.preventDefault();
         var form = $(this);

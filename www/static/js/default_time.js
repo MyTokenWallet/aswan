@@ -21,13 +21,13 @@ $(function () {
     };
 
     function getLocalTime(datetime_str, area) {
-        //参数i为时区值数字，比如北京为东八区则输进8,西5输入-5
+        //Parameter i is a time zone value number, for example, Beijing for the East 8 district is input 8, West 5 input-5
         if (typeof area !== 'number') return;
         datetime_str = datetime_str.replace(/-/g, "/");
         var date = new Date(datetime_str);
-        //本地时间与GMT时间的时间偏移差
+        //Time offset difference between local time and GMT time
         var offset = date.getTimezoneOffset() * 60000;
-        //得到现在的格林尼治时间
+        //get the green wichita time now
         var utcTime = date.getTime() + offset;
         var date_ = new Date(utcTime + 3600000 * area).format("yyyy-MM-dd hh:mm:ss");
         return date_

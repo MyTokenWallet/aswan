@@ -75,7 +75,7 @@ class HitListDetailView(ListView):
         query_params = self.get_query_params(form.cleaned_data)
         table_names = self.get_hit_table_names(form.cleaned_data)
 
-        # todo 这里的分页做的不太好，优化一下
+        # todo The paging here doesn't do very well, optimize it.
         qs = []
         for model_cls in (get_hit_log_model(table_name) for table_name in
                           table_names):
@@ -93,7 +93,7 @@ class RuleStrategyMapView(JSONResponseMixin, View):
         rule_id = request.GET.get('rule_id', None)
         groups = {}
 
-        # 参数不全
+        # Argument incomplete
         if rule_id is None:
             return self.render_json_response({
                 'state': False,
@@ -101,7 +101,7 @@ class RuleStrategyMapView(JSONResponseMixin, View):
             })
 
         rules = Rules(load_all=True).id_rule_map
-        if rule_id in (u"", u"所有"):  # All_Rules
+        if rule_id in (u"", u"All"):  # All_Rules
             return self.render_json_response({
                 'state': True,
                 'strategy_groups': groups,

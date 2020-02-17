@@ -23,7 +23,7 @@ class TestRiskAuthView(BaseTestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
-        # 参数不全
+        # Argument incomplete
         response = self.client.post(url)
         self.assertEquals(response.status_code, 200)
 

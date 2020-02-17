@@ -12,12 +12,12 @@ body.skin-1 {
     }
 }
 
-/*IE9以下不识别HTML5标签*/
+/*HTML5 tags are not recognized below IE9*/
 header, nav, footer, aside, section {
     display: block;
 }
 
-/*公共部分*/
+/*Public part*/
 .wrapper {
     margin: 0 auto;
     padding: 1px 10px;
@@ -26,7 +26,7 @@ header, nav, footer, aside, section {
     overflow: hidden;
 }
 
-/*头部*/
+/*Head*/
 #header {
     height: 78px;
     background-color: #2b7dad;
@@ -55,7 +55,7 @@ header, nav, footer, aside, section {
     top: -100%;
 }
 
-/*搜索*/
+/*Search*/
 #search {
     padding-top: 24px;
     height: 54px;
@@ -91,7 +91,7 @@ header, nav, footer, aside, section {
     background: #f9f9f9;
 }
 
-/*小工具*/
+/*Gadgets*/
 #header .tools {
     position: absolute;
     top: 30px;
@@ -133,7 +133,7 @@ header, nav, footer, aside, section {
     background-position: 5px -146px;
 }
 
-/*主体内容*/
+/*Subject content*/
 #content {
     background-color: #fff;
 }
@@ -340,7 +340,7 @@ header, nav, footer, aside, section {
     height: 166px;
 }
 
-/*已经开放了更多的*/
+/*has been opened more*/
 #catalog .active .more-item {
     background-position: -23px center;
     background-color: #ff9630;
@@ -352,7 +352,7 @@ header, nav, footer, aside, section {
     cursor: pointer;
 }
 
-/*网址列表*/
+/*Web site list*/
 #catalog section ul, #website-map section ul {
     -webkit-transition: background-color 0.5s;
     -moz-transition: background-color 0.5s;
@@ -701,7 +701,7 @@ header, nav, footer, aside, section {
     color: #ee521c;
 }
 
-/*快捷导航*/
+/*Quick navigation*/
 #shortcut {
     position: fixed;
     z-index: 10;
@@ -779,7 +779,7 @@ header, nav, footer, aside, section {
     text-shadow: 1px 1px 0 #e03500
 }
 
-/*二级页面*/
+/*Level 2 pages*/
 #website-map {
     margin: 40px 0 34px;
     padding: 12px;
@@ -792,7 +792,7 @@ header, nav, footer, aside, section {
 }
 
 #website-map header h2 {
-    font-family: '微软雅黑';
+    font-family: 'Microsoft Yahe', serif;
     font-size: 1.4em;
     line-height: 30px;
     color: #256ea1;
