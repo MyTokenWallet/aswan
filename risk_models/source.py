@@ -6,6 +6,7 @@ import time
 import random
 import logging
 from collections import defaultdict
+from django.utils.translation import gettext_lazy as _
 
 import redis
 import gevent
@@ -34,7 +35,7 @@ class RawSource(object):
         try:
             d = conn.hgetall(conf.REDIS_SOURCE_MAP)
         except redis.RedisError:
-            logger.exception('load raw sources error')
+            logger.exception(_('load raw sources error'))
             return
 
         for name, fields_str in d.items():
@@ -187,18 +188,18 @@ class Sources(object):
     def refresh(self):
         while True:
             gevent.sleep(300 + random.randint(1, 60))
-            logger.debug('start refresh sources')
+            logger.debug(_('start refresh sources'))
             try:
                 self.load_sources()
             except Exception:
-                logger.exception('refresh sources failed')
+                logger.exception(_('refresh sources failed'))
             else:
-                logger.debug('refresh sources success')
+                logger.debug(_('refresh sources success'))
 
     def get_source_or_raise(self, name):
         sources = self.name_sources_map.get(name)
         if not sources:
-            raise ValueError('name({}) is not a source name'.format(name))
+            raise ValueError(_('name({}) is not a source name').format(name))
         return sources
 
     def check_all(self, name, data):

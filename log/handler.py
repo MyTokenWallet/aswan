@@ -4,6 +4,7 @@
 import atexit
 import random
 from logging import Handler, getLogger
+from django.utils.translation import gettext_lazy as _
 
 import gevent
 from redis import RedisError
@@ -47,7 +48,7 @@ class RedisHandler(Handler):
 
         cached_logs = self.cached_logs
         self.cached_logs = []
-        logger.info('auto push log, count: {}.'.format(len(cached_logs)))
+        logger.info(_('auto push log, count: {}.').format(len(cached_logs)))
         for tmp_cached_logs in split_large_collection(cached_logs, 20):
             self.push_logs(*tmp_cached_logs)
 
@@ -69,4 +70,4 @@ class RedisHandler(Handler):
             try:
                 self.process_cached_log()
             except Exception:
-                logger.exception('process cached log fail.')
+                logger.exception(_('process cached log fail.'))

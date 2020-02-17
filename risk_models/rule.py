@@ -8,6 +8,7 @@ from hashlib import md5
 from copy import deepcopy
 from datetime import datetime
 from collections import defaultdict
+from django.utils.translation import gettext_lazy as _
 
 import redis
 import gevent
@@ -89,14 +90,14 @@ class Rules(object):
         try:
             end_time = datetime.strptime(d['end_time'], '%Y-%m-%d %H:%M:%S')
         except ValueError:
-            logger.error('get invalid rule data %s', d)
+            logger.error(_('get invalid rule data %s'), d)
             return False
         return status == 'on' and end_time > datetime.now()
 
     def load_rules(self):
         id_rule_map = {}
         conn = get_config_redis_client()
-        logger.info('start load rules, current rule ids: %s',
+        logger.info(_('start load rules, current rule ids: %s'),
                     self.id_rule_map.keys())
         try:
             for name in conn.scan_iter(match='rule:*'):
@@ -105,36 +106,36 @@ class Rules(object):
                     rule = Rule(d)
                     id_rule_map[rule.id] = rule
         except redis.RedisError:
-            logger.error('load rules occur redis conn error')
+            logger.error(_('load rules occur redis conn error'))
             return
         self.id_rule_map = id_rule_map
-        logger.info('load rules success, current rule ids: %s',
+        logger.info(_('load rules success, current rule ids: %s'),
                     self.id_rule_map.keys())
 
     def refresh(self):
         while True:
             gevent.sleep(300 + random.randint(1, 60))
-            logger.info('start refresh strategys or rules')
+            logger.info(_('start refresh strategys or rules'))
             try:
                 strategys.load_strategys()
                 self.load_rules()
             except Exception as e:
-                logger.error('refresh strategys or rules failed', exc_info=e)
+                logger.error(_('refresh strategys or rules failed'), exc_info=e)
             else:
-                logger.info('refresh strategys or rules success')
+                logger.info(_('refresh strategys or rules success'))
 
     def get_callable_list(self, id_):
         rule = self.id_rule_map.get(id_)
         if not rule:
             raise RuleNotExistsException(
-                'rule id({}) does not exists'.format(id_))
+                _('rule id ({}) does not exists').format(id_))
         return rule.get_callable_list()
 
     def _get_rule_or_raise(self, id_):
         rule = self.id_rule_map.get(id_)
         if not rule:
             raise RuleNotExistsException(
-                'rule id ({}) does not exists'.format(id_))
+                _('rule id ({}) does not exists').format(id_))
         return rule
 
     def get_rule_name(self, id_):
@@ -187,7 +188,7 @@ class AccessCount(object):
             for k, v in id_count_map.items():
                 self.conn.hincrby(redis_hash_key, k, v)
         except redis.RedisError as e:
-            logger.error('incr access_count failed', exc_info=e)
+            logger.error(_('incr access_count failed'), exc_info=e)
             return
         #  Deduction after all writes
         for k, v in id_count_map.items():
@@ -199,7 +200,7 @@ class AccessCount(object):
             try:
                 self.persist()
             except Exception as e:
-                logger.error('incr access_count failed', exc_info=e)
+                logger.error(_('incr access_count failed'), exc_info=e)
 
 
 def calculate_rule(id_, req_body, rules=None, ac=None):
@@ -214,7 +215,7 @@ def calculate_rule(id_, req_body, rules=None, ac=None):
         ac.incr(id_)
         ac.persist()
 
-    rv_control, rv_weight, result_seted, hit_number = 'pass', 0, False, 0
+    rv_control, rv_weight, result_seted, hit_number = _('pass'), 0, False, 0
 
     for (funcs, control, custom, group_name, group_uuid,
          weight) in rules.get_callable_list(id_):
@@ -224,7 +225,7 @@ def calculate_rule(id_, req_body, rules=None, ac=None):
                 ret = func(req_body)
             except Exception:
                 logger.error(
-                    'run func error, rule_id: {}, weight: {}'.format(id_,
+                    _('run func error, rule_id: {}, weight: {}').format(id_,
                                                                      weight),
                     exc_info=True)
                 ret = False

@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 # coding: utf-8
+from django.utils.translation import gettext_lazy as _
 
+TQueryException=_('There is an error with the query interface')
 class QueryException(Exception):
-    """ There is an error with the query interface """
+    """ {{TQueryException}} """
     pass
 
-
+TBuiltInFuncNotExistError=_('Built-in function does not exist')
 class BuiltInFuncNotExistError(QueryException):
-    """ Built-in function does not exist """
+    """ {{TBuiltInFuncNotExistError}} """
     pass
 
-
+TRuleNotExistsException=_('Rule does not exist/has error')
 class RuleNotExistsException(QueryException):
-    """ Rule does not exist/has error """
+    """ {{TRuleNotExistsException}} """
     pass
 
-
+TReportException=_('Escalation interface error')
 class ReportException(Exception):
-    """ Escalation interface error """
+    """ {{TReportException}} """
     pass

@@ -8,6 +8,7 @@ import logging
 from datetime import datetime
 from functools import partial, wraps
 from collections import defaultdict
+from django.utils.translation import gettext_lazy as _
 
 import redis
 
@@ -52,19 +53,19 @@ class Strategy(object):
     def get_thresholds(self):
         """Each Policy must have a threshold list, and Policy in the rule binds this threshold by default
         The threshold list returned here is actually a string list and does not have type conversion"""
-        raise NotImplementedError("must be writen by subclass")
+        raise NotImplementedError(_("must be writen by subclass"))
 
     def build_strategy_name_from_thresholds(self, thresholds):
         """Each Policy must be able to reconstruct the PolicyName from the threshold list"""
-        raise NotImplementedError("must be writen by subclass")
+        raise NotImplementedError(_("must be writen by subclass"))
 
     def get_callable(self):
-        raise NotImplementedError("must be writen by subclass")
+        raise NotImplementedError(_("must be writen by subclass"))
 
     def get_callable_from_threshold_list(self, threshold_list):
         """This method returns a callable object based on a given threshold list.
         The callable object accepts a req_body as input, outputs a boolean value and a custom string"""
-        raise NotImplementedError("must be writen by subclass")
+        raise NotImplementedError(_("must be writen by subclass"))
 
     def __str__(self):
         return "{}[{}]".format(self.name, self.uuid)
@@ -135,7 +136,7 @@ class FreqStrategy(Strategy):
     def build_strategy_name_from_thresholds(self, thresholds):
         strategy_time, threshold = thresholds
         tmp_str = re.sub(r'[\d]+s', strategy_time + 's', self.name)
-        return re.sub(r'[\d]+Times', threshold, tmp_str)
+        return re.sub(r'[\d]' + _('Times'), threshold, tmp_str)
 
     def get_callable(self):
         return self.query_with_history
@@ -172,7 +173,7 @@ class FreqStrategy(Strategy):
         self.query_count += 1
         #  If the request is illegal, leave it by default
         if not self.source.check_key(req_body):
-            logger.error('invalid req_body(%s)', req_body)
+            logger.error(_('invalid req_body(%s)'), req_body)
             return False
 
         zkeys = self.source.get_zkeys(req_body)
@@ -261,15 +262,15 @@ class UserStrategy(Strategy):
         tmp_str = self.name
         if "That day" in self.name:
             if int(strategy_day) > 1:
-                tmp_str = re.sub(r"That day", strategy_day + "Default Day",
+                tmp_str = re.sub(r'_("That day")', strategy_day + _("Default Day"),
                                  self.name)
         else:
             if strategy_day == "1":
-                tmp_str = re.sub(r'[\d]+Default Day', 'That day', self.name)
+                tmp_str = re.sub(r'[\d]'+_('Default Day'), 'That day', self.name)
             else:
-                tmp_str = re.sub(r'[\d]+Default Day', strategy_day + 'Default Day',
+                tmp_str = re.sub(r'[\d]'+_('Default Day'), strategy_day + _('Default Day'),
                                  self.name)
-        return re.sub(r'[\d]+Individual_User', threshold + 'Individual_User', tmp_str)
+        return re.sub(r'[\d]'+ _('Individual_User'), threshold + _('Individual_User'), tmp_str)
 
     def get_callable(self):
         return self.query_with_history
@@ -310,7 +311,7 @@ class UserStrategy(Strategy):
         self.query_count += 1
         #  If the request is illegal, leave it by default
         if not self.source.check_key(req_body):
-            logger.error('invalid req_body(%s)', req_body)
+            logger.error(_('invalid req_body(%s)'), req_body)
             return False
 
         zkeys = self.source.get_zkeys(req_body)
@@ -354,7 +355,7 @@ class Strategys(object):
     def load_strategys(self):
         uuid_strategy_map = {}
         conn = get_config_redis_client()
-        logger.info('start load strategys from db, current strategy: %s',
+        logger.info(_('start load strategys from db, current strategy: %s'),
                     self.uuid_strategy_map.keys())
         for strategy_cls in _used_strategies:
             try:
@@ -363,16 +364,16 @@ class Strategys(object):
                     strategy = strategy_cls(d)
                     uuid_strategy_map[strategy.uuid] = strategy
             except redis.RedisError:
-                logger.error('load strategys occur redis conn error')
+                logger.error(_('load strategys occur redis conn error'))
                 return
         self.uuid_strategy_map = uuid_strategy_map
-        logger.info('load strategys success, current strategy: %s',
+        logger.info(_('load strategys success, current strategy: %s'),
                     self.uuid_strategy_map.keys())
 
     def _get_strategy_or_raise(self, uuid_):
         strategy = self.uuid_strategy_map.get(uuid_)
         if not strategy:
-            raise ValueError('uuid({}) is not a valid strategy uuid'.format(uuid_))
+            raise ValueError(_('uuid({}) is not a valid strategy uuid').format(uuid_))
         return strategy
 
     def get_thresholds(self, uuid_):

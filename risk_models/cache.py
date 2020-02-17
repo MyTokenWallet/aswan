@@ -5,6 +5,7 @@ import os
 import random
 import logging
 from collections import defaultdict
+from django.utils.translation import gettext_lazy as _
 
 import gevent
 
@@ -50,16 +51,16 @@ class Cache(object):
     def __refresh_menu_maps(self):
         while True:
             gevent.sleep(self.refresh_interval + random.randint(1, 60))
-            logger.info('start refresh %s cache', self.scan_key)
+            logger.info(_('start refresh %s cache'), self.scan_key)
             try:
                 tmp_maps = self.__build_menu_maps()
                 if tmp_maps:
                     self.__menu_maps = tmp_maps
             except Exception as e:
-                logger.error('refresh %s cache failed', self.scan_key,
+                logger.error(_('refresh %s cache failed'), self.scan_key,
                              exc_info=e)
             else:
-                logger.info('refresh %s cache success', self.scan_key)
+                logger.info(_('refresh %s cache success'), self.scan_key)
 
 
 menu_cache = Cache(scan_key="menu:*")

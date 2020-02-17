@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import importlib
-
 import os
 
 # Log output directory
@@ -40,4 +39,4 @@ try:
     exec('from config.{risk_env} import *'.format(risk_env=risk_env))
 except Exception:
     raise AssertionError(
-        'The project should set correct RISK_ENV environment var.')
+        _('The project should set correct RISK_ENV environment var.'))

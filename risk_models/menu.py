@@ -4,6 +4,7 @@
 import logging
 
 from risk_models.cache import menu_cache
+from django.utils.translation import gettext_lazy as _
 
 logger = logging.getLogger(__name__)
 logging.basicConfig()
@@ -25,7 +26,7 @@ def build_redis_key(event_code, dimension, menu_type):
 
 def hit_menu(req_body, op_name, event, dimension, menu_type):
     if dimension not in req_body:
-        logger.error('req_body(%s) does not contain %s', req_body, dimension)
+        logger.error(_('req_body(%s)') + _('does not contain %s'), req_body, dimension)
         return False
 
     redis_key = build_redis_key(event, dimension, menu_type)
@@ -34,7 +35,7 @@ def hit_menu(req_body, op_name, event, dimension, menu_type):
         return False
 
     rv = req_body[dimension] in menu_cache[redis_key]
-    if op_name == 'is_not':
+    if op_name == _('is_not'):
         rv = not rv
 
     return rv
