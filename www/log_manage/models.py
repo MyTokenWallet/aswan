@@ -52,12 +52,12 @@ def get_hit_log_model(db_table):
         kwargs = models.CharField(max_length=128, null=False, default='', verbose_name=_(u'Extended parameter'))
         req_body = models.CharField(max_length=512, null=False, default='', verbose_name=_(u'Request_Parameter'))
         control = models.CharField(max_length=16, null=False, default='', verbose_name=_(u'Projectmanagement'))
-        custom = models.CharField(max_length=50, null=False, default='', verbose_name=_(u'策略Group解释'))
+        custom = models.CharField(max_length=50, null=False, default='', verbose_name=_(u'Strategy Group Explained'))
         group_name = models.CharField(max_length=256, null=False, default='',
                                       verbose_name=_(u'PolicyGroupNameCall'))
         group_uuid = models.CharField(max_length=36, null=False, default='',
                                       verbose_name=_(u'PolicyGroupUUID'))
-        hit_number = models.PositiveSmallIntegerField(null=False, default=1, verbose_name=_(u'命中次序'))
+        hit_number = models.PositiveSmallIntegerField(null=False, default=1, verbose_name=_(u'Hit order'))
 
         objects = Manager()
 

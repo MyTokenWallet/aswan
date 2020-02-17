@@ -1,0 +1,540 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-17 16:36+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: www/bk_config/forms.py:68
+msgid "Data source name"
+msgstr ""
+
+#: www/bk_config/tables.py:9
+msgid "ConfigurationNameKey"
+msgstr ""
+
+#: www/bk_config/tables.py:10
+msgid "ConfigurationName"
+msgstr ""
+
+#: www/bk_config/tables.py:11
+msgid "Content"
+msgstr ""
+
+#: www/bk_config/tables.py:17 www/permissions/tables.py:45
+#: www/permissions/tables.py:84 www/rule/tables.py:29 www/strategy/tables.py:23
+#: www/strategy/tables.py:57 www/strategy/tables.py:84
+#: www/strategy/tables.py:114
+msgid "Confirm"
+msgstr ""
+
+#: www/core/forms.py:64 www/templates/table.html:57
+msgid "Save"
+msgstr ""
+
+#: www/core/forms.py:65
+msgid "Reset"
+msgstr ""
+
+#: www/core/forms.py:110
+msgid "Submit"
+msgstr ""
+
+#: www/core/forms.py:118 www/log_manage/forms.py:99
+msgid "StartTime"
+msgstr ""
+
+#: www/core/forms.py:119 www/log_manage/forms.py:100 www/menu/tables.py:32
+msgid "EndTime"
+msgstr ""
+
+#: www/log_manage/forms.py:31 www/log_manage/tables.py:18 www/rule/forms.py:35
+#: www/rule/forms.py:140 www/rule/tables.py:12
+msgid "RuleName"
+msgstr ""
+
+#: www/log_manage/forms.py:32
+msgid "PolicyGroupName"
+msgstr ""
+
+#: www/log_manage/forms.py:90 www/log_manage/models.py:54
+#: www/log_manage/tables.py:21 www/rule/forms.py:41
+msgid "Projectmanagement"
+msgstr ""
+
+#: www/log_manage/forms.py:92 www/log_manage/tables.py:20 www/menu/tables.py:52
+msgid "UserID"
+msgstr ""
+
+#: www/log_manage/models.py:12 www/log_manage/tables.py:48
+msgid "Username"
+msgstr ""
+
+#: www/log_manage/models.py:14 www/log_manage/tables.py:49
+msgid "Mailbox"
+msgstr ""
+
+#: www/log_manage/models.py:15 www/log_manage/tables.py:52
+msgid "Request address"
+msgstr ""
+
+#: www/log_manage/models.py:17 www/log_manage/tables.py:56
+msgid "Response_Code"
+msgstr ""
+
+#: www/log_manage/models.py:19
+msgid "Request_Type"
+msgstr ""
+
+#: www/log_manage/models.py:21 www/log_manage/models.py:53
+#: www/log_manage/tables.py:82
+msgid "Request_Parameter"
+msgstr ""
+
+#: www/log_manage/models.py:22
+msgid "Operating_Time"
+msgstr ""
+
+#: www/log_manage/models.py:27
+msgid "Audit log"
+msgstr ""
+
+#: www/log_manage/models.py:49
+msgid "Hit time"
+msgstr ""
+
+#: www/log_manage/models.py:50 www/rule/tables.py:11
+msgid "Rule ID"
+msgstr ""
+
+#: www/log_manage/models.py:51
+msgid "Hit User"
+msgstr ""
+
+#: www/log_manage/models.py:52
+msgid "Extended parameter"
+msgstr ""
+
+#: www/log_manage/models.py:55
+msgid "Strategy Group Explained"
+msgstr ""
+
+#: www/log_manage/models.py:57 www/log_manage/tables.py:19
+msgid "PolicyGroupNameCall"
+msgstr ""
+
+#: www/log_manage/models.py:59
+msgid "PolicyGroupUUID"
+msgstr ""
+
+#: www/log_manage/models.py:60
+msgid "Hit order"
+msgstr ""
+
+#: www/log_manage/tables.py:17
+msgid "Touch time"
+msgstr ""
+
+#: www/log_manage/tables.py:22 www/rule/forms.py:139 www/strategy/forms.py:149
+#: www/strategy/forms.py:408
+msgid "RequestBody"
+msgstr ""
+
+#: www/log_manage/tables.py:23
+msgid "Whether to hit for the first time"
+msgstr ""
+
+#: www/log_manage/tables.py:50
+msgid "Role"
+msgstr ""
+
+#: www/log_manage/tables.py:53
+msgid "ActionType"
+msgstr ""
+
+#: www/log_manage/tables.py:55
+msgid "How to request"
+msgstr ""
+
+#: www/log_manage/tables.py:83
+msgid "Request time"
+msgstr ""
+
+#: www/menu/forms.py:74
+msgid "List dimensions"
+msgstr ""
+
+#: www/menu/forms.py:75 www/menu/forms.py:190 www/menu/tables.py:29
+#: www/strategy/forms.py:356 www/strategy/tables.py:81
+msgid "ListType"
+msgstr ""
+
+#: www/menu/forms.py:77 www/menu/tables.py:28 www/strategy/forms.py:355
+#: www/strategy/tables.py:80
+msgid "Project"
+msgstr ""
+
+#: www/menu/forms.py:110
+msgid "The EndTime should be greater than the current time"
+msgstr ""
+
+#: www/menu/forms.py:189
+msgid "Project type"
+msgstr ""
+
+#: www/menu/forms.py:191 www/menu/tables.py:27
+msgid "Value"
+msgstr ""
+
+#: www/menu/tables.py:13
+msgid "Project name"
+msgstr ""
+
+#: www/menu/tables.py:16
+msgid "action"
+msgstr ""
+
+#: www/menu/tables.py:30 www/rule/forms.py:38 www/rule/forms.py:160
+#: www/rule/tables.py:13
+msgid "Status"
+msgstr ""
+
+#: www/menu/tables.py:31 www/permissions/tables.py:20
+msgid "Note"
+msgstr ""
+
+#: www/menu/tables.py:33 www/rule/tables.py:14
+msgid "UpdateTime"
+msgstr ""
+
+#: www/menu/tables.py:34
+msgid "Operator"
+msgstr ""
+
+#: www/menu/tables.py:59
+msgid "IP_Address"
+msgstr ""
+
+#: www/menu/tables.py:66
+msgid "Device_ID"
+msgstr ""
+
+#: www/menu/tables.py:73
+msgid "Payment account number"
+msgstr ""
+
+#: www/menu/tables.py:80
+msgid "CellPhoneNumber"
+msgstr ""
+
+#: www/permissions/forms.py:26 www/permissions/tables.py:14
+msgid "Name"
+msgstr ""
+
+#: www/permissions/forms.py:27 www/permissions/tables.py:15
+msgid "email"
+msgstr ""
+
+#: www/permissions/tables.py:17
+msgid "SuperAdministrator"
+msgstr ""
+
+#: www/permissions/tables.py:19
+msgid "First sign-in time"
+msgstr ""
+
+#: www/permissions/tables.py:41
+msgid "Sub_Group_Name"
+msgstr ""
+
+#: www/permissions/tables.py:42 www/permissions/tables.py:80
+msgid "Unique_Identification"
+msgstr ""
+
+#: www/permissions/tables.py:43 www/permissions/tables.py:82
+msgid "Creation_Time"
+msgstr ""
+
+#: www/permissions/tables.py:79
+msgid "uriGroupNameCall"
+msgstr ""
+
+#: www/permissions/tables.py:81
+msgid "Uri_List"
+msgstr ""
+
+#: www/risk_auth/forms.py:15
+msgid ""
+"Please enter a correct Username and password and please note that they are "
+"case sensitive."
+msgstr ""
+
+#: www/risk_auth/forms.py:16
+msgid "This account is inactive."
+msgstr ""
+
+#: www/rule/forms.py:36
+msgid "Rule description"
+msgstr ""
+
+#: www/rule/forms.py:40
+msgid "Policy"
+msgstr ""
+
+#: www/rule/forms.py:43
+msgid "Customer service skills"
+msgstr ""
+
+#: www/rule/forms.py:68
+msgid "The end time should be greater than the current time"
+msgstr ""
+
+#: www/rule/forms.py:76
+msgid "Weight value is not a number"
+msgstr ""
+
+#: www/rule/forms.py:163
+msgid "RuleName(Fuzzy queries)"
+msgstr ""
+
+#: www/rule/tables.py:15
+msgid "Update"
+msgstr ""
+
+#: www/settings/settings.py:22
+msgid "English"
+msgstr ""
+
+#: www/settings/settings.py:23
+msgid "Chinese"
+msgstr ""
+
+#: www/strategy/forms.py:72 www/strategy/forms.py:202 www/strategy/forms.py:269
+#: www/strategy/forms.py:358 www/strategy/forms.py:436
+#: www/strategy/tables.py:15 www/strategy/tables.py:48
+#: www/strategy/tables.py:76 www/strategy/tables.py:105
+msgid "PolicyName"
+msgstr ""
+
+#: www/strategy/forms.py:73 www/strategy/forms.py:203 www/strategy/forms.py:270
+#: www/strategy/forms.py:359 www/strategy/tables.py:16
+#: www/strategy/tables.py:49 www/strategy/tables.py:77
+#: www/strategy/tables.py:106
+msgid "PolicyDescription"
+msgstr ""
+
+#: www/strategy/forms.py:74 www/strategy/tables.py:17
+msgid "Built-in variables"
+msgstr ""
+
+#: www/strategy/forms.py:75 www/strategy/forms.py:354 www/strategy/tables.py:18
+#: www/strategy/tables.py:79
+msgid "ActionCode"
+msgstr ""
+
+#: www/strategy/forms.py:76 www/strategy/tables.py:19
+msgid "Built-in functions"
+msgstr ""
+
+#: www/strategy/forms.py:77 www/strategy/tables.py:20
+msgid "Thresholds"
+msgstr ""
+
+#: www/strategy/forms.py:150 www/strategy/forms.py:409
+msgid "Strategy"
+msgstr ""
+
+#: www/strategy/forms.py:177 www/strategy/forms.py:329
+msgid "Historical data"
+msgstr ""
+
+#: www/strategy/forms.py:204 www/strategy/forms.py:271
+#: www/strategy/tables.py:50 www/strategy/tables.py:107
+msgid "DataSources"
+msgstr ""
+
+#: www/strategy/forms.py:205 www/strategy/forms.py:272
+#: www/strategy/tables.py:51 www/strategy/tables.py:108
+msgid "BodyName"
+msgstr ""
+
+#: www/strategy/forms.py:207 www/strategy/tables.py:52
+msgid "Period (in seconds))"
+msgstr ""
+
+#: www/strategy/forms.py:209 www/strategy/tables.py:53
+#: www/strategy/tables.py:110
+msgid "Maximum"
+msgstr ""
+
+#: www/strategy/forms.py:274
+msgid "Default days (in units): Individual)"
+msgstr ""
+
+#: www/strategy/forms.py:276
+msgid "Limit the number of Users"
+msgstr ""
+
+#: www/strategy/forms.py:353 www/strategy/tables.py:78
+msgid "Dimensions"
+msgstr ""
+
+#: www/strategy/tables.py:109
+msgid "Nature Day (In Individual)"
+msgstr ""
+
+#: www/templates/403.html:3 www/templates/403.html:4
+msgid "403"
+msgstr ""
+
+#: www/templates/403.html:5
+msgid "No access"
+msgstr ""
+
+#: www/templates/403.html:6
+msgid "Sorry, you don't have access to this page."
+msgstr ""
+
+#: www/templates/pagination.html:4
+msgid "A total query out"
+msgstr ""
+
+#: www/templates/pagination.html:4 www/templates/pagination.html:25
+msgid "Bar data"
+msgstr ""
+
+#: www/templates/pagination.html:19
+msgid "Show per page"
+msgstr ""
+
+#: www/templates/pagination.html:61
+msgid "Jump page "
+msgstr ""
+
+#: www/templates/pagination.html:92
+msgid "Next"
+msgstr ""
+
+#: www/templates/siderbar.html:50
+msgid "Wind control system."
+msgstr ""
+
+#: www/templates/siderbar.html:61
+msgid "Exit"
+msgstr ""
+
+#: www/templates/siderbar.html:68
+msgid "List management"
+msgstr ""
+
+#: www/templates/siderbar.html:74
+msgid "List item management"
+msgstr ""
+
+#: www/templates/siderbar.html:79
+msgid "User ID management"
+msgstr ""
+
+#: www/templates/siderbar.html:84
+msgid "IP Address management"
+msgstr ""
+
+#: www/templates/siderbar.html:89
+msgid "Device number management"
+msgstr ""
+
+#: www/templates/siderbar.html:94
+msgid "Payment account management"
+msgstr ""
+
+#: www/templates/siderbar.html:99
+msgid "Phone number management"
+msgstr ""
+
+#: www/templates/siderbar.html:106
+msgid "Strategic Atomic Management"
+msgstr ""
+
+#: www/templates/siderbar.html:113
+msgid "List policy configuration"
+msgstr ""
+
+#: www/templates/siderbar.html:118
+msgid "Boolean policy configuration"
+msgstr ""
+
+#: www/templates/siderbar.html:123
+msgid "Period frequency control strategy configuration"
+msgstr ""
+
+#: www/templates/siderbar.html:128
+msgid "User-limited policy configuration"
+msgstr ""
+
+#: www/templates/siderbar.html:135
+msgid "Rule management"
+msgstr ""
+
+#: www/templates/siderbar.html:141
+msgid "Rule configuration"
+msgstr ""
+
+#: www/templates/siderbar.html:148
+msgid "Log management"
+msgstr ""
+
+#: www/templates/siderbar.html:154
+msgid "Block log details"
+msgstr ""
+
+#: www/templates/siderbar.html:159
+msgid "Access log details"
+msgstr ""
+
+#: www/templates/siderbar.html:166
+msgid "Authority management"
+msgstr ""
+
+#: www/templates/siderbar.html:172
+msgid "User"
+msgstr ""
+
+#: www/templates/siderbar.html:177
+msgid "Group"
+msgstr ""
+
+#: www/templates/siderbar.html:182
+msgid "Authority"
+msgstr ""
+
+#: www/templates/siderbar.html:189
+msgid "Background Configuration"
+msgstr ""
+
+#: www/templates/siderbar.html:195
+msgid "Data Source Configuration"
+msgstr ""
+
+#: www/templates/table.html:40 www/templates/table.html:52
+msgid "Full selection"
+msgstr ""
+
+#: www/templates/table.html:42
+msgid "delete"
+msgstr ""
+
+#: www/templates/table.html:54
+msgid "Bulk editing"
+msgstr ""

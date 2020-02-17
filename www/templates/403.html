@@ -1,6 +1,6 @@
 {% extends 'error_page.html' %}
 {% load i18n %}
-{% block error_code %}403{% endblock %}
-{% block error_code_title %}403{% endblock %}
-{% block error_code_title_zh %}No access{% endblock %}
-{% block error_code_desc %}Sorry, you don't have access to this page.{% endblock %}
+{% block error_code %}{% trans "403" %}{% endblock %}
+{% block error_code_title %}{% trans "403" %}{% endblock %}
+{% block error_code_title_zh %}{% trans "No access" %}{% endblock %}
+{% block error_code_desc %}{% trans "Sorry, you don't have access to this page." %}{% endblock %}
