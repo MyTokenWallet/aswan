@@ -6,21 +6,21 @@ import importlib
 from django.utils.translation import gettext_lazy as _, gettext_noop
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware,'
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'permissions.middleware.PermissionsMiddleware',
-    'permissions.middleware.UserAuditMiddleware'
+    'permissions.middleware.UserAuditMiddleware',
 )
 LANGUAGES = (
-    ('en', gettext_noop('English')),
-    ('zh', gettext_noop('Chinese')),
+    ('en', _('English')),
+    ('zh', _('Chinese')),
 )
 
 p = environ.Path(__file__) - 2
@@ -57,7 +57,9 @@ PROJECT_DIR = root()
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qv%**nr#*m_$$36b_20dl5&rlov^%$=!gm&(y5q-@un=y#uxvl'
+SECRET_KEY= 'jhagdsf87asfd67ludsfgdfghA'
+#SECRET_KEY=os.environ.get('SECRET_KEY')
+
 
 ALLOWED_HOSTS = [
     "*",
@@ -72,10 +74,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django_tables2',
     'crispy_forms',
-
     'risk_auth',
     'permissions',
     'strategy',
