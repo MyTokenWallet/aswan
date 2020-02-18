@@ -80,7 +80,7 @@
                 uri = _this.data('uri'),
                 id = _this.data('id');
             swal({
-                title: "Are you sure you want to delete it",
+                title: gettext("Are you sure you want to delete it"),
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
@@ -105,7 +105,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "failed to delete",
+                                title: gettext("failed to delete"),
                                 type: "error",
                                 confirmButtonColor: "#ff6700"
                             });
@@ -124,14 +124,14 @@
                 id = _this.data('id');
             if (status === 'on') {
                 swal({
-                    title: "Rules" + title + "already enabled",
+                    title: gettext("Rules") + title + gettext("already enabled"),
                     type: "error",
                     confirmButtonColor: "#ff6700"
                 });
                 return;
             }
             swal({
-                title: "You determine the Enable rule" + title + "Do you?",
+                title: gettext("You determine the Enable rule") + title + gettext("Do you?"),
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
@@ -153,7 +153,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "Enable failed",
+                                title: gettext("Enable failed"),
                                 type: "error",
                                 confirmButtonColor: "#ff6700"
                             });
@@ -173,14 +173,14 @@
                 id = _this.data('id');
             if (status === 'off') {
                 swal({
-                    title: "Rules" + title + "already disabled",
+                    title: gettext("Rules") + title + gettext("already disabled"),
                     type: "error",
                     confirmButtonColor: "#ff6700"
                 });
                 return;
             }
             swal({
-                title: "You determine the Disable rule" + title + "Do you?",
+                title: gettext("You determine the Disable rule") + title + gettext("Do you?"),
                 type: "warning",
                 allowOutsideClick: true,
                 showCancelButton: true,
@@ -202,7 +202,7 @@
                     error: function (err) {
                         if (err.statusText !== 'abort') {
                             swal({
-                                title: "Disable failed",
+                                title: gettext("Disable failed"),
                                 type: "error",
                                 confirmButtonColor: "#ff6700"
                             });

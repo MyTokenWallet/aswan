@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import json
+from django.utils.translation import gettext_lazy as _
 import logging
 from www.core.lru import LRUCacheDict
 
@@ -80,7 +81,7 @@ class PermissionsMiddleware(object):
                 CACHE_USER_PERMS[pk] = result
             return result
         except DBError:
-            LOGGER.error(u'Failed get user permissions ({}-{}) for DB error!'
+            LOGGER.error(_('Failed get user permissions ({}-{}) for DB error!')
                          .format(user.pk, user.fullname))
             return WHITE_LIST_URIS
 

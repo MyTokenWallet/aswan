@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-18 00:23+0100\n"
+"POT-Creation-Date: 2020-02-18 01:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -173,7 +173,7 @@ msgstr ""
 msgid "Account_ID"
 msgstr ""
 
-#: www/bk_config/views.py:17 www/menu/tables.py:66
+#: www/bk_config/views.py:17 www/menu/forms.py:42 www/menu/tables.py:66
 msgid "Device_ID"
 msgstr ""
 
@@ -181,7 +181,7 @@ msgstr ""
 msgid "Current_IP"
 msgstr ""
 
-#: www/bk_config/views.py:19 www/menu/tables.py:80
+#: www/bk_config/views.py:19 www/menu/forms.py:41 www/menu/tables.py:80
 msgid "CellPhoneNumber"
 msgstr ""
 
@@ -193,7 +193,8 @@ msgstr ""
 msgid "[{}]Has been used, cannot delete"
 msgstr ""
 
-#: www/bk_config/views.py:112
+#: www/bk_config/views.py:112 www/menu/views.py:53 www/menu/views.py:102
+#: www/menu/views.py:174 www/menu/views.py:240
 msgid "ok"
 msgstr ""
 
@@ -241,39 +242,39 @@ msgstr ""
 msgid "Note that this section can only be performed in a test environment"
 msgstr ""
 
-#: www/log_manage/forms.py:17
+#: www/log_manage/forms.py:17 www/menu/views.py:131
 msgid "all"
 msgstr ""
 
-#: www/log_manage/forms.py:17
+#: www/log_manage/forms.py:17 www/rule/forms.py:20
 msgid "Select Project"
 msgstr ""
 
-#: www/log_manage/forms.py:18
+#: www/log_manage/forms.py:18 www/rule/forms.py:21
 msgid "pass"
 msgstr ""
 
-#: www/log_manage/forms.py:19
+#: www/log_manage/forms.py:19 www/rule/forms.py:22
 msgid "deny"
 msgstr ""
 
-#: www/log_manage/forms.py:20
+#: www/log_manage/forms.py:20 www/rule/forms.py:23
 msgid "log"
 msgstr ""
 
-#: www/log_manage/forms.py:21
+#: www/log_manage/forms.py:21 www/rule/forms.py:24
 msgid "SMS verification"
 msgstr ""
 
-#: www/log_manage/forms.py:22
+#: www/log_manage/forms.py:22 www/rule/forms.py:25
 msgid "Picture verification"
 msgstr ""
 
-#: www/log_manage/forms.py:23
+#: www/log_manage/forms.py:23 www/rule/forms.py:26
 msgid "Digital verification"
 msgstr ""
 
-#: www/log_manage/forms.py:24
+#: www/log_manage/forms.py:24 www/rule/forms.py:27
 msgid "Review"
 msgstr ""
 
@@ -307,7 +308,8 @@ msgstr ""
 msgid "Projectmanagement"
 msgstr ""
 
-#: www/log_manage/forms.py:92 www/log_manage/tables.py:20 www/menu/tables.py:52
+#: www/log_manage/forms.py:92 www/log_manage/tables.py:20 www/menu/forms.py:39
+#: www/menu/tables.py:52
 msgid "UserID"
 msgstr ""
 
@@ -321,6 +323,39 @@ msgstr ""
 
 #: www/log_manage/management/commands/persistence_hit_log.py:113
 msgid "hit log persistence have error"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:16
+msgid "username"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:17 www/permissions/forms.py:27
+#: www/permissions/tables.py:15
+msgid "email"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:18
+msgid "path"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:19
+msgid "status"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:20
+msgid "method"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:21
+msgid "req_body"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:22
+msgid "time"
+msgstr ""
+
+#: www/log_manage/migrations/0001_initial.py:27 www/log_manage/models.py:27
+msgid "Audit log"
 msgstr ""
 
 #: www/log_manage/models.py:12 www/log_manage/tables.py:48
@@ -350,10 +385,6 @@ msgstr ""
 
 #: www/log_manage/models.py:22
 msgid "Operating_Time"
-msgstr ""
-
-#: www/log_manage/models.py:27
-msgid "Audit log"
 msgstr ""
 
 #: www/log_manage/models.py:48
@@ -433,7 +464,7 @@ msgstr ""
 msgid "-Read"
 msgstr ""
 
-#: www/log_manage/tables.py:132
+#: www/log_manage/tables.py:132 www/menu/forms.py:199
 msgid "Unknown"
 msgstr ""
 
@@ -446,8 +477,52 @@ msgid "Block log details list"
 msgstr ""
 
 #: www/log_manage/views.py:62 www/log_manage/views.py:63
-#: www/log_manage/views.py:105
+#: www/log_manage/views.py:105 www/menu/forms.py:29
 msgid "All"
+msgstr ""
+
+#: www/menu/forms.py:21
+msgid "Full list"
+msgstr ""
+
+#: www/menu/forms.py:22
+msgid "Blacklist"
+msgstr ""
+
+#: www/menu/forms.py:23
+msgid "White List"
+msgstr ""
+
+#: www/menu/forms.py:24
+msgid "Grey List"
+msgstr ""
+
+#: www/menu/forms.py:28 www/menu/forms.py:151 www/menu/init_data.py:42
+msgid "Valid"
+msgstr ""
+
+#: www/menu/forms.py:30 www/menu/views.py:219
+msgid "Invalid"
+msgstr ""
+
+#: www/menu/forms.py:40 www/menu/tables.py:59
+msgid "IP_Address"
+msgstr ""
+
+#: www/menu/forms.py:43 www/menu/tables.py:73
+msgid "Payment account number"
+msgstr ""
+
+#: www/menu/forms.py:55
+msgid "The project name already exists"
+msgstr ""
+
+#: www/menu/forms.py:72
+msgid "UserID[When adding in bulk, separate it by enter key]"
+msgstr ""
+
+#: www/menu/forms.py:72 www/menu/forms.py:81
+msgid "rows"
 msgstr ""
 
 #: www/menu/forms.py:74
@@ -464,8 +539,24 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
+#: www/menu/forms.py:81
+msgid "Note [Fill in the reason for adding the batch data]"
+msgstr ""
+
+#: www/menu/forms.py:102
+msgid "Enter illegal"
+msgstr ""
+
+#: www/menu/forms.py:104
+msgid "This field is required。"
+msgstr ""
+
 #: www/menu/forms.py:110
 msgid "The EndTime should be greater than the current time"
+msgstr ""
+
+#: www/menu/forms.py:120
+msgid "Enter illegal: {}"
 msgstr ""
 
 #: www/menu/forms.py:189
@@ -501,20 +592,49 @@ msgstr ""
 msgid "Operator"
 msgstr ""
 
-#: www/menu/tables.py:59
-msgid "IP_Address"
+#: www/menu/test.py:36 www/menu/test.py:43
+msgid "id is illegal"
 msgstr ""
 
-#: www/menu/tables.py:73
-msgid "Payment account number"
+#: www/menu/test.py:58 www/menu/views.py:209
+msgid "Records don't exist"
+msgstr ""
+
+#: www/menu/views.py:80
+msgid "not found"
+msgstr ""
+
+#: www/menu/views.py:87
+msgid "List generated, delete cannot be"
+msgstr ""
+
+#: www/menu/views.py:95
+msgid "List Policy generated, unable to delete"
+msgstr ""
+
+#: www/menu/views.py:130 www/menu/views.py:200
+msgid "valid"
+msgstr ""
+
+#: www/menu/views.py:169
+#, python-brace-format
+msgid "The following data add failed:{0}"
+msgstr ""
+
+#: www/menu/views.py:194
+msgid "ID is illegal"
+msgstr ""
+
+#: www/menu/views.py:236
+msgid "Operation failed, please try again later"
 msgstr ""
 
 #: www/permissions/forms.py:26 www/permissions/tables.py:14
 msgid "Name"
 msgstr ""
 
-#: www/permissions/forms.py:27 www/permissions/tables.py:15
-msgid "email"
+#: www/permissions/middleware.py:84
+msgid "Failed get user permissions ({}-{}) for DB error!"
 msgstr ""
 
 #: www/permissions/tables.py:17
@@ -555,6 +675,14 @@ msgstr ""
 msgid "This account is inactive."
 msgstr ""
 
+#: www/rule/forms.py:16
+msgid "Enable"
+msgstr ""
+
+#: www/rule/forms.py:17
+msgid "Disable"
+msgstr ""
+
 #: www/rule/forms.py:36
 msgid "Rule description"
 msgstr ""
@@ -563,7 +691,7 @@ msgstr ""
 msgid "Policy"
 msgstr ""
 
-#: www/rule/forms.py:43
+#: www/rule/forms.py:43 www/rule/forms.py:45
 msgid "Customer service skills"
 msgstr ""
 
@@ -573,6 +701,27 @@ msgstr ""
 
 #: www/rule/forms.py:76
 msgid "Weight value is not a number"
+msgstr ""
+
+#: www/rule/forms.py:105
+msgid ""
+"PolicyGroupName、Policy、Projectmanagement、Customer service does not match"
+msgstr ""
+
+#: www/rule/forms.py:108
+msgid "Illegal PolicyName"
+msgstr ""
+
+#: www/rule/forms.py:110
+msgid "Illegal Projectmanagement Name"
+msgstr ""
+
+#: www/rule/forms.py:117
+msgid "Policy already exist"
+msgstr ""
+
+#: www/rule/forms.py:155
+msgid "RequestBody Not legal json format"
 msgstr ""
 
 #: www/rule/forms.py:163

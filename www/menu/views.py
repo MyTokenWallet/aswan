@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from collections import defaultdict
 
@@ -50,7 +50,7 @@ class EventCreateView(JSONResponseMixin, View):
             data = dict(
                 event_code=event_code,
                 state=True,
-                msg="ok"
+                msg=_("ok")
             )
         else:
             data = dict(
@@ -77,14 +77,14 @@ class EventDestroyView(JSONResponseMixin, View):
         if not res:
             return self.render_json_response(dict(
                 state=False,
-                error="not found"
+                error=_("not found")
             ))
 
         # 1. Make sure it's not used by list management
         if db.menus.find_one({"event": event_code}):
             return self.render_json_response(dict(
                 state=False,
-                error=u"List generated, delete cannot be"
+                error=_("List generated, delete cannot be")
             ))
 
         # 2. Make sure it's not used by a list policy
@@ -92,14 +92,14 @@ class EventDestroyView(JSONResponseMixin, View):
         if is_using:
             return self.render_json_response(dict(
                 state=False,
-                error=u"List Policy generated, unable to delete"
+                error=_("List Policy generated, unable to delete")
             ))
 
         db.menu_event.delete_one({'event_code': event_code})
 
         return self.render_json_response(dict(
             state=True,
-            msg=u"ok"
+            msg=_("ok")
         ))
 
 
@@ -127,8 +127,8 @@ class BaseMenuListView(ListView):
         if event_code:
             query['event_code'] = event_code
         if not menu_status:
-            menu_status = u'valid'
-        if menu_status != u'all':
+            menu_status = _('valid')
+        if menu_status != _('all'):
             query['menu_status'] = menu_status
         query.update(self.extra_filter_kwargs)
         return query
@@ -166,12 +166,12 @@ class MenuCreateView(JSONResponseMixin, View):
             if error_datas:
                 data = dict(
                     state=False,
-                    error={"value": [u"The following data add failed:{0}".format(error_datas)]}
+                    error={"value": [_("The following data add failed:{0}").format(error_datas)]}
                 )
             else:
                 data = dict(
                     state=True,
-                    msg="ok"
+                    msg=_("ok")
                 )
         else:
             data = dict(
@@ -191,13 +191,13 @@ class MenuDestroyView(JSONResponseMixin, View):
         except Exception:
             return self.render_json_response(dict(
                 state=False,
-                error=u"ID is illegal"
+                error=_("ID is illegal")
             ))
 
         redis_values_should_remove = defaultdict(list)
 
         menus_records = list(
-            db['menus'].find({'_id': {"$in": obj_ids}, 'menu_status': u'valid'},
+            db['menus'].find({'_id': {"$in": obj_ids}, 'menu_status': _('valid')},
                              {'event_code': True, '_id': False,
                               'dimension': True,
                               'menu_type': True, 'value': True,
@@ -206,7 +206,7 @@ class MenuDestroyView(JSONResponseMixin, View):
         if not menus_records:
             return self.render_json_response(dict(
                 state=False,
-                error=u"Records don't exist"
+                error=_("Records don't exist")
             ))
 
         for d in menus_records:
@@ -216,7 +216,7 @@ class MenuDestroyView(JSONResponseMixin, View):
                 redis_values_should_remove[redis_key].append(d['value'])
 
         update_payload = {
-            'menu_status': u'Invalid',
+            'menu_status': _('Invalid'),
             'creator': request.user.username,
             'create_time': datetime.now(),
         }
@@ -233,11 +233,11 @@ class MenuDestroyView(JSONResponseMixin, View):
         except Exception:
             return self.render_json_response(dict(
                 state=False,
-                error=u"Operation failed, please try again later"
+                error=_("Operation failed, please try again later")
             ))
         return self.render_json_response(dict(
             state=True,
-            msg="ok"
+            msg=_("ok")
         ))
 
 

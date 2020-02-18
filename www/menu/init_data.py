@@ -3,6 +3,7 @@
 
 
 import uuid
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 from www.core.pymongo_client import get_mongo_client
@@ -24,12 +25,12 @@ def create_menu_event(event_code=None, event_name=None):
 def add_element_to_menu(event_code, menu_type, dimension, element,
                         end_time=None, menu_desc=None):
     """
-        为名单中增加元素
-    :param str|unicode event_code: 名单项目code
+        Add elements to the list
+    :param str|unicode event_code: List item code
     :param str|unicode menu_type: ListType  black white gray
-    :param str|unicode dimension: 名单维度 user_id / ip / ...
-    :param str|unicode element: 放入名单的元素
-    :param datetime end_time: 失效时间
+    :param str|unicode dimension: List dimensions user_id / ip / ...
+    :param str|unicode element: Elements placed on the list
+    :param datetime end_time: Failure time
     :param str|unicode menu_desc: Note
     :return:
     """
@@ -38,7 +39,7 @@ def add_element_to_menu(event_code, menu_type, dimension, element,
     payload = dict(
         end_time=end_time,
         menu_desc=menu_desc,
-        menu_status=u"valid",
+        menu_status=_("Valid"),
         create_time=datetime.now(),
         creator='test',
         value=element,

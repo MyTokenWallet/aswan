@@ -18,16 +18,16 @@ from risk_models.menu import build_redis_key
 
 # Full list of inquiries
 MENU_TYPE_CHOICES = (
-    (u'', u'Full list'),
-    (u'black', u'Blacklist'),
-    (u'white', u'White List'),
-    (u'gray', u'Grey List')
+    (u'', _('Full list')),
+    (u'black', _('Blacklist')),
+    (u'white', _('White List')),
+    (u'gray', _('Grey List'))
 )
 
 MENU_STATUS_CHOICES = (
-    (u'Valid', u'Valid'),
-    (u'All', u'All'),
-    (u'Invalid', u'Invalid')
+    (u'Valid', _('Valid')),
+    (u'All', _('All')),
+    (u'Invalid', _('Invalid'))
 )
 
 # There's no full list at Add time.
@@ -36,11 +36,11 @@ MENU_TYPE_CHOICES_ADD_CHOICES = MENU_TYPE_CHOICES[1:]
 MENU_TYPE_NAME_MAP = dict(MENU_TYPE_CHOICES_ADD_CHOICES)
 
 DIMENSION_NAME_MAP = {
-    "user_id": u"UserID",
-    "ip": u'IP_Address',
-    "phone": u"CellPhoneNumber",
-    "uid": u"Device_ID",
-    "pay": u"Payment account number"
+    "user_id": _("UserID"),
+    "ip": _('IP_Address'),
+    "phone": _("CellPhoneNumber"),
+    "uid": _("Device_ID"),
+    "pay": _("Payment account number")
 }
 
 
@@ -52,7 +52,7 @@ class MenuEventCreateForm(BaseForm):
         event_name = self.cleaned_data['event_name'].strip()
         res = db.menu_event.find_one({'event_name': event_name})
         if res:
-            raise forms.ValidationError(u"The project name already exists")
+            raise forms.ValidationError(_("The project name already exists"))
         return event_name
 
     def save(self, *args, **kwargs):
@@ -69,7 +69,7 @@ class MenuEventCreateForm(BaseForm):
 
 class MenuCreateForm(BaseForm):
     value = forms.CharField(widget=forms.Textarea(
-        attrs={"placeholder": "UserID[When adding in bulk, separate it by enter key]", "rows": "5"}))
+        attrs={"placeholder": _("UserID[When adding in bulk, separate it by enter key]"), _("rows"): "5"}))
     dimension = forms.CharField(required=False, widget=forms.HiddenInput,
                                 label=_('List dimensions'))
     menu_type = forms.ChoiceField(label=_("ListType"),
@@ -78,7 +78,7 @@ class MenuCreateForm(BaseForm):
     end_time = forms.DateTimeField(widget=forms.TextInput(
         attrs={"placeholder": "EndTime", "class": "form-control datetime"}))
     menu_desc = forms.CharField(required=False, widget=forms.Textarea(
-        attrs={"placeholder": "Note[Fill in the reason for adding the batch data]", "rows": "5"}))
+        attrs={"placeholder": _("Note [Fill in the reason for adding the batch data]"), _("rows"): "5"}))
 
     def __init__(self, *args, **kwargs):
         super(MenuCreateForm, self).__init__(*args, **kwargs)
@@ -99,9 +99,9 @@ class MenuCreateForm(BaseForm):
         try:
             json.dumps(value_list)
         except ValueError:
-            raise forms.ValidationError(u"Enter illegal")
+            raise forms.ValidationError(_("Enter illegal"))
         if not value_list:
-            raise forms.ValidationError(u"This field is required。")
+            raise forms.ValidationError(_("This field is required。"))
         return value_list
 
     def clean_end_time(self):
@@ -117,7 +117,7 @@ class MenuCreateForm(BaseForm):
                 errors.append(item)
         if errors:
             msg = ', '.join(errors)
-            msg = u'Enter illegal: {}'.format(msg)
+            msg = _('Enter illegal: {}').format(msg)
             self.errors['value'] = [msg]
 
     def clean(self):
@@ -148,7 +148,7 @@ class MenuCreateForm(BaseForm):
             payload = dict(
                 end_time=end_time,
                 menu_desc=cd['menu_desc'],
-                menu_status=u"Valid",
+                menu_status=_("Valid"),
                 create_time=datetime.datetime.now(),
                 creator=chinese_name
             )
@@ -196,7 +196,7 @@ class MenuFilterForm(BaseFilterForm):
         super(MenuFilterForm, self).__init__(*args, **kwargs)
         self.fields['filter_event_code'].choices = self._build_event_choices()
 
-        placeholder = DIMENSION_NAME_MAP.get(self.dimension, u'Unknown')
+        placeholder = DIMENSION_NAME_MAP.get(self.dimension, _('Unknown'))
         self.fields['filter_value'].widget.attrs["placeholder"] = _(
             placeholder)
 

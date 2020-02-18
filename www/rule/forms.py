@@ -13,18 +13,18 @@ from risk_models.rule import Rules
 from www.rule.models import RuleModel
 
 STATUS_CHOICES = (
-    ('on', u"Enable"),
-    ('off', u"Disable"),
+    ('on', _("Enable")),
+    ('off', _("Disable")),
 )
 CONTROL_CHOICES = (
-    ('', u"Select Project"),
-    ('pass', u"pass"),
-    ('deny', u"deny"),
-    ('log', u"log"),
-    ('message', u"SMS verification"),
-    ('picture', u"Picture verification"),
-    ('number', u"Digital verification"),
-    ('verify', u"Review")
+    ('', _("Select Project")),
+    ('pass', _("pass")),
+    ('deny', _("deny")),
+    ('log', _("log")),
+    ('message', _("SMS verification")),
+    ('picture', _("Picture verification")),
+    ('number', _("Digital verification")),
+    ('verify', _("Review"))
 )
 CONTROL_MAP = {
     k: v for k, v in CONTROL_CHOICES if k
@@ -42,7 +42,7 @@ class RulesForm(BaseForm):
                                 required=False)
     custom = forms.CharField(label=_("Customer service skills"), required=False,
                              widget=forms.Textarea(
-                                 attrs={'placeholder': u'Customer service skills',
+                                 attrs={'placeholder': _('Customer service skills'),
                                         'data-autoresize': '',
                                         'rows': '1',
                                         'cols': 'auto'}))
@@ -102,19 +102,19 @@ class RulesForm(BaseForm):
         names = cd['names'].split(':::')
         if not len(strategys_list) == len(controls) == len(customs) == len(
                 names):
-            self.errors['customs'] = [u'PolicyGroupName、Policy、Projectmanagement、Customer service does not match']
+            self.errors['customs'] = [_('PolicyGroupName、Policy、Projectmanagement、Customer service does not match')]
         if not self._check_names(strategys_list, self._get_all_strategys(),
                                  sep=';'):
-            self.errors['strategys'] = [u'Illegal PolicyName']
+            self.errors['strategys'] = [_('Illegal PolicyName')]
         if not self._check_names(controls, CONTROL_CHOICES):
-            self.errors['controls'] = [u'Illegal Projectmanagement Name']
+            self.errors['controls'] = [_('Illegal Projectmanagement Name')]
         strategy_uuids = []
         for strategy in strategys_list:
             item = strategy.split(';')
             item.sort()
             strategy_uuids.append("".join(item))
         if len(set(strategy_uuids)) < len(strategy_uuids):
-            self.errors['strategys'] = [u'Policy already exist']
+            self.errors['strategys'] = [_('Policy already exist')]
         return cd
 
     def save(self, *args, **kwargs):
@@ -152,7 +152,7 @@ class RulesTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"RequestBody Not legal json format")
+            raise forms.ValidationError(_("RequestBody Not legal json format"))
         return req_body
 
 

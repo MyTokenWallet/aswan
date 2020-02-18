@@ -3,6 +3,7 @@
 
 
 import json
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 from django.urls import reverse
@@ -32,14 +33,14 @@ class TestMenuMinix(object):
         # Argument incomplete
         resp = self.client.post(reverse(self.delete_uri))
         self.assertEquals(resp.status_code, 200)
-        self.assertEquals(json.loads(resp.content)['error'], u"id is illegal")
+        self.assertEquals(json.loads(resp.content)['error'], _("id is illegal"))
 
         # ID format is wrong
         menu_element_id = get_sample_str(24)
         resp = self.client.post(reverse(self.delete_uri),
                                 data={'ids': menu_element_id})
         self.assertEquals(resp.status_code, 200)
-        self.assertEquals(json.loads(resp.content)['error'], u"id is illegal")
+        self.assertEquals(json.loads(resp.content)['error'], _("id is illegal"))
 
         # Success delete
         menu_element_id = add_element_to_menu(self.event_code, 'black',
@@ -54,7 +55,7 @@ class TestMenuMinix(object):
                                 data={'ids': menu_element_id})
         self.assertEquals(resp.status_code, 200)
         t = json.loads(resp.content)
-        self.assertEquals(t['error'], u"Records don't exist")
+        self.assertEquals(t['error'], _("Records don't exist"))
 
     def _test_create(self):
         end_time = (datetime.now() + timedelta(days=1))

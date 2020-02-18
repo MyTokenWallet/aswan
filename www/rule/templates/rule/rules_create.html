@@ -204,7 +204,7 @@
             });
             if (names.length !== strategys.length || strategys.length !== controls.length || controls.length !== customs.length) {
                 swal({
-                    title: "Policy can't be blank!",
+                    title: gettext("Policy can't be blank!"),
                     type: "error",
                     confirmButtonColor: "#1ab394"
                 });
@@ -212,7 +212,7 @@
             }
             if (strategys.length <= 0) {
                 swal({
-                    title: "Rules must be added",
+                    title: gettext("Rules must be added"),
                     type: "error",
                     confirmButtonColor: "#1ab394"
                 });
@@ -226,7 +226,7 @@
             for (i = 0; i < strategys.length; i++) {
                 if (names[i] === '') {
                     swal({
-                        title: "PolicyGroup Name can't be empty",
+                        title: gettext("PolicyGroup Name can't be empty"),
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -234,7 +234,7 @@
                 }
                 if (weights[i] === '') {
                     swal({
-                        title: "Weight cannot be empty!",
+                        title: gettext("Weight cannot be empty!"),
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -242,7 +242,7 @@
                 }
                 if (strategys[i] === '') {
                     swal({
-                        title: "Policy can't be blank!",
+                        title: gettext("Policy can't be blank!"),
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -250,7 +250,7 @@
                 }
                 if (controls[i] === '') {
                     swal({
-                        title: "Project Management can't be left empty...",
+                        title: gettext("Project Management can't be left empty..."),
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });
@@ -300,7 +300,7 @@
                     if (err.statusText !== 'abort') {
                         _this.removeClass("posting");
                         swal({
-                            title: "Oops, something went wrong",
+                            title: gettext("Oops, something went wrong"),
                             type: "error",
                             confirmButtonColor: "#1ab394"
                         });

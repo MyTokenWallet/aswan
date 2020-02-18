@@ -28,7 +28,7 @@ $(function () {
                 if (err.statusText !== 'abort') {
                     _this.removeClass("posting");
                     swal({
-                        title: "Oops, something went wrong",
+                        title: gettext("Oops, something went wrong"),
                         type: "error",
                         confirmButtonColor: "#1ab394"
                     });

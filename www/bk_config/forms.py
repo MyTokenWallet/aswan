@@ -20,7 +20,7 @@ class SourceMapForm(BaseForm):
     )
     content = forms.CharField(widget=forms.Textarea(
         attrs={
-            "rows": "8", "cols": "27", "placeholder": """Configure content (json format)):
+            "rows": "8", "cols": "27", "placeholder": """{% trans "Configure content (json format))" %}:
 {
     "user_id": "string",
     "uid": "string",

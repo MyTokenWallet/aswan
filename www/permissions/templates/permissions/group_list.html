@@ -30,7 +30,7 @@
         var $this = $(this);
         var entity_id = $this.data("entity_id");
         swal({
-            title: "Are you sure you want to delete it",
+            title: gettext("Are you sure you want to delete it"),
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -49,7 +49,7 @@
                     success: function (data) {
                         if (data.state) {
                             swal({
-                                title: "delete succeeded!",
+                                title: gettext("delete succeeded!"),
                                 type: "success",
                                 timer: 800,
                                 showCancelButton: false,
@@ -58,7 +58,7 @@
                             $this.parent().parent().css("display", "none");
                         } else {
                             swal({
-                                title: "failed to delete!",
+                                title: gettext("failed to delete!"),
                                 type: "danger",
                             });
                         }

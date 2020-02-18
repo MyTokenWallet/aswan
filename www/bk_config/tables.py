@@ -12,7 +12,7 @@ class ConfigSourceTable(tables.Table):
     action = columns.TemplateColumn("""
         {% load reverse_tags %}
         <a class="source-destroy" data-uri="{% url 'config:source_destroy' %}"
-           data-name_key="{{ record.name_key }}">delete
+           data-name_key="{{ record.name_key }}">{% trans "delete" %}
         </a>
         """, orderable=False, verbose_name=_("Confirm"))
 
