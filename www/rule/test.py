@@ -2,6 +2,7 @@
 # coding=utf-8
 import copy
 import json
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 from django.urls import reverse
@@ -60,12 +61,12 @@ class TestRuleManage(BaseTestCase):
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
 
-        # 正常创建
+        # Normal creation
         event_code = create_menu_event()['event_code']
         add_element_to_menu(event_code=event_code, menu_type='black',
                             dimension='user_id', element='111111')
 
-        # user_id 在 event_code 所代表的黑名单中
+        # user_id on the blacklist represented by the event_code
         self.menu_strategy_uuid = create_menu_strategy(event_code=event_code,
                                                        dimension='user_id',
                                                        menu_type='black',
@@ -83,7 +84,7 @@ class TestRuleManage(BaseTestCase):
                                                        strategy_func='is_abnormal',
                                                        strategy_threshold='')
 
-        # 相同uid，在最近86400s内，限1次
+        # Same uid, in the last 86400s, limited to 1 time
         self.freq_strategy_uuid = create_freq_strategy(
             strategy_source=data_source_key, strategy_body='uid',
             strategy_time=24 * 60 * 60, strategy_limit=1)
@@ -115,7 +116,7 @@ class TestRuleManage(BaseTestCase):
 
         valid_post_data['id'] = self.rule_uuid
 
-        # 正常请求
+        # Normal request
         a = [[self.menu_strategy_uuid, [], get_sample_str()]]
         b = [[self.user_strategy_uuid, ["10", "10"], get_sample_str()]]
         c = [[self.bool_strategy_uuid, [], get_sample_str()]]
@@ -191,14 +192,14 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], False)
-        self.assertEquals(resp_json['error'], u'No rules found')
+        self.assertEquals(resp_json['error'], _('No rules found'))
 
         data['id'] = self.rule_uuid
         response = self.client.post(destroy_url, data=data)
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], True)
-        self.assertEquals(resp_json['msg'], 'ok')
+        self.assertEquals(resp_json['msg'], _('ok'))
 
     def _test_detail(self):
         detail_url = reverse(self.detail_url)
@@ -236,7 +237,7 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], True)
-        self.assertEquals(resp_json['data'], u'拒绝')
+        self.assertEquals(resp_json['data'], _('Refused'))
 
         req_body['user_id'] = '222222'
         response = self.client.post(test_url,
@@ -245,7 +246,7 @@ class TestRuleManage(BaseTestCase):
         self.assertEquals(response.status_code, 200)
         resp_json = json.loads(response.content)
         self.assertEquals(resp_json['state'], True)
-        self.assertEquals(resp_json['data'], u'Digital Verification')
+        self.assertEquals(resp_json['data'], _('Digital Verification'))
 
     def _test_edit(self):
         edit_url = reverse(self.edit_url)

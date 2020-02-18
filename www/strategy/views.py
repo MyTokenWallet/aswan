@@ -3,7 +3,7 @@
 
 import time
 import json
-
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.conf import settings
 from django.views.generic import TemplateView, View
@@ -31,7 +31,7 @@ class BaseStrategyDestoryView(JSONResponseMixin, View):
     key_tpl = ''
 
     def get_values_sign(self, data):
-        raise NotImplementedError('need complete')
+        raise NotImplementedError(_('need complete'))
 
     def post(self, request, *args, **kwargs):
         uuid = request.POST.get('id', None)
@@ -39,7 +39,7 @@ class BaseStrategyDestoryView(JSONResponseMixin, View):
         if is_using:
             return self.render_json_response(dict(
                 state=False,
-                error=u"The Policy is being referenced by the rule".format(rule_id)
+                error=_("The Policy is being referenced by the rule").format(rule_id)
             ))
         client = get_redis_client()
         name = self.key_tpl.format(uuid=uuid)
@@ -50,7 +50,7 @@ class BaseStrategyDestoryView(JSONResponseMixin, View):
 
         return self.render_json_response(dict(
             state=True,
-            msg="ok"
+            msg=_("ok")
         ))
 
 
@@ -153,9 +153,9 @@ class BoolStrategyTestView(JSONResponseMixin, TemplateView):
             for req in req_body:
                 resp = func(req)
                 if resp:
-                    results.append(u"Hit")
+                    results.append(_("Hit"))
                 else:
-                    results.append(u"Missed")
+                    results.append(_("Missed"))
             if len(results) == 1:
                 results = results[0]
             data = dict(
@@ -245,7 +245,7 @@ class FreqStrategyTestView(JSONResponseMixin, TemplateView):
                 func = strategy.get_callable_from_threshold_list(
                     [strategy_time, threshold])
                 raw_results = [func(req) for req in req_body]
-            results = [u"Hit" if i else u"Missed" for i in raw_results]
+            results = [_("Hit") if i else _("Missed") for i in raw_results]
             if len(results) == 1:
                 results = results[0]
             data = dict(
@@ -340,7 +340,7 @@ class MenuStrategyTestView(JSONResponseMixin, TemplateView):
                 req_body = [req_body]
             for req in req_body:
                 res = func(req)
-                results.append(u"Hit" if res else u"Missed")
+                results.append(_("Hit") if res else _("Missed"))
             if len(results) == 1:
                 results = results[0]
 
@@ -456,7 +456,7 @@ class UserStrategyTestView(JSONResponseMixin, TemplateView):
                 func = strategy.get_callable_from_threshold_list(
                     [strategy_day, threshold])
                 raw_results = [func(req) for req in req_body]
-            results = [u"Hit" if i else u"Missed" for i in raw_results]
+            results = [_("Hit") if i else _("Missed") for i in raw_results]
             if len(results) == 1:
                 results = results[0]
             data = dict(

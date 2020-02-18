@@ -15,44 +15,44 @@ from www.core.forms import BaseForm, BaseFilterForm
 from www.core.pymongo_client import get_mongo_client
 
 OP_CHOICES = (
-    ('is', u'Yes (use, already)'),
-    ('is_not', u'Not (not used, not yet)'),
-    ('lt', u'Less than...'),
-    ('le', u'Less than or equal to...'),
-    ('eq', u'Equals...'),
-    ('ne', u'Not equal'),
-    ('ge', u'Greater than or equal to...'),
-    ('gt', u'Greater than...'),
+    ('is', _('Yes (use, already)')),
+    ('is_not', _('Not (not used, not yet)')),
+    ('lt', _('Less than...')),
+    ('le', _('Less than or equal to...')),
+    ('eq', _('Equals...')),
+    ('ne', _('Not equal')),
+    ('ge', _('Greater than or equal to...')),
+    ('gt', _('Greater than...')),
 )
 
 FUNC_CHOICES = tuple(
     [(k, str(v)) for k, v in BuiltInFuncs.name_callable.items()]
 )
 VAR_CHOICES = (
-    ('user_id', u'Account_ID'),
-    ('phone', u'CellPhoneNumber'),
-    ('uid', u'CurrentDevice_ID'),
-    ('ip', u'Current_IP'),
-    ('reg_ip', u'SignUpFrom_IP'),
-    ('reg_uid', u'RegisterDevice_ID'),
+    ('user_id', _('Account_ID')),
+    ('phone', _('CellPhoneNumber')),
+    ('uid', _('CurrentDevice_ID')),
+    ('ip', _('Current_IP')),
+    ('reg_ip', _('SignUpFrom_IP')),
+    ('reg_uid', _('RegisterDevice_ID')),
 )
 
 DIM_CHOICES_MENU = (
-    ('user_id', u'Account_ID'),
-    ('phone', u'CellPhoneNumber'),
-    ('ip', u'Current_IP'),
-    ('reg_ip', u'SignUpFrom_IP'),
-    ('uid', u'CurrentDevice_ID'),
-    ('reg_uid', u'RegisterDevice_ID'),
+    ('user_id', _('Account_ID')),
+    ('phone', _('CellPhoneNumber')),
+    ('ip', _('Current_IP')),
+    ('reg_ip', _('SignUpFrom_IP')),
+    ('uid', _('CurrentDevice_ID')),
+    ('reg_uid', _('RegisterDevice_ID')),
 )
 OP_CHOICES_MENU = (
-    ('is', u'is'),
-    ('is_not', u'is_not'),
+    ('is', _('is')),
+    ('is_not', _('is_not')),
 )
 TYPE_CHOICES_MENU = (
-    (u'black', u'Blacklist'),
-    (u'white', u'White List'),
-    (u'gray', u'Grey List')
+    (u'black', _('Blacklist')),
+    (u'white', _('White List')),
+    (u'gray', _('Grey List'))
 )
 
 OP_MAP = dict(OP_CHOICES)
@@ -125,23 +125,23 @@ class BoolStrategyForm(BaseForm):
         required_args = BuiltInFuncs.get_required_args(func_name)
 
         if self.is_exists(cd):
-            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
+            self.errors['strategy_name'] = [_("This record already exists, do not add it twice")]
 
         if var_name not in required_args:
-            self.errors['strategy_var'] = [u'The built-in variables supported by the function are'.format(
+            self.errors['strategy_var'] = [_('The built-in variables supported by the function are').format(
                 func_name,
                 self._get_display_names(required_args)
             )]
 
         if op_name not in supported_ops:
-            self.errors['strategy_op'] = [u'This ActionCode is not supported by the function'.format(func_name)]
+            self.errors['strategy_op'] = [_('This ActionCode is not supported by the function').format(func_name)]
         if op_name in ('is', 'is_not') and threshold:
-            self.errors['strategy_op'] = [u'[{}]The ActionCode does not accept the threshold'.format(op_name)]
+            self.errors['strategy_op'] = [_('[{}]The ActionCode does not accept the threshold').format(op_name)]
 
-        if op_name in {'lt', 'le', 'eq', 'ne', 'ge', 'gt'}:
+        if op_name in {_('lt'), _('le'), _('eq'), _('ne'), _('ge'), _('gt')}:
             if not threshold:
                 self.errors['strategy_threshold'] = [
-                    u'ActionCode{}Thresholds must be included'.format(op_name)]
+                    _('ActionCode{}Thresholds must be included').format(op_name)]
         return cd
 
 
@@ -169,7 +169,7 @@ class BoolStrategyTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"RequestBody Not legal json format")
+            raise forms.ValidationError(_("RequestBody Not legal json format"))
         return req_body
 
 
@@ -183,7 +183,7 @@ class FreqStrategyTestForm(BoolStrategyTestForm):
             try:
                 history_data = json.loads(history_data)
             except ValueError:
-                raise forms.ValidationError(u"Historical data Not legal json format")
+                raise forms.ValidationError(_("Historical data Not legal json format"))
         return history_data
 
     @classmethod
@@ -203,9 +203,9 @@ class FreqStrategyForm(BaseForm):
     strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
     strategy_source = forms.CharField(label=_("DataSources"))
     strategy_body = forms.CharField(label=_("BodyName"), required=True,
-                                    help_text=u"Example: The same account with the same IP address to grab the red envelope limit 1 time, check: UserID,Current_IP")
+                                    help_text=_("Example: The same account with the same IP address to grab the red envelope limit 1 time, check: UserID,Current_IP"))
     strategy_time = forms.CharField(label=_("Period (in seconds))"),
-                                    help_text=u"Supports both 86400 and 24 x 60 x 60 input formats.")
+                                    help_text=_("Supports both 86400 and 24 x 60 x 60 input formats."))
     strategy_limit = forms.IntegerField(min_value=1, label=_("Maximum"),
                                         initial=1)
 
@@ -223,13 +223,13 @@ class FreqStrategyForm(BaseForm):
                 strategy_time = reduce(lambda x, y: x * y, map(int, args))
                 assert strategy_time > 0
             except (ValueError, AssertionError):
-                raise forms.ValidationError(u"The parameters are illegal and only support positive integers and")
+                raise forms.ValidationError(_("The parameters are illegal and only support positive integers and"))
         else:
             try:
                 strategy_time = int(strategy_time)
                 assert strategy_time > 0
             except (ValueError, AssertionError):
-                raise forms.ValidationError(u"The parameters are illegal and only support positive integers and")
+                raise forms.ValidationError(_("The parameters are illegal and only support positive integers and"))
         return strategy_time
 
     def clean(self):
@@ -240,7 +240,7 @@ class FreqStrategyForm(BaseForm):
         valid_bodys = json.loads(client.hget('CONFIG_SOURCE_MAP', source_key))
         for strategy_body in strategy_body_str.split(','):
             if strategy_body not in valid_bodys:
-                self.errors['strategy_body'] = [u"The data source is not{}。".format(strategy_body)]
+                self.errors['strategy_body'] = [_("The data source is not{})").format(strategy_body)]
                 return
 
         fields = [str(cd.get(x, "")) for x in FREQ_STRATEGY_UNIQ_SET_KEYS]
@@ -248,7 +248,7 @@ class FreqStrategyForm(BaseForm):
             return
         values_sign = ":".join(fields)
         if client.sismember(settings.STRATEGY_SIGN_KEY, values_sign):
-            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
+            self.errors['strategy_name'] = [_("This record already exists, do not add it repeatedly")]
         self.values_sign = values_sign
 
     def save(self):
@@ -270,7 +270,7 @@ class UserStrategyForm(BaseForm):
     strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
     strategy_source = forms.CharField(label=_("DataSources"))
     strategy_body = forms.CharField(label=_("BodyName"),
-                                    help_text=u"Example: Same device on the same day only 5 User gifts plus blessing value, check: current device")
+                                    help_text=_("Example: Same device on the same day only 5 User gifts plus blessing value, check: current device"))
     strategy_day = forms.IntegerField(min_value=1, label=_("Default days (in units): Individual)"),
                                       initial=1)
     strategy_limit = forms.IntegerField(min_value=1, label=_("Limit the number of Users"),
@@ -287,7 +287,7 @@ class UserStrategyForm(BaseForm):
             assert strategy_day >= 0
         except(ValueError, AssertionError):
             raise forms.ValidationError(
-                u"The argument is not legal, please enter an integer greater than or equal to 0")
+                _("The argument is not legal, please enter an integer greater than or equal to 0"))
         return strategy_day
 
     def clean(self):
@@ -299,7 +299,7 @@ class UserStrategyForm(BaseForm):
         for strategy_body in strategy_body_str.split(','):
             if strategy_body not in valid_bodys:
                 self.errors['strategy_body'] = [
-                    u"The data source is not{}。".format(strategy_body)]
+                    _("The data source is not{}").format(strategy_body)]
                 return
 
         fields = [str(cd.get(x, "")) for x in USER_STRATEGY_UNIQ_SET_KEYS]
@@ -308,7 +308,7 @@ class UserStrategyForm(BaseForm):
         values_sign = ":".join(fields)
         client = get_redis_client()
         if client.sismember(settings.STRATEGY_SIGN_KEY, values_sign):
-            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
+            self.errors['strategy_name'] = [_("This record already exists, do not add it twice")]
         self.values_sign = values_sign
 
     def save(self, *args, **kwargs):
@@ -335,7 +335,7 @@ class UserStrategyTestForm(BoolStrategyTestForm):
             try:
                 history_data = json.loads(history_data)
             except ValueError:
-                raise forms.ValidationError(u"Historical data Not legal json format")
+                raise forms.ValidationError(_("Historical data Not legal json format"))
         return history_data
 
     @classmethod
@@ -373,7 +373,7 @@ class MenuStrategyForm(BaseForm):
     def clean(self):
         cd = self.cleaned_data
         if self.is_exists(cd):
-            self.errors['strategy_name'] = [u"This record already exists, do not add it repeatedly"]
+            self.errors['strategy_name'] = [_("This record already exists, do not add it repeatedly")]
 
     def save(self, *args, **kwargs):
         client = get_redis_client()
@@ -428,7 +428,7 @@ class MenuStrategyTestForm(BaseForm):
         try:
             req_body = json.loads(req_body)
         except ValueError:
-            raise forms.ValidationError(u"RequestBody Not legal json format")
+            raise forms.ValidationError(_("RequestBody Not legal json format"))
         return req_body
 
 
