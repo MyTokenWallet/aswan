@@ -3,7 +3,6 @@
 
 
 import json
-from collections import defaultdict
 
 from django.dispatch import Signal, receiver
 

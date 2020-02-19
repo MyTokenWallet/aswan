@@ -1,17 +1,25 @@
 # coding: utf-8
 
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 import environ
 import importlib
 
-# from config import BASE_DIR
+
+# from django.utils.crypto import get_random_string
 
 import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'jhagdsf87asfd67ludsfgdfghA'
-# SECRET_KEY=os.environ.get('SECRET_KEY')
-os.environ.setdefault('SECRET_KEY', SECRET_KEY)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.base")
+DEBUG = True
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'wb_*$8@jq=rl@dlx207h+l6k=p+ti@w(i9p^p-lozgp8(9wws-'
+
+#chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+#SECRET_KEY = get_random_string(50, chars)
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "")
+
+ALLOWED_HOSTS = []
 
 SILENCED_SYSTEM_CHECKS = [
     'admin.E408',
@@ -20,17 +28,17 @@ SILENCED_SYSTEM_CHECKS = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'permissions.middleware.PermissionsMiddleware',
     'permissions.middleware.UserAuditMiddleware',
     'django.middleware.locale.LocaleMiddleware,'
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 ]
 
 LANGUAGES = (
@@ -49,8 +57,25 @@ def root(*paths, **kwargs):
         os.makedirs(path)
     return path
 
+# Password validation
+# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 LOCALE_PATHS = (
@@ -61,7 +86,7 @@ LOCALE_PATHS = (
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Los_Angeles'
 
 # LANGUAGE_CODE = 'zh-hans'

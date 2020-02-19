@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from django.db import migrations, models
 
 

@@ -2,6 +2,7 @@
 # coding: utf-8
 # FIX open base.py(PYMYSQL) and delete just line 36 and 37
 import pymysql
+import config.product as conf
 
 pymysql.install_as_MySQLdb()
 
@@ -9,7 +10,7 @@ pymysql.install_as_MySQLdb()
 # from config.develop import LOG_MYSQL_CONFIG
 
 # for production import this
-import config.product as conf
+
 
 __all__ = ['get_log_mysql_client']
 

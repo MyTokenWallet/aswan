@@ -11,6 +11,7 @@ django-admin makemessages -l en
 # To reexamine all source code and templates for new translation strings and update all message files for all languages, run this
 django-admin makemessages -a
 
+
 # https://docs.djangoproject.com/en/3.0/topics/i18n/translation/#compiling-message-files
 django-admin compilemessages
 

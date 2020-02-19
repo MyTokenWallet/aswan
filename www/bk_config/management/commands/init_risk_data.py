@@ -9,7 +9,6 @@ import logging
 import hashlib
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
 
 from www.permissions.init_data import create_user
 from www.menu.init_data import create_menu_event, add_element_to_menu

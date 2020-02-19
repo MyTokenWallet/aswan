@@ -4,6 +4,11 @@ from django.utils.translation import gettext_lazy as _
 import importlib
 import os
 
+SECRET_KEY = '800+@o5jhyh%(gpy4k=d0nd6vl$8@&8=+d)25_yynhoo45)i=9'
+# SECRET_KEY=os.environ.get('SECRET_KEY')
+os.environ.setdefault('SECRET_KEY', "800+@o5jhyh%(gpy4k=d0nd6vl$8@&8=+d)25_yynhoo45)i=9")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "")
+
 # Log output directory
 LOG_HOME = './output'
 

@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.conf.urls.i18n import i18n_patterns
-from django.urls import include, path
-
 from django.conf import settings
+from www.settings import settings as base
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 
@@ -18,8 +16,8 @@ urlpatterns = [
 ]
 
 # This section should be removed when used on the line, and the dynamic separation should be
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(base.STATIC_URL, document_root=base.STATIC_ROOT)
+urlpatterns += static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
 
 if not settings.DEBUG:
     from django.views.defaults import (page_not_found, server_error,

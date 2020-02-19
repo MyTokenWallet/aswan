@@ -66,7 +66,7 @@ class EventDestroyView(JSONResponseMixin, View):
         """Whether the check list item is referenced by list Policy"""
         client = get_redis_client()
         for key in client.scan_iter(match="strategy_menu:*"):
-            event_id = client.hget('event',key)
+            event_id = client.hget('event', key)
             if event_code == event_id:
                 return True
         return False

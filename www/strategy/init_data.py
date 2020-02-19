@@ -120,11 +120,11 @@ def create_freq_strategy(strategy_source, strategy_body, strategy_time,
                          strategy_desc=None):
     """
         New time period frequency control strategy
+        request: Request object, user information needs to be obtained from it, etc.
     :param str|unicode strategy_source: Escalate data source key
     :param str|unicode strategy_body: Limit the principal eg:  ip, uid, user_id  etc...
     :param int strategy_time:  Time period (in seconds)
     :param int strategy_limit: Limit the number of people
-    :param request: Request object, user information needs to be obtained from it, etc.
     :param str|unicode strategy_name: PolicyName
     :param str|unicode strategy_desc: PolicyDescription
     :return:

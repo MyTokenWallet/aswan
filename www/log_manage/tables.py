@@ -54,7 +54,7 @@ class AuditLogTable(tables.Table):
     email = columns.Column(verbose_name=_("Mailbox"), orderable=False)
     role = columns.Column(verbose_name=_("Role"), empty_values=(),
                           orderable=False)
-    path = columns.Column(verbose_name=_("Request address"), orderable=False)
+    path = columns.Column(verbose_name=_("Request_Address"), orderable=False)
     Confirm = columns.Column(verbose_name=_("ActionType"), empty_values=(),
                              orderable=False)
     method = columns.Column(verbose_name=_("How to request"), orderable=False)

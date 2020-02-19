@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from www.settings.local_settings.test import *
+
 import unittest
 
 # FIX open base.py(PYMYSQL) and delete just line 36 and 37
@@ -11,14 +11,14 @@ pymysql.install_as_MySQLdb()  # noqa
 
 import django
 
-# init django settings
-django.setup()  # noqa
-
 from risk_models.rule import calculate_rule
 from www.core.utils import get_sample_str
 from www.menu.init_data import create_menu_event, add_element_to_menu
 from www.strategy.init_data import create_bool_strategy, create_menu_strategy
 from www.rule.init_data import create_rule
+
+# init django settings
+django.setup()  # noqa
 
 
 class TestRule(unittest.TestCase):

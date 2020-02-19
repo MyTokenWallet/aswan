@@ -6,7 +6,6 @@ import time
 import random
 import logging
 from collections import defaultdict
-import builtins
 
 import redis
 import gevent

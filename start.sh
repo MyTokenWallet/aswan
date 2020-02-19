@@ -15,10 +15,10 @@
 # REGULAR START
 cur_dir=`pwd`
 echo . > nohup.out
+pip install -r requirements.txt
 
-#export DJANGO_SETTINGS_MODULE=www.settings
-#export SECRET_KEY="dksjfkaskdkfhaksdhkfhklashdfk"
-#pip install -r requirements.txt
+django-admin makemessages -a
+django-admin compilemessages #The SECRET_KEY setting must not be empty.
 
 ## Start-up management background (debug, not for production)
 nohup python3 ${cur_dir}/www/manage.py runserver &

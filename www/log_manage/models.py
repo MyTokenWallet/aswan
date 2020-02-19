@@ -10,7 +10,7 @@ from django.db.models.base import ModelBase
 class AuditLogModel(models.Model):
     username = models.CharField(verbose_name=_("Username"), max_length=64, blank=True)
     email = models.CharField(verbose_name=_("Mailbox"), max_length=128, blank=True)
-    path = models.CharField(verbose_name=_("Request address"), max_length=128, blank=True)
+    path = models.CharField(verbose_name=_("Request_Address"), max_length=128, blank=True)
     status = models.CharField(verbose_name=_("Response_Code"), max_length=32, blank=True)
     method = models.CharField(verbose_name=_("Request_Type"), max_length=32, blank=True)
     req_body = models.TextField(verbose_name=_("Request_Parameter"), blank=True)

@@ -217,7 +217,7 @@ class RulesChangeView(JSONResponseMixin, View):
         client = get_redis_client()
         name = 'rule:{}'.format(data['uuid'])
 
-        for key, value in self._build_key_value(self,data):
+        for key, value in self._build_key_value(self, data):
             client.hset(name, key, value)
         return self.render_json_response({
             'state': True,
@@ -274,7 +274,7 @@ class RulesTestView(JSONResponseMixin, TemplateView):
             uuid_ = request.POST.get('rule')
             name = "rule:{}".format(uuid_)
             conn = get_redis_client()
-            id_ = conn.hget('id',name)
+            id_ = conn.hget('id', name)
             req_body = form.cleaned_data['req_body']
             if not isinstance(req_body, list):
                 req_body = [req_body]

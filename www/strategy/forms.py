@@ -274,7 +274,8 @@ class UserStrategyForm(BaseForm):
     strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
     strategy_source = forms.CharField(label=_("DataSources"))
     strategy_body = forms.CharField(label=_("BodyName"),
-                                    help_text=_("Example: Same device on the same day only 5 User gifts plus blessing value, check: current device"))
+                                    help_text=_("Example: Same device on the same day only 5 User gifts plus blessing "
+                                                "value, check: current device"))
     strategy_day = forms.IntegerField(min_value=1, label=_("Default days (in units): Individual)"),
                                       initial=1)
     strategy_limit = forms.IntegerField(min_value=1, label=_("Limit the number of Users"),

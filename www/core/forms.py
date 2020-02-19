@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from datetime import datetime, timedelta
 
 from django import forms
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Div, HTML, Reset, Field
+from crispy_forms.layout import Submit, Layout, Reset, Field
 
 
 class FormBaseMixin(object):
