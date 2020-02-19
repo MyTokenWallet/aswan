@@ -8,13 +8,13 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'', include("risk_auth.urls", namespace='risk_auth')),
-    url(r'permissions/', include("permissions.urls", namespace="permissions")),
-    url(r'strategy/', include("strategy.urls", namespace="strategy")),
-    url(r'menu/', include("menu.urls", namespace="menus")),
-    url(r'rule/', include("rule.urls", namespace="rule")),
-    url(r'config/', include("bk_config.urls", namespace="config")),
-    url(r'log_manage/', include("log_manage.urls", namespace="log_manage")),
+    url(r'^', include(('risk_auth.urls','risk_auth'), namespace='risk_auth')),
+    url(r'^permissions/', include(('permissions.urls','permissions'), namespace='permissions')),
+    url(r'^strategy/', include(('strategy.urls', 'strategy'), namespace='strategy')),
+    url(r'^menu/', include(('menu.urls', 'menus'), namespace='menus')),
+    url(r'^rule/', include(('rule.urls', 'rule'), namespace='rule')),
+    url(r'^config/', include(('bk_config.urls', 'config'), namespace='config')),
+    url(r'^log_manage/', include(('log_manage.urls','log_manage'), namespace='log_manage')),
 ]
 
 # This section should be removed when used on the line, and the dynamic separation should be

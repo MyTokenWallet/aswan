@@ -4,10 +4,10 @@
 """
     This script is used to pre-note data when User is unfamiliar
 """
-
+from django.utils.translation import ugettext as _
 import logging
 import hashlib
-from django.utils.translation import gettext_lazy as _
+
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 
@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
         # Create a list
         event_code = 'init_event'
-        create_menu_event(event_code=event_code, event_name=_('Initial project'))
+        create_menu_event(event_code=event_code, event_name=_('InitialProject'))
         add_element_to_menu(event_code, menu_type='black', dimension='user_id',
                             element='111111')
         add_element_to_menu(event_code, menu_type='white', dimension='uid',

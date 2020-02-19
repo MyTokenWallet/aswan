@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
+from django.utils.translation import gettext_lazy as _
 import copy
 import uuid
 import json
@@ -7,7 +8,6 @@ import json
 from functools import reduce
 from django import forms
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _
 
 from builtin_funcs import BuiltInFuncs
 from www.core.redis_client import get_redis_client
@@ -25,9 +25,12 @@ OP_CHOICES = (
     ('gt', _('Greater than...')),
 )
 
+k: object
+v: object
 FUNC_CHOICES = tuple(
-    [(k, str(v)) for k, v in BuiltInFuncs.name_callable.items()]
+    [{k, str(v)} for k, v in BuiltInFuncs.name_callable.items()]
 )
+
 VAR_CHOICES = (
     ('user_id', _('Account_ID')),
     ('phone', _('CellPhoneNumber')),
@@ -71,9 +74,9 @@ USER_STRATEGY_UNIQ_SET_KEYS = (
 class BoolStrategyForm(BaseForm):
     strategy_name = forms.CharField(label=_("PolicyName"))
     strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
-    strategy_var = forms.ChoiceField(label=_("Built-in variables"), choices=VAR_CHOICES)
+    strategy_var = forms.ChoiceField(label=_("Built-in_Variables"), choices=VAR_CHOICES)
     strategy_op = forms.ChoiceField(label=_("ActionCode"), choices=OP_CHOICES)
-    strategy_func = forms.ChoiceField(label=_("Built-in functions"), choices=FUNC_CHOICES)
+    strategy_func = forms.ChoiceField(label=_("Built-in_Functions"), choices=FUNC_CHOICES)
     strategy_threshold = forms.CharField(label=_("Thresholds"), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -203,7 +206,8 @@ class FreqStrategyForm(BaseForm):
     strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
     strategy_source = forms.CharField(label=_("DataSources"))
     strategy_body = forms.CharField(label=_("BodyName"), required=True,
-                                    help_text=_("Example: The same account with the same IP address to grab the red envelope limit 1 time, check: UserID,Current_IP"))
+                                    help_text=_("Example: The same account with the same IP address to grab the red "
+                                                "envelope limit 1 time, check: UserID,Current_IP"))
     strategy_time = forms.CharField(label=_("Period (in seconds))"),
                                     help_text=_("Supports both 86400 and 24 x 60 x 60 input formats."))
     strategy_limit = forms.IntegerField(min_value=1, label=_("Maximum"),

@@ -9,7 +9,7 @@ import json
 from cgi import FieldStorage
 from gevent.pywsgi import WSGIServer
 from server import query_handler, report_handler
-from config import RISK_SERVER_HOST, RISK_SERVER_PORT
+from config.base import RISK_SERVER_HOST, RISK_SERVER_PORT
 
 URL_2_HANDLERS = {
     "/query/": query_handler,

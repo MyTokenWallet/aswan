@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import os
 import random
 import logging
 from collections import defaultdict
-from django.utils.translation import gettext_lazy as _
+
 
 import gevent
 

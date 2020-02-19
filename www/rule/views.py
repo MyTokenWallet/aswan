@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import re
 import json
 import time
 from datetime import datetime
@@ -17,14 +16,13 @@ from www.core.utils import errors_to_dict
 from www.core.redis_client import get_redis_client
 
 from builtin_funcs import BuiltInFuncs
-from www.rule.forms import RulesForm, RulesTestForm, CONTROL_MAP, \
-    RulesFilterForm, CONTROL_CHOICES
+from www.rule.forms import RulesForm, RulesTestForm, CONTROL_MAP, RulesFilterForm, CONTROL_CHOICES
 from www.rule.tables import RulesTable
 from risk_models.strategy import Strategys
 
-__all__ = ['RulesListView', 'RulesCreateView', 'RulesDestroyView',
-           'RulesChangeView', 'RulesDetailView', 'RulesTestView',
-           'RulesDataView', 'RulesEdit']
+__all__ = ['RulesListView', 'RulesCreateView', 'RulesDestroyView', 'RulesChangeView',
+           'RulesDetailView', 'RulesTestView', 'RulesDataView', 'RulesThresholdEdit',
+           'RulesEdit']
 
 
 class RulesCreateView(JSONResponseMixin, TemplateView):
@@ -102,7 +100,8 @@ class RulesListView(ListView):
 
 
 class RulesChangeView(JSONResponseMixin, View):
-    def _parse_data(self, request):
+    @staticmethod
+    def _parse_data(self, request, *args, **kwargs):
         now = str(int(time.time()))
         origin = request.POST
         uuid_ = origin.get('id')
@@ -183,6 +182,7 @@ class RulesChangeView(JSONResponseMixin, View):
             ret[key] = locals()[key]
         return ret
 
+    @staticmethod
     def _build_key_value(self, data):
         #  Only change the threshold at this point
         items = [['user', data['user']], ['update_time', data['update_time']]]
@@ -199,12 +199,7 @@ class RulesChangeView(JSONResponseMixin, View):
         datas = zip(data['names'], data['strategys'], data['controls'],
                     data['customs'], data['weights'])
         for (name, strategy, control, custom, weight) in datas:
-            d = {}
-            d['name'] = name
-            d['custom'] = custom
-            d['control'] = control
-            d['weight'] = weight
-            d['strategy_list'] = strategy
+            d = {'name': name, 'custom': custom, 'control': control, 'weight': weight, 'strategy_list': strategy}
             strategy_list.append(d)
         strategy_list = sorted(strategy_list, key=lambda x: int(x["weight"]),
                                reverse=True)
@@ -213,7 +208,7 @@ class RulesChangeView(JSONResponseMixin, View):
 
     def post(self, request, *args, **kwargs):
         try:
-            data = self._parse_data(request)
+            data = self._parse_data(request, *args, **kwargs)
         except ValueError as e:
             return self.render_json_response({
                 'state': False,
@@ -222,7 +217,7 @@ class RulesChangeView(JSONResponseMixin, View):
         client = get_redis_client()
         name = 'rule:{}'.format(data['uuid'])
 
-        for key, value in self._build_key_value(data):
+        for key, value in self._build_key_value(self,data):
             client.hset(name, key, value)
         return self.render_json_response({
             'state': True,
@@ -279,7 +274,7 @@ class RulesTestView(JSONResponseMixin, TemplateView):
             uuid_ = request.POST.get('rule')
             name = "rule:{}".format(uuid_)
             conn = get_redis_client()
-            id_ = conn.hget(name, 'id')
+            id_ = conn.hget('id',name)
             req_body = form.cleaned_data['req_body']
             if not isinstance(req_body, list):
                 req_body = [req_body]
@@ -303,7 +298,8 @@ class RulesTestView(JSONResponseMixin, TemplateView):
 
 
 class RulesDataView(JSONResponseMixin, View):
-    def _get_one_kind_fields_from_uuids(self, uuids, kind, field, client):
+    @staticmethod
+    def _get_one_kind_fields_from_uuids(uuids, kind, field, client):
         fields = []
         for uuid_ in uuids:
             name = '%s:%s' % (kind, uuid_)
@@ -314,11 +310,9 @@ class RulesDataView(JSONResponseMixin, View):
 
     def _get_bool_strategy_args(self, uuids, client):
         ret = set()
-        strategy_funcs = self._get_one_kind_fields_from_uuids(
-            uuids, 'bool_strategy', 'strategy_func', client
-        )
-        for name in strategy_funcs:
-            for arg in BuiltInFuncs.get_required_args(name):
+        strategy_funcs = self._get_one_kind_fields_from_uuids(uuids, 'bool_strategy', 'strategy_func', client)
+        for name_1 in strategy_funcs:
+            for arg in BuiltInFuncs.get_required_args(name_1):
                 ret.add(arg)
         return ret
 
@@ -328,8 +322,8 @@ class RulesDataView(JSONResponseMixin, View):
             uuids, 'freq_strategy', 'strategy_body', client
         )
         for names in strategy_bodys:
-            for name in names.split(','):
-                ret.add(name)
+            for name_2 in names.split(','):
+                ret.add(name_2)
         return ret
 
     def _get_menu_strategy_args(self, uuids, client):
@@ -337,8 +331,8 @@ class RulesDataView(JSONResponseMixin, View):
         dimensions = self._get_one_kind_fields_from_uuids(
             uuids, 'strategy_menu', 'dimension', client
         )
-        for name in dimensions:
-            ret.add(name)
+        for name_3 in dimensions:
+            ret.add(name_3)
         return ret
 
     def _get_user_strategy_args(self, uuids, client):
@@ -346,9 +340,9 @@ class RulesDataView(JSONResponseMixin, View):
         strategy_bodys = self._get_one_kind_fields_from_uuids(
             uuids, 'user_strategy', 'strategy_body', client
         )
-        for name in strategy_bodys:
-            for name in name.split(','):
-                ret.add(name)
+        for name_4 in strategy_bodys:
+            for name_5 in name_4.split(','):
+                ret.add(name_5)
         return ret
 
     def post(self, request, *args, **kwargs):

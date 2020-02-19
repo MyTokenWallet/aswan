@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
 from django.utils.translation import gettext_lazy as _
 from django_tables2 import tables, columns
 from www.core.pymongo_client import get_mongo_client
@@ -37,10 +36,12 @@ class BaseMenuTable(tables.Table):
         super(BaseMenuTable, self).__init__(*args, **kwargs)
         self.deletable = True
 
-    def render_menu_type(self, value):
+    @staticmethod
+    def render_menu_type(value):
         return MENU_TYPE_NAME_MAP.get(value, value)
 
-    def render_event_code(self, value):
+    @staticmethod
+    def render_event_code(value):
         db = get_mongo_client()
         res = db.menu_event.find_one({'event_code': value})
         if not res:

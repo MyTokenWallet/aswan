@@ -2,6 +2,7 @@
 # coding: utf-8
 # FIX open base.py(PYMYSQL) and delete just line 36 and 37
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 # for development import this:

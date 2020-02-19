@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-import re
-
-from django import forms
 from django.utils.translation import gettext_lazy as _
-
+import re
+from django import forms
 from www.core.forms import BaseFilterForm, BaseForm
-from .permission import (
+from www.permissions.permission import (
     UserPermission, GroupPermission, UriGroupPermission
 )
 

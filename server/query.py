@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-from .base import Response
+from django.utils.translation import gettext_lazy as _
+from server.base import Response
 from risk_models.exceptions import RuleNotExistsException
 from risk_models.rule import calculate_rule, Rules, AccessCount
-from django.utils.translation import gettext_lazy as _
 
 rules = Rules(auto_refresh=True)
 ac = AccessCount(auto_persist=True)

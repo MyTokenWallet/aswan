@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
+from django.utils.translation import gettext as _
 import uuid
-from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 from www.core.pymongo_client import get_mongo_client

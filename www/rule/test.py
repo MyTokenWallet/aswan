@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # coding=utf-8
+
+from django.utils.translation import gettext_lazy as _
 import copy
 import json
-from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 from django.urls import reverse

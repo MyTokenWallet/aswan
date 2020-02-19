@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 from django import forms
-from django.utils.translation import gettext_lazy as _
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
@@ -18,6 +17,7 @@ class FormBaseMixin(object):
 
         super(FormBaseMixin, self).__init__(*args, **kwargs)
 
+        self._helper = FormHelper()
         self.error_text_inline = kwargs.get("error_text_inline", True)
         self.form_action = kwargs.get("form_action", ".")
         # css class property value, can be styled
@@ -43,7 +43,6 @@ class FormBaseMixin(object):
     @property
     def helper(self):
         if not hasattr(self, '_helper'):
-            self._helper = FormHelper()
             self._helper.error_text_inline = self.error_text_inline
             self._helper.form_action = self.get_form_action()
             self._helper.form_class = self.get_form_class()
@@ -125,7 +124,7 @@ class BaseTimeFilterForm(forms.Form):
         time_start = None
         if time_start_str:
             try:
-                time_start = datetime.strptime(time_start_str,'%Y-%m-%d %H:%M')
+                time_start = datetime.strptime(time_start_str, '%Y-%m-%d %H:%M')
             except (ValueError, TypeError):
                 pass
         if not time_start:
@@ -137,7 +136,7 @@ class BaseTimeFilterForm(forms.Form):
         time_end = None
         if time_end_str:
             try:
-                time_end = datetime.strptime(time_end_str,'%Y-%m-%d %H:%M')
+                time_end = datetime.strptime(time_end_str, '%Y-%m-%d %H:%M')
             except (ValueError, TypeError):
                 pass
         if not time_end:

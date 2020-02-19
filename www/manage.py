@@ -6,11 +6,9 @@ import sys
 import pymysql
 
 pymysql.install_as_MySQLdb()
-SECRET_KEY= 'jhagdsf87asfd67ludsfgdfghA'
+SECRET_KEY = 'jhagdsf87asfd67ludsfgdfghA'
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.settings")
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aswan.settings.local")
 
     from django.core.management import execute_from_command_line
 

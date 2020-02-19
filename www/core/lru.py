@@ -8,7 +8,6 @@ import weakref
 from collections import OrderedDict
 
 
-
 def lru_cache_function(max_size=1024, expiration=15 * 60):
     """
     >>> @lru_cache_function(3, 1)
@@ -107,7 +106,7 @@ class LRUCacheDict(object):
                 c = self.ref()
                 if c:
                     next_expire = c.cleanup()
-                    if (next_expire is None):
+                    if next_expire is None:
                         time.sleep(self.peek_duration)
                     else:
                         time.sleep(next_expire + 1)
@@ -197,7 +196,7 @@ class LRUCacheDict(object):
                 break
 
         # If we have more than self.max_size items, delete the oldest
-        while (len(self.__values) > self.max_size):
+        while len(self.__values) > self.max_size:
             for k in list(self.__access_times.keys()):
                 self.__delete__(k)
                 break

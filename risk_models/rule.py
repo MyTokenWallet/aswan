@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import json
 import random
 import logging
@@ -8,7 +8,6 @@ from hashlib import md5
 from copy import deepcopy
 from datetime import datetime
 from collections import defaultdict
-from django.utils.translation import gettext_lazy as _
 
 import redis
 import gevent
@@ -50,7 +49,8 @@ class Rule(object):
             if g == group_name:
                 return c
 
-    def _build_group_uuid(self, uuids):
+    @staticmethod
+    def _build_group_uuid(uuids):
         uuid_str = ''.join(uuids)
         return md5(uuid_str.encode()).hexdigest()
 
@@ -225,15 +225,15 @@ def calculate_rule(id_, req_body, rules=None, ac=None):
                 ret = func(req_body)
             except Exception:
                 logger.error(
-                    _('run func error, rule_id: {}, weight: {}').format(id_,
-                                                                     weight),
+                    _('run func error, rule_id: {}, weight: {}').format(id_, weight),
                     exc_info=True)
                 ret = False
             results.append(ret)
             if not ret:
                 break
 
-        # The current strategy is to accumulate data through all PolicyGroup, and if this is not required, it can short-circuit itself
+        # The current strategy is to accumulate data through all PolicyGroup, and if this is not required,
+        # it can short-circuit itself
         if all(results):
             if not result_seted:
                 rv_control, rv_weight, result_seted = control, weight, True

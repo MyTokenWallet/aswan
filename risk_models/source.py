@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import json
 import time
 import random
 import logging
 from collections import defaultdict
-from django.utils.translation import gettext_lazy as _
+import builtins
 
 import redis
 import gevent
 
-import config as conf
+import config.base as conf
 from clients import get_config_redis_client, get_report_redis_client
 
 logger = logging.getLogger(__name__)
@@ -48,7 +48,7 @@ class RawSource(object):
                 try:
                     type_ = getattr(__builtins__, key_type)
                 except AttributeError:
-                    type_ = __builtins__[key_type]
+                    type_ = getattr(__builtins__, 'str')
                 keys[key_name] = type_
             name_keys_map[name] = keys
 
@@ -63,6 +63,8 @@ class Source(object):
     def __init__(self, name, keys, *args, **kwargs):
         """ name: Name: The name of the data source entered by the business side, keys: the desired key list """
         super(Source, self).__init__(*args, **kwargs)
+        desired_key_list = name
+        self.zkey_prefix = '_'.join(desired_key_list)
         if not self.already_load_raw_source:
             self.already_load_raw_source = True
             RawSource.load_raw_source()
@@ -79,9 +81,9 @@ class Source(object):
     def set_zkey_prefix(self):
         lst = [self.name, self.__class__.__name__]
         lst.extend(self.keys)
-        self.zkey_prefix = '_'.join(lst)
 
-    def get_preserve_time(self):
+    @staticmethod
+    def get_preserve_time():
         return 3 * 24 * 3600
 
     def get_zkeys(self, data):
@@ -97,7 +99,8 @@ class Source(object):
     def get_member(self, data):
         return str(int(time.time() * 1000))
 
-    def get_score(self, data):
+    @staticmethod
+    def get_score(data):
         return str(data['timestamp'])
 
     def get_all(self, data):
@@ -116,7 +119,8 @@ class Source(object):
     def check_member(self, data):
         return True
 
-    def check_timestamp(self, data):
+    @staticmethod
+    def check_timestamp(data):
         return 'timestamp' in data and isinstance(data['timestamp'], int)
 
     def check_all(self, data):
@@ -211,7 +215,8 @@ class Sources(object):
         try:
             pipeline.zadd(zkey, score, member)
             pipeline.expire(zkey, preserve_time)
-            # This is to reduce the pressure of redis storage, each time delete part of the old data, you can modify the logic here
+            # This is to reduce the pressure of redis storage, each time delete part of the old data, you can modify
+            # the logic here
             pipeline.zremrangebyrank(zkey, 0, -128)
             pipeline.execute()
         except redis.RedisError:

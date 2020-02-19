@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
-import logging
 from django.utils.translation import gettext_lazy as _
+import logging
 from datetime import timedelta
 
 from braces.views import JSONResponseMixin
@@ -25,7 +24,8 @@ class HitListDetailView(ListView):
     table_class = HitLogDetailTable
     enable_page_size_config = True
 
-    def get_hit_table_names(self, query):
+    @staticmethod
+    def get_hit_table_names(query):
         prefix = "hit_log"
         start = query['start_day']
         end = query['end_day']
@@ -41,7 +41,8 @@ class HitListDetailView(ListView):
             start += timedelta(days=1)
         return table_names
 
-    def get_query_params(self, query):
+    @staticmethod
+    def get_query_params(query):
 
         query_params = {
             'time__gte': query['start_day'],

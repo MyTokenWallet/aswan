@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
-from collections import defaultdict
-
 from django.utils.translation import gettext_lazy as _
+from collections import defaultdict
 from django_tables2 import tables, columns
 
 from risk_models.rule import Rules
@@ -25,22 +23,29 @@ class HitLogDetailTable(tables.Table):
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
-    def before_render(self, request):
+    def __init__(self):
         self.rules = Rules(load_all=True)
 
-    def render_time(self, value):
+    def before_render(self, request):
+        pass
+
+    @staticmethod
+    def render_time(value):
         return value.strftime('%Y-%m-%d %H:%M:%S')
 
     def render_rule_id(self, value):
         return self.rules.get_rule_name(str(value))
 
-    def render_control(self, value):
+    @staticmethod
+    def render_control(value):
         return CONTROL_MAP.get(value, value)
 
-    def render_hit_number(self, value):
+    @staticmethod
+    def render_hit_number(value):
         return u'-' if value == 0 else _('is') if value == 1 else _('Whether')
 
-    def render_passed_users(self, value):
+    @staticmethod
+    def render_passed_users(value):
         return u'-' if value == 0 else value
 
 
@@ -86,20 +91,24 @@ class AuditLogTable(tables.Table):
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
-    def before_render(self, request):
+    def __init__(self):
+        self.pk_user_map = self.pk_user_map
+        self.group_name_desc_map = self.group_name_desc_map
+        self.uri_desc_map = self.uri_desc_map
+
+    @staticmethod
+    def before_render(request):
         pk_user_map = {}
         for d in UserPermission.objects.all_fields():
             pk = d.get('pk')
             if pk:
                 pk_user_map[pk] = d
-        self.pk_user_map = pk_user_map
 
         group_name_desc_map = {}
         for d in GroupPermission.objects.all_fields():
             name = d.get('name')
             if name:
                 group_name_desc_map[name] = d.get('desc', '')
-        self.group_name_desc_map = group_name_desc_map
 
         uri_descs_map = defaultdict(list)
         for d in UriGroupPermission.objects.all_fields():
@@ -123,8 +132,6 @@ class AuditLogTable(tables.Table):
                 uri_desc_map[uri] = rw.rstrip(_('-Write')) + _('-Write')
             else:
                 uri_desc_map[uri] = descs[0]
-
-        self.uri_desc_map = uri_desc_map
 
     def render_role(self, value, record):
         user = self.pk_user_map.get(record.email)

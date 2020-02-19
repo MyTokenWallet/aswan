@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from www.settings.local_settings.test import *
 import unittest
 
 # FIX open base.py(PYMYSQL) and delete just line 36 and 37

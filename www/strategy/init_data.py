@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from django.utils.translation import gettext_lazy as _
 from www.core.utils import get_sample_str
 
 from www.strategy.forms import (MenuStrategyForm, BoolStrategyForm,
-                              UserStrategyForm, FreqStrategyForm)
+                                UserStrategyForm, FreqStrategyForm)
 
 
 def _create_new_strategy(form_cls, strategy_conf):
@@ -54,9 +55,9 @@ def create_bool_strategy(strategy_var, strategy_op, strategy_func,
                          strategy_desc=None):
     """
         新建bool型策略
-    :param str|unicode strategy_var: Built-in variables
+    :param str|unicode strategy_var: Built-in_Variables
     :param str|unicode strategy_op: ActionCode
-    :param str|unicode strategy_func: Built-in functions
+    :param str|unicode strategy_func: Built-in_Functions
     :param str|unicode strategy_threshold: Threshold for policy
     :param str|unicode strategy_name: PolicyName
     :param str|unicode strategy_desc: PolicyDescription
@@ -78,7 +79,7 @@ def create_bool_strategy(strategy_var, strategy_op, strategy_func,
     success, strategy_uuid = _create_new_strategy(
         BoolStrategyForm, strategy_conf=data
     )
-    assert success, 'create bool strategy fail.'
+    assert success, _('create bool strategy fail.')
     return strategy_uuid
 
 
@@ -141,5 +142,6 @@ def create_freq_strategy(strategy_source, strategy_body, strategy_time,
     }
     success, strategy_uuid = _create_new_strategy(FreqStrategyForm,
                                                   strategy_conf=data)
-    assert success, 'create freq strategy fail.'
+    assert success, _('create freq strategy fail.')
+
     return strategy_uuid

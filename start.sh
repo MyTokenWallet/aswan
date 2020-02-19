@@ -11,10 +11,13 @@
 ## update phyton packages
 #sudo -s -H pip3 install PyInstaller -U
 #sudo -s -H pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install --upgrade
-
+# cur_dir=`pwd` && python3 ${cur_dir}/www/manage.py runserver & python3 ${cur_dir}/www/manage.py persistence_hit_log & python3 ${cur_dir}/risk_server.py
 # REGULAR START
 cur_dir=`pwd`
+echo . > nohup.out
 
+#export DJANGO_SETTINGS_MODULE=www.settings
+#export SECRET_KEY="dksjfkaskdkfhaksdhkfhklashdfk"
 #pip install -r requirements.txt
 
 ## Start-up management background (debug, not for production)

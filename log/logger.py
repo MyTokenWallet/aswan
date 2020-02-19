@@ -6,9 +6,9 @@ import logging
 import logging.config
 import logging.handlers
 
-from config import LOG_HOME
-from .handler import RedisHandler
-from config import HIT_LOG_QUEUE_NAME
+from config.base import LOG_HOME
+from log.handler import RedisHandler
+from config.base import HIT_LOG_QUEUE_NAME
 from clients import get_log_redis_client
 
 __all__ = ['init_log', 'hit_logger']

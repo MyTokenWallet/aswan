@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+from django.utils.translation import gettext_lazy as _
 import logging
 from functools import wraps
 import operator
-from django.utils.translation import gettext_lazy as _
 
 from risk_models.exceptions import BuiltInFuncNotExistError
 
@@ -37,12 +37,12 @@ class BuiltInFuncs(object):
     def register(cls, desc, args_type_tuple, supported_ops,
                  threshold_trans_func=None, func_code=None):
         """
-            对内置函数进行注册
+            Register the built-in function
         :param func_code:
-        :param str|unicode desc: 函数描述(名称)
-        :param tuple args_type_tuple: 函数所需参数
-        :param tuple|list supported_ops: 内置函数结果所支持的操作符
-        :param callable threshold_trans_func: 阈值转化函数
+        :param str|unicode desc: Function description (name)
+        :param tuple args_type_tuple: The parameters required by the function
+        :param tuple|list supported_ops: Operators supported by built-in function results
+        :param callable threshold_trans_func: Threshold conversion function
         :return:
         """
 
@@ -66,8 +66,8 @@ class BuiltInFuncs(object):
     @classmethod
     def check_args(cls, name, req_body):
         """
-            校验Request parameter是否合法(满足内置函数所需)
-        :param str|unicode name: 内置函数code
+            Check Request parameter Is it legal (to meet the needs of the built-in function)
+        :param str|unicode name: Built-in function code
         :param dict req_body: Request_Parameter
         :return:
         """
@@ -81,8 +81,8 @@ class BuiltInFuncs(object):
     @classmethod
     def get_required_args(cls, name):
         """
-            得到内置函数所需的key
-        :param str|unicode name: 函数code
+            Get the key required for built-in functions
+        :param str|unicode name: Function code
         :return:
         """
         args_type_tuple = cls.name_args_type[name]
@@ -90,9 +90,9 @@ class BuiltInFuncs(object):
 
     def trans_result(self, rv, op_name, threshold):
         """
-            对结果进行转化，最后结果为 True/False 标识是否命中
-        :param bool|None rv: 内置函数返回值
-        :param str|unicode op_name: 操作符
+            Conversion of results, resulting in true/False identification whether or not the hit
+        :param bool|None rv: Built-in function return value
+        :param str|unicode op_name: Operator
         :param object threshold: Thresholds
         :return:
         """

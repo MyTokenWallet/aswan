@@ -26,14 +26,14 @@ def smart_true_false(value):
         return mark_safe('<i class="fa fa-close"></i>')
 
 
-def jsonify(object):
+def jsonify(my_object):
     try:
-        if not isinstance(object, str):
-            return mark_safe(json.dumps(object))
+        if not isinstance(my_object, str):
+            return mark_safe(json.dumps(my_object))
         else:
-            return object
+            return my_object
     except (ValueError, TypeError):
-        return object
+        return my_object
 
 
 def repr_str(value):

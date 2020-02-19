@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import json
 
 from django import forms
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
 
 from www.core.forms import BaseFilterForm, BaseForm
 from risk_models.strategy import Strategys
@@ -76,7 +75,8 @@ class RulesForm(BaseForm):
                 raise forms.ValidationError(_("Weight value is not a number"))
         return weights
 
-    def _check_names(self, names, choices, sep=None):
+    @staticmethod
+    def _check_names(names, choices, sep=None):
         valid_names = set()
         for english, chinese in choices:
             if english:

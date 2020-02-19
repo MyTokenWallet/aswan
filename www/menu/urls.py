@@ -7,16 +7,16 @@ from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
 from www.menu.views import (UseridListView, MenuCreateView, MenuDestroyView, IpListView,
-                          UidListView, PayListView, PhoneListView,
-                          EventListView, EventCreateView, EventDestroyView)
+                            UidListView, PayListView, PhoneListView,
+                            EventListView, EventCreateView, EventDestroyView)
 
 js_info_dict = {
     'domain': 'djangojs',
-    'packages': ('aswan',),
+    'packages': ('www',),
 }
 
 urlpatterns = [
-    url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
+    # url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
     url(r'^$', RedirectView.as_view(url=reverse_lazy("menus:event_list"), permanent=True), name="menu_index"),
 
     url(r'^common_create/$', MenuCreateView.as_view(), name="create"),

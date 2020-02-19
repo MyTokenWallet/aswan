@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import atexit
 import random
 from logging import Handler, getLogger
-from django.utils.translation import gettext_lazy as _
+
 
 import gevent
 from redis import RedisError

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-18 01:57+0100\n"
+"POT-Creation-Date: 2020-02-19 03:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: builtin_funcs/base.py:21 builtin_funcs/sample.py:29
+#: builtin_funcs/base.py:21
 msgid "lt"
 msgstr ""
 
-#: builtin_funcs/base.py:22 builtin_funcs/sample.py:29
+#: builtin_funcs/base.py:22
 msgid "le"
 msgstr ""
 
-#: builtin_funcs/base.py:23 builtin_funcs/sample.py:29
+#: builtin_funcs/base.py:23
 msgid "eq"
 msgstr ""
 
@@ -33,11 +33,11 @@ msgstr ""
 msgid "ne"
 msgstr ""
 
-#: builtin_funcs/base.py:25 builtin_funcs/sample.py:29
+#: builtin_funcs/base.py:25
 msgid "ge"
 msgstr ""
 
-#: builtin_funcs/base.py:26 builtin_funcs/sample.py:29
+#: builtin_funcs/base.py:26
 msgid "gt"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "is"
 msgstr ""
 
-#: builtin_funcs/base.py:28 builtin_funcs/base.py:103 risk_models/menu.py:38
+#: builtin_funcs/base.py:28 builtin_funcs/base.py:103 risk_models/menu.py:36
 msgid "is_not"
 msgstr ""
 
@@ -63,16 +63,12 @@ msgstr ""
 msgid "{} does not exist"
 msgstr ""
 
-#: builtin_funcs/sample.py:8
+#: builtin_funcs/sample.py:7
 msgid "Abnormal User"
 msgstr ""
 
-#: builtin_funcs/sample.py:27
+#: builtin_funcs/sample.py:26
 msgid "Number of historical logins"
-msgstr ""
-
-#: builtin_funcs/sample.py:29
-msgid "neq"
 msgstr ""
 
 #: config/base.py:42
@@ -106,24 +102,24 @@ msgstr ""
 msgid "There is an error with the query interface"
 msgstr ""
 
-#: risk_models/exceptions.py:10
-msgid "Built-in function does not exist"
+#: risk_models/exceptions.py:13
+msgid "Built-in_Function does not exist"
 msgstr ""
 
-#: risk_models/exceptions.py:15
+#: risk_models/exceptions.py:21
 msgid "Rule does not exist/has error"
 msgstr ""
 
-#: risk_models/exceptions.py:20
+#: risk_models/exceptions.py:29
 msgid "Escalation interface error"
 msgstr ""
 
-#: risk_models/menu.py:29
+#: risk_models/menu.py:27
 #, python-format
 msgid "req_body(%s)"
 msgstr ""
 
-#: risk_models/menu.py:29
+#: risk_models/menu.py:27
 #, python-format
 msgid "does not contain %s"
 msgstr ""
@@ -179,72 +175,72 @@ msgstr ""
 msgid "load raw sources error"
 msgstr ""
 
-#: risk_models/source.py:160
+#: risk_models/source.py:164
 msgid "{}:{}"
 msgstr ""
 
-#: risk_models/source.py:191
+#: risk_models/source.py:195
 msgid "start refresh sources"
 msgstr ""
 
-#: risk_models/source.py:195
+#: risk_models/source.py:199
 msgid "refresh sources failed"
 msgstr ""
 
-#: risk_models/source.py:197
+#: risk_models/source.py:201
 msgid "refresh sources success"
 msgstr ""
 
-#: risk_models/source.py:202
+#: risk_models/source.py:206
 msgid "name({}) is not a source name"
 msgstr ""
 
-#: risk_models/strategy.py:56 risk_models/strategy.py:60
-#: risk_models/strategy.py:63 risk_models/strategy.py:68
+#: risk_models/strategy.py:55 risk_models/strategy.py:59
+#: risk_models/strategy.py:62 risk_models/strategy.py:67
 msgid "must be writen by subclass"
 msgstr ""
 
-#: risk_models/strategy.py:139
+#: risk_models/strategy.py:138
 msgid "Times"
 msgstr ""
 
-#: risk_models/strategy.py:176 risk_models/strategy.py:314
+#: risk_models/strategy.py:175 risk_models/strategy.py:313
 #, python-format
 msgid "invalid req_body(%s)"
 msgstr ""
 
-#: risk_models/strategy.py:265 risk_models/strategy.py:269
-#: risk_models/strategy.py:271
+#: risk_models/strategy.py:264 risk_models/strategy.py:268
+#: risk_models/strategy.py:270
 msgid "Default Day"
 msgstr ""
 
-#: risk_models/strategy.py:273
+#: risk_models/strategy.py:272
 msgid "Individual_User"
 msgstr ""
 
-#: risk_models/strategy.py:358
+#: risk_models/strategy.py:357
 #, python-format
 msgid "start load strategys from db, current strategy: %s"
 msgstr ""
 
-#: risk_models/strategy.py:367
+#: risk_models/strategy.py:366
 msgid "load strategys occur redis conn error"
 msgstr ""
 
-#: risk_models/strategy.py:370
+#: risk_models/strategy.py:369
 #, python-format
 msgid "load strategys success, current strategy: %s"
 msgstr ""
 
-#: risk_models/strategy.py:376
+#: risk_models/strategy.py:375
 msgid "uuid({}) is not a valid strategy uuid"
 msgstr ""
 
-#: server/query.py:23
+#: server/query.py:22
 msgid "must contain rule_id"
 msgstr ""
 
-#: server/query.py:26
+#: server/query.py:25
 msgid "rule_id does not exist or is offline"
 msgstr ""
 

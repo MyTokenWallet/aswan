@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 
 from www.rule.views import (RulesListView, RulesCreateView, RulesDestroyView, RulesChangeView,
-                          RulesDetailView, RulesTestView, RulesDataView, RulesThresholdEdit,
-                          RulesEdit)
+                            RulesDetailView, RulesTestView, RulesDataView, RulesThresholdEdit,
+                            RulesEdit)
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url=reverse_lazy("rule:list"), permanent=True), name="rule_index"),

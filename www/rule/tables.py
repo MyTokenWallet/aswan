@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-from datetime import datetime
-
 from django.utils.translation import gettext_lazy as _
+from datetime import datetime
 from django_tables2 import tables, columns
 
 
@@ -31,8 +30,10 @@ class RulesTable(tables.Table):
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
-    def render_update_time(self, value):
+    @staticmethod
+    def render_update_time(value):
         return datetime.fromtimestamp(int(value))
 
-    def render_status(self, value):
+    @staticmethod
+    def render_status(value):
         return u"Enable" if value == 'on' else u"Disable"

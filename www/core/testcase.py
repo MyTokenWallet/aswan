@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-import os
-
-from django.test import TransactionTestCase
 from django.utils.translation import gettext_lazy as _
-
+import os
+from django.test import TransactionTestCase
 from www.core.redis_client import get_redis_client
 from www.core.pymongo_client import get_mongo_client
 

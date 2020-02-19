@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import re
 import json
 from django import forms
-from django.utils.translation import gettext_lazy as _
 from www.core.forms import BaseFilterForm, BaseForm
 from www.core.redis_client import get_redis_client
 

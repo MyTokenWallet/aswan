@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import re
 import time
 import math
@@ -8,7 +8,6 @@ import logging
 from datetime import datetime
 from functools import partial, wraps
 from collections import defaultdict
-from django.utils.translation import gettext_lazy as _
 
 import redis
 
@@ -266,11 +265,11 @@ class UserStrategy(Strategy):
                                  self.name)
         else:
             if strategy_day == "1":
-                tmp_str = re.sub(r'[\d]'+_('Default Day'), 'That day', self.name)
+                tmp_str = re.sub(r'[\d]' + _('Default Day'), 'That day', self.name)
             else:
-                tmp_str = re.sub(r'[\d]'+_('Default Day'), strategy_day + _('Default Day'),
+                tmp_str = re.sub(r'[\d]' + _('Default Day'), strategy_day + _('Default Day'),
                                  self.name)
-        return re.sub(r'[\d]'+ _('Individual_User'), threshold + _('Individual_User'), tmp_str)
+        return re.sub(r'[\d]' + _('Individual_User'), threshold + _('Individual_User'), tmp_str)
 
     def get_callable(self):
         return self.query_with_history

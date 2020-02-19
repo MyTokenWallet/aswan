@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+from django.utils.translation import gettext_lazy as _
 import time
 import json
-from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.conf import settings
 from django.views.generic import TemplateView, View
 from braces.views import JSONResponseMixin
-
 from www.core.generic import ListView
 from www.core.utils import errors_to_dict
 from www.strategy.tables import (

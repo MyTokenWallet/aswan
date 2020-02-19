@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-import logging
-
-from risk_models.cache import menu_cache
 from django.utils.translation import gettext_lazy as _
+import logging
+from risk_models.cache import menu_cache
 
 logger = logging.getLogger(__name__)
 logging.basicConfig()

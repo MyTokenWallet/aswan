@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
+from django.utils.translation import gettext as _
 import re
 import json
 import uuid
@@ -9,7 +9,6 @@ import datetime
 
 from django import forms
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
 
 from www.core.pymongo_client import get_mongo_client
 from www.core.forms import BaseFilterForm, BaseForm
@@ -186,7 +185,7 @@ class MenuCreateForm(BaseForm):
 
 
 class MenuFilterForm(BaseFilterForm):
-    filter_event_code = forms.ChoiceField(label=_("Project type"), required=False)
+    filter_event_code = forms.ChoiceField(label=_("ProjectType"), required=False)
     filter_menu_type = forms.ChoiceField(label=_("ListType"), choices=MENU_TYPE_CHOICES, required=False)
     filter_value = forms.CharField(label=_("Value"), required=False)
     filter_menu_status = forms.ChoiceField(choices=MENU_STATUS_CHOICES, required=False)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-from .middleware import PermissionsMiddleware
+from www.permissions.middleware import PermissionsMiddleware
 
 
 def menu_by_perms(request):

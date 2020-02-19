@@ -14,7 +14,7 @@ from risk_models.strategy import Strategys
 class RuleModel(object):
 
     @classmethod
-    def create(self, creator_name, title, describe, status, end_time,
+    def create(cls, creator_name, title, describe, status, end_time,
                strategy_confs):
         strategy_obj = Strategys()
 

@@ -13,15 +13,13 @@ www_dir = os.path.abspath(os.path.join(parent_dir, 'www'))
 sys.path.append(parent_dir)  # NOQA
 os.environ['PYTHONPATH'] = ':'.join((parent_dir, www_dir))
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings.settings'
-
 risk_env = os.environ.get('RISK_ENV')
 assert risk_env and risk_env == 'test', 'Note that this section can only be performed in a test environment'
 
 
 def find_test_file_paths():
-    current_dir = os.getcwd()
-    sub_dirs = [t for t in os.listdir(current_dir) if os.path.isdir(t)]
+    my_current_dir = os.getcwd()
+    sub_dirs = [t for t in os.listdir(my_current_dir) if os.path.isdir(t)]
 
     testfiles = []
     for suite in sub_dirs:

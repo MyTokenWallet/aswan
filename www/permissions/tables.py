@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import datetime
 
 from bson import ObjectId
 from django.urls import reverse
 from django.utils.html import format_html
-from django.utils.translation import gettext_lazy as _
 from django_tables2 import tables, columns
 
 

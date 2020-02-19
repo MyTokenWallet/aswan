@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
-import json
 from django.utils.translation import gettext_lazy as _
+import json
 from datetime import datetime, timedelta
-
 from django.urls import reverse
 
 from www.core.utils import get_sample_str
@@ -15,11 +13,14 @@ from www.menu.init_data import create_menu_event, add_element_to_menu
 from www.core.testcase import BaseTestCase
 
 
-class TestMenuMinix(object):
+class TestMenuMinix(object, BaseTestCase):
     create_uri = 'menus:create'
     delete_uri = 'menus:delete'
     list_uri = ''
     test_cases = []
+
+    def __init__(self):
+        self.event_code = create_menu_event()['event_code']
 
     def _test_list(self):
         # todo There are some problems with the parameters here, which reduce the coverage, and change it later.
@@ -91,7 +92,6 @@ class TestMenuMinix(object):
                 self.assertEquals(t['state'], False)
 
     def test_view(self):
-        self.event_code = create_menu_event()['event_code']
 
         self._test_create()
         self._test_list()

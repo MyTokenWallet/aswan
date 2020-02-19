@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import logging
 from datetime import datetime, timedelta, date
-
 from django import forms
-from django.utils.translation import gettext_lazy as _
 
 from www.core.forms import BaseFilterForm
 from www.log_manage.models import AuditLogModel
@@ -43,12 +41,14 @@ class HitLogFilterForm(BaseFilterForm):
         self.fields['strategy_group'].choices = self._get_all_strategy_groups()
         self.fields['rule_id'].choices = self._get_all_rule_id_and_names()
 
-    def _get_all_strategy_groups(self):
+    @staticmethod
+    def _get_all_strategy_groups():
         strategy_names = Rules(load_all=True).get_all_group_uuid_and_name()
         strategy_names.insert(0, ('', _('All_Policy_Group')))
         return strategy_names
 
-    def _get_all_rule_id_and_names(self):
+    @staticmethod
+    def _get_all_rule_id_and_names():
         rule_id_and_names = Rules(load_all=True).get_all_rule_id_and_name()
         rule_id_and_names.insert(0, ('', _('All_Rules')))
         return rule_id_and_names

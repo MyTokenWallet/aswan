@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-from math import ceil
 from django.utils.translation import gettext_lazy as _
+from math import ceil
 from django.conf import settings
 from django_tables2 import SingleTableView, RequestConfig
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
-__all__ = (
-    "ListView",
-)
+__all__ = ['ListView']
 
 
 class PaginatorClass(Paginator):
@@ -61,7 +58,7 @@ class PagedFilterTableView(SingleTableView):
             paginate_by = self.get_paginate_by(None)
             count = int(ceil(self.get_qs_count() / float(paginate_by)))
         else:
-            count = self.get_table().paginator.num_pages or 1
+            count = self.get_table().paginator.num_pages + 1
         return count
 
     def _build_pages(self):
@@ -97,7 +94,8 @@ class PagedFilterTableView(SingleTableView):
             context['page_values'] = self.get_page_values()
         return context
 
-    def get_page_values(self):
+    @staticmethod
+    def get_page_values():
         """Paging configuration"""
         defaults = ['50', '100', '200', '500', '1000']
         return defaults

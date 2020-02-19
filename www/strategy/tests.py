@@ -13,7 +13,7 @@ from www.menu.init_data import create_menu_event, add_element_to_menu
 from www.core.testcase import BaseTestCase
 
 
-class TestStrategyViewMinix(object):
+class TestStrategyViewMinix(object, BaseTestCase):
     list_uri = ''
     create_uri = ''
     destroy_uri = ''

@@ -11,7 +11,7 @@ from www.log_manage.models import AuditLogModel
 
 __all__ = ['user_visit']
 
-# User访问
+# User Access
 user_visit = Signal(providing_args=['request', 'response'])
 
 

@@ -17,6 +17,5 @@ import pymysql
 
 pymysql.install_as_MySQLdb()
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.settings")
 
 application = get_wsgi_application()

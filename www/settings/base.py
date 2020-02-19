@@ -1,23 +1,38 @@
 # coding: utf-8
-import os
+
+from django.utils.translation import gettext_lazy as _
 import environ
 import importlib
-# from config import BASE_DIR
-from django.utils.translation import gettext_lazy as _, gettext_noop
 
-MIDDLEWARE_CLASSES = (
+# from config import BASE_DIR
+
+import os
+
+SECRET_KEY = 'jhagdsf87asfd67ludsfgdfghA'
+# SECRET_KEY=os.environ.get('SECRET_KEY')
+os.environ.setdefault('SECRET_KEY', SECRET_KEY)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.base")
+
+SILENCED_SYSTEM_CHECKS = [
+    'admin.E408',
+    'admin.E409',
+    'admin.E410',
+]
+
+MIDDLEWARE_CLASSES = [
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'permissions.middleware.PermissionsMiddleware',
+    'permissions.middleware.UserAuditMiddleware',
     'django.middleware.locale.LocaleMiddleware,'
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'permissions.middleware.PermissionsMiddleware',
-    'permissions.middleware.UserAuditMiddleware',
-)
+]
+
 LANGUAGES = (
     ('en', _('English')),
     ('zh', _('Chinese')),
@@ -40,6 +55,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR + "www", 'locale'),
 )
 
 # Internationalization
@@ -56,10 +72,6 @@ PROJECT_DIR = root()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY= 'jhagdsf87asfd67ludsfgdfghA'
-#SECRET_KEY=os.environ.get('SECRET_KEY')
-
 
 ALLOWED_HOSTS = [
     "*",
@@ -68,6 +80,16 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = (
+    'www',
+    'bk_config',
+    'core',
+    'log_manage',
+    'menu',
+    'permissions',
+    'risk_auth',
+    'rule',
+    'settings',
+    'strategy',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,13 +98,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_tables2',
     'crispy_forms',
-    'risk_auth',
-    'permissions',
-    'strategy',
-    'menu',
-    'rule',
-    'bk_config',
-    'log_manage',
 )
 
 # https://docs.djangoproject.com/en/3.0/topics/i18n/translation/#how-django-discovers-language-preference
@@ -114,7 +129,7 @@ WSGI_APPLICATION = 'wsgi.application'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-#https://docs.djangoproject.com/en/3.0/topics/i18n/formatting/
+# https://docs.djangoproject.com/en/3.0/topics/i18n/formatting/
 USE_THOUSAND_SEPARATOR = True
 
 # Static files (CSS, JavaScript, Images)
@@ -140,11 +155,11 @@ import sys  # noqa
 
 parent_dir = os.path.abspath(os.path.join(PROJECT_DIR, "../"))
 
-for dir in [parent_dir, PROJECT_DIR]:
-    if dir not in sys.path:
-        sys.path = sys.path + [dir]
+for my_dir in [parent_dir, PROJECT_DIR]:
+    if my_dir not in sys.path:
+        sys.path = sys.path + [my_dir]
 
-from log.logger import logging_config as LOGGING  # noqa
+# from log.logger import logging_config as LOGGING  # noqa
 
 risk_env = os.environ.get('RISK_ENV', 'develop')
 

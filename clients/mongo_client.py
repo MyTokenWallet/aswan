@@ -5,7 +5,7 @@ from lru import lru_cache_function
 from pymongo import MongoClient
 
 from config.base import (MONGO_POOL_SIZE, MONGO_MAX_IDLE_TIME,
-                    MONGO_MAX_WAITING_TIME, MONGO_SOCKET_TIMEOUT)
+                         MONGO_MAX_WAITING_TIME, MONGO_SOCKET_TIMEOUT)
 
 from config.product import (SOC_MONGO_HOST, MONGO_DB)
 

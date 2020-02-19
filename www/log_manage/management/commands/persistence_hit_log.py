@@ -1,15 +1,12 @@
 # coding: utf-8
-
+from django.utils.translation import gettext_lazy as _
 import time
 import json
 import logging
-from django.utils.translation import gettext_lazy as _
 from datetime import datetime
-
 from django.core.management.base import BaseCommand
 from django.db import connection
-
-from config import HIT_LOG_QUEUE_NAME
+from config.base import HIT_LOG_QUEUE_NAME
 from clients import get_log_redis_client
 from www.log_manage.models import get_hit_log_model
 
@@ -64,8 +61,7 @@ def persistence_data(data):
     model_cls = get_or_create_model_cls(table_name)
 
     value_map = {}
-    for key in ['time', 'rule_id', 'user_id', 'kwargs',
-                'req_body', 'control', 'custom', 'group_name', 'group_uuid',
+    for key in ['time', 'rule_id', 'user_id', 'kwargs', 'req_body', 'control', 'custom', 'group_name', 'group_uuid',
                 'hit_number']:
         value_map[key] = data.get(key)
 

@@ -6,7 +6,7 @@ from django.conf.urls import url
 from django.views.generic import RedirectView
 from django.urls import reverse_lazy
 from www.log_manage.views import (HitListDetailView, RuleStrategyMapView,
-                                AuditLogListView)
+                                  AuditLogListView)
 
 urlpatterns = [
     url(r'^$',
