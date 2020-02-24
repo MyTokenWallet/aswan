@@ -130,11 +130,9 @@ class UriGroupPermUpdateForm(BaseForm):
     FORBID_ATTR = {
         "class": "form-control", "disable": "true", "readonly": "true"
     }
-    entity_id = forms.CharField(widget=forms.TextInput(attrs=FORBID_ATTR),
-                                required=False)
+    entity_id = forms.CharField(widget=forms.TextInput(attrs=FORBID_ATTR), required=False)
     desc = forms.CharField(required=True, min_length=3, max_length=128)
-    pk = forms.CharField(widget=forms.TextInput(),
-                         required=True, min_length=3, max_length=128)
+    pk = forms.CharField(widget=forms.TextInput(), required=True, min_length=3, max_length=128)
     uris = forms.CharField(required=True, widget=forms.Textarea())
 
     VALID_URL = re.compile(r'/[a-zA-Z0-9/-_]+')
@@ -149,7 +147,7 @@ class UriGroupPermUpdateForm(BaseForm):
         uris = self.cleaned_data['uris']
         uris = [uri.strip() for uri in uris.split('\n')]
         for uri in uris:
-            if not self.VALID_URL.match(uri) or self.INVALID_CHAR.search(uri):
+            if self.INVALID_CHAR.search(uri):
                 raise forms.ValidationError('Uri is misformed or contains illegal characters')
         return uris
 

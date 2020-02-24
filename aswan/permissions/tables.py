@@ -48,11 +48,12 @@ class GroupPermissionTable(tables.Table):
         url = reverse('permissions:group_update')
         html = (
             '''
+            {% load i18n %}
             <a href="{1}?entity_id={0}"
-               style="margin-right: 10px">Change Authority
+               style="margin-right: 10px">{% trans "Change Authority" %}
             </a>
             <a data-entity_id={0}
-               class="perms-group-delete">delete
+               class="perms-group-delete">{% trans "delete" %}
             </a>
             '''
         ).format(record.get('entity_id', ''), url)
@@ -87,11 +88,12 @@ class UriGroupPermissionTable(tables.Table):
         url = reverse('permissions:uri_group_update')
         html = (
             '''
+            {% load i18n %}
             <a href="{1}?entity_id={0}"
-               style="margin-right: 10px">Change Authority
+               style="margin-right: 10px">{% trans "Change Authority" %}
             </a>
             <a data-entity_id={0}
-               class="perms-uri-group-delete">delete
+               class="perms-uri-group-delete">{% trans "delete" %}
             </a>
             '''
         ).format(record.get('entity_id', ''), url)

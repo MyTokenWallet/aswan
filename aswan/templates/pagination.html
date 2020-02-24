@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load django_tables2 %}
 
-{% trans 'A total query out' %}{{ record_count }}{% trans 'Bar data' %}
+{% trans "Total query out: " %}{{ record_count }}{% trans " Bar data" %}
 
 {% if is_paginated %}
 {% if enable_page_size_config %}
@@ -16,13 +16,13 @@
     }
 </style>
 <div class="count-container">
-    {% trans 'Show per page' %}
+    {% trans "Show per page" %}
     <select name="count" id="change-count">
         {% for value in page_values %}
-        <option value="{{ value }}" {% if value== page_size %} selected {% endif %}>{{ value }}</option>
+        <option value="{{ value }}" {% if value == page_size %} selected {% endif %}>{{ value }}</option>
         {% endfor %}
     </select>
-    {% trans 'Bar data' %}
+    {% trans "Bar data" %}
 </div>
 <script type="text/javascript">
     function getUrlVars() {
@@ -58,14 +58,14 @@
 <div class="pagination">
     <div class="goto" id="goto">
         <input type="text" value="" class="num"/>
-        <a href="" data-href="{% querystring table.prefixed_page_field='' %}">{% trans 'Jump page ' %}</a>
+        <a href="" data-href="{% querystring table.prefixed_page_field='' %}">{% trans "Jump page " %}</a>
     </div>
 
     <div class="page-show">
         {% block pagination.previous %}
         {% if page_obj.has_previous %}
         <a href="{% querystring table.prefixed_page_field=page_obj.previous_page_number %}" class="prev">{{
-            previous_link_decorator|safe }}Previous</a>
+            previous_link_decorator|safe }}{% trans "Previous" %}</a>
         {% endif %}
         {% endblock pagination.previous %}
 
@@ -89,7 +89,7 @@
 
         {% if page_obj.has_next %}
         <a href="{% querystring table.prefixed_page_field=page_obj.next_page_number %}" class="next">
-            {% trans 'Next' %}
+            {% trans "Next" %}
             {{next_link_decorator|safe }}</a>
         {% endif %}
 
@@ -131,7 +131,7 @@
         hrefPrefix = hrefPrefix.replace("&submit=%E6%9F%A5%E8%AF%A2", "");
         hrefPrefix = hrefPrefix.replace("&page=", "");
 
-        if (pageNum == "") {
+        if (pageNum === "") {
             return false;
         } else {
             _btnConfirm[0].href = hrefPrefix + "&page=" + pageNum;

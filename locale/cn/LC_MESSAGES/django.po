@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 17:15-0800\n"
+"POT-Creation-Date: 2020-02-23 17:43-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,7 +145,7 @@ msgid "Content"
 msgstr ""
 
 #: aswan/bk_config/tables.py:18 aswan/permissions/tables.py:44
-#: aswan/permissions/tables.py:83 aswan/rule/tables.py:33
+#: aswan/permissions/tables.py:84 aswan/rule/tables.py:33
 #: aswan/strategy/tables.py:23 aswan/strategy/tables.py:64
 #: aswan/strategy/tables.py:95 aswan/strategy/tables.py:132
 msgid "Confirm"
@@ -207,7 +207,7 @@ msgstr ""
 #: aswan/strategy/templates/strategy/menu_strategy_test.html:52
 #: aswan/strategy/templates/strategy/user_strategy_create.html:88
 #: aswan/strategy/templates/strategy/user_strategy_test.html:58
-#: aswan/templates/table.html:57
+#: aswan/templates/table.html:55
 msgid "Save"
 msgstr ""
 
@@ -741,19 +741,19 @@ msgstr ""
 msgid "Sub_Group_Name"
 msgstr ""
 
-#: aswan/permissions/tables.py:41 aswan/permissions/tables.py:79
+#: aswan/permissions/tables.py:41 aswan/permissions/tables.py:80
 msgid "Unique_Identification"
 msgstr ""
 
-#: aswan/permissions/tables.py:42 aswan/permissions/tables.py:81
+#: aswan/permissions/tables.py:42 aswan/permissions/tables.py:82
 msgid "Creation_Time"
 msgstr ""
 
-#: aswan/permissions/tables.py:78
+#: aswan/permissions/tables.py:79
 msgid "uriGroupNameCall"
 msgstr ""
 
-#: aswan/permissions/tables.py:80
+#: aswan/permissions/tables.py:81
 msgid "Uri_List"
 msgstr ""
 
@@ -814,7 +814,7 @@ msgid "Modify the Authority Uri Control Collection"
 msgstr ""
 
 #: aswan/permissions/templates/permissions/uri_collection.html:59
-#: aswan/templates/table.html:42
+#: aswan/templates/table.html:40
 msgid "delete"
 msgstr ""
 
@@ -1548,11 +1548,11 @@ msgstr ""
 msgid "Sorry, you don't have access to this page."
 msgstr ""
 
-#: aswan/templates/base.html:19
+#: aswan/templates/base.html:16
 msgid "Wind control management"
 msgstr ""
 
-#: aswan/templates/base.html:47
+#: aswan/templates/base.html:44
 msgid "Wind Control Management Center"
 msgstr ""
 
@@ -1565,19 +1565,27 @@ msgid "Home"
 msgstr ""
 
 #: aswan/templates/pagination.html:4
-msgid "A total query out"
+msgid "Total query out: "
 msgstr ""
 
-#: aswan/templates/pagination.html:4 aswan/templates/pagination.html:25
-msgid "Bar data"
+#: aswan/templates/pagination.html:4
+msgid " Bar data"
 msgstr ""
 
 #: aswan/templates/pagination.html:19
 msgid "Show per page"
 msgstr ""
 
+#: aswan/templates/pagination.html:25
+msgid "Bar data"
+msgstr ""
+
 #: aswan/templates/pagination.html:61
 msgid "Jump page "
+msgstr ""
+
+#: aswan/templates/pagination.html:68
+msgid "Previous"
 msgstr ""
 
 #: aswan/templates/pagination.html:92
@@ -1652,11 +1660,11 @@ msgstr ""
 msgid "Data Source Configuration"
 msgstr ""
 
-#: aswan/templates/table.html:40 aswan/templates/table.html:52
+#: aswan/templates/table.html:38 aswan/templates/table.html:50
 msgid "Full selection"
 msgstr ""
 
-#: aswan/templates/table.html:54
+#: aswan/templates/table.html:52
 msgid "Bulk editing"
 msgstr ""
 

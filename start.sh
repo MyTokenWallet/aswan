@@ -32,7 +32,7 @@ python3 manage.py makemessages --ignore="static" --ignore=".env" -l en -v 3
 python3 manage.py makemessages --ignore="static" --ignore=".env" -a -d djangojs
 python3 manage.py compilemessages
 
-python3 manage.py collectstatic
+# python3 manage.py collectstatic
 
 
 ## Start-up management background (debug, not for production)
