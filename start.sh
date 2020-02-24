@@ -25,28 +25,15 @@ cur_dir=`pwd`
 echo . > nohup.out
 pip install -r requirements.txt
 
-cd aswan || exit
-django-admin.py makemessages -l en -a
-django-admin.py makemessages -l cn -a
-django-admin makemessages -a
-django-admin.py makemessages -a -d djangojs
 
-cd risk_auth || exit
-django-admin.py makemessages -l en -a
-django-admin.py makemessages -l cn -a
-django-admin makemessages -a
-django-admin.py makemessages -a -d djangojs
 
-cd ..
-cd ..
-django-admin.py makemessages -l en -a
-django-admin.py makemessages -l cn -a
-django-admin makemessages -a
-django-admin.py makemessages -a -d djangojs
-django-admin compilemessages
-#The SECRET_KEY setting must not be empty.
+python3 manage.py makemessages --ignore="static" --ignore=".env" -l cn -v 3
+python3 manage.py makemessages --ignore="static" --ignore=".env" -l en -v 3
+python3 manage.py makemessages --ignore="static" --ignore=".env" -a -d djangojs
+python3 manage.py compilemessages
 
-exit;
+python3 manage.py collectstatic
+
 
 ## Start-up management background (debug, not for production)
 nohup python3 "${cur_dir}"/manage.py runserver &
