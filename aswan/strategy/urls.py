@@ -48,3 +48,4 @@ urlpatterns = [
     url(r'^user_strategy/test/$', UserStrategyTestView.as_view(), name="user_strategy_test"),
     url(r'^user_strategy/data/$', UserStrategyDataView.as_view(), name="user_strategy_data"),
 ]
+

@@ -11,9 +11,8 @@ from aswan.menu.forms import MENU_TYPE_NAME_MAP
 class EventTable(tables.Table):
     event_name = columns.Column(verbose_name=_("Project name"))
     action = columns.TemplateColumn("""
-    {% load i18n %}
     <a class="event-destroy" data-uri="{% url 'menus:event_destroy' %}" data-id="{{ record.event_code }}">
-    {% trans "delete" %}</a>
+    delete</a>
     """, orderable=False, verbose_name=_("action"))
 
     class Meta:

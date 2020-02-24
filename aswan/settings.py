@@ -70,7 +70,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 MIDDLEWARE_CLASSES = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'aswan.permissions.middleware.PermissionsMiddleware',
     'aswan.permissions.middleware.UserAuditMiddleware',
 ]
@@ -81,6 +85,7 @@ LANGUAGES = (
     ('en', 'English'),
     ('zh', 'Chinese'),
 )
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

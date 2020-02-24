@@ -2,9 +2,9 @@
 # coding: utf-8
 
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView
-from django.contrib.auth.decorators import login_required
 
 from aswan.risk_auth.views import Home
 from aswan.risk_auth.views import risk_login, risk_logout
@@ -15,3 +15,4 @@ urlpatterns = [
     url(r'^accounts/login/$', risk_login, name="risk_login"),
     url(r'^accounts/logout/$', risk_logout, name="risk_logout"),
 ]
+

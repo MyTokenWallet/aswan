@@ -196,8 +196,7 @@ class MenuFilterForm(BaseFilterForm):
         self.fields['filter_event_code'].choices = self._build_event_choices()
 
         placeholder = DIMENSION_NAME_MAP.get(self.dimension, _('Unknown'))
-        self.fields['filter_value'].widget.attrs["placeholder"] = _(
-            placeholder)
+        self.fields['filter_value'].widget.attrs["placeholder"] = placeholder
 
     @classmethod
     def _build_event_choices(cls):

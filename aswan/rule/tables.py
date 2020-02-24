@@ -13,22 +13,21 @@ class RulesTable(tables.Table):
     update_time = columns.Column(verbose_name=_("UpdateTime"), orderable=False)
     user = columns.Column(verbose_name=_("Updater"), orderable=False)
     action = columns.TemplateColumn("""
-    {% load i18n %}
     <span class="action-button">
         <a class="rules-on" data-uri="{% url 'rule:change' %}" data-id="{{ record.uuid }}" 
-        data-title="{{ record.title }}" data-status="{{ record.status }}">{% trans "Enable" %}</a>
+        data-title="{{ record.title }}" data-status="{{ record.status }}">Enable</a>
     </span>
     <span class="action-button">
         <a class="rules-off" data-uri="{% url 'rule:change' %}" data-id="{{ record.uuid }}" 
-        data-title="{{ record.title }}" data-status="{{ record.status }}">{% trans "Disable" %}</a>
+        data-title="{{ record.title }}" data-status="{{ record.status }}">Disable</a>
     </span>
     <span class="action-button">
         <a class="rules-detail" data-uri="{% url 'rule:detail' %}" 
-        data-id="{{ record.uuid }}" >{% trans "Details" %}</a>
+        data-id="{{ record.uuid }}" >Details</a>
     </span>
     <span class="action-button">
         <a class="rules-edit" data-uri="{% url 'rule:edit' %}" 
-        data-id="{{ record.uuid }}" >{% trans "Edit" %}</a>
+        data-id="{{ record.uuid }}" >Edit</a>
     </span>
     """, orderable=False, verbose_name=_("Confirm"))
 

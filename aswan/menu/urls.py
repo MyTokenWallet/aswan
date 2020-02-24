@@ -26,3 +26,4 @@ urlpatterns = [
     url(r'^pay/list/$', PayListView.as_view(), name="pay_list"),
     url(r'^phone/list/$', PhoneListView.as_view(), name="phone_list"),
 ]
+

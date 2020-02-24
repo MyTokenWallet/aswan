@@ -19,7 +19,7 @@ class SourceMapForm(BaseForm):
     )
     content = forms.CharField(widget=forms.Textarea(
         attrs={
-            "rows": "8", "cols": "27", "placeholder": """{% trans "Configure content (json format))" %}:
+            "rows": "8", "cols": "27", "placeholder": """Configure content (json format)):
 {
     "user_id": "string",
     "uid": "string",
@@ -32,23 +32,27 @@ class SourceMapForm(BaseForm):
 
     def clean_name_key(self):
         name_key = self.cleaned_data['name_key']
+        error_message = _("Incorrect input with some special characters")
         if not re.match(self.name_key_pattern, name_key):
-            raise forms.ValidationError(_("Incorrect input with some special characters"))
+            raise forms.ValidationError(error_message)
 
         client = get_redis_client()
+        error_message = _("The data source already exists")
         if client.hget(self.map_key, name_key):
-            raise forms.ValidationError(_("The data source already exists"))
+            raise forms.ValidationError(error_message)
 
         return name_key
 
     def clean_content(self):
         content = self.cleaned_data['content']
+        error_message = _("Wrong input，json resolution failed")
+        error_message2 = _("This field is required")
         try:
             content = json.loads(content)
         except ValueError:
-            raise forms.ValidationError(_("Wrong input，json resolution failed"))
+            raise forms.ValidationError(error_message)
         if not content.keys():
-            raise forms.ValidationError(_("This field is required"))
+            raise forms.ValidationError(error_message2)
         return content
 
     def save(self):
@@ -63,4 +67,4 @@ class SourceMapForm(BaseForm):
 
 
 class SourceFilterForm(BaseFilterForm):
-    name = forms.CharField(required=False, label=_(_("Data source name")))
+    name = forms.CharField(required=False, label=_("Data source name"))

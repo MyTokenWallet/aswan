@@ -60,23 +60,22 @@ class AuditLogTable(tables.Table):
     method = columns.Column(verbose_name=_("How to request"), orderable=False)
     status = columns.Column(verbose_name=_("Response_Code"), orderable=False)
     req_body = columns.TemplateColumn("""
-    {% load i18n %}
     <div style="max-width: 600px;">
         {% if record.req_body|length > 128 %}
             <a data-toggle="modal" data-target="#req_body_{{ record.id }}">
-                {% trans "View" %}
+                View
             </a>
             <div class="modal inmodal" id="req_body_{{ record.id }}" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
-                            <h2>{% trans "Request_Parameter" %}</h2>
+                            <h2>Request_Parameter</h2>
                         </div>
                         <div class="modal-body">
                         {{ record.req_body }}
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">% trans "Close" %}</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

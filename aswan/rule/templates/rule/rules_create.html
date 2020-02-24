@@ -9,6 +9,7 @@
 
 {% block header %}
 <a href="javascript:;" class="active">{% trans "Add Rules" %}</a>
+<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 {% endblock %}
 
 {% block action %}
@@ -77,7 +78,8 @@
                                                     <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                        待选&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                        {% trans "To be selected" %}
+                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -383,7 +385,7 @@
 
 <script>
     $('.searchable').multiSelect({
-        selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='过滤条件'>",
+        selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder={% trans 'Filters' %}>",
         afterInit: function (ms) {
             var that = this,
                 $selectableSearch = that.$selectableUl.prev(),

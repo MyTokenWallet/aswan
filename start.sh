@@ -27,10 +27,12 @@ pip install -r requirements.txt
 
 
 
-python3 manage.py makemessages --ignore="static" --ignore=".env" -l cn -v 3
-python3 manage.py makemessages --ignore="static" --ignore=".env" -l en -v 3
-python3 manage.py makemessages --ignore="static" --ignore=".env" -a -d djangojs
+python3 manage.py makemessages --ignore="static-site" --ignore=".env" -l cn -v 3
+python3 manage.py makemessages --ignore="static-site" --ignore=".env" -l en -v 3
+python3 manage.py makemessages --ignore="static-site" --ignore=".env" -l en -d djangojs -v 3
+python3 manage.py makemessages --ignore="static-site" --ignore=".env" -l cn -d djangojs -v 3
 python3 manage.py compilemessages
+
 
 # python3 manage.py collectstatic
 

@@ -65,12 +65,12 @@ class Rule(object):
                                   group_uuid, weight])
         return callable_list
 
-    def __str__(self):
+    def __unicode__(self):
         return "{name}[id:{id}; uuid:{uuid}]".format(name=self.name,
                                                      id=self.id,
                                                      uuid=self.uuid)
 
-    __repr__ = __str__
+    __repr__ = __unicode__
 
 
 class Rules(object):

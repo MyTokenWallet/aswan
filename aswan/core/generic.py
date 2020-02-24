@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
+from random import random
+
 from django.utils.translation import ugettext_lazy as _
 from math import ceil
 from django.conf import settings
@@ -18,14 +20,22 @@ class PaginatorClass(Paginator):
             number = int(number)
         except (TypeError, ValueError):
             raise PageNotAnInteger(_('That page number is not an integer'))
+
         if number < 1:
             raise EmptyPage(_('That page number is less than 1'))
+
         if number > self.num_pages:
             if number == 1 and self.allow_empty_first_page:
                 pass
             else:
                 number = self.num_pages
         return number
+
+
+def get_page_values():
+    """Paging configuration"""
+    defaults = ['50', '100', '200', '500', '1000']
+    return defaults
 
 
 class PagedFilterTableView(SingleTableView):
@@ -89,16 +99,12 @@ class PagedFilterTableView(SingleTableView):
         context['filter_form'] = self.get_filter_form()
         context['record_count'] = self.get_qs_count()
         context['page_size'] = str(self.get_paginate_by(None))
+
         if self.enable_page_size_config:
             context['enable_page_size_config'] = True
-            context['page_values'] = self.get_page_values()
-        return context
+            context['page_values'] = get_page_values()
 
-    @staticmethod
-    def get_page_values():
-        """Paging configuration"""
-        defaults = ['50', '100', '200', '500', '1000']
-        return defaults
+        return context
 
     def get_paginate_by(self, queryset):
         """Get paginated parameters"""

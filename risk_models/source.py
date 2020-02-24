@@ -144,10 +144,10 @@ class Source(object):
             name_sources_map[source_name].add(cls(source_name, keys))
         return name_sources_map
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
-    __repr__ = __str__
+    __repr__ = __unicode__
 
 
 @register_source_cls

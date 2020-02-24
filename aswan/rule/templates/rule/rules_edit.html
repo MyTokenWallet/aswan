@@ -8,6 +8,7 @@
 
 
 {% block header %}
+<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 {% include "datepicker.html" %}
 <a href="javascript:;" class="active">{% trans "Editing rules" %}</a>
 {% endblock %}
@@ -86,7 +87,8 @@
                                                     <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                        待选&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                        {% trans "To be selected" %}
+                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

@@ -56,11 +56,10 @@ class FreqStrategyTable(tables.Table):
     strategy_limit = columns.Column(verbose_name=_("Maximum"), orderable=False)
 
     action = columns.TemplateColumn("""
-    {% load i18n %}
     <a class="strategy-destroy" 
     data-uri="{% url 'strategy:freq_strategy_destroy' %}" 
     data-id="{{ record.uuid }}">
-    {% trans "delete" %}</a>
+    delete</a>
     """, orderable=False, verbose_name=_("Confirm"))
 
     class Meta:
@@ -88,10 +87,9 @@ class MenuStrategyTable(tables.Table):
     event = columns.Column(verbose_name=_("Project"), orderable=False)
     menu_type = columns.Column(verbose_name=_("ListType"), orderable=False)
     action = columns.TemplateColumn("""
-    {% load i18n %}
     <a class="strategy-destroy" 
        data-uri="{% url 'strategy:menu_strategy_destroy' %}" 
-       data-id="{{ record.uuid }}">{% trans "delete" %}</a>
+       data-id="{{ record.uuid }}">delete</a>
     """, orderable=False, verbose_name=_("Confirm"))
 
     class Meta:
@@ -125,10 +123,9 @@ class UserStrategyTable(tables.Table):
     strategy_limit = columns.Column(verbose_name=_("Maximum"), orderable=False)
 
     action = columns.TemplateColumn("""
-    {% load i18n %}
         <a class="strategy-destroy" 
         data-uri="{% url 'strategy:user_strategy_destroy' %}" 
-        data-id="{{ record.uuid }}">{% trans "delete" %}</a>
+        data-id="{{ record.uuid }}">delete</a>
         """, orderable=False, verbose_name=_("Confirm"))
 
     class Meta:

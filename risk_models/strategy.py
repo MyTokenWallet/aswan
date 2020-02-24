@@ -66,11 +66,11 @@ class Strategy(object):
         The callable object accepts a req_body as input, outputs a boolean value and a custom string"""
         raise NotImplementedError(_("must be writen by subclass"))
 
-    def __str__(self):
+    def __unicode__(self):
         return "{}[{}]".format(self.name, self.uuid)
 
     def __repr__(self):
-        return self.__str__()
+        return self.__unicode__()
 
 
 @register_strategy

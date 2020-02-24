@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
+from django.urls import path
+from django.views.i18n import JavaScriptCatalog
+
 from aswan import settings as base
 from django.conf.urls import include, url
 
@@ -14,6 +18,10 @@ urlpatterns = [
     url(r'^config/', include(('aswan.bk_config.urls', 'config'), namespace='config')),
     url(r'^log_manage/', include(('aswan.log_manage.urls', 'log_manage'), namespace='log_manage')),
 ]
+
+urlpatterns += i18n_patterns(
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+)
 
 # This section should be removed when used on the line, and the dynamic separation should be
 # urlpatterns += static(base.STATIC_URL, document_root=base.STATIC_ROOT)
