@@ -12,10 +12,10 @@ pymysql.install_as_MySQLdb()  # noqa
 import django
 
 from risk_models.rule import calculate_rule
-from www.core.utils import get_sample_str
-from www.menu.init_data import create_menu_event, add_element_to_menu
-from www.strategy.init_data import create_bool_strategy, create_menu_strategy
-from www.rule.init_data import create_rule
+from aswan.core.utils import get_sample_str
+from aswan.menu.init_data import create_menu_event, add_element_to_menu
+from aswan.strategy.init_data import create_bool_strategy, create_menu_strategy
+from aswan.rule.init_data import create_rule
 
 # init django settings
 django.setup()  # noqa
@@ -47,14 +47,14 @@ class TestRule(unittest.TestCase):
 
         # Hit bool-type strategy
         control, weight = calculate_rule(id_=self.rule_id, req_body=req_body)
-        self.assertEquals(control, 'log')
-        self.assertEquals(weight, 90)
+        self.assertEqual(control, 'log')
+        self.assertEqual(weight, 90)
 
         # Hit List strategy
         add_element_to_menu(event_code=self.event_code, menu_type='black', dimension='user_id', element='111')
         control, weight = calculate_rule(id_=self.rule_id, req_body=req_body)
-        self.assertEquals(control, 'deny')
-        self.assertEquals(weight, 100)
+        self.assertEqual(control, 'deny')
+        self.assertEqual(weight, 100)
 
 
 if __name__ == '__main__':

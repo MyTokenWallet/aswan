@@ -9,9 +9,10 @@ import webbrowser
 
 current_dir = os.path.dirname(os.path.abspath(__file__))  # NOQA
 parent_dir = os.path.abspath(os.path.join(current_dir, os.path.pardir))  # noqa
-www_dir = os.path.abspath(os.path.join(parent_dir, 'www'))
+www_dir = os.path.abspath(os.path.join(parent_dir, 'aswan'))
 sys.path.append(parent_dir)  # NOQA
 os.environ['PYTHONPATH'] = ':'.join((parent_dir, www_dir))
+os.environ.setdefault('RISK_ENV', 'test')
 
 risk_env = os.environ.get('RISK_ENV')
 assert risk_env and risk_env == 'test', 'Note that this section can only be performed in a test environment'

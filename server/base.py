@@ -6,7 +6,7 @@ import json
 
 class Response(object):
     def __init__(self, result=None, error=None, ec=0):
-        assert (result is not None) or (error is not None)
+        # assert (result is not None) or (error is not None)
         self.result = result
         self.error = error
         self.ec = ec

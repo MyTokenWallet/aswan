@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import gettext as _
+
 from builtin_funcs import BuiltInFuncs
 
 
-@BuiltInFuncs.register(desc=_('Abnormal User'),
+@BuiltInFuncs.register(desc='Abnormal User',
                        args_type_tuple=(('user_id', str),),
                        supported_ops=('is', 'is_not'))
 def is_abnormal(req_body):
@@ -23,7 +23,7 @@ def is_abnormal(req_body):
         return False
 
 
-@BuiltInFuncs.register(desc=_('Number of historical logins'),
+@BuiltInFuncs.register(desc='Number of historical logins',
                        args_type_tuple=(('user_id', str),),
                        supported_ops=('gt', 'ge', 'lt', 'le', 'eq', 'neq'),
                        threshold_trans_func=int

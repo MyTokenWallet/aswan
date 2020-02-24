@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 import json
 import time
 import random
@@ -93,7 +93,7 @@ class Source(object):
                 if key in ['', None]:
                     return []
                 keys.append(key)
-        return [u"{}:{}".format(self.zkey_prefix, '_'.join(keys))]
+        return ["{}:{}".format(self.zkey_prefix, '_'.join(keys))]
 
     def get_member(self, data):
         return str(int(time.time() * 1000))

@@ -10,7 +10,7 @@ WeChat:<br>
 
 ### Architecture Introduction
 
-   ![风控系统架构图](./www/static/img/wiki/architecture.jpg)
+   ![风控系统架构图](aswan/static/img/wiki/architecture.jpg)
 
 The main branch of this project only supports Python3, and currently passed the Python 3.7.3 version test. If you need the python2.7 version, please use the tag: last-support-Python2.7 code.
 ### Quick Start
@@ -56,7 +56,7 @@ The main branch of this project only supports Python3, and currently passed the 
 
     The list must belong to a certain item (used to determine the scope of the list), and items can be added in list management-list item management.
 
-    ![名单管理](./www/static/img/wiki/menu.png)
+    ![名单管理](aswan/static/img/wiki/menu.png)
 
 2. List strategy
 
@@ -64,7 +64,7 @@ The main branch of this project only supports Python3, and currently passed the 
 
     Example: User ID is in the user blacklist of the initial project
 
-    ![List strategy](./www/static/img/wiki/menu_strategy.png)
+    ![List strategy](aswan/static/img/wiki/menu_strategy.png)
 
 3. Boolean strategy
 
@@ -72,7 +72,7 @@ The main branch of this project only supports Python3, and currently passed the 
 
     Pass threshold Boolean, the descriptor is {parameter name: single choice, assuming "account ID"} {opcode: greater than / less than / equal / not equal} {built-in function: historical login times} {threshold: 170} Example : Account ID history login times greater than 100
 
-    ![Boolean strategy](./www/static/img/wiki/bool_strategy.png)
+    ![Boolean strategy](aswan/static/img/wiki/bool_strategy.png)
 
     What is a Built-in functions ? It is a custom logic judgment function that only needs to meet the requirements to return a Boolean value. For example, whether the registration time is within a certain range, and whether the current device is a commonly used device.
 
@@ -80,7 +80,7 @@ The main branch of this project only supports Python3, and currently passed the 
 
    The descriptor is the same {counting dimension: single choice, assuming "device"} to limit {threshold: integer N} times within {time period: time span} Example of an action : limit the operation to the same device 10 times a day. But how do I know How many times already? This needs to be reported. For details, please refer to Article 9 Data Source Management.
 
-    ![Time-time frequency control strategy](./www/static/img/wiki/freq_strategy.png)
+    ![Time-time frequency control strategy](aswan/static/img/wiki/freq_strategy.png)
 
 5. User-limited number-based policy
 
@@ -88,20 +88,20 @@ The main branch of this project only supports Python3, and currently passed the 
 
     Example: Limited to 10 users on the same device. This strategy also requires data to be reported, and because it is related to the user, the reported data must include the user_id field (which needs to be configured in the data source). For details, see Article 9 Data Source Management
 
-    ![User-limited number-based policy](./www/static/img/wiki/user_strategy.png)
+    ![User-limited number-based policy](aswan/static/img/wiki/user_strategy.png)
 
 6. Rule management
 
     Control atom: The control action after hitting a certain policy, such as intercepting ... The policy atoms described in 2--5 above are combined according to priority, and executed from top to bottom, until a policy is hit, the corresponding response is returned. Governance atom of strategy. This module is more re-interactive, completing the configuration, combination, weighting, etc. of the strategy
-    ![Rule configuration page](./www/static/img/wiki/rule_manage.png)
+    ![Rule configuration page](aswan/static/img/wiki/rule_manage.png)
 
 7. Log management
 
     The logs of all hit policies are displayed here, and audit-related logs will also be included `The next issue will open the Block Ingres Trace feature based on this log`。
 
-    ![命中日志](./www/static/img/wiki/rule_manage.png)
+    ![命中日志](aswan/static/img/wiki/rule_manage.png)
 
-    ![Audit log](./www/static/img/wiki/audit_log.png)
+    ![Audit log](aswan/static/img/wiki/audit_log.png)
 
 8. Rights Profile Authority configuration
 
@@ -113,7 +113,7 @@ The main branch of this project only supports Python3, and currently passed the 
 
     Important: Because the logic necessarily depends on time information, it is a general and required field, timestamp is the default hidden field, and the type is timestamp (accurate to seconds, integer)
 
-    ![Data Source Configuration](./www/static/img/wiki/data_source.png)
+    ![Data Source Configuration](aswan/static/img/wiki/data_source.png)
 
 ### Call sample
 
@@ -186,11 +186,11 @@ The current Authority model contains the following elements that can be configur
 
 The specific diagram is as follows::
 
-   ![UriGroup Management](./www/static/img/wiki/permission_manage.png)
+   ![UriGroup Management](aswan/static/img/wiki/permission_manage.png)
 
-   ![Authority Group Management](./www/static/img/wiki/url_group_manage.png)
+   ![Authority Group Management](aswan/static/img/wiki/url_group_manage.png)
 
-   ![User Management](./www/static/img/wiki/user_manage.png)
+   ![User Management](aswan/static/img/wiki/user_manage.png)
 
 ### Configuration related
 

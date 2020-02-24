@@ -1,0 +1,31 @@
+{% load i18n %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block header %}
+<a href="javascript:;" class="active">{{ desc }} {% trans "Uri list" %}</a>
+{% endblock %}
+
+
+{% block action %}
+<a class="roll-nav roll-right extra-right-btns pull-right" style="margin-right:90px;"
+   href="{% url 'permissions:uri_groups' %}">
+    <i class="fa fa-reply"></i>
+    {% trans "Return" %}
+</a>
+<a class="roll-nav roll-right extra-right-btns pull-right" href="{% url 'permissions:uri_groups' %}">
+    <i class="fa fa-plus"></i>
+    {% trans "Increase URI" %}
+</a>
+{% endblock %}
+
+
+{% block main %}
+<div class="wrapper wrapper-content">
+    <div class="extra-box-content">
+        {% render_table table "table.html" %}
+    </div>
+</div>
+{% endblock %}

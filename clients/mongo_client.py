@@ -14,7 +14,6 @@ from config.product import (SOC_MONGO_HOST, MONGO_DB)
 def _get_mongo_pool():
     _POOL_TEMP = MongoClient(host=SOC_MONGO_HOST, maxPoolSize=MONGO_POOL_SIZE,
                              connect=False,
-                             socketKeepAlive=True,
                              maxIdleTimeMS=MONGO_MAX_IDLE_TIME,
                              waitQueueTimeoutMS=MONGO_MAX_WAITING_TIME,
                              socketTimeoutMS=MONGO_SOCKET_TIMEOUT)

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main %}
+<div class="wrapper wrapper-content">
+    <div class="extra-welcome">
+        {% trans "Welcome" %} <strong>{{ request.user.last_name }}{{ request.user.first_name }}</strong>
+    </div>
+</div>
+{% endblock %}

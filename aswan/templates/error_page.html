@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Wind control management -" %}
+        {% block error_code %}{% endblock %}</title>
+
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/main.css" rel="stylesheet">
+</head>
+<body class="extra-main-bg">
+<div class="extra-error-page-content">
+    <h1>{% block error_code_title %}200{% endblock %}</h1>
+    <h3 class="font-bold">{% block error_code_title_zh %}Blank page{% endblock %}</h3>
+    <div class="extra-error-desc">{% block error_code_desc %}This one blank page{% endblock %}</div>
+    <a href="/" class="btn btn-primary m-t">{% trans "Home" %}</a>
+</div>
+</body>
+</html>

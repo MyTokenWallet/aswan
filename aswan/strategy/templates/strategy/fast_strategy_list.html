@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block css %}
+{{ block.super }}
+
+
+{% endblock %}
+
+
+{% block header %}
+<a href="javascript:;" class="active">{% trans "Non-universal policies" %}</a>
+{% endblock %}
+
+
+{% block main %}
+<div class="wrapper wrapper-content">
+    <div class="extra-search-form">
+        {% crispy filter_form %}
+    </div>
+    <div class="extra-box-content">
+        {% render_table table "table.html" %}
+    </div>
+</div>
+
+{% endblock %}

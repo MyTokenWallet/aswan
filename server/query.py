@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
+
+from aswan import settings
 from server.base import Response
 from risk_models.exceptions import RuleNotExistsException
 from risk_models.rule import calculate_rule, Rules, AccessCount
@@ -14,7 +16,9 @@ def query_handler(req_body):
 
     result, ec, error = None, 0, None
     try:
-        assert rule_id
+        if settings.DEBUG:
+            assert rule_id
+
         rule_id = str(rule_id)
         control, weight = calculate_rule(rule_id, req_body, rules=rules, ac=ac)
         result = {'control': control, 'weight': weight}

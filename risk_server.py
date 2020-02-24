@@ -3,7 +3,7 @@
 """A http server which offers two uri: query and report"""
 from gevent import monkey
 
-monkey.patch_all()  # noqa
+monkey.patch_all()
 
 import json
 from cgi import FieldStorage

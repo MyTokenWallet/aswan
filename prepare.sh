@@ -30,3 +30,6 @@ docker ps
 rm nohup.out
 touch nohup.out
 
+ps -fA | grep python
+kill -9 xxxxx
+

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 import re
 import time
 import math
@@ -347,15 +347,14 @@ class UserStrategy(Strategy):
 
 
 class Strategys(object):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.uuid_strategy_map = {}
         self.load_strategys()
 
     def load_strategys(self):
         uuid_strategy_map = {}
         conn = get_config_redis_client()
-        logger.info(_('start load strategys from db, current strategy: %s'),
-                    self.uuid_strategy_map.keys())
+        logger.info('start load strategys from db, current strategy: %s', self.uuid_strategy_map.keys())
         for strategy_cls in _used_strategies:
             try:
                 for name in conn.scan_iter(match=strategy_cls.prefix):
@@ -363,16 +362,16 @@ class Strategys(object):
                     strategy = strategy_cls(d)
                     uuid_strategy_map[strategy.uuid] = strategy
             except redis.RedisError:
-                logger.error(_('load strategys occur redis conn error'))
+                logger.error('load strategys occur redis conn error')
                 return
         self.uuid_strategy_map = uuid_strategy_map
-        logger.info(_('load strategys success, current strategy: %s'),
+        logger.info('load strategys success, current strategy: %s',
                     self.uuid_strategy_map.keys())
 
     def _get_strategy_or_raise(self, uuid_):
         strategy = self.uuid_strategy_map.get(uuid_)
         if not strategy:
-            raise ValueError(_('uuid({}) is not a valid strategy uuid').format(uuid_))
+            raise ValueError('uuid({}) is not a valid strategy uuid'.format(uuid_))
         return strategy
 
     def get_thresholds(self, uuid_):
