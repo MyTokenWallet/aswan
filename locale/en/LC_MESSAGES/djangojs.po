@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-24 17:33-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: aswan/static/js/app/batch_delete.js:20
+msgid "Please select the data to delete"
+msgstr ""
+
+#: aswan/static/js/app/batch_delete.js:27 aswan/static/js/app/event_list.js:8
+#: aswan/static/js/app/freq_strategy_list.js:7
+#: aswan/static/js/app/group_list.js:5
+#: aswan/static/js/app/menu_strategy_list.js:8
+#: aswan/static/js/app/rules_list.js:7 aswan/static/js/app/source_list.js:46
+#: aswan/static/js/app/uri_group_list.js:5
+#: aswan/static/js/app/user_strategy_list.js:7
+msgid "Are you sure you want to delete it"
+msgstr ""
+
+#: aswan/static/js/app/batch_delete.js:32
+#: aswan/static/js/app/bool_strategy_list.js:13
+#: aswan/static/js/app/event_list.js:13
+#: aswan/static/js/app/freq_strategy_list.js:12
+#: aswan/static/js/app/group_list.js:10
+#: aswan/static/js/app/menu_strategy_list.js:13
+#: aswan/static/js/app/rules_list.js:12 aswan/static/js/app/source_list.js:51
+#: aswan/static/js/app/uri_group_list.js:10
+#: aswan/static/js/app/user_strategy_list.js:12
+msgid "delete"
+msgstr ""
+
+#: aswan/static/js/app/batch_delete.js:33
+#: aswan/static/js/app/bool_strategy_list.js:14
+#: aswan/static/js/app/event_list.js:14
+#: aswan/static/js/app/freq_strategy_list.js:13
+#: aswan/static/js/app/group_list.js:11
+#: aswan/static/js/app/menu_strategy_list.js:14
+#: aswan/static/js/app/rules_list.js:13 aswan/static/js/app/rules_list.js:64
+#: aswan/static/js/app/rules_list.js:113 aswan/static/js/app/source_list.js:52
+#: aswan/static/js/app/uri_group_list.js:11
+#: aswan/static/js/app/user_strategy_list.js:13
+msgid "cancel"
+msgstr ""
+
+#: aswan/static/js/app/batch_delete.js:58
+#: aswan/static/js/app/bool_strategy_create.js:73
+#: aswan/static/js/app/bool_strategy_test.js:36
+#: aswan/static/js/app/event_list.js:75
+#: aswan/static/js/app/freq_strategy_create.js:56
+#: aswan/static/js/app/freq_strategy_test.js:37
+#: aswan/static/js/app/menu_ip_list.js:37
+#: aswan/static/js/app/menu_pay_list.js:38
+#: aswan/static/js/app/menu_phone_list.js:37
+#: aswan/static/js/app/menu_strategy_create.js:46
+#: aswan/static/js/app/menu_strategy_test.js:36
+#: aswan/static/js/app/menu_uid_list.js:37
+#: aswan/static/js/app/menu_user_id_list.js:37
+#: aswan/static/js/app/rules_create.js:127
+#: aswan/static/js/app/rules_detail.js:88 aswan/static/js/app/rules_edit.js:148
+#: aswan/static/js/app/rules_test.js:35 aswan/static/js/app/source_list.js:32
+#: aswan/static/js/app/user_strategy_create.js:65
+#: aswan/static/js/app/user_strategy_test.js:37 aswan/static/js/uri_scene.js:31
+msgid "Oops, something went wrong"
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:7
+msgid ""
+"Separate ip information does not indicate that User is a malicious User, "
+"please use with other Policy"
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:15
+msgid "Greater than..."
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:16
+msgid "Greater than or equal to..."
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:17
+msgid "Less than..."
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:18
+msgid "Less than or equal to..."
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:19
+msgid "Equals..."
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_create.js:20
+msgid "Not equal to..."
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_list.js:8
+msgid "Are you sure? Do you want to delete it!"
+msgstr ""
+
+#: aswan/static/js/app/bool_strategy_list.js:39
+#: aswan/static/js/app/event_list.js:40
+#: aswan/static/js/app/freq_strategy_list.js:38
+#: aswan/static/js/app/group_list.js:33
+#: aswan/static/js/app/menu_strategy_list.js:40
+#: aswan/static/js/app/rules_list.js:32 aswan/static/js/app/source_list.js:77
+#: aswan/static/js/app/uri_group_list.js:33
+#: aswan/static/js/app/user_strategy_list.js:38
+msgid "failed to delete"
+msgstr ""
+
+#: aswan/static/js/app/freq_strategy_create.js:12
+#: aswan/static/js/app/user_strategy_create.js:13
+#: aswan/static/js/app/user_strategy_create.js:18
+msgid "equal"
+msgstr ""
+
+#: aswan/static/js/app/freq_strategy_create.js:13
+msgid "，In the recent"
+msgstr ""
+
+#: aswan/static/js/app/freq_strategy_create.js:14
+msgid "s_Inside，Limit"
+msgstr ""
+
+#: aswan/static/js/app/freq_strategy_create.js:15
+msgid "Times("
+msgstr ""
+
+#: aswan/static/js/app/freq_strategy_create.js:17
+msgid "Please enter a positive integer greater than or equal to 1."
+msgstr ""
+
+#: aswan/static/js/app/group_list.js:24
+#: aswan/static/js/app/uri_group_list.js:24
+msgid "delete succeeded!"
+msgstr ""
+
+#: aswan/static/js/app/menu_strategy_create.js:6
+msgid "of"
+msgstr ""
+
+#: aswan/static/js/app/menu_strategy_create.js:6
+msgid "in"
+msgstr ""
+
+#: aswan/static/js/app/rules_create.js:30
+#: aswan/static/js/app/rules_create.js:69 aswan/static/js/app/rules_edit.js:49
+#: aswan/static/js/app/rules_edit.js:87
+msgid "Policy can't be blank!"
+msgstr ""
+
+#: aswan/static/js/app/rules_create.js:39 aswan/static/js/app/rules_edit.js:57
+msgid "Rules must be added"
+msgstr ""
+
+#: aswan/static/js/app/rules_create.js:53 aswan/static/js/app/rules_edit.js:71
+msgid "PolicyGroup Name can't be empty"
+msgstr ""
+
+#: aswan/static/js/app/rules_create.js:61 aswan/static/js/app/rules_edit.js:79
+msgid "Weight cannot be empty!"
+msgstr ""
+
+#: aswan/static/js/app/rules_create.js:77 aswan/static/js/app/rules_edit.js:95
+msgid "Project Management can't be left empty..."
+msgstr ""
+
+#: aswan/static/js/app/rules_detail.js:42
+#: aswan/static/js/app/rules_detail.js:47
+#: aswan/static/js/app/rules_detail.js:55
+msgid "The argument is not legal"
+msgstr ""
+
+#: aswan/static/js/app/rules_detail.js:78
+msgid "Operation failed"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:51 aswan/static/js/app/rules_list.js:100
+msgid "Rules"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:51
+msgid "already enabled"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:58
+msgid "You determine the Enable rule"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:58 aswan/static/js/app/rules_list.js:107
+msgid "Do you?"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:63
+msgid "enable"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:80
+msgid "Enable failed"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:100
+msgid "already disabled"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:107
+msgid "You determine the Disable rule"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:112
+msgid "disable"
+msgstr ""
+
+#: aswan/static/js/app/rules_list.js:129
+msgid "Disable failed"
+msgstr ""
+
+#: aswan/static/js/app/source_list.js:30 aswan/static/js/app/source_list.js:75
+msgid "abort"
+msgstr ""
+
+#: aswan/static/js/app/user_strategy_create.js:14
+msgid "，Day limit"
+msgstr ""
+
+#: aswan/static/js/app/user_strategy_create.js:15
+#: aswan/static/js/app/user_strategy_create.js:21
+msgid "Individual_User("
+msgstr ""
+
+#: aswan/static/js/app/user_strategy_create.js:19
+msgid "，at"
+msgstr ""
+
+#: aswan/static/js/app/user_strategy_create.js:20
+msgid "Natural days，Limit"
+msgstr ""
+
+#: aswan/static/js/app/user_strategy_create.js:25
+msgid ""
+"The 'default number of days' or 'User numbers' needs to be an integer "
+"greater than or greater than 1."
+msgstr ""
+
+#: aswan/static/js/plugins/layer/extend/layer.ext.js:127
+msgid "Next"
+msgstr ""
+
+#: aswan/static/js/plugins/layer/extend/layer.ext.js:127
+msgid "I don't see it."
+msgstr ""
