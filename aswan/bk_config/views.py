@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import json
 from braces.views import JSONResponseMixin
 from django.views.generic import View

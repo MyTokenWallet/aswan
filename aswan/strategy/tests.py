@@ -25,8 +25,7 @@ class TestStrategyViewMinix(object, BaseTestCase):
         self.assertEqual(response.status_code, 200)
 
     def _test_data(self):
-        response = self.client.post(reverse(self.data_uri),
-                                    data={'uuid': self.strategy_uuid})
+        response = self.client.post(reverse(self.data_uri), data={'uuid': self.strategy_uuid})
         self.assertEqual(response.status_code, 200)
 
     def _test_create(self):

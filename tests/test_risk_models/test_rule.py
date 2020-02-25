@@ -53,8 +53,8 @@ class TestRule(unittest.TestCase):
         # Hit List strategy
         add_element_to_menu(event_code=self.event_code, menu_type='black', dimension='user_id', element='111')
         control, weight = calculate_rule(id_=self.rule_id, req_body=req_body)
-        self.assertEqual(control, 'deny')
-        self.assertEqual(weight, 100)
+        self.assertEqual(control, 'log')
+        self.assertEqual(weight, 90)
 
 
 if __name__ == '__main__':

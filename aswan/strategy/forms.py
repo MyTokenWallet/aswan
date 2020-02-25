@@ -2,7 +2,7 @@
 # coding: utf-8
 from typing import Set, Tuple, Union
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import copy
 import uuid
 import json

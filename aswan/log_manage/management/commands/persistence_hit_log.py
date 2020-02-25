@@ -1,6 +1,6 @@
 # coding: utf-8
 # FILE: persistence_hit_log.py
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import time
 import json
 import logging

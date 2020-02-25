@@ -22,6 +22,7 @@ class TestBaseFunction(unittest.TestCase):
         menu_type = 'black'
         add_element_to_menu(event_code=event_code, menu_type=menu_type, dimension=dimension, element=sp_element)
         req_body = {'user_id': sp_element}
+
         self.assertEqual(
             hit_menu(req_body, 'is', event_code, dimension=dimension, menu_type=menu_type), True)
 

@@ -264,9 +264,8 @@ The fourth time: before the user hits the mole, call the query interface, hit th
 
 ```shell
 $ pip3 install coverage
-$ export RISK_ENV=test
-$ python3 www/manage.py test
-$ cd tests && python3 run_test.py
+$ export RISK_ENV=test && python3 manage.py test
+$ cd tests && python3 run_test.py && cd ..
 ```
 
 > You are welcome to provide valuable comments on this project in the issue

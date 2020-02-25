@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import ugettext_lazy as _
 import os
 from django.test import TransactionTestCase
 from aswan.core.redis_client import get_redis_client
@@ -29,9 +28,8 @@ class BaseTestCase(TransactionTestCase):
     def setUpClass(cls):
         super(BaseTestCase, cls).setUpClass()
         risk_env = os.environ.get('RISK_ENV')
-        assert risk_env and risk_env == 'test', _('Note that this section can only be performed in a test environment')
-        create_user(email=cls.email, username=cls.username,
-                    password=cls.password, is_superuser=1)
+        assert risk_env and risk_env == 'test', 'Note that this section can only be performed in a test environment'
+        create_user(email=cls.email, username=cls.username, password=cls.password, is_superuser=1)
 
     @classmethod
     def tearDownClass(cls):

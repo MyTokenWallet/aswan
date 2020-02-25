@@ -79,7 +79,7 @@ MIDDLEWARE_CLASSES = [
     'aswan.permissions.middleware.UserAuditMiddleware',
 ]
 
-ADMINS = ['zwilla']
+ADMINS = [('zwilla', 'info@zwilla.de')]
 
 LANGUAGES = (
     ('en', 'English'),

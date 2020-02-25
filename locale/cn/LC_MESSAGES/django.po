@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-24 17:33-0800\n"
+"POT-Creation-Date: 2020-02-24 18:42-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,10 +181,6 @@ msgstr ""
 msgid "subclass must overwrite get_filter_form method"
 msgstr ""
 
-#: aswan/core/testcase.py:32
-msgid "Note that this section can only be performed in a test environment"
-msgstr ""
-
 #: aswan/log_manage/forms.py:15 aswan/rule/forms.py:19
 msgid "Select Project"
 msgstr ""
@@ -249,16 +245,16 @@ msgstr ""
 msgid "Projectmanagement"
 msgstr ""
 
-#: aswan/log_manage/forms.py:90 aswan/log_manage/tables.py:18
+#: aswan/log_manage/forms.py:89 aswan/log_manage/tables.py:18
 #: aswan/menu/forms.py:38 aswan/menu/tables.py:54
 msgid "UserID"
 msgstr ""
 
-#: aswan/log_manage/forms.py:97
+#: aswan/log_manage/forms.py:95
 msgid "StartTime"
 msgstr ""
 
-#: aswan/log_manage/forms.py:98 aswan/menu/forms.py:78 aswan/menu/tables.py:32
+#: aswan/log_manage/forms.py:96 aswan/menu/forms.py:78 aswan/menu/tables.py:32
 msgid "EndTime"
 msgstr ""
 

@@ -19,7 +19,7 @@ from builtin_funcs import BuiltInFuncs
 from aswan.rule.forms import RulesForm, RulesTestForm, CONTROL_MAP, RulesFilterForm, CONTROL_CHOICES
 from aswan.rule.tables import RulesTable
 from risk_models.strategy import Strategys
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 __all__ = ['RulesListView', 'RulesCreateView', 'RulesDestroyView', 'RulesChangeView',
            'RulesDetailView', 'RulesTestView', 'RulesDataView', 'RulesThresholdEdit',

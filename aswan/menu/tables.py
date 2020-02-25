@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django_tables2 import tables, columns
 from aswan.core.pymongo_client import get_mongo_client
 from aswan.core.columns import TruncateColumn

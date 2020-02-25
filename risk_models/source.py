@@ -177,7 +177,7 @@ class Sources(object):
         raw_name_source_map_lst = []
         try:
             for source_cls in _used_source_cls_set:
-                raw_name_source_map_lst.append(source_cls.load())
+                raw_name_source_map_lst.append(source_cls.load(self))
         except redis.RedisError:
             return
         else:

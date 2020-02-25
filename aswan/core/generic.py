@@ -2,7 +2,7 @@
 # coding: utf-8
 from random import random
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from math import ceil
 from django.conf import settings
 from django_tables2 import SingleTableView, RequestConfig
