@@ -75,10 +75,10 @@ class TestMenuStrategyView(BaseTestCase, TestStrategyViewMinix):
     def _test_test(self):
         super(TestMenuStrategyView, self)._test_test()
 
-        sp_ip = '1.1.1.1'
+        sp_ip = "1.1.1.1"
         data = {
-            'req_body': json.dumps({'ip': sp_ip}),
-            'strategy': self.strategy_uuid
+            "req_body": json.dumps({"ip": sp_ip}),
+            "strategy": self.strategy_uuid
         }
         response = self.client.post(reverse(self.test_uri), data=data)
         self.assertEqual(response.status_code, 200)
@@ -105,12 +105,12 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
 
     def _test_create(self):
         data = {
-            'strategy_name': 'test_strategy_name',
-            'strategy_desc': 'test_strategy_desc',
-            'strategy_var': 'user_id',
-            'strategy_op': 'is',
-            'strategy_func': 'is_abnormal',
-            'strategy_threshold': ''
+            "strategy_name": "test_strategy_name",
+            "strategy_desc": "test_strategy_desc",
+            "strategy_var": "user_id",
+            "strategy_op": "is",
+            "strategy_func": "is_abnormal",
+            "strategy_threshold": ""
         }
         response = self.client.post(reverse(self.create_uri), data=data)
         self.assertEqual(response.status_code, 200)
@@ -121,12 +121,12 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
     def _test_test(self):
         super(TestBoolStrategyView, self)._test_test()
 
-        base_user_id = '111111'
+        base_user_id = "111111"
 
         # A situation that's been let go directly.
         data = {
-            'req_body': json.dumps({'user_id': base_user_id + '0'}),
-            'strategy': self.strategy_uuid
+            "req_body": json.dumps({"user_id": base_user_id + "0"}),
+            "strategy": self.strategy_uuid
         }
         response = self.client.post(reverse(self.test_uri), data=data)
         self.assertEqual(response.status_code, 200)
@@ -136,8 +136,8 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
 
         # The case of the hit
         data = {
-            'req_body': json.dumps({'user_id': base_user_id + '1'}),
-            'strategy': self.strategy_uuid
+            "req_body": json.dumps({"user_id": base_user_id + "1"}),
+            "strategy": self.strategy_uuid
         }
         response = self.client.post(reverse(self.test_uri), data=data)
         self.assertEqual(response.status_code, 200)
@@ -147,7 +147,7 @@ class TestBoolStrategyView(BaseTestCase, TestStrategyViewMinix):
 
         # Caseof of missed
         data = {
-            'req_body': json.dumps({'user_id': base_user_id + '5'}),
+            'req_body': json.dumps({"user_id": base_user_id + '5'}),
             'strategy': self.strategy_uuid
         }
         response = self.client.post(reverse(self.test_uri), data=data)

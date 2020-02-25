@@ -14,9 +14,9 @@ from aswan.core.redis_client import get_redis_client
 class BoolStrategyTable(tables.Table):
     strategy_name = columns.Column(verbose_name=_("PolicyName"), orderable=False)
     strategy_desc = columns.Column(verbose_name=_("PolicyDescription"), orderable=False)
-    strategy_var = columns.Column(verbose_name=_("Built-in_Variables"), orderable=False)
+    strategy_var = columns.Column(verbose_name=_("Built_In_Variables"), orderable=False)
     strategy_op = columns.Column(verbose_name=_("ActionCode"), orderable=False)
-    strategy_func = columns.Column(verbose_name=_("Built-in_Functions"), orderable=False)
+    strategy_func = columns.Column(verbose_name=_("Built_In_Functions"), orderable=False)
     strategy_threshold = columns.Column(verbose_name=_("Thresholds"), orderable=False)
     action = columns.TemplateColumn("""
     <a class="strategy-destroy" data-uri="{% url 'strategy:bool_strategy_destroy' %}" data-id="{{ record.uuid }}">delete</a>

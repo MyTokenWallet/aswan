@@ -46,8 +46,7 @@ class BuiltInFuncs(object):
         """
 
         def outer(func):
-            obj = cls(desc=desc, threshold_trans_func=threshold_trans_func,
-                      run_func=func)
+            obj = cls(desc=desc, threshold_trans_func=threshold_trans_func, run_func=func)
 
             code = func_code or func.__name__
             cls.name_callable[code] = obj

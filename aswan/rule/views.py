@@ -251,11 +251,11 @@ class RulesDetailView(JSONResponseMixin, TemplateView):
             rule['group_name'] = rule['name']
             rule['weight'] = rule.get('weight', '')
             rule['control_display'] = CONTROL_MAP.get(rule['control'],
-                                                      rule['control'])
-            rule['strategy_name'] = ";".join(
-                x[2] for x in rule['strategy_list'] if len(x) == 3)
-            rule['strategy_list_str'] = json.dumps(rule['strategy_list'])
-        data['rule_list'] = rule_list
+                                                      rule["control"])
+            rule["strategy_name"] = ";".join(
+                x[2] for x in rule["strategy_list"] if len(x) == 3)
+            rule["strategy_list_str"] = json.dumps(rule["strategy_list"])
+        data["rule_list"] = rule_list
         return data
 
 
@@ -420,8 +420,8 @@ class RulesThresholdEdit(JSONResponseMixin, View):
 
         strategy_confs[strategy_index] = strategy_conf  # Write Back Strategy Group
         rule_conf["strategys"] = json.dumps(strategy_confs)
-        rule_conf['user'] = request.user.username
-        rule_conf['update_time'] = str(int(time.time()))
+        rule_conf["user"] = request.user.username
+        rule_conf["update_time"] = str(int(time.time()))
         try:
             client.hmset("rule:{}".format(rule_uuid), rule_conf)  # Write back rule data
         except RedisError:
@@ -436,8 +436,8 @@ class RulesEdit(JSONResponseMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(RulesEdit, self).get_context_data(**kwargs)
         context["rule"] = self.get_rule()
-        context['strategys'] = self._get_all_strategys()
-        context['controls'] = CONTROL_CHOICES
+        context["strategys"] = self._get_all_strategys()
+        context["controls"] = CONTROL_CHOICES
         return context
 
     def get_rule(self):
@@ -452,7 +452,7 @@ class RulesEdit(JSONResponseMixin, TemplateView):
             raise Http404
 
         data = {}
-        for key in ('status', 'title', 'describe', 'end_time', 'id', 'uuid'):
+        for key in ("status", 'title', 'describe', 'end_time', 'id', 'uuid'):
             data[key] = d[key]
 
         try:
@@ -460,13 +460,13 @@ class RulesEdit(JSONResponseMixin, TemplateView):
         except ValueError:
             rule_list = []
         for rule in rule_list:
-            rule['group_name'] = rule['name']
-            rule['weight'] = rule.get('weight', '')
-            rule['control_display'] = CONTROL_MAP.get(rule['control'],
-                                                      rule['control'])
-            rule['strategy_name'] = ";".join(
-                x[2] for x in rule['strategy_list'] if len(x) == 3)
-            rule['strategy_list_str'] = json.dumps(rule['strategy_list'])
+            rule["group_name"] = rule["name"]
+            rule["weight"] = rule.get('weight', '')
+            rule["control_display"] = CONTROL_MAP.get(rule["control"],
+                                                      rule["control"])
+            rule["strategy_name"] = ";".join(
+                x[2] for x in rule["strategy_list"] if len(x) == 3)
+            rule["strategy_list_str"] = json.dumps(rule["strategy_list"])
         data['rule_list'] = rule_list
         return data
 

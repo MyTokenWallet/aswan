@@ -12,7 +12,6 @@ def _create_new_strategy(form_cls, strategy_conf):
     form_obj = form_cls(data=strategy_conf)
 
     if form_obj.is_valid():
-        # Created successfully
         new_strategy_uuid = form_obj.save()
         return True, new_strategy_uuid
     else:
@@ -46,9 +45,6 @@ def create_menu_strategy(event_code, dimension, menu_type, menu_op,
     success, strategy_uuid = _create_new_strategy(
         MenuStrategyForm, strategy_conf=data
     )
-
-    assert success, _('create menu strategy fail.')
-
     return strategy_uuid
 
 
@@ -56,10 +52,10 @@ def create_bool_strategy(strategy_var, strategy_op, strategy_func,
                          strategy_threshold, strategy_name=None,
                          strategy_desc=None):
     """
-        新建bool型策略
-    :param str|unicode strategy_var: Built-in_Variables
+        New bool strategy
+    :param str|unicode strategy_var: Built_In_Variables
     :param str|unicode strategy_op: ActionCode
-    :param str|unicode strategy_func: Built-in_Functions
+    :param str|unicode strategy_func: Built_In_Functions
     :param str|unicode strategy_threshold: Threshold for policy
     :param str|unicode strategy_name: PolicyName
     :param str|unicode strategy_desc: PolicyDescription
@@ -70,18 +66,17 @@ def create_bool_strategy(strategy_var, strategy_op, strategy_func,
     strategy_desc = strategy_desc or get_sample_str()
 
     data = {
-        'strategy_var': strategy_var,
-        'strategy_op': strategy_op,
-        'strategy_func': strategy_func,
-        'strategy_threshold': strategy_threshold,
-        'strategy_name': strategy_name,
-        'strategy_desc': strategy_desc
+        "strategy_var": strategy_var,
+        "strategy_op": strategy_op,
+        "strategy_func": strategy_func,
+        "strategy_threshold": strategy_threshold,
+        "strategy_name": strategy_name,
+        "strategy_desc": strategy_desc
     }
 
     success, strategy_uuid = _create_new_strategy(
         BoolStrategyForm, strategy_conf=data
     )
-    assert success, _('create bool strategy fail.')
     return strategy_uuid
 
 
@@ -113,7 +108,6 @@ def create_user_strategy(strategy_source, strategy_body, strategy_day,
     success, strategy_uuid = _create_new_strategy(
         UserStrategyForm, strategy_conf=data
     )
-    assert success, _('create bool strategy fail.')
     return strategy_uuid
 
 
@@ -142,8 +136,6 @@ def create_freq_strategy(strategy_source, strategy_body, strategy_time,
         'strategy_name': strategy_name,
         'strategy_desc': strategy_desc
     }
-    success, strategy_uuid = _create_new_strategy(FreqStrategyForm,
-                                                  strategy_conf=data)
-    assert success, _('create freq strategy fail.')
+    success, strategy_uuid = _create_new_strategy(FreqStrategyForm, strategy_conf=data)
 
     return strategy_uuid

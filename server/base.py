@@ -13,7 +13,7 @@ class Response(object):
 
     def __repr__(self):
         if self.error is not None:
-            res = {'error': self.error, 'ec': self.ec}
+            res = {"error": self.error, "ec": self.ec}
         else:
-            res = {'result': self.result, 'ec': 0}
+            res = {"result": self.result, "ec": 0}
         return json.dumps(res)

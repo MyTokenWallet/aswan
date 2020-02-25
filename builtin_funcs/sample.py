@@ -4,7 +4,7 @@
 from builtin_funcs import BuiltInFuncs
 
 
-@BuiltInFuncs.register(desc='Abnormal User',
+@BuiltInFuncs.register(desc='Abnormal_User',
                        args_type_tuple=(('user_id', str),),
                        supported_ops=('is', 'is_not'))
 def is_abnormal(req_body):
@@ -23,13 +23,13 @@ def is_abnormal(req_body):
         return False
 
 
-@BuiltInFuncs.register(desc='Number of historical logins',
-                       args_type_tuple=(('user_id', str),),
-                       supported_ops=('gt', 'ge', 'lt', 'le', 'eq', 'neq'),
+@BuiltInFuncs.register(desc='Number_of_historical_logins',
+                       args_type_tuple=(("user_id", str),),
+                       supported_ops=("gt", "ge", "lt", "le", "eq", "neq"),
                        threshold_trans_func=int
                        )
 def user_login_count(req_body):
-    user_id = req_body['user_id']
+    user_id = req_body["user_id"]
     user_key = user_id[-1]
 
     # Unacquired value / Special User Direct Pass

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-24 06:38-0800\n"
+"POT-Creation-Date: 2020-02-24 17:33-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,93 +46,6 @@ msgstr ""
 msgid "Data source name"
 msgstr ""
 
-#: aswan/bk_config/management/commands/init_risk_data.py:32
-msgid "InitialProject"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:46
-msgid "User on the User blacklist for the initial project"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:50
-msgid "Initial blacklist policy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:51
-msgid "uid on the initial project"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:56
-msgid "Initial whitelisting strategy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:57
-msgid "IP on the IP Gray List for The Initial Project"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:61
-msgid "Initial Gray List Strategy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:64
-msgid "User is an exception ToUser"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:71
-msgid "User logins greater than 50"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:81
-msgid "Initial sample data source"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:85
-msgid "Same uid, 10 times in 24 hours(Initial sample data source)"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:91
-#: aswan/bk_config/management/commands/init_risk_data.py:98
-msgid "Initial time period frequency control strategy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:93
-msgid ""
-"10 User sons for the same device on the same day (Initial sample source)"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:105
-msgid "This User hit List strategy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:109
-msgid "This User hit Boolean strategy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:113
-msgid "This User hit Time-time frequency control strategy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:117
-msgid "This User hit User-limited number-based policy"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:120
-msgid "Initial rules"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:121
-msgid "Initial sample rule"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:121
-msgid "on"
-msgstr ""
-
-#: aswan/bk_config/management/commands/init_risk_data.py:121
-#: aswan/log_manage/tables.py:142
-msgid "Super_Administrator"
-msgstr ""
-
 #: aswan/bk_config/tables.py:9
 msgid "ConfigurationNameKey"
 msgstr ""
@@ -157,7 +70,7 @@ msgid "Data source list"
 msgstr ""
 
 #: aswan/bk_config/templates/config/source_list.html:15
-#: aswan/menu/templates/menu/event_list.html:15
+#: aswan/menu/templates/menu/event_list.html:16
 #: aswan/menu/templates/menu/ip_list.html:15
 #: aswan/menu/templates/menu/pay_list.html:16
 #: aswan/menu/templates/menu/phone_list.html:16
@@ -176,7 +89,7 @@ msgid "Add data source"
 msgstr ""
 
 #: aswan/bk_config/templates/config/source_list.html:50
-#: aswan/menu/templates/menu/event_list.html:39
+#: aswan/menu/templates/menu/event_list.html:41
 #: aswan/menu/templates/menu/ip_list.html:56
 #: aswan/menu/templates/menu/pay_list.html:58
 #: aswan/menu/templates/menu/phone_list.html:58
@@ -185,13 +98,13 @@ msgstr ""
 #: aswan/rule/templates/rule/rules_create.html:103
 #: aswan/rule/templates/rule/rules_detail.html:44
 #: aswan/rule/templates/rule/rules_detail.html:111
-#: aswan/rule/templates/rule/rules_edit.html:111
+#: aswan/rule/templates/rule/rules_edit.html:112
 #: aswan/rule/templates/rule/rules_list.html:65
 msgid "Close"
 msgstr ""
 
 #: aswan/bk_config/templates/config/source_list.html:52
-#: aswan/menu/templates/menu/event_list.html:41
+#: aswan/menu/templates/menu/event_list.html:43
 #: aswan/menu/templates/menu/pay_list.html:59
 #: aswan/menu/templates/menu/phone_list.html:59
 #: aswan/menu/templates/menu/uid_list.html:58
@@ -212,8 +125,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: aswan/bk_config/views.py:15 aswan/strategy/forms.py:36
-#: aswan/strategy/forms.py:45
+#: aswan/bk_config/views.py:15 aswan/strategy/forms.py:38
+#: aswan/strategy/forms.py:47
 msgid "Account_ID"
 msgstr ""
 
@@ -221,13 +134,13 @@ msgstr ""
 msgid "Device_ID"
 msgstr ""
 
-#: aswan/bk_config/views.py:17 aswan/strategy/forms.py:39
-#: aswan/strategy/forms.py:47
+#: aswan/bk_config/views.py:17 aswan/strategy/forms.py:41
+#: aswan/strategy/forms.py:49
 msgid "Current_IP"
 msgstr ""
 
 #: aswan/bk_config/views.py:18 aswan/menu/forms.py:40 aswan/menu/tables.py:82
-#: aswan/strategy/forms.py:37 aswan/strategy/forms.py:46
+#: aswan/strategy/forms.py:39 aswan/strategy/forms.py:48
 msgid "CellPhoneNumber"
 msgstr ""
 
@@ -271,10 +184,6 @@ msgstr ""
 
 #: aswan/core/testcase.py:32
 msgid "Note that this section can only be performed in a test environment"
-msgstr ""
-
-#: aswan/log_manage/forms.py:15
-msgid "all"
 msgstr ""
 
 #: aswan/log_manage/forms.py:15 aswan/rule/forms.py:19
@@ -337,7 +246,7 @@ msgstr ""
 #: aswan/log_manage/forms.py:88 aswan/log_manage/models.py:47
 #: aswan/log_manage/tables.py:19 aswan/rule/forms.py:40
 #: aswan/rule/templates/rule/rules_detail.html:63
-#: aswan/rule/templates/rule/rules_edit.html:129
+#: aswan/rule/templates/rule/rules_edit.html:130
 msgid "Projectmanagement"
 msgstr ""
 
@@ -400,7 +309,7 @@ msgid "Audit_log"
 msgstr ""
 
 #: aswan/log_manage/models.py:41 aswan/log_manage/tables.py:15
-#: aswan/log_manage/tables.py:88
+#: aswan/log_manage/tables.py:86
 msgid "Hit_time"
 msgstr ""
 
@@ -416,7 +325,7 @@ msgstr ""
 msgid "Extended parameter"
 msgstr ""
 
-#: aswan/log_manage/models.py:46 aswan/log_manage/tables.py:87
+#: aswan/log_manage/models.py:46 aswan/log_manage/tables.py:85
 msgid "Request_Parameter"
 msgstr ""
 
@@ -438,7 +347,7 @@ msgid "Hit_Order"
 msgstr ""
 
 #: aswan/log_manage/tables.py:20 aswan/rule/forms.py:139
-#: aswan/strategy/forms.py:153 aswan/strategy/forms.py:414
+#: aswan/strategy/forms.py:155 aswan/strategy/forms.py:416
 msgid "RequestBody"
 msgstr ""
 
@@ -446,7 +355,7 @@ msgstr ""
 msgid "Whether to hit for the first time"
 msgstr ""
 
-#: aswan/log_manage/tables.py:45 aswan/strategy/forms.py:53
+#: aswan/log_manage/tables.py:45 aswan/strategy/forms.py:56
 msgid "is"
 msgstr ""
 
@@ -467,32 +376,28 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: aswan/log_manage/tables.py:57
+#: aswan/log_manage/tables.py:56
 msgid "Request_Address"
 msgstr ""
 
-#: aswan/log_manage/tables.py:58
+#: aswan/log_manage/tables.py:57
 msgid "ActionType"
 msgstr ""
 
-#: aswan/log_manage/tables.py:60
+#: aswan/log_manage/tables.py:58
 msgid "How to request"
 msgstr ""
 
-#: aswan/log_manage/tables.py:61
+#: aswan/log_manage/tables.py:59
 msgid "Response_Code"
 msgstr ""
 
-#: aswan/log_manage/tables.py:125 aswan/log_manage/tables.py:132
-msgid "-Write"
-msgstr ""
-
-#: aswan/log_manage/tables.py:127
-msgid "-Read"
-msgstr ""
-
-#: aswan/log_manage/tables.py:139 aswan/menu/forms.py:198
+#: aswan/log_manage/tables.py:134 aswan/menu/forms.py:198
 msgid "Unknown"
+msgstr ""
+
+#: aswan/log_manage/tables.py:137
+msgid "Super_Administrator"
 msgstr ""
 
 #: aswan/log_manage/templates/log_manage/access_audit.html:22
@@ -512,15 +417,15 @@ msgstr ""
 msgid "Full list"
 msgstr ""
 
-#: aswan/menu/forms.py:21 aswan/strategy/forms.py:57
+#: aswan/menu/forms.py:21 aswan/strategy/forms.py:61
 msgid "Blacklist"
 msgstr ""
 
-#: aswan/menu/forms.py:22 aswan/strategy/forms.py:58
+#: aswan/menu/forms.py:22 aswan/strategy/forms.py:62
 msgid "White List"
 msgstr ""
 
-#: aswan/menu/forms.py:23 aswan/strategy/forms.py:59
+#: aswan/menu/forms.py:23 aswan/strategy/forms.py:63
 msgid "Grey List"
 msgstr ""
 
@@ -557,11 +462,11 @@ msgid "List dimensions"
 msgstr ""
 
 #: aswan/menu/forms.py:74 aswan/menu/forms.py:189 aswan/menu/tables.py:29
-#: aswan/strategy/forms.py:362 aswan/strategy/tables.py:88
+#: aswan/strategy/forms.py:364 aswan/strategy/tables.py:88
 msgid "ListType"
 msgstr ""
 
-#: aswan/menu/forms.py:76 aswan/menu/tables.py:28 aswan/strategy/forms.py:361
+#: aswan/menu/forms.py:76 aswan/menu/tables.py:28 aswan/strategy/forms.py:363
 #: aswan/strategy/tables.py:87
 #: aswan/strategy/templates/strategy/menu_strategy_create.html:50
 msgid "Project"
@@ -605,7 +510,7 @@ msgstr ""
 
 #: aswan/menu/tables.py:30 aswan/rule/forms.py:37 aswan/rule/forms.py:160
 #: aswan/rule/tables.py:12 aswan/rule/templates/rule/rules_create.html:50
-#: aswan/rule/templates/rule/rules_edit.html:51
+#: aswan/rule/templates/rule/rules_edit.html:52
 msgid "Status"
 msgstr ""
 
@@ -626,11 +531,15 @@ msgstr ""
 msgid "List item management"
 msgstr ""
 
-#: aswan/menu/templates/menu/event_list.html:32
+#: aswan/menu/templates/menu/event_list.html:33
 msgid "Add List Items"
 msgstr ""
 
-#: aswan/menu/templates/menu/event_list.html:35
+#: aswan/menu/templates/menu/event_list.html:36
+msgid "ProjectName"
+msgstr ""
+
+#: aswan/menu/templates/menu/event_list.html:37
 msgid "Project Name"
 msgstr ""
 
@@ -659,7 +568,7 @@ msgstr ""
 #: aswan/menu/templates/menu/uid_list.html:49
 #: aswan/menu/templates/menu/userid_list.html:48
 #: aswan/rule/templates/rule/rules_create.html:58
-#: aswan/rule/templates/rule/rules_edit.html:67
+#: aswan/rule/templates/rule/rules_edit.html:68
 msgid "End Time"
 msgstr ""
 
@@ -787,7 +696,7 @@ msgstr ""
 #: aswan/permissions/templates/permissions/user_update.html:33
 #: aswan/rule/templates/rule/rules_create.html:18
 #: aswan/rule/templates/rule/rules_detail.html:29
-#: aswan/rule/templates/rule/rules_edit.html:18
+#: aswan/rule/templates/rule/rules_edit.html:19
 #: aswan/rule/templates/rule/rules_test.html:18
 #: aswan/strategy/templates/strategy/bool_strategy_create.html:20
 #: aswan/strategy/templates/strategy/bool_strategy_test.html:19
@@ -816,7 +725,7 @@ msgstr ""
 
 #: aswan/permissions/templates/permissions/group_update.html:69
 #: aswan/permissions/templates/permissions/user_update.html:94
-#: aswan/templates/siderbar.html:182
+#: aswan/templates/siderbar.html:184
 msgid "Authority"
 msgstr ""
 
@@ -889,7 +798,7 @@ msgid "Super administrator"
 msgstr ""
 
 #: aswan/permissions/templates/permissions/user_update.html:87
-#: aswan/templates/siderbar.html:177
+#: aswan/templates/siderbar.html:179
 msgid "Group"
 msgstr ""
 
@@ -905,6 +814,10 @@ msgstr ""
 
 #: aswan/risk_auth/templates/risk_auth/index.html:7
 msgid "Welcome"
+msgstr ""
+
+#: aswan/risk_auth/templates/risk_auth/login.html:11
+msgid "Momo control management platform"
 msgstr ""
 
 #: aswan/risk_auth/templates/risk_auth/login.html:29
@@ -928,19 +841,19 @@ msgid "Please log in"
 msgstr ""
 
 #: aswan/rule/forms.py:15 aswan/rule/tables.py:43
-#: aswan/rule/templates/rule/rules_edit.html:55
-#: aswan/rule/templates/rule/rules_edit.html:59
+#: aswan/rule/templates/rule/rules_edit.html:56
+#: aswan/rule/templates/rule/rules_edit.html:60
 msgid "Enable"
 msgstr ""
 
 #: aswan/rule/forms.py:16 aswan/rule/tables.py:43
-#: aswan/rule/templates/rule/rules_edit.html:56
-#: aswan/rule/templates/rule/rules_edit.html:58
+#: aswan/rule/templates/rule/rules_edit.html:57
+#: aswan/rule/templates/rule/rules_edit.html:59
 msgid "Disable"
 msgstr ""
 
 #: aswan/rule/forms.py:35 aswan/rule/templates/rule/rules_create.html:42
-#: aswan/rule/templates/rule/rules_edit.html:43
+#: aswan/rule/templates/rule/rules_edit.html:44
 msgid "Rule description"
 msgstr ""
 
@@ -950,8 +863,8 @@ msgstr ""
 
 #: aswan/rule/forms.py:42 aswan/rule/forms.py:44
 #: aswan/rule/templates/rule/rules_detail.html:64
-#: aswan/rule/templates/rule/rules_edit.html:130
-#: aswan/rule/templates/rule/rules_edit.html:161
+#: aswan/rule/templates/rule/rules_edit.html:131
+#: aswan/rule/templates/rule/rules_edit.html:162
 msgid "Customer service skills"
 msgstr ""
 
@@ -980,8 +893,8 @@ msgstr ""
 msgid "Policy already exist"
 msgstr ""
 
-#: aswan/rule/forms.py:155 aswan/strategy/forms.py:176
-#: aswan/strategy/forms.py:437
+#: aswan/rule/forms.py:155 aswan/strategy/forms.py:178
+#: aswan/strategy/forms.py:439
 msgid "RequestBody Not legal json format"
 msgstr ""
 
@@ -998,48 +911,43 @@ msgid "Add Rules"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:34
-#: aswan/rule/templates/rule/rules_edit.html:34
+#: aswan/rule/templates/rule/rules_edit.html:35
 #: aswan/rule/templates/rule/rules_test.html:33
 msgid "Rule name"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:72
 #: aswan/rule/templates/rule/rules_create.html:129
-#: aswan/rule/templates/rule/rules_edit.html:80
-#: aswan/rule/templates/rule/rules_edit.html:146
+#: aswan/rule/templates/rule/rules_edit.html:81
+#: aswan/rule/templates/rule/rules_edit.html:147
 msgid "Policy Choice"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:81
-#: aswan/rule/templates/rule/rules_edit.html:89
+#: aswan/rule/templates/rule/rules_edit.html:90
 msgid "To be selected"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:121
-#: aswan/rule/templates/rule/rules_edit.html:138
+#: aswan/rule/templates/rule/rules_edit.html:139
 msgid "PolicyGroup Name"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:125
 #: aswan/rule/templates/rule/rules_detail.html:61
-#: aswan/rule/templates/rule/rules_edit.html:126
-#: aswan/rule/templates/rule/rules_edit.html:142
+#: aswan/rule/templates/rule/rules_edit.html:127
+#: aswan/rule/templates/rule/rules_edit.html:143
 msgid "Weight"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:150
-#: aswan/rule/templates/rule/rules_edit.html:204
+#: aswan/rule/templates/rule/rules_edit.html:205
 msgid "Add Policy"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_create.html:156
-#: aswan/rule/templates/rule/rules_edit.html:210
+#: aswan/rule/templates/rule/rules_edit.html:211
 msgid "Submit"
-msgstr ""
-
-#: aswan/rule/templates/rule/rules_create.html:388
-#: aswan/rule/templates/rule/rules_edit.html:453
-msgid "Filters"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_detail.html:19
@@ -1071,7 +979,7 @@ msgid "Rule EndTime:"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_detail.html:62
-#: aswan/rule/templates/rule/rules_edit.html:128
+#: aswan/rule/templates/rule/rules_edit.html:129
 msgid "PolicyGroupList"
 msgstr ""
 
@@ -1087,26 +995,26 @@ msgstr ""
 msgid "Modifying Threshold"
 msgstr ""
 
-#: aswan/rule/templates/rule/rules_detail.html:103 aswan/strategy/forms.py:81
+#: aswan/rule/templates/rule/rules_detail.html:103 aswan/strategy/forms.py:83
 #: aswan/strategy/tables.py:20
 #: aswan/strategy/templates/strategy/bool_strategy_create.html:61
 msgid "Thresholds"
 msgstr ""
 
-#: aswan/rule/templates/rule/rules_edit.html:12
+#: aswan/rule/templates/rule/rules_edit.html:13
 msgid "Editing rules"
 msgstr ""
 
-#: aswan/rule/templates/rule/rules_edit.html:125
+#: aswan/rule/templates/rule/rules_edit.html:126
 msgid "PolicyGroup NameCall"
 msgstr ""
 
-#: aswan/rule/templates/rule/rules_edit.html:177
+#: aswan/rule/templates/rule/rules_edit.html:178
 msgid "Re-election of Policy"
 msgstr ""
 
 #: aswan/rule/templates/rule/rules_list.html:18
-#: aswan/templates/siderbar.html:141
+#: aswan/templates/siderbar.html:143
 msgid "Rule configuration"
 msgstr ""
 
@@ -1182,226 +1090,218 @@ msgstr ""
 msgid "Configuration write-back failed"
 msgstr ""
 
-#: aswan/strategy/forms.py:19
+#: aswan/strategy/forms.py:20
 msgid "Yes (use, already)"
 msgstr ""
 
-#: aswan/strategy/forms.py:20
+#: aswan/strategy/forms.py:21
 msgid "Not (not used, not yet)"
 msgstr ""
 
-#: aswan/strategy/forms.py:21
+#: aswan/strategy/forms.py:22
 msgid "Less than..."
 msgstr ""
 
-#: aswan/strategy/forms.py:22
+#: aswan/strategy/forms.py:23
 msgid "Less than or equal to..."
 msgstr ""
 
-#: aswan/strategy/forms.py:23
+#: aswan/strategy/forms.py:24
 msgid "Equals..."
 msgstr ""
 
-#: aswan/strategy/forms.py:24
+#: aswan/strategy/forms.py:25
 msgid "Not equal"
 msgstr ""
 
-#: aswan/strategy/forms.py:25
+#: aswan/strategy/forms.py:26
 msgid "Greater than or equal to..."
 msgstr ""
 
-#: aswan/strategy/forms.py:26
+#: aswan/strategy/forms.py:27
 msgid "Greater than..."
 msgstr ""
 
-#: aswan/strategy/forms.py:38 aswan/strategy/forms.py:49
+#: aswan/strategy/forms.py:40 aswan/strategy/forms.py:51
 msgid "CurrentDevice_ID"
 msgstr ""
 
-#: aswan/strategy/forms.py:40 aswan/strategy/forms.py:48
+#: aswan/strategy/forms.py:42 aswan/strategy/forms.py:50
 msgid "SignUpFrom_IP"
 msgstr ""
 
-#: aswan/strategy/forms.py:41 aswan/strategy/forms.py:50
+#: aswan/strategy/forms.py:43 aswan/strategy/forms.py:52
 msgid "RegisterDevice_ID"
 msgstr ""
 
-#: aswan/strategy/forms.py:54
+#: aswan/strategy/forms.py:57
 msgid "is_not"
 msgstr ""
 
-#: aswan/strategy/forms.py:76 aswan/strategy/forms.py:206
-#: aswan/strategy/forms.py:274 aswan/strategy/forms.py:364
-#: aswan/strategy/forms.py:442 aswan/strategy/tables.py:15
+#: aswan/strategy/forms.py:78 aswan/strategy/forms.py:208
+#: aswan/strategy/forms.py:276 aswan/strategy/forms.py:366
+#: aswan/strategy/forms.py:444 aswan/strategy/tables.py:15
 #: aswan/strategy/tables.py:51 aswan/strategy/tables.py:83
 #: aswan/strategy/tables.py:118
 msgid "PolicyName"
 msgstr ""
 
-#: aswan/strategy/forms.py:77 aswan/strategy/forms.py:207
-#: aswan/strategy/forms.py:275 aswan/strategy/forms.py:365
+#: aswan/strategy/forms.py:79 aswan/strategy/forms.py:209
+#: aswan/strategy/forms.py:277 aswan/strategy/forms.py:367
 #: aswan/strategy/tables.py:16 aswan/strategy/tables.py:52
 #: aswan/strategy/tables.py:84 aswan/strategy/tables.py:119
 msgid "PolicyDescription"
 msgstr ""
 
-#: aswan/strategy/forms.py:78 aswan/strategy/tables.py:17
-msgid "Built-in_Variables"
+#: aswan/strategy/forms.py:80 aswan/strategy/tables.py:17
+msgid "Built_In_Variables"
 msgstr ""
 
-#: aswan/strategy/forms.py:79 aswan/strategy/forms.py:360
+#: aswan/strategy/forms.py:81 aswan/strategy/forms.py:362
 #: aswan/strategy/tables.py:18 aswan/strategy/tables.py:86
 #: aswan/strategy/templates/strategy/menu_strategy_create.html:42
 msgid "ActionCode"
 msgstr ""
 
-#: aswan/strategy/forms.py:80 aswan/strategy/tables.py:19
-msgid "Built-in_Functions"
+#: aswan/strategy/forms.py:82 aswan/strategy/tables.py:19
+msgid "Built_In_Functions"
 msgstr ""
 
-#: aswan/strategy/forms.py:132 aswan/strategy/forms.py:317
+#: aswan/strategy/forms.py:134 aswan/strategy/forms.py:319
 msgid "This record already exists, do not add it twice"
 msgstr ""
 
-#: aswan/strategy/forms.py:135
+#: aswan/strategy/forms.py:137
 msgid "The built-in variables supported by the function are"
 msgstr ""
 
-#: aswan/strategy/forms.py:141
+#: aswan/strategy/forms.py:143
 msgid "This ActionCode is not supported by the function"
 msgstr ""
 
-#: aswan/strategy/forms.py:143
+#: aswan/strategy/forms.py:145
 msgid "[{}]The ActionCode does not accept the threshold"
 msgstr ""
 
-#: aswan/strategy/forms.py:145
+#: aswan/strategy/forms.py:147
 msgid "lt"
 msgstr ""
 
-#: aswan/strategy/forms.py:145
+#: aswan/strategy/forms.py:147
 msgid "le"
 msgstr ""
 
-#: aswan/strategy/forms.py:145
+#: aswan/strategy/forms.py:147
 msgid "eq"
 msgstr ""
 
-#: aswan/strategy/forms.py:145
+#: aswan/strategy/forms.py:147
 msgid "ne"
 msgstr ""
 
-#: aswan/strategy/forms.py:145
+#: aswan/strategy/forms.py:147
 msgid "ge"
 msgstr ""
 
-#: aswan/strategy/forms.py:145
+#: aswan/strategy/forms.py:147
 msgid "gt"
 msgstr ""
 
-#: aswan/strategy/forms.py:148
+#: aswan/strategy/forms.py:150
 msgid "ActionCode{}Thresholds must be included"
 msgstr ""
 
-#: aswan/strategy/forms.py:154 aswan/strategy/forms.py:415
+#: aswan/strategy/forms.py:156 aswan/strategy/forms.py:417
 msgid "Strategy"
 msgstr ""
 
-#: aswan/strategy/forms.py:181 aswan/strategy/forms.py:335
+#: aswan/strategy/forms.py:183 aswan/strategy/forms.py:337
 #: aswan/strategy/templates/strategy/freq_strategy_test.html:42
 #: aswan/strategy/templates/strategy/user_strategy_test.html:42
 msgid "Historical data"
 msgstr ""
 
-#: aswan/strategy/forms.py:190 aswan/strategy/forms.py:344
+#: aswan/strategy/forms.py:192 aswan/strategy/forms.py:346
 msgid "Historical data Not legal json format"
 msgstr ""
 
-#: aswan/strategy/forms.py:208 aswan/strategy/forms.py:276
+#: aswan/strategy/forms.py:210 aswan/strategy/forms.py:278
 #: aswan/strategy/tables.py:53 aswan/strategy/tables.py:120
 msgid "DataSources"
 msgstr ""
 
-#: aswan/strategy/forms.py:209 aswan/strategy/forms.py:277
+#: aswan/strategy/forms.py:211 aswan/strategy/forms.py:279
 #: aswan/strategy/tables.py:54 aswan/strategy/tables.py:121
 msgid "BodyName"
 msgstr ""
 
-#: aswan/strategy/forms.py:210
+#: aswan/strategy/forms.py:212
 msgid ""
 "Example: The same account with the same IP address to grab the red envelope "
 "limit 1 time, check: UserID,Current_IP"
 msgstr ""
 
-#: aswan/strategy/forms.py:212 aswan/strategy/tables.py:55
+#: aswan/strategy/forms.py:214 aswan/strategy/tables.py:55
 #: aswan/strategy/templates/strategy/freq_strategy_create.html:54
 msgid "Period (in seconds))"
 msgstr ""
 
-#: aswan/strategy/forms.py:213
+#: aswan/strategy/forms.py:215
 msgid "Supports both 86400 and 24 x 60 x 60 input formats."
 msgstr ""
 
-#: aswan/strategy/forms.py:214 aswan/strategy/tables.py:56
+#: aswan/strategy/forms.py:216 aswan/strategy/tables.py:56
 #: aswan/strategy/tables.py:123
 #: aswan/strategy/templates/strategy/freq_strategy_create.html:64
 msgid "Maximum"
 msgstr ""
 
-#: aswan/strategy/forms.py:231 aswan/strategy/forms.py:237
+#: aswan/strategy/forms.py:233 aswan/strategy/forms.py:239
 msgid "The parameters are illegal and only support positive integers and"
 msgstr ""
 
-#: aswan/strategy/forms.py:248
+#: aswan/strategy/forms.py:250
 msgid "The data source is not{})"
 msgstr ""
 
-#: aswan/strategy/forms.py:256 aswan/strategy/forms.py:382
+#: aswan/strategy/forms.py:258 aswan/strategy/forms.py:384
 msgid "This record already exists, do not add it repeatedly"
 msgstr ""
 
-#: aswan/strategy/forms.py:278
+#: aswan/strategy/forms.py:280
 msgid ""
 "Example: Same device on the same day only 5 User gifts plus blessing value, "
 "check: current device"
 msgstr ""
 
-#: aswan/strategy/forms.py:280
+#: aswan/strategy/forms.py:282
 msgid "Default days (in units): Individual)"
 msgstr ""
 
-#: aswan/strategy/forms.py:282
+#: aswan/strategy/forms.py:284
 msgid "Limit the number of Users"
 msgstr ""
 
-#: aswan/strategy/forms.py:296
+#: aswan/strategy/forms.py:298
 msgid ""
 "The argument is not legal, please enter an integer greater than or equal to 0"
 msgstr ""
 
-#: aswan/strategy/forms.py:308
+#: aswan/strategy/forms.py:310
 msgid "The data source is not{}"
 msgstr ""
 
-#: aswan/strategy/forms.py:359 aswan/strategy/tables.py:85
+#: aswan/strategy/forms.py:361 aswan/strategy/tables.py:85
 #: aswan/strategy/templates/strategy/menu_strategy_create.html:34
 msgid "Dimensions"
 msgstr ""
 
-#: aswan/strategy/init_data.py:50
-msgid "create menu strategy fail."
-msgstr ""
-
-#: aswan/strategy/init_data.py:84 aswan/strategy/init_data.py:116
-msgid "create bool strategy fail."
-msgstr ""
-
-#: aswan/strategy/init_data.py:147
-msgid "create freq strategy fail."
-msgstr ""
-
 #: aswan/strategy/tables.py:122
 msgid "Nature Day (In Individual)"
+msgstr ""
+
+#: aswan/strategy/templates/strategy/bool_strategy_create.html:14
+msgid "Add-Bull Strategy"
 msgstr ""
 
 #: aswan/strategy/templates/strategy/bool_strategy_create.html:37
@@ -1468,7 +1368,7 @@ msgid "Body name"
 msgstr ""
 
 #: aswan/strategy/templates/strategy/freq_strategy_list.html:16
-#: aswan/templates/siderbar.html:123
+#: aswan/templates/siderbar.html:125
 msgid "Period frequency control strategy configuration"
 msgstr ""
 
@@ -1493,7 +1393,7 @@ msgid "Strategy Name"
 msgstr ""
 
 #: aswan/strategy/templates/strategy/menu_strategy_list.html:16
-#: aswan/templates/siderbar.html:113
+#: aswan/templates/siderbar.html:115
 msgid "List policy configuration"
 msgstr ""
 
@@ -1518,7 +1418,7 @@ msgid "User Limits"
 msgstr ""
 
 #: aswan/strategy/templates/strategy/user_strategy_list.html:8
-#: aswan/templates/siderbar.html:128
+#: aswan/templates/siderbar.html:130
 msgid "User-limited policy configuration"
 msgstr ""
 
@@ -1560,6 +1460,26 @@ msgstr ""
 msgid "Sorry, you don't have access to this page."
 msgstr ""
 
+#: aswan/templates/404.html:3 aswan/templates/404.html:4
+msgid "404"
+msgstr ""
+
+#: aswan/templates/404.html:5
+msgid "The page was not found！"
+msgstr ""
+
+#: aswan/templates/404.html:6
+msgid "Sorry, the page seems to have gone to Mars."
+msgstr ""
+
+#: aswan/templates/500.html:5
+msgid "Internal server error"
+msgstr ""
+
+#: aswan/templates/500.html:6
+msgid "The server seems to have gone wrong..."
+msgstr ""
+
 #: aswan/templates/base.html:16
 msgid "Wind control management"
 msgstr ""
@@ -1572,35 +1492,43 @@ msgstr ""
 msgid "Wind control management -"
 msgstr ""
 
+#: aswan/templates/error_page.html:17
+msgid "Blank page"
+msgstr ""
+
+#: aswan/templates/error_page.html:18
+msgid "This one blank page"
+msgstr ""
+
 #: aswan/templates/error_page.html:19
 msgid "Home"
 msgstr ""
 
-#: aswan/templates/pagination.html:4
+#: aswan/templates/pagination.html:5
 msgid "Total query out: "
 msgstr ""
 
-#: aswan/templates/pagination.html:4
+#: aswan/templates/pagination.html:5
 msgid " Bar data"
 msgstr ""
 
-#: aswan/templates/pagination.html:19
+#: aswan/templates/pagination.html:20
 msgid "Show per page"
 msgstr ""
 
-#: aswan/templates/pagination.html:25
+#: aswan/templates/pagination.html:26
 msgid "Bar data"
 msgstr ""
 
-#: aswan/templates/pagination.html:61
+#: aswan/templates/pagination.html:34
 msgid "Jump page "
 msgstr ""
 
-#: aswan/templates/pagination.html:68
+#: aswan/templates/pagination.html:41
 msgid "Previous"
 msgstr ""
 
-#: aswan/templates/pagination.html:92
+#: aswan/templates/pagination.html:65
 msgid "Next"
 msgstr ""
 
@@ -1632,43 +1560,43 @@ msgstr ""
 msgid "Phone number management"
 msgstr ""
 
-#: aswan/templates/siderbar.html:106
+#: aswan/templates/siderbar.html:108
 msgid "Strategic Atomic Management"
 msgstr ""
 
-#: aswan/templates/siderbar.html:118
+#: aswan/templates/siderbar.html:120
 msgid "Boolean policy configuration"
 msgstr ""
 
-#: aswan/templates/siderbar.html:135
+#: aswan/templates/siderbar.html:137
 msgid "Rule management"
 msgstr ""
 
-#: aswan/templates/siderbar.html:148
+#: aswan/templates/siderbar.html:150
 msgid "Log management"
 msgstr ""
 
-#: aswan/templates/siderbar.html:154
+#: aswan/templates/siderbar.html:156
 msgid "Block log details"
 msgstr ""
 
-#: aswan/templates/siderbar.html:159
+#: aswan/templates/siderbar.html:161
 msgid "Access log details"
 msgstr ""
 
-#: aswan/templates/siderbar.html:166
+#: aswan/templates/siderbar.html:168
 msgid "Authority management"
 msgstr ""
 
-#: aswan/templates/siderbar.html:172
+#: aswan/templates/siderbar.html:174
 msgid "User"
 msgstr ""
 
-#: aswan/templates/siderbar.html:189
+#: aswan/templates/siderbar.html:191
 msgid "Background Configuration"
 msgstr ""
 
-#: aswan/templates/siderbar.html:195
+#: aswan/templates/siderbar.html:197
 msgid "Data Source Configuration"
 msgstr ""
 
@@ -1705,30 +1633,6 @@ msgstr ""
 #: risk_models/cache.py:63
 #, python-format
 msgid "refresh %s cache success"
-msgstr ""
-
-#: risk_models/source.py:37
-msgid "load raw sources error"
-msgstr ""
-
-#: risk_models/source.py:163
-msgid "{}:{}"
-msgstr ""
-
-#: risk_models/source.py:194
-msgid "start refresh sources"
-msgstr ""
-
-#: risk_models/source.py:198
-msgid "refresh sources failed"
-msgstr ""
-
-#: risk_models/source.py:200
-msgid "refresh sources success"
-msgstr ""
-
-#: risk_models/source.py:205
-msgid "name({}) is not a source name"
 msgstr ""
 
 #: risk_models/strategy.py:55 risk_models/strategy.py:59

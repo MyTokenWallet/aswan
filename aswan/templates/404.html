@@ -1,6 +1,6 @@
 {% extends 'error_page.html' %}
 {% load i18n %}
-{% block error_code %}404{% endblock %}
-{% block error_code_title %}404{% endblock %}
-{% block error_code_title_zh %}The page was not found！{% endblock %}
-{% block error_code_desc %}Sorry, the page seems to have gone to Mars.{% endblock %}
+{% block error_code %}{% trans "404" %}{% endblock %}
+{% block error_code_title %}{% trans "404" %}{% endblock %}
+{% block error_code_title_zh %}{% trans "The page was not found！" %}{% endblock %}
+{% block error_code_desc %}{% trans "Sorry, the page seems to have gone to Mars." %}{% endblock %}

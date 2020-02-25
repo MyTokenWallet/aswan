@@ -97,8 +97,7 @@ class Rules(object):
     def load_rules(self):
         id_rule_map = {}
         conn = get_config_redis_client()
-        logger.info('start load rules, current rule ids: %s',
-                    self.id_rule_map.keys())
+        logger.info('start load rules, current rule ids: %s', self.id_rule_map.keys())
         try:
             for name in conn.scan_iter(match='rule:*'):
                 d = conn.hgetall(name)

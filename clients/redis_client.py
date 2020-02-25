@@ -10,8 +10,7 @@ import config.product as conf
 
 from lru import lru_cache_function
 
-__all__ = ['get_log_redis_client', 'get_config_redis_client',
-           'get_report_redis_client']
+__all__ = ['get_log_redis_client', 'get_config_redis_client', 'get_report_redis_client']
 
 
 @lru_cache_function(max_size=1, expiration=24 * 3600)

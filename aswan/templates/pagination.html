@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load django_tables2 %}
+{% load static %}
 
 {% trans "Total query out: " %}{{ record_count }}{% trans " Bar data" %}
 
@@ -24,35 +25,7 @@
     </select>
     {% trans "Bar data" %}
 </div>
-<script type="text/javascript">
-    function getUrlVars() {
-        var vars = {};
-        if (window.location.href.indexOf('?') > 0) {
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for (var i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split('=');
-                vars[hash[0]] = hash[1];
-            }
-        }
-        return vars;
-    }
-
-    $("body").on("change", "#change-count", function () {
-        var value = $(this).val();
-        var urlVars = getUrlVars(window.location.href);
-        urlVars['page_size'] = value;
-        urlVars['page'] = 1;
-        var itemArray = [];
-        $.each(urlVars, function (key, value) {
-            if (value) {
-                itemArray.push(key + '=' + value);
-            }
-        });
-        var path = itemArray.join("&");
-
-        window.location.href = window.location.origin + window.location.pathname + "?" + path;
-    });
-</script>
+<script type="text/javascript" src="{% static 'js/app/pagination.js' %}"></script>
 {% endif %}
 
 <div class="pagination">
@@ -97,45 +70,6 @@
     </div>
 </div>
 
-<script>
-    "use strict";
+<script type="text/javascript" src="{% static 'js/app/pagination_main.js' %}"></script>
 
-    var _oGo = $('#goto'),
-        _inpNum = _oGo.find('input'),
-        _btnConfirm = _oGo.find('a');
-
-    $(".num").on("keyup", function () {
-
-        var pageNum = $(this).val(),
-            maxNum = parseFloat($(".page-show .page").eq(-1).text()),
-            reg = /^\d*$/;
-
-        if (!reg.test(pageNum)) {
-            $(this).val("");
-        } else {
-            pageNum = parseFloat(pageNum);
-
-            if (pageNum > maxNum) {
-                $(this).val(maxNum);
-            }
-            if (pageNum <= 0) {
-                $(this).val("1");
-            }
-        }
-    });
-
-    _btnConfirm.on("click", function () {
-
-        var pageNum = $.trim(_inpNum.val());
-        var hrefPrefix = _btnConfirm.attr('data-href');
-        hrefPrefix = hrefPrefix.replace("&submit=%E6%9F%A5%E8%AF%A2", "");
-        hrefPrefix = hrefPrefix.replace("&page=", "");
-
-        if (pageNum === "") {
-            return false;
-        } else {
-            _btnConfirm[0].href = hrefPrefix + "&page=" + pageNum;
-        }
-    });
-</script>
 {% endif %}

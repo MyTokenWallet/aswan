@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from django.utils.translation import ugettext_lazy as _
+
 import json
 import time
 import random
 import logging
 from collections import defaultdict
-
+import builtins
 import redis
 import gevent
 
@@ -34,7 +34,7 @@ class RawSource(object):
         try:
             d = conn.hgetall(conf.REDIS_SOURCE_MAP)
         except redis.RedisError:
-            logger.exception(_('load raw sources error'))
+            logger.exception('load raw sources error')
             return
 
         for name, fields_str in d.items():
@@ -42,12 +42,13 @@ class RawSource(object):
             fields.pop('name_show', None)
             keys = {}
             for key_name, key_type in fields.items():
+                # print('********' + key_name + '********\n')
                 if key_type in {'string', 'str'}:
                     key_type = 'str'
                 try:
-                    type_ = getattr(__builtins__, key_type)
+                    type_ = getattr(builtins, key_type)
                 except AttributeError:
-                    type_ = getattr(__builtins__, 'str')
+                    type_ = getattr(builtins, "str")
                 keys[key_name] = type_
             name_keys_map[name] = keys
 
@@ -56,14 +57,11 @@ class RawSource(object):
 
 class Source(object):
     """ Data source after automatic split, base class """
-    prefix = None
     already_load_raw_source = False
 
     def __init__(self, name, keys, *args, **kwargs):
         """ name: Name: The name of the data source entered by the business side, keys: the desired key list """
         super(Source, self).__init__(*args, **kwargs)
-        desired_key_list = name
-        self.zkey_prefix = '_'.join(desired_key_list)
         if not self.already_load_raw_source:
             self.already_load_raw_source = True
             RawSource.load_raw_source()
@@ -80,6 +78,7 @@ class Source(object):
     def set_zkey_prefix(self):
         lst = [self.name, self.__class__.__name__]
         lst.extend(self.keys)
+        self.zkey_prefix = '_'.join(lst)
 
     @staticmethod
     def get_preserve_time():
@@ -93,7 +92,7 @@ class Source(object):
                 if key in ['', None]:
                     return []
                 keys.append(key)
-        return ["{}:{}".format(self.zkey_prefix, '_'.join(keys))]
+        return [u"{}:{}".format(self.zkey_prefix, '_'.join(keys))]
 
     def get_member(self, data):
         return str(int(time.time() * 1000))
@@ -133,15 +132,14 @@ class Source(object):
     def __eq__(self, other):
         return self.zkey_prefix == other.zkey_prefix
 
-    @classmethod
-    def load(cls):
+    def load(self):
         name_sources_map = defaultdict(set)
         conn = get_config_redis_client()
-        for name in conn.scan_iter(match=cls.prefix, count=100):
+        for name in conn.scan_iter(match='*', count=100):
             d = conn.hgetall(name)
             source_name = d['strategy_source']
             keys = d['strategy_body'].split(',')
-            name_sources_map[source_name].add(cls(source_name, keys))
+            name_sources_map[source_name].add(self(source_name, keys))
         return name_sources_map
 
     def __unicode__(self):
@@ -152,15 +150,15 @@ class Source(object):
 
 @register_source_cls
 class FreqSource(Source):
-    prefix = 'freq_strategy:*'
+    Source.prefix = 'freq_strategy:*'
 
 
 @register_source_cls
 class UserSource(Source):
-    prefix = 'user_strategy:*'
+    Source.prefix = 'user_strategy:*'
 
     def get_member(self, data):
-        return _('{}:{}').format(data['user_id'], int(time.time() * 1000))
+        return u'{}:{}'.format(data['user_id'], int(time.time() * 1000))
 
     def check_member(self, data):
         return 'user_id' in data and isinstance(data['user_id'], str)
@@ -191,18 +189,18 @@ class Sources(object):
     def refresh(self):
         while True:
             gevent.sleep(300 + random.randint(1, 60))
-            logger.debug(_('start refresh sources'))
+            logger.debug('start refresh sources')
             try:
                 self.load_sources()
-            except Exception:
-                logger.exception(_('refresh sources failed'))
+            except KeyError:
+                logger.exception('refresh sources failed')
             else:
-                logger.debug(_('refresh sources success'))
+                logger.debug('refresh sources success')
 
     def get_source_or_raise(self, name):
         sources = self.name_sources_map.get(name)
         if not sources:
-            raise ValueError(_('name({}) is not a source name').format(name))
+            raise ValueError('name({}) is not a source name'.format(name))
         return sources
 
     def check_all(self, name, data):
@@ -210,8 +208,10 @@ class Sources(object):
         return all([source.check_all(data) for source in sources])
 
     def _write_one_record(self, zkey, score, member, preserve_time):
+        # todo: Use pipeline here to reduce bandwidth
         pipeline = self.conn.pipeline()
         try:
+            self.conn.zadd(zkey, score, member)
             pipeline.zadd(zkey, score, member)
             pipeline.expire(zkey, preserve_time)
             # This is to reduce the pressure of redis storage, each time delete part of the old data, you can modify
@@ -219,6 +219,7 @@ class Sources(object):
             pipeline.zremrangebyrank(zkey, 0, -128)
             pipeline.execute()
         except redis.RedisError:
+            logger.error('zadd(%s, %s, %s) failed', zkey, score, member)
             logger.error(
                 f'pipeline execute error,'
                 f'zkey --> {zkey},'
@@ -226,6 +227,16 @@ class Sources(object):
                 f'member --> {member},'
                 f'preserve_time --> {preserve_time})')
             return False
+
+        try:
+            self.conn.expire(zkey, preserve_time)
+        except redis.RedisError:
+            logger.error('expire zkey(%s) faield', zkey)
+
+        try:
+            self.conn.zremrangebyrank(zkey, 0, -128)
+        except redis.RedisError:
+            logger.error('z rem range by rank zkey(%s) failed', zkey)
         return True
 
     def write_all(self, name, data):

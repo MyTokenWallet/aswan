@@ -239,7 +239,7 @@
             + '        <i class="layim_addface fa fa-meh-o" title="{% trans "Send an emoticon" %}"></i>'
             + '        <a href="javascript:;"><i class="layim_addimage fa fa-picture-o" title="{% trans "Upload an image" %}"></i></a>'
             + '        <a href="javascript:;"><i class="layim_addfile fa fa-paperclip" title="{% trans "Upload attachments" %}"></i></a>'
-            + '        <a href="" target="_blank" class="layim_seechatlog"><i class="fa fa-comment-o"></i>聊天记录</a>'
+            + '        <a href="" target="_blank" class="layim_seechatlog"><i class="fa fa-comment-o"></i>Chat history</a>'
             + '    </div>'
             + '    <textarea class="layim_write" id="layim_write"></textarea>'
             + '    <div class="layim_send">'

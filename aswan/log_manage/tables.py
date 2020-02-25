@@ -52,11 +52,9 @@ class HitLogDetailTable(tables.Table):
 class AuditLogTable(tables.Table):
     username = columns.Column(verbose_name=_("Username"), orderable=False)
     email = columns.Column(verbose_name=_("Mailbox"), orderable=False)
-    role = columns.Column(verbose_name=_("Role"), empty_values=(),
-                          orderable=False)
+    role = columns.Column(verbose_name=_("Role"), empty_values=(), orderable=False)
     path = columns.Column(verbose_name=_("Request_Address"), orderable=False)
-    Confirm = columns.Column(verbose_name=_("ActionType"), empty_values=(),
-                             orderable=False)
+    Confirm = columns.Column(verbose_name=_("ActionType"), empty_values=(), orderable=False)
     method = columns.Column(verbose_name=_("How to request"), orderable=False)
     status = columns.Column(verbose_name=_("Response_Code"), orderable=False)
     req_body = columns.TemplateColumn("""
@@ -85,30 +83,25 @@ class AuditLogTable(tables.Table):
         {% endif %}
     </div>
     """, orderable=False, verbose_name=_("Request_Parameter"))
-    time = columns.DateTimeColumn(verbose_name=_("Hit_time"),
-                                  format="Y-m-d H:i:s")
+    time = columns.DateTimeColumn(verbose_name=_("Hit_time"), format="Y-m-d H:i:s")
 
     class Meta:
         attrs = {'class': 'table table-striped table-hover'}
 
-    def __init__(self, *args, **kwargs):
-        self.pk_user_map = self.pk_user_map
-        self.group_name_desc_map = self.group_name_desc_map
-        self.uri_desc_map = self.uri_desc_map
-
-    @staticmethod
-    def before_render(request):
+    def before_render(self, request):
         pk_user_map = {}
         for d in UserPermission.objects.all_fields():
             pk = d.get('pk')
             if pk:
                 pk_user_map[pk] = d
+        self.pk_user_map = pk_user_map
 
         group_name_desc_map = {}
         for d in GroupPermission.objects.all_fields():
             name = d.get('name')
             if name:
                 group_name_desc_map[name] = d.get('desc', '')
+        self.group_name_desc_map = group_name_desc_map
 
         uri_descs_map = defaultdict(list)
         for d in UriGroupPermission.objects.all_fields():
@@ -122,16 +115,18 @@ class AuditLogTable(tables.Table):
             rw = None
             r = None
             for desc in descs:
-                if desc.endswith(_('-Write')):
+                if desc.endswith(u'-Write'):
                     rw = desc
-                if desc.endswith(_('-Read')):
+                if desc.endswith(u'-Read'):
                     r = desc
             if rw and r:
                 uri_desc_map[uri] = r
             elif rw and not r:
-                uri_desc_map[uri] = rw.rstrip(_('-Write')) + _('-Write')
+                uri_desc_map[uri] = rw.rstrip(u'-Write') + u'-Write'
             else:
                 uri_desc_map[uri] = descs[0]
+
+        self.uri_desc_map = uri_desc_map
 
     def render_role(self, value, record):
         user = self.pk_user_map.get(record.email)

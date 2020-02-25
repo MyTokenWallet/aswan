@@ -12,7 +12,7 @@ from risk_models.rule import Rules
 logger = logging.getLogger(__name__)
 
 CONTROL_CHOICES = (
-    (_('all'), _("Select Project")),
+    ('all', _("Select Project")),
     ('pass', _("pass")),
     ('deny', _("deny")),
     ('log', _("log")),
@@ -85,13 +85,11 @@ class HitLogFilterForm(BaseFilterForm):
 
 class HitLogDetailFilterForm(HitLogFilterForm):
     #  required set to false to ensure that the initial open page does not prompt for an error
-    control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_("Projectmanagement"),
-                                required=False)
+    control = forms.ChoiceField(choices=CONTROL_CHOICES, label=_("Projectmanagement"), required=False)
     user_id = forms.CharField(label=_("UserID"), required=False)
 
     def __init__(self, *args, **kwargs):
         super(HitLogDetailFilterForm, self).__init__(*args, **kwargs)
-
 
 class AuditLogForm(forms.ModelForm, BaseFilterForm):
     time__gt = forms.DateTimeField(label=_("StartTime"), required=False)

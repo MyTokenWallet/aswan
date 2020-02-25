@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
+from typing import Set, Tuple, Union
 
 from django.utils.translation import ugettext_lazy as _
 import copy
@@ -16,21 +17,22 @@ from aswan.core.forms import BaseForm, BaseFilterForm
 from aswan.core.pymongo_client import get_mongo_client
 
 OP_CHOICES = (
-    ('is', _('Yes (use, already)')),
-    ('is_not', _('Not (not used, not yet)')),
-    ('lt', _('Less than...')),
-    ('le', _('Less than or equal to...')),
-    ('eq', _('Equals...')),
-    ('ne', _('Not equal')),
-    ('ge', _('Greater than or equal to...')),
-    ('gt', _('Greater than...')),
+    ('is', _("Yes (use, already)")),
+    ('is_not', _("Not (not used, not yet)")),
+    ('lt', _("Less than...")),
+    ('le', _("Less than or equal to...")),
+    ('eq', _("Equals...")),
+    ('ne', _("Not equal")),
+    ('ge', _("Greater than or equal to...")),
+    ('gt', _("Greater than...")),
 )
 
 k: object
 v: object
-FUNC_CHOICES = tuple(
+FUNC_CHOICES: Tuple[Set[Union[object, str]], ...] = tuple(
     [{k, str(v)} for k, v in BuiltInFuncs.name_callable.items()]
 )
+
 
 VAR_CHOICES = (
     ('user_id', _('Account_ID')),
@@ -49,10 +51,12 @@ DIM_CHOICES_MENU = (
     ('uid', _('CurrentDevice_ID')),
     ('reg_uid', _('RegisterDevice_ID')),
 )
+
 OP_CHOICES_MENU = (
     ('is', _('is')),
     ('is_not', _('is_not')),
 )
+
 TYPE_CHOICES_MENU = (
     ('black', _('Blacklist')),
     ('white', _('White List')),
@@ -66,18 +70,16 @@ DIM_MAP_MENU = dict(DIM_CHOICES_MENU)
 TYPE_MAP_MENU = dict(TYPE_CHOICES_MENU)
 OP_MAP_MENU = dict(OP_CHOICES_MENU)
 
-FREQ_STRATEGY_UNIQ_SET_KEYS = (
-    'strategy_source', 'strategy_body', 'strategy_time', 'strategy_limit')
-USER_STRATEGY_UNIQ_SET_KEYS = (
-    'strategy_source', 'strategy_body', 'strategy_day', 'strategy_limit')
+FREQ_STRATEGY_UNIQ_SET_KEYS = ("strategy_source", 'strategy_body', 'strategy_time', 'strategy_limit')
+USER_STRATEGY_UNIQ_SET_KEYS = ("strategy_source", 'strategy_body', 'strategy_day', 'strategy_limit')
 
 
 class BoolStrategyForm(BaseForm):
     strategy_name = forms.CharField(label=_("PolicyName"))
     strategy_desc = forms.CharField(required=False, label=_("PolicyDescription"))
-    strategy_var = forms.ChoiceField(label=_("Built-in_Variables"), choices=VAR_CHOICES)
+    strategy_var = forms.ChoiceField(label=_("Built_In_Variables"), choices=VAR_CHOICES)
     strategy_op = forms.ChoiceField(label=_("ActionCode"), choices=OP_CHOICES)
-    strategy_func = forms.ChoiceField(label=_("Built-in_Functions"), choices=FUNC_CHOICES)
+    strategy_func = forms.ChoiceField(label=_("Built_In_Functions"), choices=FUNC_CHOICES)
     strategy_threshold = forms.CharField(label=_("Thresholds"), required=False)
 
     def __init__(self, *args, **kwargs):
