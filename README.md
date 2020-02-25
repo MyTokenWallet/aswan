@@ -31,17 +31,22 @@ The main branch of this project only supports Python3, and currently passed the 
 3. Install the required dependencies. This project is based on python3.7. You can run pip install -r requirements.txt to install the dependencies.
 4. Initialize the tables needed for Django to run and create an account, and some data can be pre-generated (optional)
 ```bash
-    # Under the www directory
+    # Translations
+    sh make_trans.sh
+
+    # Python Migrations
     python3 manage.py makemigrations && python3 manage.py migrate
+
      # Create administrator account See other operations here-add users
-     python3 manage.py createsuperuser # Enter the user name, password, and email address in order to create an administrator account
+       # Enter the user name, password, and email address in order to create an administrator account
+     python3 manage.py createsuperuser
      # If you want to have an intuitive feel for the system, you can use the following instructions to pre-inject some data
      python3 manage.py init_risk_data 
 ```
 5. Start service
 ```bash
     # Start the service process, manage the background, and intercept the log consumption process in nohup mode under aswan
-     bash start.sh
+     sh start.sh
 ```
 
 ### Backstage introduction
@@ -194,18 +199,31 @@ The specific diagram is as follows::
 
 ### Configuration related
 
-Currently the configuration of the Django part is stored in the www / settings directory, and the configuration of the non-Django part is located in the config directory.
+Currently the configuration of the Django part is stored in the aswan/settings directory, 
+and the configuration of the non-Django part is located in the config directory.
 
-In order to load different configurations in different environments, we use the environment variable RISK_ENV, and the system will automatically load the corresponding configuration file through the value of this environment variable at runtime.
+In order to load different configurations in different environments, 
+we use the environment variable RISK_ENV, and the system will automatically 
+load the corresponding configuration file through the value of this environment variable at runtime.
 
-To facilitate project startup, when this value is not set, the system loads the configuration of the develop environment by default. When executing the test (python3 manage.py test), the value of RISK_ENV must be test.
+To facilitate project startup, when this value is not set, the system loads the configuration of 
+the develop environment by default. When executing the test (python3 manage.py test), 
+the value of RISK_ENV must be test.
 
 ### Aswan System Workflow
 
-1.  The business party calls the query interface before the user executes, and determines whether the current behavior is intercepted according to the returned control code (this part needs to be negotiated with the business party). If it is intercepted, it will turn to 2;
+1.  The business party calls the query interface before the user executes,
+    and determines whether the current behavior is intercepted according to the 
+    returned control code (this part needs to be negotiated with the business party). 
+    If it is intercepted, it will turn to 2;
+    
 2.  User action failed, go to 5;
+
 3.  Execute business-side logic, if the end user successfully turns to 4, otherwise go to 5;
-4.  The strategy of data source related to the risk control system calls the report interface to report the results for subsequent calculation by the engine, and turns to 5;
+
+4.  The strategy of data source related to the risk control system calls the report interface 
+    to report the results for subsequent calculation by the engine, and turns to 5;
+    
 5. End directly.
 
 #### Example
@@ -224,7 +242,19 @@ The rules on the risk control side are:
 #### Request example
 
 Take a normal user performing multiple actions (assuming that each execution interval is 5s) as an example:
-The first time: before the user hits the mole, the query interface is called. The pass is obtained due to the missed policy, but the user is unlucky (business-side rules). If the user fails to hit the mole, the second time is ended. , Call the query interface, get a pass due to the miss strategy, and the user is lucky (business-side rules), and the mole is successful, then call report to report the data for the third time: before the user hits the mole, call the query interface, and the hit frequency Control strategy, get deny, the behavior was intercepted, the user failed to hit the mole, and ended
+The first time: before the user hits the mole, the query interface is called.
+
+ 
+The pass is obtained due to the missed policy, but the user is unlucky (business-side rules). 
+If the user fails to hit the mole, the second time is ended. 
+Call the query interface, get a pass due to the miss strategy, 
+and the user is lucky (business-side rules), and the mole is successful, 
+then call report to report the data for the third time: 
+
+
+before the user hits the mole, 
+call the query interface, and the hit frequency Control strategy, get deny, 
+the behavior was intercepted, the user failed to hit the mole, and ended
 ...
 At some point, this user was judged as an abnormal user due to some rules
 ...
